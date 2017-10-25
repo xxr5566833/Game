@@ -2,16 +2,14 @@ cc.Class({
     extends: cc.Component,
 
     properties: {
-        // foo: {
-        //    default: null,      // The default value will be used only when the component attaching
-        //                           to a node for the first time
-        //    url: cc.Texture2D,  // optional, default is typeof default
-        //    serializable: true, // optional, default is true
-        //    visible: true,      // optional, default is true
-        //    displayName: 'Foo', // optional
-        //    readonly: false,    // optional, default is false
-        // },
-        // ...
+        gold_:{
+            default:0,
+            type:cc.Integer,
+        },
+        records_:{
+            default:null,
+            type:cc.Node,
+        }
     },
 
     // use this for initialization
@@ -19,8 +17,30 @@ cc.Class({
 
     },
 
-    // called every frame, uncomment this function to activate update callback
-    // update: function (dt) {
 
-    // },
+    profit:function(num,cause){
+        this.gold_+=num;
+    },
+
+    expend:function(num,cause){
+        let gold_now_=this.glod_-num;
+        if(gold_now_<0){
+            //提示资金不足
+            cc.log("资金不足");
+            return false;
+        }
+        //记录
+        return true;
+    },
+
+    isenough:function(num){
+        if(this.gold_<num){
+            return false;
+        }
+        return true;
+    },
+
+    update:function(dt){
+        
+    },
 });

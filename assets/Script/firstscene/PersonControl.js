@@ -2,30 +2,98 @@ cc.Class({
     extends: cc.Component,
 
     properties: {
-        persons_:[cc.Prefab],
-        company_:{
-            type:cc.Node,
-            default:null,
+        // 员工列表
+        persons_:{   
+            default:[],
+            type:[cc.Prefab]
         },
-        project_:{
-            type:cc.Prefab,
+        // 当前员工数
+        currentNum_:0, 
+        // 当前最大员工数
+        maxNum_:0,
+        // 是否在工作状态
+        flag_:false,
+        // 当前项目 
+        project_:{   
             default:null,
+            type:cc.Node
         },
-        // foo: {
-        //    default: null,      // The default value will be used only when the component attaching
-        //                           to a node for the first time
-        //    url: cc.Texture2D,  // optional, default is typeof default
-        //    serializable: true, // optional, default is true
-        //    visible: true,      // optional, default is true
-        //    displayName: 'Foo', // optional
-        //    readonly: false,    // optional, default is false
-        // },
-        // ...
     },
 
     // use this for initialization
     onLoad: function () {
     },
+
+    hire: function (newPerson) {    // 雇佣一个员工，如果已达人数上限，则返回false
+        cc.log("now:"+this.currentNum_);
+        cc.log("max:"+this.maxNum_);
+        if(this.currentNum_<this.maxNum_){
+            this.currentNum_++;
+            this.persons_.push(newPerson);
+            cc.log("after hire:"+this.currentNum_);
+            return true;
+        }
+        cc.log("can't hire:"+this.currentNum_);
+        return false;
+    },
+
+    fire: function (oldperson){     // 解雇老员工
+        for(let i=0;i<this.currentNum_;i++){
+            if(this.persons_[i]===oldperson){
+                this.persons_.splice(i,1);
+                this.currentNum_--;
+                return true;
+            }
+        }
+        return false;
+    },
+
+    work: function (newProject){
+        this.project_ = newProject;
+        this.flag_ = true;
+        for(let i=0;i<this.currentNum_;i++){
+            this.persons_[i].getComponent("Person").work(newProject);
+        }
+    },
+
+    stop: function (){
+        this.flag_ = false;
+        for(let i=0;i<this.currentNum_;i++){
+            this.persons_[i].getComponent("Person").stop();
+        }
+    },
+
+    commit: function () {
+        for(let i=0;i<this.currentNum_;i++){
+            this.persons_[i].getComponent("Person").commit();
+        }
+        
+        let pg = cc.find("ProjectGenerator").getComponent("ProjectGenerator");
+        if(this.project_.getComponent("Project").CoisFinished()){
+            this.stop();
+            pg.finishProject(this.project_);
+        }
+        else{
+            if(this.project_.getComponent("Project").isOverdue()){
+                this.stop();
+                pg.failProject(this.project_);
+            }
+        }
+    },
+
+    showPersons: function() {   // 返回所有员工信息
+        let list="";
+        for(let i=0;i<this.currentNum_;i++){
+            list += this.persons_[i].getComponent("Person").show() + "\n";
+        }
+        return list;
+    },
+    
+    update:function() {     // 每隔一段时间调用
+        if(this.flag_){
+            this.commit();
+        }
+    }
     // called every frame, uncomment this function to activate update callback
     // update: function (dt) {
 

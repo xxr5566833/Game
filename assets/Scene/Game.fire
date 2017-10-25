@@ -118,7 +118,10 @@
     "node": {
       "__id__": 2
     },
-    "_enabled": true
+    "_enabled": true,
+    "time_": null,
+    "speedPerday_": null,
+    "count_": null
   },
   {
     "__type__": "cc.Node",
@@ -305,7 +308,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 86.52,
+      "width": 87.4,
       "height": 40
     },
     "_rotationX": 0,
@@ -379,7 +382,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 117,
+      "width": 120.06,
       "height": 40
     },
     "_rotationX": 0,
@@ -908,15 +911,11 @@
       "__id__": 21
     },
     "_enabled": true,
-    "persons_": {
-      "__uuid__": "67b6150e-9bf0-48ad-8b7e-da17e936475f"
-    },
-    "company_": {
-      "__id__": 20
-    },
-    "project_": {
-      "__uuid__": "3a73bad2-22b6-444f-b29c-4b93016690f6"
-    }
+    "persons_": [],
+    "currentNum_": 0,
+    "maxNum_": 0,
+    "flag_": false,
+    "project_": null
   },
   {
     "__type__": "cc.Node",
@@ -977,7 +976,9 @@
     "node": {
       "__id__": 23
     },
-    "_enabled": true
+    "_enabled": true,
+    "gold_": null,
+    "records_": null
   },
   {
     "__type__": "07382kUPjpEj5DuRvZsl/LF",

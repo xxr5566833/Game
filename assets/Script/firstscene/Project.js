@@ -23,5 +23,11 @@ cc.Class({
     // called every frame, uncomment this function to activate update callback
     // update: function (dt) {
 
+    isFinished: function() {
+        cc.log("isFinished");
+    },
+    isOverdue: function() {
+        cc.log("isOverdue");
+    }
     // },
 });

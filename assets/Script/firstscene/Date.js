@@ -2,17 +2,18 @@ cc.Class({
     extends: cc.Component,
 
     properties: {
-        
-        // foo: {
-        //    default: null,      // The default value will be used only when the component attaching
-        //                           to a node for the first time
-        //    url: cc.Texture2D,  // optional, default is typeof default
-        //    serializable: true, // optional, default is true
-        //    visible: true,      // optional, default is true
-        //    displayName: 'Foo', // optional
-        //    readonly: false,    // optional, default is false
-        // },
-        // ...
+        time_:{
+            default:0,
+            type:cc.Integer,
+        },
+        speedPerday_:{
+            default:0,
+            type:cc.Integer,
+        },
+        count_:{
+            default:0,
+            type:cc.Integer,
+        },
     },
 
     // use this for initialization
@@ -21,7 +22,22 @@ cc.Class({
     },
 
     // called every frame, uncomment this function to activate update callback
-    // update: function (dt) {
+    update: function (dt) {
+        this.count_++;
+        if(this.count_ >= this.speedPerday)
+            this.updateDate();
+            this.count_=0;
+    },
 
-    // },
+    updateDate:function(){
+        this.time_++;
+    },
+
+    getDate:function(){
+        return this.time_;
+    },
+
+    //getDate:function(){  //以一定格式返回日期
+    //
+    //}
 });
