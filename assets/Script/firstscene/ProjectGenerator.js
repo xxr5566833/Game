@@ -20,17 +20,6 @@ cc.Class({
     onLoad: function () {
 
     },
-    createProject:function(){
-
-    },
-    reward:function(){
-        return 100;
-    },
-    update:function(){
-        var date=cc.find('Date').getComponent('Date');
-        console.log('in projectGenerator'+date.timer_);
-    }
-    
 
     // called every frame, uncomment this function to activate update callback
     // update: function (dt) {

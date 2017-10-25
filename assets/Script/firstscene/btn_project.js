@@ -20,11 +20,9 @@ cc.Class({
     },
     
     hide:function(){
-        this.btn_contract.node.x = -10000;
         this.btn_develop.node.x = -10000;
     },
     show: function(){
-        this.btn_contract.node.x = 100;
         this.btn_develop.node.x = 100;
     }
 

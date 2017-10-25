@@ -2,7 +2,6 @@ cc.Class({
     extends: cc.Component,
 
     properties: {
-        
         // foo: {
         //    default: null,      // The default value will be used only when the component attaching
         //                           to a node for the first time
@@ -19,10 +18,9 @@ cc.Class({
     onLoad: function () {
 
     },
-    update:function(dt){
-        /*控制每隔一段时间日期的增加 */
-    },
-
+    startGame:function(){
+        cc.director.loadScene('Game');
+    }
 
     // called every frame, uncomment this function to activate update callback
     // update: function (dt) {
