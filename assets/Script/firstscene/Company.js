@@ -28,6 +28,7 @@ cc.Class({
 
     receiveProject:function(project){
         this.project_=project;
+        console.log("personcontrol 开始接受");
         cc.find("Company/PersonControl").getComponent("PersonControl").work(project);
     },
 

@@ -25,7 +25,7 @@ cc.Class({
         /**正在开发的项目 */
         project_:{
             default:null,
-            type:cc.Node,
+            type:cc.Prefab,
         },
     },
 
@@ -41,7 +41,8 @@ cc.Class({
     commit:function(){
         /**贡献开发点数到当前project */
         cc.log("贡献了1点");
-        this.project_.augment(this.getCommit());
+        this.project_.augment('ui',this.getCommit());
+        this.project_.augment('func',this.getCommit());
     },
     work:function(proj){
         /**开始工作 */

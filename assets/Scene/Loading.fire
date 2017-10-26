@@ -576,7 +576,8 @@
     },
     "_enabled": true,
     "transDuration_": 0.1,
-    "pressedScale_": 1.1
+    "pressedScale_": 1.1,
+    "initScale_": 1
   },
   {
     "__type__": "cc.Node",
@@ -807,7 +808,8 @@
     },
     "_enabled": true,
     "transDuration_": 0.1,
-    "pressedScale_": 1.1
+    "pressedScale_": 1.1,
+    "initScale_": 1
   },
   {
     "__type__": "cc.Node",
@@ -1038,7 +1040,8 @@
     },
     "_enabled": true,
     "transDuration_": 0.1,
-    "pressedScale_": 1.1
+    "pressedScale_": 1.1,
+    "initScale_": 1
   },
   {
     "__type__": "cc.Node",
@@ -1269,7 +1272,8 @@
     },
     "_enabled": true,
     "transDuration_": 0.1,
-    "pressedScale_": 1.1
+    "pressedScale_": 1.1,
+    "initScale_": 1
   },
   {
     "__type__": "cc.Canvas",
