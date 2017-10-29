@@ -9,8 +9,14 @@ cc.Class({
 
     properties: {
         /**能力值 */
-        ability_:0,
-        /*状态，用枚举表示，定义在上面 */
+        ability_            : 0,
+	ability_coding_     : 0,
+	ability_management_ : 0,
+	ability_structure_  : 0,
+	ability_test_       : 0,
+	ability_art_        : 0,
+	ability_creativity_ : 0,
+	/*状态，用枚举表示，定义在上面 */
         state_:{
             default:eState.free,
             type:eState,
@@ -34,7 +40,8 @@ cc.Class({
 
     },
     getCommit:function(){
-        /*获得开发点数,这里就先return 1*/ 
+        /*获得开发点数,这里就先return 1*/
+
         return 1;
     },
 
