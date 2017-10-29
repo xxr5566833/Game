@@ -1,0 +1,30 @@
+{
+  "ver": "1.0.0",
+  "uuid": "c4bde666-29d7-46fa-9164-5d392b6fe6be",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "subMetas": {
+    "calendar_bar_back_shadow": {
+      "ver": "1.0.3",
+      "uuid": "23a4c613-d3f7-4dee-9656-cc5ef4085bec",
+      "rawTextureUuid": "c4bde666-29d7-46fa-9164-5d392b6fe6be",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": -2,
+      "offsetY": 2,
+      "trimX": 4,
+      "trimY": 4,
+      "width": 274,
+      "height": 124,
+      "rawWidth": 286,
+      "rawHeight": 136,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}
