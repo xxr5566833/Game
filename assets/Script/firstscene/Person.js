@@ -9,7 +9,6 @@ cc.Class({
 
     properties: {
         /**能力值 */
-        ability_            : 0,
 	ability_coding_     : 0,
 	ability_management_ : 0,
 	ability_structure_  : 0,
@@ -64,7 +63,7 @@ cc.Class({
     },
     show:function(){
         /**展示信息 */
-        let info = "能力："+this.ability_ + "工资："+this.salary_;    // 具体信息输出方式由UI来定
+        let info = "编码能力："+this.ability_coding_ + "工资："+this.salary_;    // 具体信息输出方式由UI来定
         cc.log(info);
         return info;
     },
