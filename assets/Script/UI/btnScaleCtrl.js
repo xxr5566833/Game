@@ -5,6 +5,11 @@ cc.Class({
         transDuration_:0.1,
         pressedScale_:1.1,
         initScale_:1.0,
+        btnAudio:{
+            url:cc.AudioClip,
+            default:null,
+        },
+
 
         // foo: {
         //    default: null,      // The default value will be used only when the component attaching
@@ -23,22 +28,21 @@ cc.Class({
         this.initBtnScaleCtrl();
     },
     initBtnScaleCtrl:function(){
-        var self=this;
-        self.button = self.getComponent(cc.Button);
-        self.scaleChangeAction = cc.scaleTo(this.transDuration_, this.pressedScale_);
-        self.scaleCancelAction = cc.scaleTo(this.transDuration_, this.initScale_);
-        function onTouchDown (event) {
-            this.stopAllActions();
-            this.runAction(self.scaleChangeAction);
-        }
-        function onTouchUp (event) {
-            this.stopAllActions();
-            this.runAction(self.scaleCancelAction);
-        }
-        this.node.on('touchstart', onTouchDown, this.node);
-        this.node.on('touchend', onTouchUp, this.node);
-        this.node.on('touchcancel', onTouchUp, this.node);
-    }
+        this.scaleChangeAction = cc.scaleTo(this.transDuration_, this.pressedScale_);
+        this.scaleCancelAction = cc.scaleTo(this.transDuration_, this.initScale_);
+        this.node.on('touchstart', this.onTouchDown, this);
+        this.node.on('touchend', this.onTouchUp, this);
+        this.node.on('touchcancel', this.onTouchUp, this);
+    },
+    onTouchDown:function(event){
+        this.node.stopAllActions();
+        cc.audioEngine.playEffect(this.btnAudio,false);
+        this.node.runAction(this.scaleChangeAction);
+    },
+    onTouchUp:function(event){
+        this.node.stopAllActions();
+        this.node.runAction(this.scaleCancelAction);
+    },
 
     // called every frame, uncomment this function to activate update callback
     // update: function (dt) {

@@ -5,16 +5,11 @@ cc.Class({
         persons_:{   
             default:[],
             type:[cc.Prefab]
-        }
+        },
     },
 
     showPersons: function() {
-        let list="";
-        for(let i=0;i<this.currentNum_;i++){
-            list += this.persons_[i].show() + "\n";
-        }
-        cc.log(list);
-        return list;
+        return this.persons_;
     },
 
     removePerson: function(person) {

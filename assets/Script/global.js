@@ -16,7 +16,7 @@ cc.Class({
 
     // use this for initialization
     onLoad: function () {
-
+        console.log("fdsafadsfasd");
     },
 
     // called every frame, uncomment this function to activate update callback
@@ -31,3 +31,4 @@ var eProjectState=cc.Enum({
     overdue:3,
 });
 module.exports.projectState=eProjectState;
+

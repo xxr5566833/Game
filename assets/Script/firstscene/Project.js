@@ -4,10 +4,6 @@ cc.Class({
 
     properties: {
         //cocos creator对于自己定义的复杂类型不支持，所以这里分开写了
-        requireBugnum_:{
-            visible:false,
-            default:0,
-        },
         requireUi_:{
             visible:false,
             default:0,
@@ -25,10 +21,6 @@ cc.Class({
             visible:false,
             default:0,
         },
-        currentBugnum_:{
-            visible:false,
-            default:0,
-        },
 
         state_:projectstate.received,
         category_:null,
@@ -40,6 +32,10 @@ cc.Class({
         },
         receiveDay_:0,
         finishDay_:0,
+        content_:{
+            type:cc.String,
+            default:null,
+        },
         
         // foo: {
         //    default: null,      // The default value will be used only when the component attaching
@@ -65,13 +61,12 @@ cc.Class({
             case 'func':
             this.currentFunc_+=increment;
             break;
-            case 'bugnum':
-            this.currentBugnum_+=increment;
+            default:
+            throw "error attribute" + attribute;
             break;
         }
         console.log("现在属性");
         console.log(this.currentUi_);
-        console.log(this.currentBugnum_);
         console.log(this.currentFunc_);
     },
 
@@ -80,8 +75,8 @@ cc.Class({
     // update: function (dt) {
 
     isFinished: function() {
-        return this.requireUi_<=this.currentUi_&&this.requireFunc_<=this.currentFunc_
-            &&this.requireBugnum_>=this.currentBugnum_;
+        return this.requireUi_<=this.currentUi_
+        &&this.requireFunc_<=this.currentFunc_;
     },
     isOverdue: function() {
         var date=cc.find('Date').getComponent('Date');
@@ -91,25 +86,17 @@ cc.Class({
     setRequire:function(require){
         this.requireUi_=require.ui;
         this.requireFunc_=require.func;
-        this.requireBugnum_=require.bugnum;
     },
     getRequire:function(){
         var require=new Object();
         require.func=this.requireFunc_;
         require.ui=this.requireUi_;
-        require.bugnum=this.requireBugnum_;
         return require;
-    },
-    setCurrent:function(current){
-        this.currentUi_=current.ui;
-        this.currentFunc_=current.func;
-        this.currentBugnum_=current.bugnum;
     },
     getCurrent:function(){
         var current=new Object();
         current.func=this.currentFunc_;
         current.ui=this.currentUi_;
-        current.bugnum=this.currentBugnum_;
         return current;      
     },
     setState:function(state){
@@ -148,12 +135,19 @@ cc.Class({
     getFinishDay:function(){
         return this.finishDay_;
     },
+    setContent:function(content){
+        this.content_=content;
+    },
+    getContent:function(content){
+        return this.content_;
+    },
     /*调试用的init函数，便于初始化一个project */
     init:function(project){
         this.setCategory(project.category);
         this.setRequire(project.require);
         this.setDeadline(project.deadline);
         this.setReward(project.reward);
+        this.setContent(project.content_);
         this.state_=projectstate.notReceived;
         console.log('任务产生完毕！');
     },

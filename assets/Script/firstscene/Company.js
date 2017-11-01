@@ -1,4 +1,5 @@
-
+var projectstate=require('global').projectState;
+var date=require('global').date;
 cc.Class({
     extends: cc.Component,
 
@@ -7,7 +8,7 @@ cc.Class({
             default:null,
             type:cc.Node,
         },
-        personcontrol_:{
+        personControl_:{
             default:null,
             type:cc.Node,
         },
@@ -27,25 +28,38 @@ cc.Class({
     // },
 
     receiveProject:function(project){
-        this.project_=project;
+        this.project_=project 
+        this.project_.setState(projectstate.received);
+        var date=cc.find('Date').getComponent('Date');
+        this.project_.setReceiveDay(date.getDate());
         console.log("personcontrol 开始接受");
-        cc.find("Company/PersonControl").getComponent("PersonControl").work(project);
+        this.personControl_.getComponent('PersonControl').work(project);
     },
 
     profit:function(num,cause){
-        cc.find("Company/Account").getComponent("Account").profit(num,cause);
+        this.account_.getComponent('Account').profit(num,cause);
     },
 
     expend:function(num,cause){
-        cc.find("Company/Account").getComponent("Account").expend(num,cause);
+        this.account_.getComponent('Account').expend(num,cause);
     },
 
     hire:function(person){
-        cc.find("Company/PersonControl").getComponent("PersonControl").hire(person);
+        var pc=this.personControl_.getComponent('PersonControl');
+        var ac=this.account_.getComponent('Account');
+        if(pc.canHire(person)){
+            if(ac.isEnough(person.getEmployMoney())){
+                ac.expend(person.getEmployMoney(), '雇人费用');
+                pc.hire(person);
+                return true;
+            }
+        }else{
+            return false;
+        }
     },
 
     fire:function(person){
-        cc.find("Company/PersonControl").getComponent("PersonControl").fire(person);
+        this.personControl_.getComponent('PersonControl').fire(person);
     },
 
     showPersons:function(){

@@ -1,5 +1,5 @@
 var projectstate=require('global').projectState;
-var objproject=require('Project');
+var project=require('Project');
 cc.Class({
     extends: cc.Component,
 
@@ -24,7 +24,8 @@ cc.Class({
     onLoad: function () {
         //这里会onload两次，不知道为啥
         console.log("ok");
-        this.updateProject();
+        cc.log(cc.find('Date'));
+        this.updateAll();
     },
     createProjects:function(){
         //这里先暂定任务数为3
@@ -32,18 +33,20 @@ cc.Class({
         for(var i=0;i<num;i++){
             let project=this.projects_[i];
             if(project==null){
-                this.updateProject();
+                this.updateAll();
+                return;
             }
             else{ 
                 if(project.getState()==projectstate.finished||
                 project.getState()==projectstate.overdue){
-                    this.updateProject();
+                    this.updateAll();
+                    return ;
                 }
             }
         }
         console.log('三个任务都没有变');
     },
-    updateProject:function(){
+    updateAll:function(){
         //三个任务都更新
         var num=3;
         for(var j=0;j<num;j++){
@@ -56,16 +59,16 @@ cc.Class({
     generateProject:function(level){
         //表示根据level等级产生任务，下面的属性都是暂定
         var require={
-            ui:10,
-            func:10,
-            bugnum:5,
+            ui:100,
+            func:100,
         };
         
-        var project={
+        var tempproject={
             category:'normal',
             require:require,
             reward:100,
             deadline:10,
+            content_='xxx',
         };
         /*这里利用require引入 Project.js定义的Project组件，这里我谈一下我的理解
         我们在js文件里定义的是Component的子类，如何获得这些子类？
@@ -76,15 +79,13 @@ cc.Class({
         的修改
         */
         //project这里直接用构造函数新建，用方法1
-        var proj=new objproject();
-        proj.init(project);
+        var proj=new project();
+        proj.init(tempproject);
         return proj;
     },
-    tempButton:function(){
-        this.createProjects();
-        console.log("公司开始接受");
-        //公司是全局的，这里用方法2
-        var company=cc.find('Company').getComponent("Company");
+    //调试用的临时temp，这里在ui加上后就会删除
+    temp:function(){
+        var company=cc.find('Company').getComponent('Company');
         company.receiveProject(this.projects_[0]);
     },
     failProject:function(project){
@@ -101,6 +102,9 @@ cc.Class({
         var date=cc.find('Date').getComponent("Date");
         project.setFinishDay(date.getDate());
         console.log('任务成功');
+    },
+    getProjects:function(){
+        return this.projects_;
     },
 
 

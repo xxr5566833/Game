@@ -31,7 +31,12 @@ cc.Class({
         this.hire(newperson);
     },
 
-    hire: function (newPerson) {    // 雇佣一个员工，如果已达人数上限，则返回false
+    canHire:function(person){
+        return this.currentNum_<this.maxNum_;
+    },
+
+    hire: function (newPerson) {
+            // 雇佣一个员工，如果已达人数上限，则返回false
         cc.log("now:"+this.currentNum_);
         cc.log("max:"+this.maxNum_);
         if(this.currentNum_<this.maxNum_){
@@ -98,11 +103,7 @@ cc.Class({
     },
 
     showPersons: function() {   // 返回所有员工信息
-        let list="";
-        for(let i=0;i<this.currentNum_;i++){
-            list += this.persons_[i].getComponent("Person").show() + "\n";
-        }
-        return list;
+        return this.persons_;
     },
     
     update:function() {     // 每隔一段时间调用

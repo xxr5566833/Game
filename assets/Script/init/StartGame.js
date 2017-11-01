@@ -16,6 +16,7 @@ cc.Class({
 
     // use this for initialization
     onLoad: function () {
+        cc.log(this);
 
     },
     startGame:function(){

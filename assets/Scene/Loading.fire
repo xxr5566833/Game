@@ -232,7 +232,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 160,
+      "width": 240,
       "height": 40
     },
     "_rotationX": 0,
@@ -258,7 +258,7 @@
     "node": {
       "__id__": 5
     },
-    "_enabled": true,
+    "_enabled": false,
     "_useOriginalSize": false,
     "_actualFontSize": 40,
     "_fontSize": 40,
@@ -267,7 +267,7 @@
     "_N$file": null,
     "_isSystemFontUsed": true,
     "_spacingX": 0,
-    "_N$string": "游戏标题",
+    "_N$string": "经营软件公司",
     "_N$horizontalAlign": 1,
     "_N$verticalAlign": 1,
     "_N$fontFamily": "Arial",
@@ -577,7 +577,10 @@
     "_enabled": true,
     "transDuration_": 0.1,
     "pressedScale_": 1.1,
-    "initScale_": 1
+    "initScale_": 1,
+    "btnAudio": {
+      "__uuid__": "d600d838-aefe-4f88-aec4-7ea6f18d9b4b"
+    }
   },
   {
     "__type__": "cc.Node",
@@ -809,7 +812,10 @@
     "_enabled": true,
     "transDuration_": 0.1,
     "pressedScale_": 1.1,
-    "initScale_": 1
+    "initScale_": 1,
+    "btnAudio": {
+      "__uuid__": "d600d838-aefe-4f88-aec4-7ea6f18d9b4b"
+    }
   },
   {
     "__type__": "cc.Node",
@@ -1041,7 +1047,10 @@
     "_enabled": true,
     "transDuration_": 0.1,
     "pressedScale_": 1.1,
-    "initScale_": 1
+    "initScale_": 1,
+    "btnAudio": {
+      "__uuid__": "d600d838-aefe-4f88-aec4-7ea6f18d9b4b"
+    }
   },
   {
     "__type__": "cc.Node",
@@ -1273,7 +1282,10 @@
     "_enabled": true,
     "transDuration_": 0.1,
     "pressedScale_": 1.1,
-    "initScale_": 1
+    "initScale_": 1,
+    "btnAudio": {
+      "__uuid__": "d600d838-aefe-4f88-aec4-7ea6f18d9b4b"
+    }
   },
   {
     "__type__": "cc.Canvas",
