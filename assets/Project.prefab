@@ -68,8 +68,18 @@
       "__id__": 1
     },
     "_enabled": true,
-    "target_": 10,
-    "current_": 0
+    "requireUi_": 0,
+    "requireFunc_": 0,
+    "currentUi_": 0,
+    "currentFunc_": 0,
+    "state_": 1,
+    "category_": "null",
+    "reward_": 0,
+    "deadline_": 0,
+    "company_": null,
+    "receiveDay_": 0,
+    "finishDay_": 0,
+    "content_": ""
   },
   {
     "__type__": "cc.PrefabInfo",
@@ -77,7 +87,7 @@
       "__id__": 1
     },
     "asset": {
-      "__id__": 0
+      "__uuid__": "3a73bad2-22b6-444f-b29c-4b93016690f6"
     },
     "fileId": "70Dz6qVTNDlKt7lYQVOh7p",
     "sync": false

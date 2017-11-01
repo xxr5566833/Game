@@ -23,7 +23,7 @@ cc.Class({
         },
 
         state_:projectstate.received,
-        category_:null,
+        category_:"",
         reward_:0,
         deadline_:0,
         company_:{
@@ -32,10 +32,7 @@ cc.Class({
         },
         receiveDay_:0,
         finishDay_:0,
-        content_:{
-            type:cc.String,
-            default:null,
-        },
+        content_:"",
         
         // foo: {
         //    default: null,      // The default value will be used only when the component attaching

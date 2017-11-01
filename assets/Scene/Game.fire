@@ -1028,7 +1028,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "btn_back",
+    "_name": "btn_resume",
     "_objFlags": 0,
     "_parent": {
       "__id__": 6
@@ -1156,7 +1156,7 @@
     "_N$file": null,
     "_isSystemFontUsed": true,
     "_spacingX": 0,
-    "_N$string": "返回",
+    "_N$string": "resume测试",
     "_N$horizontalAlign": 1,
     "_N$verticalAlign": 1,
     "_N$fontFamily": "Arial",
@@ -2181,7 +2181,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "btn_menu",
+    "_name": "btn_pause",
     "_objFlags": 0,
     "_parent": {
       "__id__": 6
@@ -2306,7 +2306,7 @@
     "_N$file": null,
     "_isSystemFontUsed": true,
     "_spacingX": 0,
-    "_N$string": "菜单",
+    "_N$string": "pause测试",
     "_N$horizontalAlign": 1,
     "_N$verticalAlign": 1,
     "_N$fontFamily": "Arial",

@@ -508,7 +508,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "sceneCtrl",
+    "_name": "SceneCtrl",
     "_objFlags": 0,
     "_parent": {
       "__id__": 1

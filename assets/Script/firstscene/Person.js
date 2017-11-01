@@ -30,14 +30,8 @@ cc.Class({
             type:cc.Prefab,
         },
         employMoney_:0,
-        name_:{
-            type:cc.String,
-            default:"",
-        },
-        profession_:{
-            type:cc.String,
-            default:"",
-        },
+        name_:"",
+        profession_:"",
     },
 
     // use this for initialization

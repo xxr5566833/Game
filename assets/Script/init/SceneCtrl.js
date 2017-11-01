@@ -21,7 +21,10 @@ cc.Class({
     },
     startGame:function(){
         cc.director.loadScene('Game');
-    }
+    },
+    continueGame:function(){
+        
+    },
 
     // called every frame, uncomment this function to activate update callback
     // update: function (dt) {
