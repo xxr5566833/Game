@@ -9,10 +9,20 @@ cc.Class({
 
     properties: {
         /**能力值 */
+<<<<<<< HEAD
         abilityArt_:0,
         abilityManage_:0,
         abilityCoding_:0,
         /*状态，用枚举表示，定义在上面 */
+=======
+	ability_coding_     : 0,
+	ability_management_ : 0,
+	ability_structure_  : 0,
+	ability_test_       : 0,
+	ability_art_        : 0,
+	ability_creativity_ : 0,
+	/*状态，用枚举表示，定义在上面 */
+>>>>>>> 76618450e57d19b23dd771e828d47b1aa39fe004
         state_:{
             default:eState.free,
             type:eState,
@@ -45,7 +55,8 @@ cc.Class({
 
     },
     getCommit:function(){
-        /*获得开发点数,这里就先return 1*/ 
+        /*获得开发点数,这里就先return 1*/
+
         return 1;
     },
 
@@ -68,7 +79,7 @@ cc.Class({
     },
     show:function(){
         /**展示信息 */
-        let info = "能力："+this.ability_ + "工资："+this.salary_;    // 具体信息输出方式由UI来定
+        let info = "编码能力："+this.ability_coding_ + "工资："+this.salary_;    // 具体信息输出方式由UI来定
         cc.log(info);
         return info;
     },
