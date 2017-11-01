@@ -68,7 +68,7 @@ cc.Class({
             require:require,
             reward:100,
             deadline:10,
-            content_='xxx',
+            content:'xxx',
         };
         /*这里利用require引入 Project.js定义的Project组件，这里我谈一下我的理解
         我们在js文件里定义的是Component的子类，如何获得这些子类？

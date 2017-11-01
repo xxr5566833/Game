@@ -105,6 +105,14 @@ cc.Class({
     showPersons: function() {   // 返回所有员工信息
         return this.persons_;
     },
+
+    isWorking:function(){
+        return this.flag_;
+    },
+
+    getProject:function(){
+        return this.project_;
+    },
     
     update:function() {     // 每隔一段时间调用
         if(this.flag_){

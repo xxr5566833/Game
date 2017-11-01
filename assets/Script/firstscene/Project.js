@@ -144,7 +144,7 @@ cc.Class({
         this.setRequire(project.require);
         this.setDeadline(project.deadline);
         this.setReward(project.reward);
-        this.setContent(project.content_);
+        this.setContent(project.content);
         this.state_=projectstate.notReceived;
         console.log('任务产生完毕！');
     },
