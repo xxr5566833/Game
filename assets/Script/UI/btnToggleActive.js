@@ -39,23 +39,21 @@ cc.Class({
     // },
 
     toggle: function() {
-        for (var me_node of this.multi_exclusive) {
-            var toggle_comp = me_node.getComponent('btnToggleActive')
-            if (toggle_comp.state == "TOGGLE_OFF") { // 表示另一个节点点亮了
-                toggle_comp.toggle()
-            }
-        }
         if (this.state == "TOGGLE_ON") {
+            for (var me_node of this.multi_exclusive) { // 清掉互斥节点
+                var toggle_comp = me_node.getComponent('btnToggleActive')
+                if (toggle_comp.state == "TOGGLE_OFF") { // 表示另一个节点点亮了
+                    toggle_comp.toggle()
+                }
+            }
             for (var node of this.toggle_targets) {  // Use of！
                 console.log("on")
                 node.active = true
             }
             this.state = "TOGGLE_OFF"
         } else if (this.state == "TOGGLE_OFF") {
-            for (var node of this.toggle_targets) {
-                console.log("hid")
-                node.active = false
-            }
+            var call_tree = this.getComponent("btnCallTree")
+            call_tree.inactivateCascade()
             this.state = "TOGGLE_ON"           
         }
     }
