@@ -17,7 +17,7 @@
         "__id__": 2
       },
       {
-        "__id__": 218
+        "__id__": 219
       }
     ],
     "_tag": -1,
@@ -90,7 +90,7 @@
     "_active": true,
     "_components": [
       {
-        "__id__": 217
+        "__id__": 218
       }
     ],
     "_prefab": null,
@@ -965,7 +965,7 @@
       }
     ],
     "_tag": -1,
-    "_active": true,
+    "_active": false,
     "_components": [
       {
         "__id__": 78
@@ -7796,7 +7796,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "developing",
+    "_name": "development",
     "_objFlags": 0,
     "_parent": {
       "__id__": 188
@@ -7808,7 +7808,11 @@
     ],
     "_tag": -1,
     "_active": true,
-    "_components": [],
+    "_components": [
+      {
+        "__id__": 217
+      }
+    ],
     "_prefab": null,
     "_id": "29JX5EB4FNc7QN4K1lfmhB",
     "_opacity": 255,
@@ -8563,7 +8567,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 268,
+      "width": 334,
       "height": 26
     },
     "_rotationX": 0,
@@ -8888,6 +8892,28 @@
     "_N$verticalAlign": 1,
     "_N$fontFamily": "Consolas",
     "_N$overflow": 1
+  },
+  {
+    "__type__": "57d11HMl4pCL5vbiLvezEQz",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 191
+    },
+    "_enabled": true,
+    "widthMax": 334,
+    "uiFraction": {
+      "__id__": 214
+    },
+    "funcFraction": {
+      "__id__": 216
+    },
+    "uiBar": {
+      "__id__": 208
+    },
+    "funcBar": {
+      "__id__": 210
+    }
   },
   {
     "__type__": "cc.Canvas",

@@ -7,7 +7,7 @@
 //    4. 显示任务信息
 // TODO:
 //    1. 完成 getCandidateProjects()
-//    2. 完成 accept
+//    2. 完成 accept()
 // 参考资料：https://github.com/xxr5566833/Game/wiki/api-reference
 
 cc.Class({
