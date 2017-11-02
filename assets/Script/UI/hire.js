@@ -2,7 +2,7 @@
 // 附加在 Game 场景：Canvas/HireBoard
 // 主要功能：
 //    1. 加载人物信息到 HireBoard/person_scroll/view/content
-//    2. 选中人物
+//    2. 选中人物(多选)
 //    3. 聘用人物
 //    4. 显示人物信息
 // TODO:

@@ -29,10 +29,13 @@
       },
       {
         "__id__": 9
+      },
+      {
+        "__id__": 10
       }
     ],
     "_prefab": {
-      "__id__": 10
+      "__id__": 11
     },
     "_id": "",
     "_opacity": 255,
@@ -327,6 +330,23 @@
     "_N$target": {
       "__id__": 1
     }
+  },
+  {
+    "__type__": "48bb1qXXf9OJanCZ4vihBnf",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 1
+    },
+    "_enabled": true,
+    "labelName": {
+      "__id__": 3
+    },
+    "labelReward": {
+      "__id__": 6
+    },
+    "chosenRing": null,
+    "multiExclusive": null
   },
   {
     "__type__": "cc.PrefabInfo",
