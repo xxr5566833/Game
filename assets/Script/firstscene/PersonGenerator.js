@@ -6,6 +6,8 @@ cc.Class({
             default:[],
             type:[cc.Prefab]
         },
+        level_:0,
+        cost_:0,
     },
 
     showPersons: function() {
@@ -28,6 +30,7 @@ cc.Class({
             this.persons_.push(person);
         }
     },
+    init
     // use this for initialization
     onLoad: function () {
 

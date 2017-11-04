@@ -29,6 +29,9 @@ cc.Class({
         //调试用的新建员工的代码
         var newperson=new person();
         this.hire(newperson);
+        //提前把account和date存好
+        this.date_=cc.find('Date').getComponent('Date');
+        this.account_=cc.find('Company/Acount').getComponent('Account');
     },
 
     canHire:function(person){
@@ -114,11 +117,25 @@ cc.Class({
         return this.project_;
     },
     
+    paySalary:function(){
+        if(this.date_.getDate()%30==1){
+            for(let i=0;i<this.currentNum_;++i){
+                this.account_.expend(this.persons_[i].getSalary(),"支付工资");
+            }
+        }
+    },
+
+    train :function(person,type){
+        person.changeAbility(1,type);
+        this.account_.expend(100,'培养费用');
+
+    },
     update:function() {     // 每隔一段时间调用
         if(this.flag_){
             this.commit();
         }
-    }
+        this.paySalary();
+    },
     // called every frame, uncomment this function to activate update callback
     // update: function (dt) {
 
