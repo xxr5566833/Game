@@ -34,7 +34,7 @@ cc.Class({
         var year = date.year
         var month = date.month
         var week = date.week
-        this.labelDate.string = year + '年 ' + month + '月\n' + week + '周'
+        this.labelDate.string = year + '年 ' + month + '月\n' + '第 ' + week + ' 周'
         //console.log(year+','+month)
     },
 
