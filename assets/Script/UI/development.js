@@ -55,7 +55,7 @@ cc.Class({
             this.labelProjectName.string = this.currentProject.content_
 
             this.uiBar.width = this.widthMax * this.currentProject.currentUi_ / this.currentProject.requireUi_
-            console.log(this.uiBar.width)
+            //console.log(this.uiBar.width)
             this.funcBar.width = this.widthMax * this.currentProject.currentFunc_ / this.currentProject.requireFunc_
             this.uiFraction.string = this.currentProject.currentUi_ + "/" + this.currentProject.requireUi_
             this.funcFraction.string = this.currentProject.currentFunc_ + "/" + this.currentProject.requireFunc_
