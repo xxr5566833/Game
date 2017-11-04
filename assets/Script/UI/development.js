@@ -5,10 +5,8 @@
 //     2. 
 // TODO: 
 //     1. 完成 getCurrentProject()
-
 cc.Class({
     extends: cc.Component,
-
     properties: {
         widthMax: 100,
         uiFraction: {
@@ -27,6 +25,11 @@ cc.Class({
             default: null,
             type: cc.Node
         },
+
+        labelProjectName : {
+            default: null,
+            type: cc.Label
+        }
     },
 
     // use this for initialization
@@ -37,6 +40,7 @@ cc.Class({
     getCurrentProject: function() {
         // TODO: 和后端连接
         return {
+            content_: "蓝灯",
             currentUi_ : 20,
             currentFunc_ : 24,
             requireUi_ : 30,
@@ -48,6 +52,8 @@ cc.Class({
         // TODO for art designer: 当前没有项目的处理
         this.currentProject = this.getCurrentProject()
         if (this.currentProject) {
+            this.labelProjectName.string = this.currentProject.content_
+
             this.uiBar.width = this.widthMax * this.currentProject.currentUi_ / this.currentProject.requireUi_
             console.log(this.uiBar.width)
             this.funcBar.width = this.widthMax * this.currentProject.currentFunc_ / this.currentProject.requireFunc_
