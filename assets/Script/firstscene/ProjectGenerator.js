@@ -22,11 +22,12 @@ cc.Class({
     // use this for initialization
     start:function(){
     },
+    init:function(projs){
+        this.projs=projs;
+        this.updateAll();
+    },
     onLoad: function () {
         //这里会onload两次，不知道为啥
-        console.log("ok");
-        cc.log(cc.find('Date'));
-        this.updateAll();
     },
     createProjects:function(){
         //这里先暂定任务数为3
@@ -59,29 +60,11 @@ cc.Class({
     },
     generateProject:function(level){
         //表示根据level等级产生任务，下面的属性都是暂定
-        var require={
-            ui:100,
-            func:100,
-        };
-        
-        var tempproject={
-            category:'normal',
-            require:require,
-            reward:100,
-            deadline:10,
-            content:'等级'+level,
-        };
-        /*这里利用require引入 Project.js定义的Project组件，这里我谈一下我的理解
-        我们在js文件里定义的是Component的子类，如何获得这些子类？
-        1.对于project这种在建立后会消失的组件，我们直接require引出它
-        2.对于company projectgenerator这些单一的组件，我们用cc.find先找到node
-        然后在node.getComponent获得组件，为了调试修改了你们一些代码，我在修改了的
-        地方都加了注释，注释内容是你们原来的代码，便于你们辨认，大多都是getComponent
-        的修改
-        */
-        //project这里直接用构造函数新建，用方法1
+        console.log(this.projs);
+        var index=Math.floor(cc.random0To1()*5);
+        var tempproj=this.projs[index];
         var proj=new project();
-        proj.init(tempproject);
+        proj.init(tempproj);
         return proj;
     },
     //调试用的临时temp，这里在ui加上后就会删除

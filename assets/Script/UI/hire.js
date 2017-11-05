@@ -88,6 +88,7 @@ cc.Class({
     },
 
     showInfoByOrder: function(order) {
+        console.log(this.candidates[order]);
         this.codingLabel.string = this.candidates[order].abilityCoding_.toString()
         this.manageLabel.string = this.candidates[order].abilityManage_.toString()
         this.artLabel.string = this.candidates[order].abilityArt_.toString()

@@ -12,6 +12,12 @@ cc.Class({
         abilityArt_:0,
         abilityManage_:0,
         abilityCoding_:0,
+        maxArt_:0,
+        maxManage_:0,
+        maxCoding_:0,
+        hp_:0,
+        level_:0,
+        grade_:0,
         /*状态，用枚举表示，定义在上面 */
         state_:{
             default:eState.free,
@@ -39,6 +45,22 @@ cc.Class({
     onLoad: function () {
 
     },
+    init:function(person){
+        this.abilityArt_=person.abilityArt;
+        this.abilityCoding=person.abilityCoding;
+        this.abilityManage_=person.abilityManage;
+        this.maxArt_=person.maxArt;
+        this.maxCoding_=person.maxCoding;
+        this.maxManage_=person.maxManage;
+        this.hp_=person.hp;
+        this.level_=person.level;
+        this.grade_=person.grade;
+        this.salary_=person.salary;
+        this.employMoney_=person.employMoney;
+        this.name_=person.name;
+        this.profession_=person.profession;
+        this.index_=person.index;
+    },
     getCommit:function(){
         /*获得开发点数,这里就先return 1*/
 
@@ -64,9 +86,7 @@ cc.Class({
     },
     show:function(){
         /**展示信息 */
-        let info = "编码能力："+this.ability_coding_ + "工资："+this.salary_;    // 具体信息输出方式由UI来定
-        cc.log(info);
-        return info;
+        return this;
     },
     setSalary:function(salary){
         this.salary_=salary;

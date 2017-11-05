@@ -30,7 +30,7 @@ cc.Class({
     },
 
     update: function() {
-        var gold_num = this.getGold()
+        var gold_num = this.getGold();
         // visualize in 3-digit-grouped comma splitted style 
         var tail = ""
         if (gold_num >= this.BILLION) {
@@ -48,7 +48,7 @@ cc.Class({
 
     getGold: function() {
         // TODO: 返回当前公司的资产，number
-        return cc.find("Company/Account").getComponent("Account").gold_
+        return cc.find("Company/Account").getComponent("Account").gold_;
     },
 
     addCommas: function (nStr) {

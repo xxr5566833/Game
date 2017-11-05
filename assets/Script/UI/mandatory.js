@@ -67,7 +67,7 @@ cc.Class({
         for (var index = 0; index < this.btnCandidateProjects.length; index++) {
             var manage = this.btnCandidateProjects[index].getComponent('candidateProjectEntryManagement')
             console.log(manage)
-            manage.setName(this.candidateProjects[index].content_)
+            manage.setName(this.candidateProjects[index].name_)
             manage.setReward(this.candidateProjects[index].reward_)
         }
     },

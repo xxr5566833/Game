@@ -14,7 +14,7 @@ cc.Class({
 
     // use this for initialization
     onLoad: function () {
-
+        this.gold_=10000;
     },
 
 
