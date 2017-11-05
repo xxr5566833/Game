@@ -81,9 +81,8 @@ cc.Class({
 
     getDate: function() {
         // TODO: 和后端连接，返回天数
-        var date = 366
-        console.log(date+1)
-        return date
+        var date=cc.find('Date').getComponent('Date');
+        return date.getDate();
     },
 
 });

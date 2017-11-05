@@ -57,13 +57,13 @@ cc.Class({
     // use this for initialization
     onLoad: function () {
         this.candidates = []
-        this.selectedCandidates = []
         this.updateCandidates()
         this.hireBtn.node.on(cc.Node.EventType.TOUCH_START, this.hire, this)
     },
 
     updateCandidates: function() {
         this.candidates = this.getCandidates()
+        this.selectedCandidates = []
         this.candidateBoard.height = this.entrySpace * (this.candidates.length + 1)
         for (var node of this.candidateBoard.children) {
             node.destroy()
@@ -110,12 +110,19 @@ cc.Class({
         return cc.find("PersonGenerator").getComponent("PersonGenerator").showPersons()
     },
 
+    onEnable: function() {
+        this.updateCandidates()
+    },
+
+
     hire: function() {
         // TODO for scripters:
         // 按照 this.selectedCandidates，为 true 的下标表示雇佣该员工
         for(let i=0;i<this.selectedCandidates.length;i++){
-            if(this.selectedCandidates[i]==true)
-            cc.find("PersonGenerator").getComponent("PersonGenerator").removePerson(this.Candidates[i])
+            if(this.selectedCandidates[i]==true){
+                console.log(this.candidates[i]);
+                cc.find("PersonGenerator").getComponent("PersonGenerator").removePerson(this.candidates[i].index)
+            }
         }
         // TODO for UI designer:
         // 钱不够，未选任何员工时提示用户

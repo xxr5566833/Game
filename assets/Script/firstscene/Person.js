@@ -32,6 +32,7 @@ cc.Class({
         employMoney_:0,
         name_:"",
         profession_:"",
+        index:0,
     },
 
     // use this for initialization

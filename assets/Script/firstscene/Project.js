@@ -56,9 +56,15 @@ cc.Class({
         switch(attribute){
             case 'ui':
             this.currentUi_+=increment;
+            if (this.currentUi_ > this.requireUi_) {
+                this.currentUi_ = this.requireUi_
+            }
             break;
             case 'func':
             this.currentFunc_+=increment;
+            if (this.currentFunc_ > this.requireFunc_) {
+                this.currentFunc_ = this.requireFunc_
+            }
             break;
             default:
             throw "error attribute" + attribute;

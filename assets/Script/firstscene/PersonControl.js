@@ -27,8 +27,9 @@ cc.Class({
     // use this for initialization
     onLoad: function () {
         //调试用的新建员工的代码
-        var newperson=new person();
-        this.hire(newperson);
+        //var newperson=new person();
+
+        //this.hire(newperson);
     },
 
     canHire:function(person){
@@ -41,6 +42,7 @@ cc.Class({
         cc.log("max:"+this.maxNum_);
         if(this.currentNum_<this.maxNum_){
             this.currentNum_++;
+            newPerson.project_=cc.find("Company").getComponent("Company").project_;
             this.persons_.push(newPerson);
             cc.log("after hire:"+this.currentNum_);
             return true;
@@ -82,6 +84,8 @@ cc.Class({
 
     commit: function () {
         console.log("调度员工commit");
+        console.log( this.persons_);
+        console.log( "current people: "+ this.currentNum_)
         for(let i=0;i<this.currentNum_;i++){
             this.persons_[i].commit();
             //this.persons_[i].getComponent("Person").commit();

@@ -1,6 +1,6 @@
 var projectstate=require('global').projectState;
 var project=require('Project');
-var companypath=require('global').companypath;
+var companypath=require('global').companyPath;
 cc.Class({
     extends: cc.Component,
 
@@ -94,6 +94,7 @@ cc.Class({
         project.setState(projectstate.overdue);
         project.setFinishDay(date.getDate());
         console.log('任务失败');
+        this.createProjects();
     },
     finishProject:function(project){
         var company=cc.find(companypath).getComponent("Company");
@@ -103,6 +104,7 @@ cc.Class({
         var date=cc.find('Date').getComponent("Date");
         project.setFinishDay(date.getDate());
         console.log('任务成功');
+        this.createProjects();
     },
     getProjects:function(){
         return this.projects_;

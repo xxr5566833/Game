@@ -11,7 +11,7 @@ cc.Class({
             default:null,
             type:cc.Node,
         },
-        projects_:{
+        project_:{
             default:null,
             type:cc.Prefab,
         }
@@ -51,9 +51,15 @@ cc.Class({
             if(ac.isEnough(person.getEmployMoney())){
                 ac.expend(person.getEmployMoney(), '雇人费用');
                 pc.hire(person);
+                console.log(person);
                 return true;
             }
+            else{
+                console.log('ac cannot enough');
+                return false;
+            }
         }else{
+            console.log('pc cannot hire');
             return false;
         }
     },

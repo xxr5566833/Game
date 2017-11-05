@@ -39,18 +39,24 @@ cc.Class({
 
     getCurrentProject: function() {
         // TODO: 和后端连接
-        return {
-            content_: "蓝灯",
-            currentUi_ : 20,
-            currentFunc_ : 24,
-            requireUi_ : 30,
-            requireFunc_ : 48,            
-        }
+        var pc=cc.find('Company/PersonControl').getComponent('PersonControl');
+        var project=pc.project_;
+        var flag=pc.flag_;
+        if(project)
+            return {
+            content_: project.getContent(),
+            currentUi_ : project.getCurrent().ui,
+            currentFunc_ : project.getCurrent().func,
+            requireUi_ : project.getRequire().ui,
+            requireFunc_ : project.getRequire().func,            
+            }
+        else
+            return null;
     },
 
     update: function() {
         // TODO for art designer: 当前没有项目的处理
-        this.currentProject = this.getCurrentProject()
+        this.currentProject = this.getCurrentProject();
         if (this.currentProject) {
             this.labelProjectName.string = this.currentProject.content_
 
