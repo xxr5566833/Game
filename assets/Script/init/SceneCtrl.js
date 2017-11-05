@@ -12,36 +12,20 @@ cc.Class({
         //    readonly: false,    // optional, default is false
         // },
         // ...
-        show_targets : {
-            default: [],
-            type: [cc.Node]
-        },
-
-        hide_targets : {
-            default: [],
-            type: [cc.Node]
-        }
     },
 
     // use this for initialization
     onLoad: function () {
-        this.node.on(cc.Node.EventType.TOUCH_END, this.show, this);
+        cc.log(this);
+
+    },
+    startGame:function(){
+        cc.director.loadScene('Game');
+    },
+    continueGame:function(){
+        
     },
 
-    show: function() {
-        cc.log("chufa");
-        for (var pnode of this.hide_targets) {
-            cc.log(pnode);
-            pnode.active = false;
-        }
-        for (var cnode of this.show_targets) {
-            cc.log(cnode);
-            cc.log("here");
-            cc.log(this.show_targets);
-            cnode.active = true;
-        }
-        cc.log("end");
-    }
     // called every frame, uncomment this function to activate update callback
     // update: function (dt) {
 

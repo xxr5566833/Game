@@ -107,53 +107,16 @@ cc.Class({
     getCandidates: function() {
         // 返回候选人物的数组
         // TODO: 和后端连接
-        return [
-            {
-                abilityCoding_: 0,
-                abilityManage_: 10,
-                abilityArt_: 0,
-                salary_: 250,
-                employMoney_: 1000,
-
-                name_: "陈小武",
-                profession_: "程序员"
-            },
-            {
-                abilityCoding_: 100,
-                abilityManage_: 10,
-                abilityArt_: 60,
-                salary_: 250,
-                employMoney_: 1000,
-
-                name_: "乔布斯",
-                profession_: "程序员"
-            },
-            {
-                abilityCoding_: 1000,
-                abilityManage_: 50,
-                abilityArt_: 60,
-                salary_: 290,
-                employMoney_: 1000,
-
-                name_: "夜神月",
-                profession_: "产品经理"
-            },
-            {
-                abilityCoding_: 1000,
-                abilityManage_: 1050,
-                abilityArt_: 60,
-                salary_: 250,
-                employMoney_: 1000,
-
-                name_: "汉尼拔·莱克特",
-                profession_: "设计师"
-            },                      
-        ]
+        return cc.find("PersonGenerator").getComponent("PersonGenerator").showPersons()
     },
 
     hire: function() {
         // TODO for scripters:
         // 按照 this.selectedCandidates，为 true 的下标表示雇佣该员工
+        for(let i=0;i<this.selectedCandidates.length;i++){
+            if(this.selectedCandidates[i]==true)
+            cc.find("PersonGenerator").getComponent("PersonGenerator").removePerson(this.Candidates[i])
+        }
         // TODO for UI designer:
         // 钱不够，未选任何员工时提示用户
         this.ancestorNode.getComponent("btnToggleActive").toggle()

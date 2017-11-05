@@ -7,8 +7,8 @@ cc.Class({
             type:cc.Integer,
         },
         records_:{
-            default:null,
-            type:cc.Node,
+            default:[],
+            type:[cc.String],
         }
     },
 
@@ -23,10 +23,10 @@ cc.Class({
     },
 
     expend:function(num,cause){
-        let gold_now_=this.glod_-num;
+        let gold_now=this.gold_-num;
         if(gold_now_<0){
             //提示资金不足
-            cc.log("资金不足");
+            cc.log("资金不足，但还没想好资金不足时的UI情况");
             return false;
         }
         //记录

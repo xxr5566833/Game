@@ -5,6 +5,10 @@ cc.Class({
         transDuration_:0.1,
         pressedScale_:1.1,
         initScale_:1.0,
+        clickMusic:{
+            default:null,
+            url:cc.AudioClip,
+        },
 
         // foo: {
         //    default: null,      // The default value will be used only when the component attaching
@@ -29,6 +33,9 @@ cc.Class({
         self.scaleCancelAction = cc.scaleTo(this.transDuration_, this.initScale_);
         function onTouchDown (event) {
             this.stopAllActions();
+            if(this.getComponent('btnClickCtrl').clickMusic){
+                cc.audioEngine.play(this.getComponent('btnClickCtrl').clickMusic);
+            }
             this.runAction(self.scaleChangeAction);
         }
         function onTouchUp (event) {

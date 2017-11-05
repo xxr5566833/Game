@@ -45,15 +45,19 @@ cc.Class({
     },
 
     choose: function() {
+        if(this.caller.selectedProject==this.entryOrder){
+            return ;
+        }
         if (this.status == "NOT_CHOSEN") {
-            this.status = "CHOSEN"
+            this.status = "CHOSEN";
             //this.chosenRing.opacity = 255
-            this.caller.selectedProject = this.entryOrder
-            this.unselectOther()
+            this.caller.selectedProject = this.entryOrder;
+            cc.log('not chosen to chosen');
+            this.unselectOther();
         } else if (this.status = "CHOSEN") {
-            this.status = "NOT_CHOSEN"
+            this.status = "NOT_CHOSEN";
             //this.chosenRing.opacity = 0
-            this.caller.selectedProject = NaN
+            cc.log('chosen to not chosen');
         }
     },
 

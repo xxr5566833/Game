@@ -18,9 +18,14 @@ cc.Class({
     onLoad: function () {
 
     },
-    startGame:function(){
-        cc.director.loadScene('Game');
-    }
+    pause:function(){
+        cc.director.pause();
+        cc.log("暂停");
+    },
+    resume:function(){
+        cc.director.resume();
+        cc.log("继续");
+    },
 
     // called every frame, uncomment this function to activate update callback
     // update: function (dt) {

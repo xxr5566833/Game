@@ -81,29 +81,7 @@ cc.Class({
 
     getCandidateProjects: function() {
         // TODO: 和后端显示候选委托项目连接
-        return [
-            {
-                requireUi_: 10,
-                requireFunc_: 10,
-                reward_: 1000,
-                deadline_: 10,
-                content_: "编译课设"
-            },
-            {
-                requireUi_: 15,
-                requireFunc_: 10,
-                reward_: 900,
-                deadline_: 9,
-                content_: "数据挖掘"
-            },
-            {
-                requireUi_: 25,
-                requireFunc_: 5,
-                reward_: 900,
-                deadline_: 9,
-                content_: "谭语言设计"
-            },
-        ]
+        return cc.find("ProjectGenerator").getComponent("ProjectGenerator").projects_
     },
 
     accept: function() {
@@ -111,7 +89,10 @@ cc.Class({
         // this.selectedProject 表示 this.candidateProjects 被用户选中了哪个
         // TODO for UI designer:
         // 当前没有雇佣任何员工，未选任何项目时提示用户
+        var projs=cc.find("ProjectGenerator").getComponent("ProjectGenerator").projects_;
+        var temp=projs[this.selectedProject];
         this.ancestorNode.getComponent("btnToggleActive").toggle()
+        cc.find("Company").getComponent("Company").receiveProject(temp)
         console.log("Accepted.")
     }
 });

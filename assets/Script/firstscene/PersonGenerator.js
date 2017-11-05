@@ -1,3 +1,4 @@
+var companypath=require('global').companyPath;
 cc.Class({
     extends: cc.Component,
 
@@ -5,20 +6,15 @@ cc.Class({
         persons_:{   
             default:[],
             type:[cc.Prefab]
-        }
+        },
     },
 
     showPersons: function() {
-        let list="";
-        for(let i=0;i<this.currentNum_;i++){
-            list += this.persons_[i].show() + "\n";
-        }
-        cc.log(list);
-        return list;
+        return this.persons_;
     },
 
     removePerson: function(person) {
-        if(cc.find("Company").getComponent("Company").hire(person)){
+        if(cc.find(companypath).getComponent("Company").hire(person)){
             for(let i=0;i<this.currentNum_;i++){
                 if(this.persons_[i]===oldperson){
                     this.persons_.splice(i,1);
@@ -29,7 +25,7 @@ cc.Class({
     },
 
     addPerson: function(person){
-        if(cc.find("Company").getComponent("Company").fire(person)){
+        if(cc.find(companypath).getComponent("Company").fire(person)){
             this.persons_.push(person);
         }
     },

@@ -48,7 +48,7 @@ cc.Class({
 
     getGold: function() {
         // TODO: 返回当前公司的资产，number
-        return 1234567
+        return cc.find("Account").getComponent("Account").gold_
     },
 
     addCommas: function (nStr) {

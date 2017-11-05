@@ -9,7 +9,9 @@ cc.Class({
 
     properties: {
         /**能力值 */
-        ability_:0,
+        abilityArt_:0,
+        abilityManage_:0,
+        abilityCoding_:0,
         /*状态，用枚举表示，定义在上面 */
         state_:{
             default:eState.free,
@@ -25,8 +27,11 @@ cc.Class({
         /**正在开发的项目 */
         project_:{
             default:null,
-            type:cc.Node,
+            type:cc.Prefab,
         },
+        employMoney_:0,
+        name_:"",
+        profession_:"",
     },
 
     // use this for initialization
@@ -34,14 +39,16 @@ cc.Class({
 
     },
     getCommit:function(){
-        /*获得开发点数,这里就先return 1*/ 
+        /*获得开发点数,这里就先return 1*/
+
         return 1;
     },
 
     commit:function(){
         /**贡献开发点数到当前project */
         cc.log("贡献了1点");
-        this.project_.augment(this.getCommit());
+        this.project_.augment('ui',this.getCommit());
+        this.project_.augment('func',this.getCommit());
     },
     work:function(proj){
         /**开始工作 */
@@ -56,9 +63,45 @@ cc.Class({
     },
     show:function(){
         /**展示信息 */
-        let info = "能力："+this.ability_ + "工资："+this.salary_;    // 具体信息输出方式由UI来定
+        let info = "编码能力："+this.ability_coding_ + "工资："+this.salary_;    // 具体信息输出方式由UI来定
         cc.log(info);
         return info;
+    },
+    setSalary:function(salary){
+        this.salary_=salary;
+    },
+    getSalary:function(){
+        return this.salary_;
+    },
+    getEmployMoney:function(){
+        return this.employMoney_;
+    },
+    setEmployMoney:function(money){
+        this.employMoney_=money;
+    },
+    setAbility:function(ability){
+        this.abilityArt_=ability.art;
+        this.abilityCoding_=ability.coding;
+        this.abilityManage_=ability.manage;
+    },
+    getAbility:function(){
+        var ability=new Object();
+        ability.art=this.abilityArt_;
+        ability.manage=this.abilityManage_;
+        ability.coding=this.abilityCoding_;
+        return ability;
+    },
+    setName:function(name){
+        this.name_=name;
+    },
+    getName:function(){
+        return this.name_;
+    },
+    setProfession:function(profession){
+        this.profession_=profession;
+    },
+    getProfession:function(){
+        return this.profession_;
     },
     update:function(dt){
         /**不同状态输出不同信息 */
