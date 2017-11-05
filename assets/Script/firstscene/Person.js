@@ -61,6 +61,12 @@ cc.Class({
         this.state_=eState.free;
         cc.log("停止工作");
     },
+    show:function(){
+        /**展示信息 */
+        let info = "编码能力："+this.ability_coding_ + "工资："+this.salary_;    // 具体信息输出方式由UI来定
+        cc.log(info);
+        return info;
+    },
     setSalary:function(salary){
         this.salary_=salary;
     },
@@ -85,21 +91,6 @@ cc.Class({
         ability.coding=this.abilityCoding_;
         return ability;
     },
-    changeAbility:function(type,num){
-        switch(type){
-            case 'art':
-            this.abilityArt_+=num;
-            break;
-            case 'coding':
-            this.abilityCoding_+=num;
-            break;
-            case 'manage':
-            this.abilityManage_+=num;
-            break;
-            default:
-            cc.log('类型错误');
-        }
-    },
     setName:function(name){
         this.name_=name;
     },
@@ -111,12 +102,6 @@ cc.Class({
     },
     getProfession:function(){
         return this.profession_;
-    },
-    init:function(person){
-        this.setAbility(person.ability);
-        this.setEmployMoney(person.employMoney);
-        this.setName(person.name);
-        this.setSalary(person.salary);
     },
     update:function(dt){
         /**不同状态输出不同信息 */

@@ -7,8 +7,8 @@ cc.Class({
             type:cc.Integer,
         },
         records_:{
-            default:null,
-            type:cc.Node,
+            default:[],
+            type:[cc.String],
         }
     },
 

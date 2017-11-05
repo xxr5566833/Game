@@ -24,9 +24,10 @@ cc.Class({
     // called every frame, uncomment this function to activate update callback
     update: function (dt) {
         this.count_++;
-        if(this.count_ >= this.speedPerday)
+        if(this.count_ >= this.speedPerday){
             this.updateDate();
             this.count_=0;
+        }
     },
 
     updateDate:function(){

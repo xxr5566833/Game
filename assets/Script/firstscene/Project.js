@@ -1,4 +1,5 @@
 var projectstate=require('global').projectState;
+var datepath=require('global').datePath;
 cc.Class({
     extends: cc.Component,
 
@@ -8,6 +9,7 @@ cc.Class({
             visible:false,
             default:0,
         },
+        
         requireFunc_:{
             visible:false,
             default:0,
@@ -76,7 +78,7 @@ cc.Class({
         &&this.requireFunc_<=this.currentFunc_;
     },
     isOverdue: function() {
-        var date=cc.find('Date').getComponent('Date');
+        var date=cc.find(datepath).getComponent('Date');
         var currentday=date.getDate();
         return currentday>(this.receiveDay_+this.deadline_);
     },

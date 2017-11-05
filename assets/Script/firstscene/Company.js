@@ -1,5 +1,4 @@
 var projectstate=require('global').projectState;
-var date=require('global').date;
 cc.Class({
     extends: cc.Component,
 
@@ -28,7 +27,8 @@ cc.Class({
     // },
 
     receiveProject:function(project){
-        this.project_=project 
+        this.project_=project ;
+        cc.log(project);
         this.project_.setState(projectstate.received);
         var date=cc.find('Date').getComponent('Date');
         this.project_.setReceiveDay(date.getDate());
@@ -63,6 +63,6 @@ cc.Class({
     },
 
     showPersons:function(){
-        cc.find("Company/PersonControl").getComponent("PersonControl").showPersons();
+        this.personControl_.getComponent('PersonControl').showPersons();
     },
 });

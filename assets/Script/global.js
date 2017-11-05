@@ -31,4 +31,9 @@ var eProjectState=cc.Enum({
     overdue:3,
 });
 module.exports.projectState=eProjectState;
+module.exports.datePath='Date';
+module.exports.companyPath='Company';
+module.exports.accountPath='Company/Account';
+module.exports.personControlPath='Company/PersonControl';
+
 

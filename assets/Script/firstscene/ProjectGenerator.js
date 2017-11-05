@@ -1,5 +1,6 @@
 var projectstate=require('global').projectState;
 var project=require('Project');
+var companypath=require('global').companypath;
 cc.Class({
     extends: cc.Component,
 
@@ -68,7 +69,7 @@ cc.Class({
             require:require,
             reward:100,
             deadline:10,
-            content:'xxx',
+            content:'等级'+level,
         };
         /*这里利用require引入 Project.js定义的Project组件，这里我谈一下我的理解
         我们在js文件里定义的是Component的子类，如何获得这些子类？
@@ -85,17 +86,17 @@ cc.Class({
     },
     //调试用的临时temp，这里在ui加上后就会删除
     temp:function(){
-        var company=cc.find('Company').getComponent('Company');
+        var company=cc.find(companypath).getComponent('Company');
         company.receiveProject(this.projects_[0]);
     },
     failProject:function(project){
-        var company=cc.find('Company').getComponent("Company");
+        var company=cc.find(companypath).getComponent("Company");
         project.setState(projectstate.overdue);
         project.setFinishDay(date.getDate());
         console.log('任务失败');
     },
     finishProject:function(project){
-        var company=cc.find('Company').getComponent("Company");
+        var company=cc.find(companypath).getComponent("Company");
         company.profit(project.getReward(),"项目完成");
         console.log("任务报酬"+project.getReward());
         project.setState(projectstate.finished);
