@@ -28,6 +28,7 @@ cc.Class({
         category_:"",
         reward_:0,
         deadline_:0,
+        level_:0,
         company_:{
             default:null,
             type:cc.Node,
@@ -148,12 +149,14 @@ cc.Class({
     },
     /*调试用的init函数，便于初始化一个project */
     init:function(project){
-        this.setCategory(project.category);
-        this.setRequire(project.require);
-        this.setDeadline(project.deadline);
-        this.setReward(project.reward);
-        this.setContent(project.content);
-        this.state_=projectstate.notReceived;
+        this.content_=project.content;
+        this.reward_=project.reward;
+        this.deadline_=project.deadline;
+        this.category_=project.category;
+        this.name_=project.name;
+        this.requireUi_=project.requireUi;
+        this.requireFunc_=project.requireFunc;
+        this.level_=project.level;
         console.log('任务产生完毕！');
     },
     // },

@@ -30,6 +30,7 @@ cc.Class({
         //var newperson=new person();
 
         //this.hire(newperson);
+        this.maxNum_=4;
     },
 
     canHire:function(person){

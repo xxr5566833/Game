@@ -8,6 +8,7 @@ cc.Class({
             default:[],
             type:[cc.Prefab]
         },
+        level_:0,
     },
 
     showPersons: function() {
@@ -53,21 +54,7 @@ cc.Class({
                  profession_: "设计师"
              },                      
          ] */
-        var personinfo=[];
-        for (var i=0;i<this.persons_.length;++i){
-            var person=new Object();
-            var ability=this.persons_[i].getAbility();
-            person.abilityCoding_=ability.coding;
-            person.abilityManage_=ability.manage;
-            person.abilityArt_=ability.art;
-            person.salary_=this.persons_[i].getSalary();
-            person.employMoney_=this.persons_[i].getEmployMoney();
-            person.name_=this.persons_[i].getName();
-            person.profession_=this.persons_[i].getProfession();
-            person.index=this.persons_[i].index;
-            personinfo.push(person);
-        }
-        return personinfo;
+        return this.persons_;
     },
 
     removePerson: function(index) {
@@ -79,6 +66,7 @@ cc.Class({
             }
         }
         console.log(person);
+        console.log('找到了这个人');
         if(cc.find(companypath).getComponent("Company").hire(person)){
             for(let i=0;i<this.persons_.length;i++){
                 if(this.persons_[i].index===index){
@@ -96,6 +84,17 @@ cc.Class({
         }
     },
     // use this for initialization
+    init:function(persons){
+        console.log(persons)
+        for(var i=0;i<persons.length;++i){
+            if(persons[i].level==this.level_){
+                var person=new personObj();
+                person.init(persons[i]);
+                this.persons_.push(person);
+            }
+        }
+        console.log(this.persons_);
+    },
     onLoad: function () {
         var initlist=[
             {
@@ -139,21 +138,6 @@ cc.Class({
                 profession_: "设计师"
             },                      
         ];
-        for(var i=0;i<initlist.length;++i){
-            var person=initlist[i];
-            var newperson=new personObj();
-            var ability=new Object();
-            ability.coding=person.abilityCoding_;
-            ability.manage=person.abilityManage_;
-            ability.art=person.abilityArt_;
-            newperson.setAbility(ability);
-            newperson.setSalary(person.salary_);
-            newperson.setEmployMoney(person.employMoney_);
-            newperson.setName(person.name_);
-            newperson.setProfession(person.profession_);
-            newperson.index=person.index;
-            this.persons_.push(newperson);
-        }
 
 
     },
