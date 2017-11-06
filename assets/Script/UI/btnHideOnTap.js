@@ -29,10 +29,11 @@ cc.Class({
     },
 
     show: function() {
-        cc.log("chufa");
+        console.log("chufa");
         for (var pnode of this.hide_targets) {
             cc.log(pnode);
-            pnode.active = false;
+            // get some time for buttons to change their states 
+            this.unfocus(pnode)
         }
         for (var cnode of this.show_targets) {
             cc.log(cnode);
@@ -41,6 +42,15 @@ cc.Class({
             cnode.active = true;
         }
         cc.log("end");
+    },
+
+    unfocus: function(pnode) {
+        var temp_x = pnode.x
+        pnode.setPosition(65535, pnode.y)
+        this.scheduleOnce(function() {
+            pnode.setPosition(temp_x, pnode.y)
+            pnode.active = false
+        }, 0.05);
     }
     // called every frame, uncomment this function to activate update callback
     // update: function (dt) {

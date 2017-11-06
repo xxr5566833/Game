@@ -61,6 +61,10 @@ cc.Class({
         this.hireBtn.node.on(cc.Node.EventType.TOUCH_START, this.hire, this)
     },
 
+    onEnable: function() {
+        this.updateCandidates()
+    },
+
     updateCandidates: function() {
         this.candidates = this.getCandidates()
         this.selectedCandidates = []
@@ -109,11 +113,6 @@ cc.Class({
         // TODO: 和后端连接
         return cc.find("PersonGenerator").getComponent("PersonGenerator").showPersons()
     },
-
-    onEnable: function() {
-        this.updateCandidates()
-    },
-
 
     hire: function() {
         // TODO for scripters:
