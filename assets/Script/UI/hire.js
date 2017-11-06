@@ -93,11 +93,11 @@ cc.Class({
 
     showInfoByOrder: function(order) {
         console.log(this.candidates[order]);
-        this.codingLabel.string = this.candidates[order].abilityCoding_.toString()
-        this.manageLabel.string = this.candidates[order].abilityManage_.toString()
-        this.artLabel.string = this.candidates[order].abilityArt_.toString()
-        this.salaryLabel.string = this.candidates[order].salary_.toString()+"$"
-        this.advancePayLabel.string = this.candidates[order].employMoney_.toString()+"$"
+        this.codingLabel.string = Math.floor(this.candidates[order].abilityCoding_).toString()
+        this.manageLabel.string = Math.floor(this.candidates[order].abilityManage_).toString()
+        this.artLabel.string = Math.floor(this.candidates[order].abilityArt_).toString()
+        this.salaryLabel.string = Math.floor(this.candidates[order].salary_.toString())+"$"
+        this.advancePayLabel.string = Math.floor(this.candidates[order].employMoney_.toString())+"$"
     },
 
     includeCandidateByOrder: function(order) {

@@ -76,10 +76,10 @@ cc.Class({
             var candi_entry_management = node.getComponent("firePageControl")
             candi_entry_management.setName(candi.name_)
             candi_entry_management.setProfession(candi.profession_)
-            candi_entry_management.setCoding(candi.abilityCoding_)
-            candi_entry_management.setManage(candi.abilityManage_)
-            candi_entry_management.setArt(candi.abilityArt_)
-            candi_entry_management.setSalary(candi.salary_)
+            candi_entry_management.setCoding(Math.floor(candi.abilityCoding_))
+            candi_entry_management.setManage(Math.floor(candi.abilityManage_))
+            candi_entry_management.setArt(Math.floor(candi.abilityArt_))
+            candi_entry_management.setSalary(Math.floor(candi.salary_))
             candi_entry_management.setLine(candi.supplicateLine_)
             candi_entry_management.entryOrder = count
             candi_entry_management.caller = this
