@@ -56,6 +56,7 @@ cc.Class({
             this.projects_[j]=this.generateProject(1);
         }
         console.log('创建了三个新的任务');
+        console.log(this.projects_)
         return ;
     },
     generateProject:function(level){

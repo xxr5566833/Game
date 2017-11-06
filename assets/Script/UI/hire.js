@@ -49,6 +49,10 @@ cc.Class({
             default: null,
             type: cc.Label,
         },     
+        scrollView: {
+            default: null,
+            type: cc.ScrollView
+        },
         entryRootY: 135,
         entryX: 0,
         entrySpace: 65 
@@ -68,6 +72,7 @@ cc.Class({
     updateCandidates: function() {
         this.candidates = this.getCandidates()
         this.selectedCandidates = []
+        this.scrollView.scrollToTop()
         this.candidateBoard.height = this.entrySpace * (this.candidates.length + 1)
         for (var node of this.candidateBoard.children) {
             node.destroy()
@@ -118,10 +123,12 @@ cc.Class({
     hire: function() {
         // TODO for scripters:
         // 按照 this.selectedCandidates，为 true 的下标表示雇佣该员工
-        for(let i=0;i<this.selectedCandidates.length;i++){
+        console.log(this.selectedCandidates)
+        console.log(this.candidates)
+        for(let i=0, j=0;i<this.selectedCandidates.length;i++,j++){
             if(this.selectedCandidates[i]==true){
-                console.log(this.candidates[i]);
-                cc.find("PersonGenerator").getComponent("PersonGenerator").removePerson(this.candidates[i].index)
+                cc.find("PersonGenerator").getComponent("PersonGenerator").removePerson(this.candidates[j].index)
+                j--
             }
         }
         // TODO for UI designer:
