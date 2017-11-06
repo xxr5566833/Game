@@ -6,7 +6,7 @@
 //    3. 聘用人物
 //    4. 显示人物信息
 // TODO:
-//    1. 完成 getCandidates()
+//    1. 完成 getEmployeeList()
 //    2. 完成 hire()
 // 参考资料：https://github.com/xxr5566833/Game/wiki/api-reference
 
@@ -33,6 +33,10 @@ cc.Class({
         pageView: {
             default: null,
             type: cc.PageView
+        },
+        msgBox: {
+            default: null,
+            type:cc.Node,
         }
     },
 
@@ -40,6 +44,7 @@ cc.Class({
     onLoad: function () {
         this.candidates = []
         this.updateCandidates()
+        this.msgBoxControl = this.msgBox.getComponent("msgBoxControl")
         this.fireBtn.node.on(cc.Node.EventType.TOUCH_START, this.fire, this)
         console.log("get constructor: "+this.fireBtn.constructor)
     },
@@ -53,6 +58,7 @@ cc.Class({
         var person_index = this.candidates[page_index].index
         console.log("page_index: "+page_index)
         console.log("person_index: "+person_index)
+        this.msgBoxControl.alert("SUCCESS", "成功解雇："+this.candidates[page_index].name_)
         // TODO for scripters: 根据人物唯一识别码 person_index 来完成解雇
         // =============================================================
         //

@@ -43,6 +43,10 @@ cc.Class({
             default: null,
             type:cc.Label,
         },
+        msgBox: {
+            default: null,
+            type:cc.Node,
+        }
     },
 
     // use this for initialization
@@ -50,6 +54,7 @@ cc.Class({
         this.selectedProject = NaN
         this.candidateProjects = []
         this.btnAccept.node.on(cc.Node.EventType.TOUCH_END, this.accept, this)
+        this.msgBoxControl = this.msgBox.getComponent("msgBoxControl")
     },
 
     onEnable: function() {
@@ -58,6 +63,11 @@ cc.Class({
 
     updateCandidateProjects: function() {
         this.candidateProjects = this.getCandidateProjects()
+        console.log("candidatePrjs: "+this.candidateProjects.length)
+        if (this.candidateProjects.length < 1) {
+            console.log("no candidate prj found")
+            return
+        }
         for (var index = 0; index < this.btnCandidateProjects.length; index++) {
             console.log("set "+index)
             var manage = this.btnCandidateProjects[index].getComponent('candidateProjectEntryManagement')
@@ -66,7 +76,7 @@ cc.Class({
         }
         for (var index = 0; index < this.btnCandidateProjects.length; index++) {
             var manage = this.btnCandidateProjects[index].getComponent('candidateProjectEntryManagement')
-            console.log(manage)
+            console.log("candidatePrj: "+this.candidateProjects[index])
             manage.setName(this.candidateProjects[index].name_)
             manage.setReward(this.candidateProjects[index].reward_)
         }
@@ -92,7 +102,9 @@ cc.Class({
         var projs=cc.find("ProjectGenerator").getComponent("ProjectGenerator").projects_;
         var temp=projs[this.selectedProject];
         this.ancestorNode.getComponent("btnToggleActive").toggle()
+        this.msgBoxControl.alert("SUCCESS", "接受项目: " + temp.name_)
         cc.find("Company").getComponent("Company").receiveProject(temp)
         console.log("Accepted.")
+
     }
 });

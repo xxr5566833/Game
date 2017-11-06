@@ -393,10 +393,10 @@
     "duration": 0.1,
     "zoomScale": 1.2,
     "pressedSprite": {
-      "__uuid__": "f7517891-1f6e-4122-9cb3-3b4629a8f333"
+      "__uuid__": "cdafdb1c-f17e-4ebb-974a-a3e080626015"
     },
     "hoverSprite": {
-      "__uuid__": "f7517891-1f6e-4122-9cb3-3b4629a8f333"
+      "__uuid__": "cdafdb1c-f17e-4ebb-974a-a3e080626015"
     },
     "clickEvents": [],
     "_N$interactable": true,

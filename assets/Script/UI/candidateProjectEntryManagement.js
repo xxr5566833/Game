@@ -18,12 +18,17 @@ cc.Class({
             default: [],
             type: [cc.Node],
         },
+        selectedSpriteFrame: {
+            default: null,
+            type: cc.SpriteFrame
+        }
     },
 
     // use this for initialization
     onLoad: function () {
         this.entryOrder = NaN
         this.caller = null
+        this.normalSprite = this.node.getComponent("cc.Button").normalSprite
 
         this.status = "NOT_CHOSEN"
 
@@ -51,11 +56,14 @@ cc.Class({
         if (this.status == "NOT_CHOSEN") {
             this.status = "CHOSEN";
             //this.chosenRing.opacity = 255
+            console.log("find button: " + this.node.getComponent("Button"))
+            this.node.getComponent("cc.Button").normalSprite = this.selectedSpriteFrame
             this.caller.selectedProject = this.entryOrder;
             cc.log('not chosen to chosen');
             this.unselectOther();
         } else if (this.status = "CHOSEN") {
             this.status = "NOT_CHOSEN";
+            this.node.getComponent("cc.Button").normalSprite = this.normalSprite
             //this.chosenRing.opacity = 0
             cc.log('chosen to not chosen');
         }
