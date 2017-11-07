@@ -27,10 +27,7 @@ cc.Class({
             type: [cc.Node]
         },
 
-        toggle_pause_all : {
-            default: false,
-            type: Boolean
-        }
+        toggle_pause_all : false
     },
 
     // use this for initialization
@@ -47,6 +44,7 @@ cc.Class({
     // },
 
     toggle: function() {
+        this.toggle_pause_all=true // 不清楚UI为何要设计这个bool，还默认为false，导致无法调用暂停恢复方法
         if (this.state == "TOGGLE_ON") {
             for (var me_node of this.multi_exclusive) { // 清掉互斥节点
                 var toggle_comp = me_node.getComponent('btnToggleActive')
@@ -59,16 +57,22 @@ cc.Class({
                 node.active = true
             }
             this.state = "TOGGLE_OFF"
+
             if (this.toggle_pause_all) {
                 // TODO: 和后端连接，实现游戏内容暂停，而不是停止所有动画
+                cc.find("Company/PersonControl").getComponent("PersonControl").pause();
+                cc.find("Date").getComponent("Date").pause()
             }
         } else if (this.state == "TOGGLE_OFF") {
             if (this.toggle_pause_all) {
                 // TODO: 和后端连接，实现游戏内容重启（resume），而不是停止所有动画
+                cc.find("Company/PersonControl").getComponent("PersonControl").resume();      
+                cc.find("Date").getComponent("Date").resume();
             }
             var call_tree = this.getComponent("btnCallTree")
             call_tree.inactivateCascade()
-            this.state = "TOGGLE_ON"           
+            this.state = "TOGGLE_ON"   
+            
         }
     }
 

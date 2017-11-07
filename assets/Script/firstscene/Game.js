@@ -32,7 +32,9 @@ cc.Class({
                 projectg.init(data);
             }
         });
-
+        // 开启重复处理事件
+        cc.find("Company/PersonControl").getComponent("PersonControl").resume(); 
+        cc.find("Date").getComponent("Date").resume(); 
     },
     init:function(){
         cc.loader.loadRes('personinfo',function(err,data){
@@ -68,8 +70,4 @@ cc.Class({
         cc.log("继续");
     },
 
-    // called every frame, uncomment this function to activate update callback
-    // update: function (dt) {
-
-    // },
 });

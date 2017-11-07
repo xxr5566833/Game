@@ -5,15 +5,7 @@ cc.Class({
         time_:{
             default:0,
             type:cc.Integer,
-        },
-        speedPerday_:{
-            default:0,
-            type:cc.Integer,
-        },
-        count_:{
-            default:0,
-            type:cc.Integer,
-        },
+        }
     },
 
     // use this for initialization
@@ -21,13 +13,12 @@ cc.Class({
 
     },
 
-    // called every frame, uncomment this function to activate update callback
-    update: function (dt) {
-        this.count_++;
-        if(this.count_ >= this.speedPerday){
-            this.updateDate();
-            this.count_=0;
-        }
+    resume:function(){
+        this.schedule(this.updateDate,1)
+    },
+
+    pause:function(){
+        this.unschedule(this.updateDate)
     },
 
     updateDate:function(){
