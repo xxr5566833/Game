@@ -62,6 +62,7 @@ cc.Class({
     onLoad: function () {
         this.candidates = []
         this.hireBtn.node.on(cc.Node.EventType.TOUCH_START, this.hire, this)
+        this.hireBtn.node.on(cc.Node.EventType.TOUCH_END, this.hire, this)
     },
 
     onEnable: function() {
@@ -80,7 +81,7 @@ cc.Class({
         var count = 0
         for (var candi of this.candidates) {
             this.selectedCandidates[count] = false
-            console.log("new node")
+            console.log("new node at y = "+y)
             var node = cc.instantiate(this.candidateEntryPrefab)
             node.parent = this.candidateBoard
             node.setPosition(this.entryX, y)
