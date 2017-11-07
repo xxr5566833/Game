@@ -39,7 +39,7 @@ cc.Class({
         name_:"",
         profession_:"",
         supplicateLine_:"",
-        index:0,
+        index_:0,
     },
 
     // use this for initialization
@@ -48,7 +48,7 @@ cc.Class({
     },
     init:function(person){
         this.abilityArt_=person.abilityArt;
-        this.abilityCoding=person.abilityCoding;
+        this.abilityCoding_=person.abilityCoding;
         this.abilityManage_=person.abilityManage;
         this.maxArt_=person.maxArt;
         this.maxCoding_=person.maxCoding;
@@ -62,17 +62,40 @@ cc.Class({
         this.profession_=person.profession;
         this.index_=person.index;
     },
-    getCommit:function(){
+    getCommit:function(persons,ability){
         /*获得开发点数,这里就先return 1*/
+        var managearray=[]
+        for(let i=0;i<persons.length;++i){
+            managearray.push(persons[i].abilityManage_);
+        }
+        var maxManage=Math.max.apply(null,managearray);
+        var expo=50/(maxManage+50);
+        var incre=0;
+        switch(ability){
+            case 'ui':
+            incre=(1/Math.pow(persons.length,expo))*(this.abilityArt_/10)*(0.9+Math.random()*0.2);
+            break;
+            case 'func':
+            incre=(1/Math.pow(persons.length,expo))*(this.abilityCoding_/10)*(0.9+Math.random()*0.2);
+            break;
+            default:
+            console.log('error');
 
-        return 1;
+        }
+        return incre;
+        
     },
 
-    commit:function(){
+    commit:function(persons){
         /**贡献开发点数到当前project */
-        cc.log("贡献了1点");
-        this.project_.augment('ui',this.getCommit());
-        this.project_.augment('func',this.getCommit());
+        var maxManage= Math.max.apply(null,[1,2,3]);
+        console.log(maxManage);
+        //var exponent_func=50/()
+        this.project_.augment('ui',this.getCommit(persons,'ui'));
+        this.project_.augment('func',this.getCommit(persons,'func'));
+        cc.log(this.getCommit(persons,'ui'));
+        cc.log(this.getCommit(persons,'func'));
+        
     },
     work:function(proj){
         /**开始工作 */

@@ -24,12 +24,15 @@ cc.Class({
 
     expend:function(num,cause){
         let gold_now=this.gold_-num;
+        console.log(cause);
         if(gold_now < 0){
             //提示资金不足
+            this.gold_=gold_now;
             console.log("资金不足，但还没想好资金不足时的UI情况");
             return false;
         }
         //记录
+        this.gold_=gold_now;
         return true;
     },
 

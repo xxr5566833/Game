@@ -50,6 +50,7 @@ cc.Class({
         if(pc.canHire(person)){
             if(ac.isEnough(person.getEmployMoney())){
                 ac.expend(person.getEmployMoney(), '雇人费用');
+                console.log(person.getEmployMoney());
                 pc.hire(person);
                 console.log(person);
                 return true;
@@ -64,8 +65,9 @@ cc.Class({
         }
     },
 
-    fire:function(person){
-        this.personControl_.getComponent('PersonControl').fire(person);
+    fire:function(index){
+        console.log('company fire'+index);
+        return this.personControl_.getComponent('PersonControl').fire(index);
     },
 
     showPersons:function(){
