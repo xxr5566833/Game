@@ -1,3 +1,4 @@
+
 cc.Class({
     extends: cc.Component,
 
@@ -18,11 +19,14 @@ cc.Class({
 
     // use this for initialization
     onLoad: function () {
-
+        this.game = cc.find('Game').getComponent('Game');
     },
 
     // called every frame, uncomment this function to activate update callback
     update: function (dt) {
+        if(this.game.pause_){
+            return ;
+        }
         this.count_++;
         if(this.count_ >= this.speedPerday){
             this.updateDate();

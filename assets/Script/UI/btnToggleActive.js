@@ -30,7 +30,8 @@ cc.Class({
         this.state = "TOGGLE_ON"
         console.log("inited")
         console.log(this.toggle_targets)
-        this.node.on(cc.Node.EventType.TOUCH_END, this.toggle, this)
+        this.node.on(cc.Node.EventType.TOUCH_END, this.toggle, this);
+        this.game=cc.find('Game').getComponent('Game');
     },
 
     // called every frame, uncomment this function to activate update callback
@@ -54,7 +55,7 @@ cc.Class({
         } else if (this.state == "TOGGLE_OFF") {
             var call_tree = this.getComponent("btnCallTree")
             call_tree.inactivateCascade()
-            this.state = "TOGGLE_ON"           
+            this.state = "TOGGLE_ON"    
         }
     }
 

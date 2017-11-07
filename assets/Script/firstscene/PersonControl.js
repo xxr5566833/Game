@@ -28,7 +28,7 @@ cc.Class({
     onLoad: function () {
         //调试用的新建员工的代码
         //var newperson=new person();
-
+        this.game = cc.find('Game').getComponent('Game');
         //this.hire(newperson);
         this.maxNum_=4;
     },
@@ -123,6 +123,9 @@ cc.Class({
     },
     
     update:function() {     // 每隔一段时间调用
+        if(this.game.pause_){
+            return ;
+        }
         if(this.flag_){
             this.commit();
         }

@@ -74,8 +74,10 @@ cc.Class({
 
     removePerson: function(index) {
         var person=null;
+        console.log(index);
         for(var i=0;i<this.persons_.length;i++){
-            if(this.persons_[i].index==index){
+            console.log(this.persons_[i].index_);
+            if(this.persons_[i].index_ == index){
                 person=this.persons_[i];
                 break;
             }
@@ -84,9 +86,10 @@ cc.Class({
         console.log('找到了这个人');
         if(cc.find(companypath).getComponent("Company").hire(person)){
             for(let i=0;i<this.persons_.length;i++){
-                if(this.persons_[i].index===index){
+                if(this.persons_[i].index_== index){
                     console.log("Hired name:"+this.persons_[i].name_);
                     this.persons_.splice(i,1);
+                    console.log(this.persons_);
                     return true;
                 }
             }
