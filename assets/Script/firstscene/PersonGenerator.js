@@ -85,8 +85,8 @@ cc.Class({
         if(cc.find(companypath).getComponent("Company").hire(person)){
             for(let i=0;i<this.persons_.length;i++){
                 if(this.persons_[i].index===index){
+                    console.log("Hired name:"+this.persons_[i].name_);
                     this.persons_.splice(i,1);
-                    console.log(this.persons_);
                     return true;
                 }
             }
@@ -142,6 +142,64 @@ cc.Class({
                 description_ : "打开虚空的大门",
                 level_ : 5,
                 cost_ : 50000, 
+
+            },
+        ];
+        var list=[
+            {
+                abilityCoding_: 0,
+                abilityManage_: 10,
+                abilityArt_: 0,
+                salary_: 250,
+                employMoney_: 1000,
+                index:0,
+                name_: "陈小武",
+                profession_: "程序员",
+                supplicateLine_: "谁敢解雇我？"
+            },
+            {
+                abilityCoding_: 0,
+                abilityManage_: 10,
+                abilityArt_: 0,
+                salary_: 250,
+                employMoney_: 1000,
+                index:0,
+                name_: "少时诵诗书所所所所所所所所所",
+                profession_: "湿哒哒无四达大厦啥的",
+                supplicateLine_: "少时诵诗书所所所所所所所所所少时诵诗书所所所所所所所所所"
+            },
+            {
+                abilityCoding_: 100,
+                abilityManage_: 10,
+                abilityArt_: 60,
+                salary_: 250,
+                employMoney_: 1000,
+                index:1,
+                name_: "乔布斯",
+                profession_: "程序员",
+                supplicateLine_: "希望你们没了我还能正常运转"
+            },
+            {
+                abilityCoding_: 1000,
+                abilityManage_: 50,
+                abilityArt_: 60,
+                salary_: 290,
+                employMoney_: 1000,
+                index:2,
+                name_: "夜神月",
+                profession_: "产品经理",
+                supplicateLine_: "僕は新世界の神だ！"
+            },
+            {
+                abilityCoding_: 1000,
+                abilityManage_: 1050,
+                abilityArt_: 60,
+                salary_: 250,
+                employMoney_: 1000,
+                index:3,
+                name_: "汉尼拔·莱克特",
+                profession_: "设计师",
+                supplicateLine_: "吃了你！"
             },
         ];
         for (var i=0;i<levelcount;i++){

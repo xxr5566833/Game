@@ -123,10 +123,11 @@ cc.Class({
     hire: function() {
         // TODO for scripters:
         // 按照 this.selectedCandidates，为 true 的下标表示雇佣该员工
-        console.log(this.selectedCandidates)
         console.log(this.candidates)
         for(let i=0, j=0;i<this.selectedCandidates.length;i++,j++){
             if(this.selectedCandidates[i]==true){
+                console.log("Hired index:" + this.candidates[j].index)
+                console.log("Hired name:" + this.candidates[j].name_)
                 cc.find("PersonGenerator").getComponent("PersonGenerator").removePerson(this.candidates[j].index)
                 j--
             }
@@ -134,7 +135,6 @@ cc.Class({
         // TODO for UI designer:
         // 钱不够，未选任何员工时提示用户
         this.ancestorNode.getComponent("btnToggleActive").toggle()
-        console.log("Hired.")
     }
     // called every frame, uncomment this function to activate update callback
     // update: function (dt) {

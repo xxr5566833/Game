@@ -38,6 +38,7 @@ cc.Class({
         employMoney_:0,
         name_:"",
         profession_:"",
+        supplicateLine_:"",
         index:0,
     },
 
