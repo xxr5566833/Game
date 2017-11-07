@@ -61,13 +61,5 @@ cc.Class({
         console.log(this.projects);
         projectg.init(this.projects);
     },
-    pause:function(){
-        cc.director.pause();
-        cc.log("暂停");
-    },
-    resume:function(){
-        cc.director.resume();
-        cc.log("继续");
-    },
 
 });

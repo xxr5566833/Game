@@ -125,13 +125,13 @@ cc.Class({
     hire: function() {
         // TODO for scripters:
         // 按照 this.selectedCandidates，为 true 的下标表示雇佣该员工
-        console.log(this.candidates)
+        console.log(this.selectedCandidates)
         for(let i=0, j=0;i<this.selectedCandidates.length;i++,j++){
             if(this.selectedCandidates[i]==true){
-                console.log("Hired index:" + this.candidates[j].index)
+                console.log("Hired index:" + this.candidates[j].index_)
                 console.log("Hired name:" + this.candidates[j].name_)
-                cc.find("PersonGenerator").getComponent("PersonGenerator").removePerson(this.candidates[j].index)
-                j--
+                cc.find("PersonGenerator").getComponent("PersonGenerator").removePerson(this.candidates[j].index_)
+                console.log(this.candidates);
             }
         }
         // TODO for UI designer:

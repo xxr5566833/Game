@@ -144,8 +144,14 @@ cc.Class({
     setContent:function(content){
         this.content_=content;
     },
-    getContent:function(content){
+    getContent:function(){
         return this.content_;
+    },
+    setName:function(name){
+        this.name_=name;
+    },
+    getName:function(){
+        return this.name_;
     },
     /*调试用的init函数，便于初始化一个project */
     init:function(project){

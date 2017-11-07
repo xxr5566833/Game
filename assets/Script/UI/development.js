@@ -44,7 +44,7 @@ cc.Class({
         var flag=pc.flag_;
         if(project)
             return {
-            content_: project.getContent(),
+            name_: project.getName(),
             currentUi_ : project.getCurrent().ui,
             currentFunc_ : project.getCurrent().func,
             requireUi_ : project.getRequire().ui,
@@ -58,7 +58,7 @@ cc.Class({
         // TODO for art designer: 当前没有项目的处理
         this.currentProject = this.getCurrentProject();
         if (this.currentProject) {
-            this.labelProjectName.string = this.currentProject.content_
+            this.labelProjectName.string = this.currentProject.name_
 
             this.uiBar.width = this.widthMax * this.currentProject.currentUi_ / this.currentProject.requireUi_
             console.log(this.uiBar.width)
