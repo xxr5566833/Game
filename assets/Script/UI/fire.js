@@ -49,7 +49,7 @@ cc.Class({
         this.candidates = []
         this.updateCandidates()
         this.msgBoxControl = this.msgBox.getComponent("msgBoxControl")
-        this.fireBtn.node.on(cc.Node.EventType.TOUCH_START, this.fire, this)
+        this.fireBtn.node.on(cc.Node.EventType.TOUCH_END, this.fire, this)
         console.log("get constructor: "+this.fireBtn.constructor)
     },
 
