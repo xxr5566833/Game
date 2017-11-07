@@ -89,6 +89,7 @@ cc.Class({
             var candi_entry_management = node.getComponent("candidateEntryManagement")
             candi_entry_management.setName(candi.name_)
             candi_entry_management.setProfession(candi.profession_)
+            candi_entry_management.loadAvatar(candi.index_, candi.name_)
             candi_entry_management.entryOrder = count
             candi_entry_management.caller = this
             count += 1

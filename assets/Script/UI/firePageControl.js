@@ -39,6 +39,10 @@ cc.Class({
         labelLine: {
             default: null,
             type: cc.Label                
+        },
+        avatarSprite: {
+            default:null,
+            type:cc.Sprite
         }       
     },
 
@@ -74,7 +78,20 @@ cc.Class({
 
     setLine: function(line_str) {
         this.labelLine.string = line_str
-    }
+    },
+
+    loadAvatar: function(index, name) {
+        // 加载 SpriteFrame
+        var self = this;
+        cc.loader.loadRes("avatars/"+index+"_"+name+".png", cc.SpriteFrame, function (err, spriteFrame) {
+            if (err) {
+                console.log("loadAvatar error: "+name)
+                //cc.error(err.message || err);
+                return;
+            }
+            self.avatarSprite.spriteFrame = spriteFrame;
+        });
+    },
 
     // called every frame, uncomment this function to activate update callback
     // update: function (dt) {

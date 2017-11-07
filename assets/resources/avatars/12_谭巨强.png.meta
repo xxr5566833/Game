@@ -1,0 +1,30 @@
+{
+  "ver": "1.0.0",
+  "uuid": "5731737a-2142-47ac-a2fa-32179b5e46b6",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "subMetas": {
+    "12_谭巨强": {
+      "ver": "1.0.3",
+      "uuid": "d5724f3b-301c-4159-8577-0ec1cd150b14",
+      "rawTextureUuid": "5731737a-2142-47ac-a2fa-32179b5e46b6",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 0,
+      "offsetY": 0,
+      "trimX": 0,
+      "trimY": 0,
+      "width": 128,
+      "height": 128,
+      "rawWidth": 128,
+      "rawHeight": 128,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}

@@ -91,6 +91,7 @@ cc.Class({
             candi_entry_management.setArt(Math.floor(candi.abilityArt_))
             candi_entry_management.setSalary(Math.floor(candi.salary_))
             candi_entry_management.setLine("say sth "+candi.supplicateLine_)
+            candi_entry_management.loadAvatar(candi.index_, candi.name_)
             candi_entry_management.entryOrder = count
             candi_entry_management.caller = this
             count += 1
