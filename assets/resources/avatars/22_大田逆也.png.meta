@@ -1,0 +1,30 @@
+{
+  "ver": "1.0.0",
+  "uuid": "f699752c-d72c-460e-8115-d8a81557d5a3",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "subMetas": {
+    "22_大田逆也": {
+      "ver": "1.0.3",
+      "uuid": "054a8534-b1d2-41bb-9b3f-88108a8d27c7",
+      "rawTextureUuid": "f699752c-d72c-460e-8115-d8a81557d5a3",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 0,
+      "offsetY": 0,
+      "trimX": 0,
+      "trimY": 0,
+      "width": 128,
+      "height": 128,
+      "rawWidth": 128,
+      "rawHeight": 128,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}

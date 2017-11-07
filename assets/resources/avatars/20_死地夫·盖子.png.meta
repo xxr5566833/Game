@@ -1,0 +1,30 @@
+{
+  "ver": "1.0.0",
+  "uuid": "14292487-7ef9-4c78-a210-4e93c4112ae3",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "subMetas": {
+    "20_死地夫·盖子": {
+      "ver": "1.0.3",
+      "uuid": "81b0fcbb-1ace-4d68-a85f-247109b7efd2",
+      "rawTextureUuid": "14292487-7ef9-4c78-a210-4e93c4112ae3",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 0,
+      "offsetY": 0,
+      "trimX": 0,
+      "trimY": 0,
+      "width": 128,
+      "height": 128,
+      "rawWidth": 128,
+      "rawHeight": 128,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}

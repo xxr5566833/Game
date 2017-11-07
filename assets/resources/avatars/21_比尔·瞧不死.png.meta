@@ -1,0 +1,30 @@
+{
+  "ver": "1.0.0",
+  "uuid": "36409d5e-e919-4c25-89c5-b37f26fefd3e",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "subMetas": {
+    "21_比尔·瞧不死": {
+      "ver": "1.0.3",
+      "uuid": "b15f138a-9523-4613-a518-04b44a7ff16b",
+      "rawTextureUuid": "36409d5e-e919-4c25-89c5-b37f26fefd3e",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 0,
+      "offsetY": 0,
+      "trimX": 0,
+      "trimY": 0,
+      "width": 128,
+      "height": 128,
+      "rawWidth": 128,
+      "rawHeight": 128,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}

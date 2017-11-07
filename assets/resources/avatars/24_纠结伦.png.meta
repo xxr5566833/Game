@@ -1,0 +1,30 @@
+{
+  "ver": "1.0.0",
+  "uuid": "1edf6c43-2f6c-4c1f-9d9e-1662118fa8a0",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "subMetas": {
+    "24_纠结伦": {
+      "ver": "1.0.3",
+      "uuid": "ec63792d-80ec-4ed5-a3fe-e81b4aa6f1a3",
+      "rawTextureUuid": "1edf6c43-2f6c-4c1f-9d9e-1662118fa8a0",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 0,
+      "offsetY": 0,
+      "trimX": 0,
+      "trimY": 0,
+      "width": 128,
+      "height": 128,
+      "rawWidth": 128,
+      "rawHeight": 128,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}

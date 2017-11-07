@@ -1,0 +1,30 @@
+{
+  "ver": "1.0.0",
+  "uuid": "47cea123-cbb4-4cc7-a75b-4499e6d0f67d",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "subMetas": {
+    "13_宇文数学": {
+      "ver": "1.0.3",
+      "uuid": "aaaeea71-503a-4324-8dfb-ff8d7e61c5f1",
+      "rawTextureUuid": "47cea123-cbb4-4cc7-a75b-4499e6d0f67d",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 0,
+      "offsetY": 0,
+      "trimX": 0,
+      "trimY": 0,
+      "width": 128,
+      "height": 128,
+      "rawWidth": 128,
+      "rawHeight": 128,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}

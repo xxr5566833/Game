@@ -1,0 +1,30 @@
+{
+  "ver": "1.0.0",
+  "uuid": "c2c64799-ff60-4a73-8c07-71522e7f3d3f",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "subMetas": {
+    "6_苟冠理": {
+      "ver": "1.0.3",
+      "uuid": "5dda7112-d1fc-4c19-a5f8-8778554550b9",
+      "rawTextureUuid": "c2c64799-ff60-4a73-8c07-71522e7f3d3f",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 0,
+      "offsetY": 0,
+      "trimX": 0,
+      "trimY": 0,
+      "width": 128,
+      "height": 128,
+      "rawWidth": 128,
+      "rawHeight": 128,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "ver": "1.0.0",
+  "uuid": "4f465bdb-4a08-4ca8-9275-32b88569cf6f",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "subMetas": {
+    "17_余民红": {
+      "ver": "1.0.3",
+      "uuid": "70864454-c66c-4251-816f-37381730b833",
+      "rawTextureUuid": "4f465bdb-4a08-4ca8-9275-32b88569cf6f",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 0,
+      "offsetY": 0,
+      "trimX": 0,
+      "trimY": 0,
+      "width": 128,
+      "height": 128,
+      "rawWidth": 128,
+      "rawHeight": 128,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}
