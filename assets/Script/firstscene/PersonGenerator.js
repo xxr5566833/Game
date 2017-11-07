@@ -28,8 +28,8 @@ cc.Class({
         if(cc.find(companypath).getComponent("Company").hire(person)){
             for(let i=0;i<this.persons_.length;i++){
                 if(this.persons_[i].index===index){
+                    console.log("Hired name:"+this.persons_[i].name_);
                     this.persons_.splice(i,1);
-                    console.log(this.persons_);
                     return true;
                 }
             }

@@ -126,6 +126,8 @@ cc.Class({
         console.log(this.candidates)
         for(let i=0, j=0;i<this.selectedCandidates.length;i++,j++){
             if(this.selectedCandidates[i]==true){
+                console.log("Hired index:" + this.candidates[j].index)
+                console.log("Hired name:" + this.candidates[j].name_)
                 cc.find("PersonGenerator").getComponent("PersonGenerator").removePerson(this.candidates[j].index)
                 j--
             }
@@ -133,7 +135,6 @@ cc.Class({
         // TODO for UI designer:
         // 钱不够，未选任何员工时提示用户
         this.ancestorNode.getComponent("btnToggleActive").toggle()
-        console.log("Hired.")
     }
     // called every frame, uncomment this function to activate update callback
     // update: function (dt) {

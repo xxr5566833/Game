@@ -65,6 +65,7 @@ cc.Class({
         this.msgBoxControl.alert("SUCCESS", "成功解雇："+this.candidates[page_index].name_)
         // TODO for scripters: 根据人物唯一识别码 person_index 来完成解雇
         // =============================================================
+        console.log("Hired index:" + this.candidates[page_index].index)
         cc.find("PersonGenerator").getComponent("PersonGenerator").addPerson(this.candidates[page_index].index)
         // =============================================================
         this.ancestorNode.getComponent("btnToggleActive").toggle()
@@ -72,16 +73,15 @@ cc.Class({
     },
 
     updateCandidates: function () {
+        this.pageView.scrollToPage(0, 0)
         this.candidates = this.getEmployeeList()
-        for (var node of this.candidateBoard.children) {
-            node.destroy()
-        }
+        this.pageView.removeAllPages()
         var count = 0
         for (var candi of this.candidates) {
             console.log("new node")
             var node = cc.instantiate(this.firePagePrefab)
-            node.parent = this.candidateBoard
-            node.setPosition(0, 0)
+            this.pageView.addPage(node)
+            node.y = 115
             var candi_entry_management = node.getComponent("firePageControl")
             candi_entry_management.setName(candi.name_)
             candi_entry_management.setProfession(candi.profession_)
@@ -89,7 +89,7 @@ cc.Class({
             candi_entry_management.setManage(Math.floor(candi.abilityManage_))
             candi_entry_management.setArt(Math.floor(candi.abilityArt_))
             candi_entry_management.setSalary(Math.floor(candi.salary_))
-            candi_entry_management.setLine(candi.supplicateLine_)
+            candi_entry_management.setLine("say sth "+candi.supplicateLine_)
             candi_entry_management.entryOrder = count
             candi_entry_management.caller = this
             count += 1
@@ -115,6 +115,7 @@ cc.Class({
         var employeelist =  cc.find("Company/PersonControl").getComponent("PersonControl").showPersons()
         var infolist = []
         for(var employee of employeelist){
+            console.log("Hired: "+employee.name_)
             var info={
                 abilityCoding_: employee.abilityCoding_,
                 abilityManage_: employee.abilityManage_,
