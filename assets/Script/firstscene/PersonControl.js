@@ -88,7 +88,7 @@ cc.Class({
         console.log( this.persons_);
         console.log( "current people: "+ this.currentNum_)
         for(let i=0;i<this.currentNum_;i++){
-            this.persons_[i].commit();
+            this.persons_[i].commit(this.persons_);
             //this.persons_[i].getComponent("Person").commit();
         }
         

@@ -7,21 +7,21 @@ cc.Class({
         //cocos creator对于自己定义的复杂类型不支持，所以这里分开写了
         requireUi_:{
             visible:false,
-            default:0,
+            default:0.,
         },
         
         requireFunc_:{
             visible:false,
-            default:0,
+            default:0.,
         },
 
         currentUi_:{
             visible:false,
-            default:0,
+            default:0.,
         },
         currentFunc_:{
             visible:false,
-            default:0,
+            default:0.,
         },
 
         state_:projectstate.received,
@@ -53,7 +53,7 @@ cc.Class({
     onLoad: function () {
     },
     augment:function(attribute,increment){
-        console.log(attribute+"增加了1");
+        console.log(attribute+"增加了"+increment);
         switch(attribute){
             case 'ui':
             this.currentUi_+=increment;
