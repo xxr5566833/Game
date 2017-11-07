@@ -1,0 +1,30 @@
+{
+  "ver": "1.0.0",
+  "uuid": "5d61a5be-a168-4a9b-b62b-917cc4929cd3",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "subMetas": {
+    "2_阿库娅": {
+      "ver": "1.0.3",
+      "uuid": "4c90ae22-679f-4945-b1cb-2638cc2b26f9",
+      "rawTextureUuid": "5d61a5be-a168-4a9b-b62b-917cc4929cd3",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 0,
+      "offsetY": 0,
+      "trimX": 0,
+      "trimY": 0,
+      "width": 128,
+      "height": 128,
+      "rawWidth": 128,
+      "rawHeight": 128,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}

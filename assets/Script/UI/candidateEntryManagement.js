@@ -23,6 +23,10 @@ cc.Class({
         chosenRing: {
             default:null,
             type:cc.Node
+        },
+        avatarSprite: {
+            default:null,
+            type:cc.Sprite
         }
     },
 
@@ -47,6 +51,19 @@ cc.Class({
 
     see: function() {
         this.caller.showInfoByOrder(this.entryOrder)
+    },
+
+    loadAvatar: function(index, name) {
+        // 加载 SpriteFrame
+        var self = this;
+        cc.loader.loadRes("avatars/"+index+"_"+name+".png", cc.SpriteFrame, function (err, spriteFrame) {
+            if (err) {
+                console.log("loadAvatar error: "+name)
+                //cc.error(err.message || err);
+                return;
+            }
+            self.avatarSprite.spriteFrame = spriteFrame;
+        });
     },
 
     choose: function() {
