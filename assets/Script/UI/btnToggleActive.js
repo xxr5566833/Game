@@ -1,3 +1,6 @@
+// 主要功能：控制左边按钮的动作
+// TODO: 完成 toggle 中对游戏暂停前进的控制
+
 cc.Class({
     extends: cc.Component,
 
@@ -22,6 +25,11 @@ cc.Class({
             // 和其他toggle存在矛盾，不能同时 toggle_on
             default: [],
             type: [cc.Node]
+        },
+
+        toggle_pause_all : {
+            default: false,
+            type: Boolean
         }
     },
 
@@ -51,7 +59,13 @@ cc.Class({
                 node.active = true
             }
             this.state = "TOGGLE_OFF"
+            if (this.toggle_pause_all) {
+                // TODO: 和后端连接，实现游戏内容暂停，而不是停止所有动画
+            }
         } else if (this.state == "TOGGLE_OFF") {
+            if (this.toggle_pause_all) {
+                // TODO: 和后端连接，实现游戏内容重启（resume），而不是停止所有动画
+            }
             var call_tree = this.getComponent("btnCallTree")
             call_tree.inactivateCascade()
             this.state = "TOGGLE_ON"           
