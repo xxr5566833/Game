@@ -39,7 +39,7 @@ cc.Class({
         name_:"",
         profession_:"",
         supplicateLine_:"",
-        index:0,
+        index_:0,
     },
 
     // use this for initialization

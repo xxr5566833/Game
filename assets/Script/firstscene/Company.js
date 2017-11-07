@@ -65,8 +65,9 @@ cc.Class({
         }
     },
 
-    fire:function(person){
-        this.personControl_.getComponent('PersonControl').fire(person);
+    fire:function(index){
+        console.log('company fire'+index);
+        return this.personControl_.getComponent('PersonControl').fire(index);
     },
 
     showPersons:function(){

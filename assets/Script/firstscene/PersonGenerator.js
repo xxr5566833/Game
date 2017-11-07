@@ -93,8 +93,11 @@ cc.Class({
         }
     },
 
-    addPerson: function(person){
-        if(cc.find(companypath).getComponent("Company").fire(person)){
+    addPerson: function(index){
+        var person=null;
+        console.log('add person:'+index);
+        if(person=cc.find(companypath).getComponent("Company").fire(index)){
+            console.log('add person'+person);
             this.persons_.push(person);
         }
     },

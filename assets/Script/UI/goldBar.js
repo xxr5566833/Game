@@ -31,7 +31,6 @@ cc.Class({
 
     update: function() {
         var gold_num = this.getGold();
-        console.log(gold_num);
         // visualize in 3-digit-grouped comma splitted style 
         var tail = ""
         if (gold_num >= this.BILLION) {

@@ -52,15 +52,18 @@ cc.Class({
         return false;
     },
 
-    fire: function (oldperson){     // 解雇老员工
+    fire: function (index){     // 解雇老员工
+        console.log('fire :'+index);
         for(let i=0;i<this.currentNum_;i++){
-            if(this.persons_[i]===oldperson){
+            if(this.persons_[i].index_== index){
+                var oldperson=this.persons_[i];
+                console.log("fire"+oldperson);
                 this.persons_.splice(i,1);
                 this.currentNum_--;
-                return true;
+                return oldperson;
             }
         }
-        return false;
+        return null;
     },
 
     work: function (newProject){

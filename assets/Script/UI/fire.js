@@ -59,14 +59,15 @@ cc.Class({
 
     fire: function () {
         var page_index = this.pageView.getCurrentPageIndex() 
-        var person_index = this.candidates[page_index].index
+        var person_index = this.candidates[page_index].index_;
+        console.log(this.candidates);
         console.log("page_index: "+page_index)
         console.log("person_index: "+person_index)
         this.msgBoxControl.alert("SUCCESS", "成功解雇："+this.candidates[page_index].name_)
         // TODO for scripters: 根据人物唯一识别码 person_index 来完成解雇
         // =============================================================
-        console.log("Hired index:" + this.candidates[page_index].index)
-        cc.find("PersonGenerator").getComponent("PersonGenerator").addPerson(this.candidates[page_index].index)
+        console.log("Hired index:" + this.candidates[page_index].index_)
+        cc.find("PersonGenerator").getComponent("PersonGenerator").addPerson(this.candidates[page_index].index_)
         // =============================================================
         this.ancestorNode.getComponent("btnToggleActive").toggle()
         console.log("Fired.")
@@ -122,11 +123,13 @@ cc.Class({
                 abilityArt_: employee.abilityArt_,
                 salary_: employee.salary_,
                 employMoney_: employee.employMoney_,
-                index:employee.index,
+                index_:employee.index_,
                 name_: employee.name_,
                 profession_: employee.profession_,
                 supplicateLine_: employee.supplicateLine_
             }
+            console.log('getEmployList:');
+            console.log(info);
             infolist.push(info)
         }
         return infolist
