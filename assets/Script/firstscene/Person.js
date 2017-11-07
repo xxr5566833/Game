@@ -44,7 +44,7 @@ cc.Class({
 
     // use this for initialization
     onLoad: function () {
-
+        this.game=cc.find('Game').getComponent('Game');
     },
     init:function(person){
         this.abilityArt_=person.abilityArt;
@@ -80,7 +80,6 @@ cc.Class({
             break;
             default:
             console.log('error');
-
         }
         return incre;
         
@@ -149,6 +148,9 @@ cc.Class({
         return this.profession_;
     },
     update:function(dt){
+        if(this.game.pause_){
+            return ;
+        }
         /**不同状态输出不同信息 */
         switch(this.eState){
             case eState.free:

@@ -28,9 +28,20 @@ cc.Class({
     onLoad: function () {
         //调试用的新建员工的代码
         //var newperson=new person();
-
+        this.game = cc.find('Game').getComponent('Game');
         //this.hire(newperson);
+        this.pause_=false;
         this.maxNum_=4;
+    },
+
+    pause:function(){
+        console.log("暂停commit")
+        this.unschedule(this.commit)
+    },
+
+    resume:function(){
+        console.log("恢复commit")
+        this.schedule(this.commit,1)
     },
 
     canHire:function(person){
@@ -87,6 +98,8 @@ cc.Class({
     },
 
     commit: function () {
+        if(!this.flag_)
+            return;
         console.log("调度员工commit");
         console.log( this.persons_);
         console.log( "current people: "+ this.currentNum_)
@@ -122,13 +135,4 @@ cc.Class({
         return this.project_;
     },
     
-    update:function() {     // 每隔一段时间调用
-        if(this.flag_){
-            this.commit();
-        }
-    }
-    // called every frame, uncomment this function to activate update callback
-    // update: function (dt) {
-
-    // },
 });
