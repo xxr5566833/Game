@@ -37,7 +37,11 @@ cc.Class({
         msgBox: {
             default: null,
             type:cc.Node,
-        }
+        },
+        candidates: {
+            default: [],
+            type: cc.Prefab
+        },
     },
 
     // use this for initialization
@@ -61,8 +65,7 @@ cc.Class({
         this.msgBoxControl.alert("SUCCESS", "成功解雇："+this.candidates[page_index].name_)
         // TODO for scripters: 根据人物唯一识别码 person_index 来完成解雇
         // =============================================================
-        //
-        //
+        cc.find("PersonGenerator").getComponent("PersonGenerator").addPerson(this.candidates[page_index].index)
         // =============================================================
         this.ancestorNode.getComponent("btnToggleActive").toggle()
         console.log("Fired.")
@@ -95,7 +98,7 @@ cc.Class({
     },
 
     getEmployeeList: function () {
-        // TODO for scripters: 和后端连接，返回一个如下格式的对象数组
+        /* TODO for scripters: 和后端连接，返回一个如下格式的对象数组
         return [
             {
                 abilityCoding_: 0,
@@ -107,51 +110,24 @@ cc.Class({
                 name_: "陈小武",
                 profession_: "程序员",
                 supplicateLine_: "谁敢解雇我？"
-            },
-            {
-                abilityCoding_: 0,
-                abilityManage_: 10,
-                abilityArt_: 0,
-                salary_: 250,
-                employMoney_: 1000,
-                index:0,
-                name_: "少时诵诗书所所所所所所所所所",
-                profession_: "湿哒哒无四达大厦啥的",
-                supplicateLine_: "少时诵诗书所所所所所所所所所少时诵诗书所所所所所所所所所"
-            },
-            {
-                abilityCoding_: 100,
-                abilityManage_: 10,
-                abilityArt_: 60,
-                salary_: 250,
-                employMoney_: 1000,
-                index:1,
-                name_: "乔布斯",
-                profession_: "程序员",
-                supplicateLine_: "希望你们没了我还能正常运转"
-            },
-            {
-                abilityCoding_: 1000,
-                abilityManage_: 50,
-                abilityArt_: 60,
-                salary_: 290,
-                employMoney_: 1000,
-                index:2,
-                name_: "夜神月",
-                profession_: "产品经理",
-                supplicateLine_: "僕は新世界の神だ！"
-            },
-            {
-                abilityCoding_: 1000,
-                abilityManage_: 1050,
-                abilityArt_: 60,
-                salary_: 250,
-                employMoney_: 1000,
-                index:3,
-                name_: "汉尼拔·莱克特",
-                profession_: "设计师",
-                supplicateLine_: "吃了你！"
-            },
-        ]  
+            }
+        ]  */
+        var employeelist =  cc.find("Company/PersonControl").getComponent("PersonControl").showPersons()
+        var infolist = []
+        for(var employee of employeelist){
+            var info={
+                abilityCoding_: employee.abilityCoding_,
+                abilityManage_: employee.abilityManage_,
+                abilityArt_: employee.abilityArt_,
+                salary_: employee.salary_,
+                employMoney_: employee.employMoney_,
+                index:employee.index,
+                name_: employee.name_,
+                profession_: employee.profession_,
+                supplicateLine_: employee.supplicateLine_
+            }
+            infolist.push(info)
+        }
+        return infolist
     }
 });

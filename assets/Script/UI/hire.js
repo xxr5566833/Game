@@ -123,7 +123,6 @@ cc.Class({
     hire: function() {
         // TODO for scripters:
         // 按照 this.selectedCandidates，为 true 的下标表示雇佣该员工
-        console.log(this.selectedCandidates)
         console.log(this.candidates)
         for(let i=0, j=0;i<this.selectedCandidates.length;i++,j++){
             if(this.selectedCandidates[i]==true){
