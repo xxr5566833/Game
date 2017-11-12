@@ -64,7 +64,7 @@ cc.Class({
         this.hireBtn.node.on(cc.Node.EventType.TOUCH_START, this.hire, this)
         this.hireBtn.node.on(cc.Node.EventType.TOUCH_END, this.hire, this)
 
-        this.TEST_CANDIDATE = 
+        /*this.TEST_CANDIDATE = 
         {
             abilityCoding_: 0,
             abilityManage_: 10,
@@ -75,7 +75,7 @@ cc.Class({
             name_: "陈潇伍",
             index_: 7,
             profession_: "程序员"
-        }
+        }*/
     },
 
     onEnable: function() {
@@ -84,7 +84,6 @@ cc.Class({
 
     updateCandidates: function() {
         this.candidates = this.getCandidates()
-        this.candidates.unshift(this.TEST_CANDIDATE)
         this.selectedCandidates = []
         this.scrollView.scrollToTop()
         this.candidateBoard.height = this.entrySpace * (this.candidates.length + 1)

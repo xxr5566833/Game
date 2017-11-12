@@ -19,6 +19,8 @@ cc.Class({
                 list.push(this.persons_[i]);
             }
         }
+        console.log('showPersons list');
+        console.log(list);
         return list;
     },
     //返回不同招聘方式的object列表
