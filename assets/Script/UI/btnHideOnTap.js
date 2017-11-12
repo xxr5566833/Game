@@ -20,12 +20,18 @@ cc.Class({
         hide_targets : {
             default: [],
             type: [cc.Node]
-        }
+        },
+
+        msgBox: {
+            default: null,
+            type:cc.Node,
+        },
     },
 
     // use this for initialization
     onLoad: function () {
         this.node.on(cc.Node.EventType.TOUCH_END, this.show, this);
+        this.msgBoxControl = this.msgBox.getComponent("msgBoxControl");
     },
 
     show: function() {
@@ -39,7 +45,13 @@ cc.Class({
             cc.log(cnode);
             cc.log("here");
             cc.log(this.show_targets);
-            cnode.active = true;
+            msg=cnode.getComponent(cnode.name).canShow();
+            if(msg===''){
+                cnode.active = true;
+            }
+            else{
+                this.msgBoxControl.alert("FAIL", msg)
+            }
         }
         cc.log("end");
     },
@@ -50,6 +62,7 @@ cc.Class({
         this.scheduleOnce(function() {
             pnode.setPosition(temp_x, pnode.y)
             pnode.active = false
+
         }, 0.05);
     }
     // called every frame, uncomment this function to activate update callback
