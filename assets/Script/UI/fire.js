@@ -47,7 +47,7 @@ cc.Class({
     // use this for initialization
     onLoad: function () {
         this.candidates = []
-        this.updateCandidates()
+        //this.updateCandidates()
         this.msgBoxControl = this.msgBox.getComponent("msgBoxControl")
         this.fireBtn.node.on(cc.Node.EventType.TOUCH_END, this.fire, this)
         console.log("get constructor: "+this.fireBtn.constructor)
@@ -71,6 +71,7 @@ cc.Class({
         // =============================================================
         this.ancestorNode.getComponent("btnToggleActive").toggle()
         console.log("Fired.")
+        
     },
 
     updateCandidates: function () {
