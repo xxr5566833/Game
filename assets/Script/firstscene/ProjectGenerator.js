@@ -6,6 +6,10 @@ cc.Class({
 
     properties: {
         projects_:[cc.Prefab],
+        msgBox: {
+            default: null,
+            type:cc.Node,
+        },
 
         // foo: {
         //    default: null,      // The default value will be used only when the component attaching
@@ -27,6 +31,7 @@ cc.Class({
         this.updateAll();
     },
     onLoad: function () {
+        this.msgBoxControl = this.msgBox.getComponent("msgBoxControl")
         //这里会onload两次，不知道为啥
     },
     createProjects:function(){
@@ -77,7 +82,7 @@ cc.Class({
         var company=cc.find(companypath).getComponent("Company");
         project.setState(projectstate.overdue);
         project.setFinishDay(date.getDate());
-        console.log('任务失败');
+        this.msgBoxControl.alert('FAIL',"未能及时完成任务！声誉下降")
         this.createProjects();
     },
     finishProject:function(project){
@@ -87,7 +92,7 @@ cc.Class({
         project.setState(projectstate.finished);
         var date=cc.find('Date').getComponent("Date");
         project.setFinishDay(date.getDate());
-        console.log('任务成功');
+        this.msgBoxControl.alert('SUCCESS',"项目完成！获得"+project.getReward())
         this.createProjects();
     },
     getProjects:function(){

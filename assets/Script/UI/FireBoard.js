@@ -1,12 +1,7 @@
-var personGenerator=require('PersonGenerator');
 cc.Class({
     extends: cc.Component,
 
     properties: {
-        personGenerators_:{
-            default:[],
-            type:[cc.Node],
-        },
         // foo: {
         //    default: null,      // The default value will be used only when the component attaching
         //                           to a node for the first time
@@ -21,7 +16,16 @@ cc.Class({
 
     // use this for initialization
     onLoad: function () {
+    
     },
+    canShow:function(){
+        var errormsg = "";
+        var pc = cc.find('Company/PersonControl').getComponent('PersonControl');
+        if(pc.currentNum_ == 0){
+            errormsg = "无可雇佣员工";
+        }
+        return errormsg;
+    }
 
     // called every frame, uncomment this function to activate update callback
     // update: function (dt) {

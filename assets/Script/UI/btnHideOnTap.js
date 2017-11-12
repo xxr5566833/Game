@@ -20,7 +20,8 @@ cc.Class({
         hide_targets : {
             default: [],
             type: [cc.Node]
-        }
+        },
+
     },
 
     // use this for initialization
