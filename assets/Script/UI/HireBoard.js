@@ -20,8 +20,9 @@ cc.Class({
     },
 
     canShow: function(){
-        node=cc.find('Company/PersonControl').getComponent('PersonControl');
-        if(node.persons_.length==0){
+        var pc=cc.find('Company/PersonControl').getComponent('PersonControl');
+
+        if(!pc.canHire()){
             return '公司现在没有员工';
         }
         else{

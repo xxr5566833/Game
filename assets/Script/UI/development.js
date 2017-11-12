@@ -29,7 +29,11 @@ cc.Class({
         labelProjectName : {
             default: null,
             type: cc.Label
-        }
+        },
+        title : {
+            default: null,
+            type: cc.Label
+        },
     },
 
     // use this for initialization
@@ -58,6 +62,7 @@ cc.Class({
         // TODO for art designer: 当前没有项目的处理
         this.currentProject = this.getCurrentProject();
         if (this.currentProject) {
+            this.title.string = '开发中';
             this.labelProjectName.string = this.currentProject.name_
 
             this.uiBar.width = this.widthMax * this.currentProject.currentUi_ / this.currentProject.requireUi_
@@ -65,6 +70,14 @@ cc.Class({
             this.funcBar.width = this.widthMax * this.currentProject.currentFunc_ / this.currentProject.requireFunc_
             this.uiFraction.string = Math.floor(this.currentProject.currentUi_ )+ "/" + this.currentProject.requireUi_
             this.funcFraction.string = Math.floor(this.currentProject.currentFunc_) + "/" + this.currentProject.requireFunc_
+        }
+        else{
+            this.title.string = '无开发任务';
+            this.labelProjectName.string = '';
+            this.uiBar.width = this.widthMax * 0;
+            this.funcBar.width = 0;
+            this.uiFraction.string = '0'+'/'+'0';
+            this.funcFraction.string = '0'+'/'+'0';
         }
     }
 

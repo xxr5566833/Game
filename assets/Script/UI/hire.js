@@ -63,7 +63,8 @@ cc.Class({
         this.candidates = []
         this.hireBtn.node.on(cc.Node.EventType.TOUCH_START, this.hire, this)
         this.hireBtn.node.on(cc.Node.EventType.TOUCH_END, this.hire, this)
-
+        this.node.js=this;
+        this.node.active = false;
         /*this.TEST_CANDIDATE = 
         {
             abilityCoding_: 0,

@@ -50,7 +50,11 @@ cc.Class({
         //this.updateCandidates()
         this.msgBoxControl = this.msgBox.getComponent("msgBoxControl")
         this.fireBtn.node.on(cc.Node.EventType.TOUCH_END, this.fire, this)
-        console.log("get constructor: "+this.fireBtn.constructor)
+        console.log("get constructor: "+this.fireBtn.constructor);
+        console.log(this.node)
+        this.node.js = this;
+        console.log(this.node.js);
+        this.node.active = false;
     },
 
     onEnable: function() {
@@ -71,7 +75,6 @@ cc.Class({
         // =============================================================
         this.ancestorNode.getComponent("btnToggleActive").toggle()
         console.log("Fired.")
-        
     },
 
     updateCandidates: function () {

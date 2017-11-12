@@ -80,6 +80,7 @@ cc.Class({
     },
     failProject:function(project){
         var company=cc.find(companypath).getComponent("Company");
+        var date=cc.find('Date').getComponent("Date");
         project.setState(projectstate.overdue);
         project.setFinishDay(date.getDate());
         this.msgBoxControl.alert('FAIL',"未能及时完成任务！声誉下降")

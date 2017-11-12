@@ -43,14 +43,17 @@ cc.Class({
         }
         for (var cnode of this.show_targets) {
             cc.log(cnode);
+            cc.log(cnode.name);
             cc.log("here");
             cc.log(this.show_targets);
-            msg=cnode.getComponent(cnode.name).canShow();
+            var msg = cnode.getComponent(cnode.name).canShow();
             if(msg===''){
                 cnode.active = true;
             }
             else{
-                this.msgBoxControl.alert("FAIL", msg)
+                this.msgBoxControl.alert("FAIL", msg);
+                console.log(cnode.js);
+                cnode.js.ancestorNode.getComponent("btnToggleActive").toggle();
             }
         }
         cc.log("end");

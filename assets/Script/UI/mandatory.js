@@ -54,7 +54,9 @@ cc.Class({
         this.selectedProject = NaN
         this.candidateProjects = []
         this.btnAccept.node.on(cc.Node.EventType.TOUCH_END, this.accept, this)
-        this.msgBoxControl = this.msgBox.getComponent("msgBoxControl")
+        this.msgBoxControl = this.msgBox.getComponent("msgBoxControl");
+        this.node.js = this;
+        this.node.active = false;
     },
 
     onEnable: function() {
