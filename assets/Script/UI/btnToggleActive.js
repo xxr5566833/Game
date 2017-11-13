@@ -61,14 +61,12 @@ cc.Class({
 
             if (this.toggle_pause_all) {
                 // TODO: 和后端连接，实现游戏内容暂停，而不是停止所有动画
-                cc.find("Company/PersonControl").getComponent("PersonControl").pause();
-                cc.find("Date").getComponent("Date").pause()
+                this.game.pause();
             }
         } else if (this.state == "TOGGLE_OFF") {
             if (this.toggle_pause_all) {
                 // TODO: 和后端连接，实现游戏内容重启（resume），而不是停止所有动画
-                cc.find("Company/PersonControl").getComponent("PersonControl").resume();      
-                cc.find("Date").getComponent("Date").resume();
+                this.game.resume();
             }
             var call_tree = this.getComponent("btnCallTree")
             call_tree.inactivateCascade()

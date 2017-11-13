@@ -1,14 +1,14 @@
 {
   "ver": "1.0.0",
-  "uuid": "79123356-66ef-442a-a9e9-1aa6f2e013da",
+  "uuid": "8e8802ee-d3c8-4e43-be1f-e8fd477ee71d",
   "type": "sprite",
   "wrapMode": "clamp",
   "filterMode": "bilinear",
   "subMetas": {
-    "0_谭西": {
+    "17_夜神月": {
       "ver": "1.0.3",
-      "uuid": "7cb15c6f-4181-4667-a9ca-bdd243292ad4",
-      "rawTextureUuid": "79123356-66ef-442a-a9e9-1aa6f2e013da",
+      "uuid": "ad93fb91-9409-45db-b3ca-e65c0fba85e2",
+      "rawTextureUuid": "8e8802ee-d3c8-4e43-be1f-e8fd477ee71d",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,

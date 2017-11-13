@@ -5,6 +5,10 @@ cc.Class({
     extends: cc.Component,
 
     properties: {
+        music: {
+            url: cc.AudioClip,
+            default: null
+        }
         // foo: {
         //    default: null,      // The default value will be used only when the component attaching
         //                           to a node for the first time
@@ -16,7 +20,18 @@ cc.Class({
         // },
         // ...
     },
-
+    pause:function(){
+        cc.find("Company/PersonControl").getComponent("PersonControl").pause();
+        cc.find("Date").getComponent("Date").pause();
+        cc.find('Company/Account').getComponent('Account').pause();
+        cc.find('ProjectGenerator').getComponent('ProjectGenerator').pause();
+    },
+    resume:function(){
+        cc.find("Company/PersonControl").getComponent("PersonControl").resume();      
+        cc.find("Date").getComponent("Date").resume();
+        cc.find('Company/Account').getComponent('Account').resume();
+        cc.find('ProjectGenerator').getComponent('ProjectGenerator').resume();
+    },
     // use this for initialization
     onLoad: function () {
         cc.loader.loadRes('personinfo',function(err,data){
@@ -36,8 +51,8 @@ cc.Class({
             }
         });
         // 开启重复处理事件
-        cc.find("Company/PersonControl").getComponent("PersonControl").resume(); 
-        cc.find("Date").getComponent("Date").resume(); 
+        this.resume();
+        this.current = cc.audioEngine.play(this.music, true,0.5);
     },
 
     init:function(){
@@ -57,12 +72,9 @@ cc.Class({
                 this.projects=data;
             }
         },this);
-        console.log(this.persons);
-        console.log(this.projects);
         var persong=cc.find('PersonGenerator').getComponent('PersonGenerator');
         persong.init(this.persons);
         var projectg=cc.find('ProjectGenerator').getComponent('ProjectGenerator');
-        console.log(this.projects);
         projectg.init(this.projects);
     },
 

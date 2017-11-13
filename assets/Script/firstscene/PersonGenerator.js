@@ -8,19 +8,24 @@ cc.Class({
             default:[],
             type:[cc.Prefab]
         },
+        msgBox:{
+            default:null,
+            type:cc.Node
+        },
     },
     //根据传入的level返回可用的person列表,在人们选择好某种招聘方式时调用它，所以这里还需要调用expend扣除一定招聘费用
-    showPersons:function(level){
+    showPersons:function(l){
+        var level =Math.floor( Math.random() * 8);
         var ac=cc.find('Company/Account').getComponent('Account');
+        //ac.expend(this.pgs[level].cost_, '发布招聘信息');
         ac.expend(this.pgs[level].cost_, '发布招聘信息');
+        this.msgBoxControl.alert('SUCCESS',this.pgs[level ].description_+',花费了'+ this.pgs[level].cost_);
         var list = [];
         for(let i=0 ; i < this.persons_.length ; i++){
             if(this.persons_[i].level_ == level){
                 list.push(this.persons_[i]);
             }
         }
-        console.log('showPersons list');
-        console.log(list);
         return list;
     },
     //返回不同招聘方式的object列表
@@ -76,7 +81,6 @@ cc.Class({
 
     removePerson: function(index) {
         var person=null;
-        console.log(index);
         for(var i=0;i<this.persons_.length;i++){
             console.log(this.persons_[i].index_);
             if(this.persons_[i].index_ == index){
@@ -84,14 +88,10 @@ cc.Class({
                 break;
             }
         }
-        console.log(person);
-        console.log('找到了这个人');
         if(cc.find(companypath).getComponent("Company").hire(person)){
             for(let i=0;i<this.persons_.length;i++){
                 if(this.persons_[i].index_== index){
-                    console.log("Hired name:"+this.persons_[i].name_);
                     this.persons_.splice(i,1);
-                    console.log(this.persons_);
                     return true;
                 }
             }
@@ -100,9 +100,7 @@ cc.Class({
 
     addPerson: function(index){
         var person=null;
-        console.log('add person:'+index);
         if(person=cc.find(companypath).getComponent("Company").fire(index)){
-            console.log('add person'+person);
             this.persons_.push(person);
         }
     },
@@ -113,47 +111,57 @@ cc.Class({
             person.init(persons[i]);
             this.persons_.push(person);
         }
-        console.log(this.persons_);
     },
     onLoad: function () {
-        var levelcount = 6;     
-        //暂时定为6个等级
+        var levelcount = 8;     
+        //暂时定为7个等级
         this.pgs=[];
         //不同等级的招聘方式信息
         var templist=[
             {
-                description_ : "熟人介绍",
+                description_ : "经过了熟人介绍",
                 level_ : 0,
                 cost_ : 500, 
             },
             {
-                description_ : "网络招聘",
+                description_ : "经过了网络招聘",
                 level_ : 1,
                 cost_ : 1200, 
             },
             {
-                description_ : "高校招生发布会",
+                description_ : "经过了高校招生发布会",
                 level_ : 2,
                 cost_ : 2000, 
             },
+            
             {
-                description_ : "挖大公司墙脚",
+                description_ : "你去挖大公司墙脚",
                 level_ : 3,
                 cost_ : 5000, 
             },
             {
-                description_ : "神秘召唤仪式",
+                description_ : '打开了一个精灵球',
                 level_ : 4,
-                cost_ : 10000, 
+                cost_: 20000,
             },
             {
-                description_ : "打开虚空的大门",
+                description_ : "使用了神秘召唤仪式",
                 level_ : 5,
+                cost_ : 30000, 
+            },
+            {
+                description_ : "你打开了虚空的大门",
+                level_ : 6,
                 cost_ : 50000, 
 
             },
+            {
+                description_ : '与恶魔签订了契约',
+                level_ : 7,
+                cost_ : 70000,
+            }
         ];
-        var list=[
+        /*var list=[
             {
                 abilityCoding_: 0,
                 abilityManage_: 10,
@@ -209,11 +217,12 @@ cc.Class({
                 profession_: "设计师",
                 supplicateLine_: "吃了你！"
             },
-        ];
+        ];*/
         for (var i=0;i<levelcount;i++){
             var pg = templist[i];
             this.pgs.push(pg);
         }
+        this.msgBoxControl = this.msgBox.getComponent('msgBoxControl');
 
     },
 

@@ -1,14 +1,14 @@
 {
   "ver": "1.0.0",
-  "uuid": "5d61a5be-a168-4a9b-b62b-917cc4929cd3",
+  "uuid": "49fe1db4-1aea-4ef7-bb91-af8b398ae08b",
   "type": "sprite",
   "wrapMode": "clamp",
   "filterMode": "bilinear",
   "subMetas": {
-    "2_阿库娅": {
+    "5_李狗蛋": {
       "ver": "1.0.3",
-      "uuid": "4c90ae22-679f-4945-b1cb-2638cc2b26f9",
-      "rawTextureUuid": "5d61a5be-a168-4a9b-b62b-917cc4929cd3",
+      "uuid": "aa0a8f2f-6881-45ce-af31-51f944b83ac4",
+      "rawTextureUuid": "49fe1db4-1aea-4ef7-bb91-af8b398ae08b",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,

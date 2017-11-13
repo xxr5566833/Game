@@ -1,14 +1,14 @@
 {
   "ver": "1.0.0",
-  "uuid": "d5b52412-f5dc-4f35-af70-687264ce0433",
+  "uuid": "182028b7-befe-46d4-9e5b-6bfca26297b7",
   "type": "sprite",
   "wrapMode": "clamp",
   "filterMode": "bilinear",
   "subMetas": {
-    "8_白坂": {
+    "18_汉尼拔·莱克特": {
       "ver": "1.0.3",
-      "uuid": "d84757e6-6c5d-4a68-ad44-7346d6405eb3",
-      "rawTextureUuid": "d5b52412-f5dc-4f35-af70-687264ce0433",
+      "uuid": "7c5c873e-7a6c-438e-ad4f-e3dd89d01930",
+      "rawTextureUuid": "182028b7-befe-46d4-9e5b-6bfca26297b7",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,

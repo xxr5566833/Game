@@ -19,7 +19,10 @@ cc.Class({
             default:null,
             type:cc.Prefab
         },
-
+        msgBox: {
+            default: null,
+            type:cc.Node,
+        },
 
         //这里把Node改为了Prefab
     },
@@ -31,20 +34,21 @@ cc.Class({
         this.game = cc.find('Game').getComponent('Game');
         //this.hire(newperson);
         this.pause_=false;
-        this.maxNum_=4;
+        this.maxNum_=5;
+        this.msgBoxControl = this.msgBox.getComponent("msgBoxControl");
     },
 
     pause:function(){
-        console.log("暂停commit")
-        this.unschedule(this.commit)
+        this.unschedule(this.commit);
+        this.unschedule(this.paySalary);
     },
 
     resume:function(){
-        console.log("恢复commit")
-        this.schedule(this.commit,1)
+        this.schedule(this.commit,1);
+        this.schedule(this.paySalary,1);
     },
 
-    canHire:function(person){
+    canHire:function(){
         return this.currentNum_<this.maxNum_;
     },
 
@@ -64,11 +68,9 @@ cc.Class({
     },
 
     fire: function (index){     // 解雇老员工
-        console.log('fire :'+index);
         for(let i=0;i<this.currentNum_;i++){
             if(this.persons_[i].index_== index){
                 var oldperson=this.persons_[i];
-                console.log("fire"+oldperson);
                 this.persons_.splice(i,1);
                 this.currentNum_--;
                 return oldperson;
@@ -80,7 +82,6 @@ cc.Class({
     work: function (newProject){
         this.project_ = newProject;
         this.flag_ = true;
-        console.log("每个人开始工作");
         for(let i=0;i<this.currentNum_;i++){
             this.persons_[i].work(newProject);
             //this.persons_[i].getComponent("Person").work(newProject);
@@ -89,7 +90,6 @@ cc.Class({
     },
 
     stop: function (){
-        console.log("personcontrol 停止工作");
         this.flag_ = false;
         for(let i=0;i<this.currentNum_;i++){
             this.persons_[i].stop();
@@ -100,7 +100,6 @@ cc.Class({
     commit: function () {
         if(!this.flag_)
             return;
-        console.log("调度员工commit");
         console.log( this.persons_);
         console.log( "current people: "+ this.currentNum_)
         for(let i=0;i<this.currentNum_;i++){
@@ -134,5 +133,21 @@ cc.Class({
     getProject:function(){
         return this.project_;
     },
+    paySalary:function(){
+        var date = cc.find('Date').getComponent('Date');
+        if(date.getDate()%60 != 1){
+            return ;
+        }
+        var sumSalary = 0;
+        for(let i =0;i<this.persons_.length ; i++){
+            sumSalary = sumSalary + this.persons_[i].salary_;
+        }
+        if(sumSalary > 0){
+            this.msgBoxControl.alert('SUCCESS', '支付员工薪水' +Math.floor(sumSalary));
+            var ac = cc.find('Company/Account').getComponent('Account');
+            ac.expend(sumSalary , '支付薪水');
+        }
+    },
+
     
 });

@@ -1,14 +1,14 @@
 {
   "ver": "1.0.0",
-  "uuid": "687d1c22-76fa-4ca2-a147-86c2b09ac849",
+  "uuid": "2d25589a-0b62-44ea-91f2-14438028d9a0",
   "type": "sprite",
   "wrapMode": "clamp",
   "filterMode": "bilinear",
   "subMetas": {
-    "9_码加掘": {
+    "28_飞克大魔王": {
       "ver": "1.0.3",
-      "uuid": "d6d8e99e-aa38-4ce2-bfa2-87091652743c",
-      "rawTextureUuid": "687d1c22-76fa-4ca2-a147-86c2b09ac849",
+      "uuid": "5a4d665a-89d2-4da5-a8c5-77fda34003e4",
+      "rawTextureUuid": "2d25589a-0b62-44ea-91f2-14438028d9a0",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,

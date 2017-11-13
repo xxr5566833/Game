@@ -46,7 +46,7 @@ cc.Class({
         var pc=cc.find('Company/PersonControl').getComponent('PersonControl');
         var project=pc.project_;
         var flag=pc.flag_;
-        if(project)
+        if(project && flag)
             return {
             name_: project.getName(),
             currentUi_ : project.getCurrent().ui,

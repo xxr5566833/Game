@@ -28,11 +28,9 @@ cc.Class({
 
     receiveProject:function(project){
         this.project_=project ;
-        cc.log(project);
         this.project_.setState(projectstate.received);
         var date=cc.find('Date').getComponent('Date');
         this.project_.setReceiveDay(date.getDate());
-        console.log("personcontrol 开始接受");
         this.personControl_.getComponent('PersonControl').work(project);
     },
 
@@ -48,17 +46,9 @@ cc.Class({
         var pc=this.personControl_.getComponent('PersonControl');
         var ac=this.account_.getComponent('Account');
         if(pc.canHire(person)){
-            if(ac.isEnough(person.getEmployMoney())){
                 ac.expend(person.getEmployMoney(), '雇人费用');
-                console.log(person.getEmployMoney());
                 pc.hire(person);
-                console.log(person);
                 return true;
-            }
-            else{
-                console.log('ac cannot enough');
-                return false;
-            }
         }else{
             console.log('pc cannot hire');
             return false;

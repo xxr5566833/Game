@@ -1,14 +1,14 @@
 {
   "ver": "1.0.0",
-  "uuid": "a266d627-a358-47c2-b690-ffec79079d5c",
+  "uuid": "8ef95ca4-6458-4397-a777-706d603c285d",
   "type": "sprite",
   "wrapMode": "clamp",
   "filterMode": "bilinear",
   "subMetas": {
-    "27_艾达": {
+    "27_xxr": {
       "ver": "1.0.3",
-      "uuid": "2e17dc6a-97ec-4314-92cd-6d305b567ac9",
-      "rawTextureUuid": "a266d627-a358-47c2-b690-ffec79079d5c",
+      "uuid": "6bcca28f-4ba3-45ae-9243-aa2db7ecafc3",
+      "rawTextureUuid": "8ef95ca4-6458-4397-a777-706d603c285d",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,

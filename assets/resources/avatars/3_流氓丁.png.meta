@@ -1,14 +1,14 @@
 {
   "ver": "1.0.0",
-  "uuid": "47cea123-cbb4-4cc7-a75b-4499e6d0f67d",
+  "uuid": "2e8d8561-d962-49cf-807d-5e7306c390ae",
   "type": "sprite",
   "wrapMode": "clamp",
   "filterMode": "bilinear",
   "subMetas": {
-    "13_宇文数学": {
+    "3_流氓丁": {
       "ver": "1.0.3",
-      "uuid": "aaaeea71-503a-4324-8dfb-ff8d7e61c5f1",
-      "rawTextureUuid": "47cea123-cbb4-4cc7-a75b-4499e6d0f67d",
+      "uuid": "c5b5186e-dbc4-4611-bfb4-36f10cc4d0e3",
+      "rawTextureUuid": "2e8d8561-d962-49cf-807d-5e7306c390ae",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,

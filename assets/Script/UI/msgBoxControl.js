@@ -14,6 +14,14 @@ cc.Class({
            default: null,
            type:cc.Node,
        },
+       successMusic:{
+            url:cc.AudioClip,
+            default:null,
+       },
+       failMusic:{
+            url:cc.AudioClip,
+            default:null,
+       },
     },
 
     // use this for initialization
@@ -30,10 +38,12 @@ cc.Class({
             case 'SUCCESS':
                 this.icon.getComponent(cc.Sprite).spriteFrame.setTexture(cc.url.raw('Texture/Msgbox/msgbox_success_icon.png'));
                 console.log('success');
+                cc.audioEngine.play(this.successMusic,false);
                 break;
             case 'FAIL':
                 this.icon.getComponent(cc.Sprite).spriteFrame.setTexture(cc.url.raw('Texture/Msgbox/msgbox_fail_icon.png'));
                 console.log('fail');
+                cc.audioEngine.play(this.failMusic,false);
                 break;
         }
         this.move_in()

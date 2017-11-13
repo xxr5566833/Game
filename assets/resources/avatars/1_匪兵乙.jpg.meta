@@ -1,14 +1,14 @@
 {
   "ver": "1.0.0",
-  "uuid": "8e431afe-cdbe-4ef2-9e73-f8fa224974ca",
+  "uuid": "caa117fa-006f-4028-b05f-22b671fb0c26",
   "type": "sprite",
   "wrapMode": "clamp",
   "filterMode": "bilinear",
   "subMetas": {
-    "28_希尔伯特": {
+    "1_匪兵乙": {
       "ver": "1.0.3",
-      "uuid": "8f35e376-a0bb-4963-b4b1-2a8c886e03bb",
-      "rawTextureUuid": "8e431afe-cdbe-4ef2-9e73-f8fa224974ca",
+      "uuid": "f8d74e68-5cb8-49d4-82c6-03be1b910140",
+      "rawTextureUuid": "caa117fa-006f-4028-b05f-22b671fb0c26",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,
@@ -16,10 +16,10 @@
       "offsetY": 0,
       "trimX": 0,
       "trimY": 0,
-      "width": 128,
-      "height": 128,
-      "rawWidth": 128,
-      "rawHeight": 128,
+      "width": 300,
+      "height": 300,
+      "rawWidth": 300,
+      "rawHeight": 300,
       "borderTop": 0,
       "borderBottom": 0,
       "borderLeft": 0,

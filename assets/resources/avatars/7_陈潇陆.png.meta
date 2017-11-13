@@ -1,14 +1,14 @@
 {
   "ver": "1.0.0",
-  "uuid": "dda1bf81-17b5-4eed-aec6-39bd1c930299",
+  "uuid": "96526082-3d94-46f2-893c-2d16c944f01e",
   "type": "sprite",
   "wrapMode": "clamp",
   "filterMode": "bilinear",
   "subMetas": {
-    "14_司马美": {
+    "7_陈潇陆": {
       "ver": "1.0.3",
-      "uuid": "3c79ad7f-eb11-4e20-81b8-726cabeae8d6",
-      "rawTextureUuid": "dda1bf81-17b5-4eed-aec6-39bd1c930299",
+      "uuid": "8193f06f-0e1a-44b9-b869-cbaec38834b7",
+      "rawTextureUuid": "96526082-3d94-46f2-893c-2d16c944f01e",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,

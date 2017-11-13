@@ -1,14 +1,14 @@
 {
   "ver": "1.0.0",
-  "uuid": "2e1b7901-f929-48ac-99e5-058871882d28",
+  "uuid": "2cd374c1-5d5b-43a7-bf07-85134088873f",
   "type": "sprite",
   "wrapMode": "clamp",
   "filterMode": "bilinear",
   "subMetas": {
-    "10_达内姬": {
+    "9_研": {
       "ver": "1.0.3",
-      "uuid": "00dda327-0e6d-455a-831c-1a428d78ad78",
-      "rawTextureUuid": "2e1b7901-f929-48ac-99e5-058871882d28",
+      "uuid": "e0e3eba8-83f8-40f5-893c-9d9f92a5fc58",
+      "rawTextureUuid": "2cd374c1-5d5b-43a7-bf07-85134088873f",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,

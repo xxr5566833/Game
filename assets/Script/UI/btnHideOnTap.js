@@ -35,7 +35,14 @@ cc.Class({
     },
 
     show: function() {
-        console.log("chufa");
+        //只能先这样改了，如果把这个判断放在下面，那么会按钮逻辑关系有问题。。ui以后来改也行
+        for (var cnode of this.show_targets) {
+            var msg = cnode.getComponent(cnode.name).canShow();
+            if(msg != ''){
+                this.msgBoxControl.alert("FAIL", msg);
+                return ;
+            }
+        }
         for (var pnode of this.hide_targets) {
             cc.log(pnode);
             // get some time for buttons to change their states 
@@ -47,14 +54,15 @@ cc.Class({
             cc.log("here");
             cc.log(this.show_targets);
             var msg = cnode.getComponent(cnode.name).canShow();
-            if(msg===''){
+            //if(msg===''){
                 cnode.active = true;
-            }
+            /*}
             else{
                 this.msgBoxControl.alert("FAIL", msg);
+
                 console.log(cnode.js);
-                cnode.js.ancestorNode.getComponent("btnToggleActive").toggle();
-            }
+                //cnode.js.ancestorNode.getComponent("btnToggleActive").toggle();
+            }*/
         }
         cc.log("end");
     },

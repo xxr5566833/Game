@@ -18,16 +18,8 @@ cc.Class({
     onLoad: function () {
 
     },
-
-    canShow: function(){
-        var pc=cc.find('Company/PersonControl').getComponent('PersonControl');
-
-        if(!pc.canHire()){
-            return '公司现在员工已满';
-        }
-        else{
-            return '';
-        }
+    newGame:function(){
+        cc.director.loadScene('Loading');
     },
 
     // called every frame, uncomment this function to activate update callback

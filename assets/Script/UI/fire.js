@@ -86,7 +86,7 @@ cc.Class({
             console.log("new node")
             var node = cc.instantiate(this.firePagePrefab)
             this.pageView.addPage(node)
-            node.y = 115
+            node.y = 0;
             var candi_entry_management = node.getComponent("firePageControl")
             candi_entry_management.setName(candi.name_)
             candi_entry_management.setProfession(candi.profession_)
@@ -94,7 +94,7 @@ cc.Class({
             candi_entry_management.setManage(Math.floor(candi.abilityManage_))
             candi_entry_management.setArt(Math.floor(candi.abilityArt_))
             candi_entry_management.setSalary(Math.floor(candi.salary_))
-            candi_entry_management.setLine("say sth "+candi.supplicateLine_)
+            candi_entry_management.setLine(candi.supplicateLine_)
             candi_entry_management.loadAvatar(candi.index_, candi.name_)
             candi_entry_management.entryOrder = count
             candi_entry_management.caller = this
@@ -119,7 +119,7 @@ cc.Class({
             }
         ]  */
         var employeelist =  cc.find("Company/PersonControl").getComponent("PersonControl").showPersons()
-        var infolist = []
+        /*var infolist = []
         for(var employee of employeelist){
             console.log("Hired: "+employee.name_)
             var info={
@@ -136,7 +136,7 @@ cc.Class({
             console.log('getEmployList:');
             console.log(info);
             infolist.push(info)
-        }
-        return infolist
+        }*/
+        return employeelist
     }
 });

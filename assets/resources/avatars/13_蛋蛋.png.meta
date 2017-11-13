@@ -1,14 +1,14 @@
 {
   "ver": "1.0.0",
-  "uuid": "183b988d-b8a6-4699-bb4b-2a2df30a11cf",
+  "uuid": "8141e88d-fe54-436d-8998-0176fca3195d",
   "type": "sprite",
   "wrapMode": "clamp",
   "filterMode": "bilinear",
   "subMetas": {
-    "7_陈潇伍": {
+    "13_蛋蛋": {
       "ver": "1.0.3",
-      "uuid": "53949e30-c719-4528-b53c-4e8165dc1296",
-      "rawTextureUuid": "183b988d-b8a6-4699-bb4b-2a2df30a11cf",
+      "uuid": "b06dcc14-25c5-4d62-89dd-4b2939ead083",
+      "rawTextureUuid": "8141e88d-fe54-436d-8998-0176fca3195d",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,

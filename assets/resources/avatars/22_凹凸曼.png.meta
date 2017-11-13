@@ -1,14 +1,14 @@
 {
   "ver": "1.0.0",
-  "uuid": "11639fa0-0d46-480e-905f-eee347ae4416",
+  "uuid": "4aa8249b-5b67-4b56-8e50-405069e2c388",
   "type": "sprite",
   "wrapMode": "clamp",
   "filterMode": "bilinear",
   "subMetas": {
-    "18_森永真由子": {
+    "22_凹凸曼": {
       "ver": "1.0.3",
-      "uuid": "1c8ad22b-9021-49b8-9ed4-a21eaf11fb8c",
-      "rawTextureUuid": "11639fa0-0d46-480e-905f-eee347ae4416",
+      "uuid": "503eba50-7f3b-48fa-9496-fd7dadecf87d",
+      "rawTextureUuid": "4aa8249b-5b67-4b56-8e50-405069e2c388",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,

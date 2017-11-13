@@ -132,7 +132,6 @@ cc.Class({
     getCandidates: function() {
         // 返回候选人物的数组
         // TODO: 和后端连接
-        //这里默认level为0
         return cc.find("PersonGenerator").getComponent("PersonGenerator").showPersons(0)
     },
 

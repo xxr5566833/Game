@@ -59,8 +59,9 @@ cc.Class({
         this.salary_=person.salary;
         this.employMoney_=person.employMoney;
         this.name_=person.name;
-        this.profession_=person.profession;
+        this.profession_=person.grade;
         this.index_=person.index;
+        this.supplicateLine_ = person.supplicateLine;
     },
     getCommit:function(persons,ability){
         /*获得开发点数,这里就先return 1*/
@@ -88,12 +89,9 @@ cc.Class({
     commit:function(persons){
         /**贡献开发点数到当前project */
         var maxManage= Math.max.apply(null,[1,2,3]);
-        console.log(maxManage);
         //var exponent_func=50/()
         this.project_.augment('ui',this.getCommit(persons,'ui'));
         this.project_.augment('func',this.getCommit(persons,'func'));
-        cc.log(this.getCommit(persons,'ui'));
-        cc.log(this.getCommit(persons,'func'));
         
     },
     work:function(proj){

@@ -53,7 +53,6 @@ cc.Class({
     onLoad: function () {
     },
     augment:function(attribute,increment){
-        console.log(attribute+"增加了"+increment);
         switch(attribute){
             case 'ui':
             this.currentUi_+=increment;
@@ -71,9 +70,6 @@ cc.Class({
             throw "error attribute" + attribute;
             break;
         }
-        console.log("现在属性");
-        console.log(this.currentUi_);
-        console.log(this.currentFunc_);
     },
 
 
@@ -87,7 +83,8 @@ cc.Class({
     isOverdue: function() {
         var date=cc.find(datepath).getComponent('Date');
         var currentday=date.getDate();
-        return currentday>(this.receiveDay_+this.deadline_);
+        //注意这里deadline是以周围单位而其他的是以天为单位
+        return currentday>(this.receiveDay_ + this.deadline_ * 7);
     },
     setRequire:function(require){
         this.requireUi_=require.ui;
@@ -163,7 +160,6 @@ cc.Class({
         this.requireUi_=project.requireUi;
         this.requireFunc_=project.requireFunc;
         this.level_=project.level;
-        console.log('任务产生完毕！');
     },
     // },
 });
