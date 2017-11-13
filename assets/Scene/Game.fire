@@ -121,7 +121,10 @@
     "node": {
       "__id__": 2
     },
-    "_enabled": true
+    "_enabled": true,
+    "music": {
+      "__uuid__": "a33de7c1-1e98-4a8f-b1da-17cd5205f837"
+    }
   },
   {
     "__type__": "cc.Node",
@@ -3870,6 +3873,12 @@
     },
     "icon": {
       "__id__": 84
+    },
+    "successMusic": {
+      "__uuid__": "63acbef4-a2a5-4a56-932e-65c91fab1171"
+    },
+    "failMusic": {
+      "__uuid__": "a6bd3347-c546-48b0-8928-75e7d35e6c14"
     }
   },
   {
