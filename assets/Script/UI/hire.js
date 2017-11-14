@@ -95,7 +95,7 @@ cc.Class({
         var count = 0
         for (var candi of this.candidates) {
             this.selectedCandidates[count] = false
-            console.log("new node at y = "+y)
+           // console.log("new node at y = "+y)
             var node = cc.instantiate(this.candidateEntryPrefab)
             node.parent = this.candidateBoard
             node.setPosition(this.entryX, y)
@@ -112,7 +112,7 @@ cc.Class({
     },
 
     showInfoByOrder: function(order) {
-        console.log(this.candidates[order]);
+        //console.log(this.candidates[order]);
         this.codingLabel.string = Math.floor(this.candidates[order].abilityCoding_).toString()
         this.manageLabel.string = Math.floor(this.candidates[order].abilityManage_).toString()
         this.artLabel.string = Math.floor(this.candidates[order].abilityArt_).toString()
@@ -122,7 +122,7 @@ cc.Class({
 
     includeCandidateByOrder: function(order) {
         this.selectedCandidates[order] = true
-        console.log(this.selectedCandidates)
+        //console.log(this.selectedCandidates)
     },
 
     excludeCandidateByOrder: function(order) {
@@ -138,13 +138,13 @@ cc.Class({
     hire: function() {
         // TODO for scripters:
         // 按照 this.selectedCandidates，为 true 的下标表示雇佣该员工
-        console.log(this.selectedCandidates)
+       // console.log(this.selectedCandidates)
         for(let i=0, j=0;i<this.selectedCandidates.length;i++,j++){
             if(this.selectedCandidates[i]==true){
-                console.log("Hired index:" + this.candidates[j].index_)
-                console.log("Hired name:" + this.candidates[j].name_)
+                //console.log("Hired index:" + this.candidates[j].index_)
+               // console.log("Hired name:" + this.candidates[j].name_)
                 cc.find("PersonGenerator").getComponent("PersonGenerator").removePerson(this.candidates[j].index_)
-                console.log(this.candidates);
+                //console.log(this.candidates);
             }
         }
         // TODO for UI designer:

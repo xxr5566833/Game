@@ -44,15 +44,15 @@ cc.Class({
             }
         }
         for (var pnode of this.hide_targets) {
-            cc.log(pnode);
+            //(pnode);
             // get some time for buttons to change their states 
             this.unfocus(pnode)
         }
         for (var cnode of this.show_targets) {
-            cc.log(cnode);
+           /* cc.log(cnode);
             cc.log(cnode.name);
             cc.log("here");
-            cc.log(this.show_targets);
+            cc.log(this.show_targets);*/
             var msg = cnode.getComponent(cnode.name).canShow();
             //if(msg===''){
                 cnode.active = true;
@@ -64,7 +64,7 @@ cc.Class({
                 //cnode.js.ancestorNode.getComponent("btnToggleActive").toggle();
             }*/
         }
-        cc.log("end");
+        //cc.log("end");
     },
 
     unfocus: function(pnode) {

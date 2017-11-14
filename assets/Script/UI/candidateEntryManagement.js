@@ -58,7 +58,7 @@ cc.Class({
         var self = this;
         cc.loader.loadRes("avatars/"+index+"_"+name+".png", cc.SpriteFrame, function (err, spriteFrame) {
             if (err) {
-                console.log("loadAvatar error: "+name)
+                //.log("loadAvatar error: "+name)
                 //cc.error(err.message || err);
                 return;
             }

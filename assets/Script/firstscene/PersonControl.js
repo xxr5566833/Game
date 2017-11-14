@@ -54,16 +54,16 @@ cc.Class({
 
     hire: function (newPerson) {
             // 雇佣一个员工，如果已达人数上限，则返回false
-        cc.log("now:"+this.currentNum_);
-        cc.log("max:"+this.maxNum_);
+       // cc.log("now:"+this.currentNum_);
+       // cc.log("max:"+this.maxNum_);
         if(this.currentNum_<this.maxNum_){
             this.currentNum_++;
             newPerson.project_=cc.find("Company").getComponent("Company").project_;
             this.persons_.push(newPerson);
-            cc.log("after hire:"+this.currentNum_);
+           // cc.log("after hire:"+this.currentNum_);
             return true;
         }
-        cc.log("can't hire:"+this.currentNum_);
+       // cc.log("can't hire:"+this.currentNum_);
         return false;
     },
 
@@ -100,8 +100,8 @@ cc.Class({
     commit: function () {
         if(!this.flag_)
             return;
-        console.log( this.persons_);
-        console.log( "current people: "+ this.currentNum_)
+        //console.log( this.persons_);
+       // console.log( "current people: "+ this.currentNum_)
         for(let i=0;i<this.currentNum_;i++){
             this.persons_[i].commit(this.persons_);
             //this.persons_[i].getComponent("Person").commit();
@@ -135,7 +135,7 @@ cc.Class({
     },
     paySalary:function(){
         var date = cc.find('Date').getComponent('Date');
-        if(date.getDate()%60 != 1){
+        if(date.getDate()%90 != 1){
             return ;
         }
         var sumSalary = 0;

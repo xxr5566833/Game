@@ -50,13 +50,13 @@ cc.Class({
                 pc.hire(person);
                 return true;
         }else{
-            console.log('pc cannot hire');
+            //console.log('pc cannot hire');
             return false;
         }
     },
 
     fire:function(index){
-        console.log('company fire'+index);
+        //console.log('company fire'+index);
         return this.personControl_.getComponent('PersonControl').fire(index);
     },
 

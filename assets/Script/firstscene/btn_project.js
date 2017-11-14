@@ -14,16 +14,11 @@ cc.Class({
 
     // use this for initialization
     onLoad: function () {
-        this.hide();
-        this.node.on(cc.Node.EventType.TOUCH_START, this.show, this);
-        this.node.emit();
     },
     
     hide:function(){
-        this.btn_develop.node.x = -10000;
     },
     show: function(){
-        this.btn_develop.node.x = 100;
     }
 
     // called every frame, uncomment this function to activate update callback

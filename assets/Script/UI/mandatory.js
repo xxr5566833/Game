@@ -65,20 +65,20 @@ cc.Class({
 
     updateCandidateProjects: function() {
         this.candidateProjects = this.getCandidateProjects()
-        console.log("candidatePrjs: "+this.candidateProjects.length)
+        //console.log("candidatePrjs: "+this.candidateProjects.length)
         if (this.candidateProjects.length < 1) {
-            console.log("no candidate prj found")
+            //console.log("no candidate prj found")
             return
         }
         for (var index = 0; index < this.btnCandidateProjects.length; index++) {
-            console.log("set "+index)
+            //console.log("set "+index)
             var manage = this.btnCandidateProjects[index].getComponent('candidateProjectEntryManagement')
             manage.caller = this
             manage.entryOrder = index
         }
         for (var index = 0; index < this.btnCandidateProjects.length; index++) {
             var manage = this.btnCandidateProjects[index].getComponent('candidateProjectEntryManagement')
-            console.log("candidatePrj: "+this.candidateProjects[index])
+            //.log("candidatePrj: "+this.candidateProjects[index])
             manage.setName(this.candidateProjects[index].name_)
             manage.setReward(this.candidateProjects[index].reward_)
         }
@@ -106,7 +106,7 @@ cc.Class({
         this.ancestorNode.getComponent("btnToggleActive").toggle()
         this.msgBoxControl.alert("SUCCESS", "接受项目: " + temp.name_)
         cc.find("Company").getComponent("Company").receiveProject(temp)
-        console.log("Accepted.")
+        //.log("Accepted.")
 
     }
 });

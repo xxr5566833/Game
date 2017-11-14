@@ -60,7 +60,7 @@ cc.Class({
             if(err){
                 cc.log(err);
             }else{
-                console.log(data);
+                //console.log(data);
                 this.persons=data;
             }
         },this);
@@ -68,7 +68,7 @@ cc.Class({
             if(err){
                 cc.log(err);
             }else{
-                console.log(data);
+               // console.log(data);
                 this.projects=data;
             }
         },this);

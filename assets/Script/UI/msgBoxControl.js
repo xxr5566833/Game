@@ -33,16 +33,16 @@ cc.Class({
     },
 
     alert: function(type, msg) {
-        console.log(this.icon.getComponent(cc.Sprite))
+       // console.log(this.icon.getComponent(cc.Sprite))
         switch (type){
             case 'SUCCESS':
-                this.icon.getComponent(cc.Sprite).spriteFrame.setTexture(cc.url.raw('Texture/Msgbox/msgbox_success_icon.png'));
-                console.log('success');
+                //this.icon.getComponent(cc.Sprite).spriteFrame.setTexture(cc.url.raw('Texture/Msgbox/msgbox_success_icon.png'));
+                //console.log('success');
                 cc.audioEngine.play(this.successMusic,false);
                 break;
             case 'FAIL':
-                this.icon.getComponent(cc.Sprite).spriteFrame.setTexture(cc.url.raw('Texture/Msgbox/msgbox_fail_icon.png'));
-                console.log('fail');
+                //this.icon.getComponent(cc.Sprite).spriteFrame.setTexture(cc.url.raw('Texture/Msgbox/msgbox_fail_icon.png'));
+                //console.log('fail');
                 cc.audioEngine.play(this.failMusic,false);
                 break;
         }

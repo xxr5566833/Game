@@ -3716,7 +3716,7 @@
     "_actualFontSize": 20,
     "_fontSize": 20,
     "_lineHeight": 40,
-    "_enableWrapText": false,
+    "_enableWrapText": true,
     "_N$file": null,
     "_isSystemFontUsed": true,
     "_spacingX": 0,
@@ -3724,7 +3724,7 @@
     "_N$horizontalAlign": 1,
     "_N$verticalAlign": 1,
     "_N$fontFamily": "幼圆",
-    "_N$overflow": 1
+    "_N$overflow": 3
   },
   {
     "__type__": "cc.Sprite",

@@ -909,7 +909,7 @@
     "_N$file": null,
     "_isSystemFontUsed": true,
     "_spacingX": 0,
-    "_N$string": "软件开发公司v1.0游戏说明\n\n在这里你将扮演一位创业软件公司的\nCEO，你需要招募好的员工，并完成\n发放的任务以维持公司的经营,游戏\n初期只有10000元，当亏本超过50000\n游戏就会结束",
+    "_N$string": "软件开发公司v1.0游戏说明\n（第一版很多按钮尚未实现...）\n在这里你将扮演一位创业软件公司的\nCEO，你需要招募好的员工，并完成\n发放的任务以维持公司的经营,游戏\n初期只有10000元，当亏本超过500万\n游戏就会结束。\n有什么建议请在\nwww.xiexiaorui.xyz/software/软工游戏\n下留下您宝贵的意见\n",
     "_N$horizontalAlign": 0,
     "_N$verticalAlign": 0,
     "_N$fontFamily": "Arial",

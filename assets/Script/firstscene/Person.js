@@ -98,12 +98,12 @@ cc.Class({
         /**开始工作 */
         this.project_=proj;
         this.state_=eState.working;
-        cc.log("开始工作");
+        //("开始工作");
     },
     stop: function(){
         /**停止工作 */
         this.state_=eState.free;
-        cc.log("停止工作");
+        //cc.log("停止工作");
     },
     show:function(){
         /**展示信息 */
@@ -152,10 +152,10 @@ cc.Class({
         /**不同状态输出不同信息 */
         switch(this.eState){
             case eState.free:
-            cc.log('free状态');
+            //cc.log('free状态');
             break;
             case eState.working:
-            cc.log("正在工作");
+            //cc.log("正在工作");
         }
     }
 });

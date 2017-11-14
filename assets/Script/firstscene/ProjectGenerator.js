@@ -54,7 +54,7 @@ cc.Class({
                 }
             }
         }
-        console.log('三个任务都没有变');
+        //.log('三个任务都没有变');
     },
     updateAll:function(){
         //三个任务都更新,目前假设 只有3个任务
@@ -110,10 +110,10 @@ cc.Class({
         var pcproj = pc.getProject();
         if(pc.isWorking() && pcproj.currentUi_ != 0 && pcproj.currentFunc_ != 0){
             var temp = Math.random();
-            if(temp <= 0.05 * (8 - pcproj.level_)){
+            if(temp <= 0.015 * (8 - pcproj.level_)){
                 this.msgBoxControl.alert('FAIL','改动了需求,损失开发点数');
-                pcproj.currentUi_ = pc.project_.currentUi_ * 0.5;
-                pcproj.currentFunc_ = pc.project_.currentFunc_ * 0.5;
+                pcproj.currentUi_ = pc.project_.currentUi_ * 0.8;
+                pcproj.currentFunc_ = pc.project_.currentFunc_ * 0.8;
             }
         }
     },

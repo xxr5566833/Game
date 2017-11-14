@@ -50,10 +50,10 @@ cc.Class({
         //this.updateCandidates()
         this.msgBoxControl = this.msgBox.getComponent("msgBoxControl")
         this.fireBtn.node.on(cc.Node.EventType.TOUCH_END, this.fire, this)
-        console.log("get constructor: "+this.fireBtn.constructor);
-        console.log(this.node)
+        //console.log("get constructor: "+this.fireBtn.constructor);
+        //console.log(this.node)
         this.node.js = this;
-        console.log(this.node.js);
+        //console.log(this.node.js);
         this.node.active = false;
     },
 
@@ -64,17 +64,17 @@ cc.Class({
     fire: function () {
         var page_index = this.pageView.getCurrentPageIndex() 
         var person_index = this.candidates[page_index].index_;
-        console.log(this.candidates);
-        console.log("page_index: "+page_index)
-        console.log("person_index: "+person_index)
+        //console.log(this.candidates);
+        //console.log("page_index: "+page_index)
+        //console.log("person_index: "+person_index)
         this.msgBoxControl.alert("SUCCESS", "成功解雇："+this.candidates[page_index].name_)
         // TODO for scripters: 根据人物唯一识别码 person_index 来完成解雇
         // =============================================================
-        console.log("Hired index:" + this.candidates[page_index].index_)
+        //console.log("Hired index:" + this.candidates[page_index].index_)
         cc.find("PersonGenerator").getComponent("PersonGenerator").addPerson(this.candidates[page_index].index_)
         // =============================================================
         this.ancestorNode.getComponent("btnToggleActive").toggle()
-        console.log("Fired.")
+       // console.log("Fired.")
     },
 
     updateCandidates: function () {
@@ -83,7 +83,7 @@ cc.Class({
         this.pageView.removeAllPages()
         var count = 0
         for (var candi of this.candidates) {
-            console.log("new node")
+           // console.log("new node")
             var node = cc.instantiate(this.firePagePrefab)
             this.pageView.addPage(node)
             node.y = 0;

@@ -28,12 +28,16 @@ cc.Class({
         this.gold_+=num;
         if(this.gold_ > 0){
             this.neg_flag = false;
+            if(this.gold_ > Number.MAX_VALUE / 10){
+                this.msgBoxControl.alert('SUCCESS','为了防止溢出，你的金钱减一半');
+                this.gold_ = this.gold_ / 2;
+            }
         }
     },
 
     expend:function(num,cause){
         let gold_now=this.gold_-num;
-        console.log(cause);
+        //console.log(cause);
         if(gold_now < 0){
             //提示资金不足
             this.gold_=gold_now;
@@ -60,17 +64,19 @@ cc.Class({
     },
 
     resume:function(){
-        console.log('resume account');
+       // console.log('resume account');
         this.schedule(this.loan, 1);
     },
 
     loan:function(){
-        console.log(this.gold_);
+        //console.log(this.gold_);
         if(this.gold_ < 0){
-            console.log(this.gold_);
+            //console.log(this.gold_);
             this.gold_ = Math.floor(this.gold_ * 1.01);
-            if(this.gold_ < -5000000){
+            if(this.gold_ < -50000000){
                 this.msgBoxControl.alert('FAIL', "GG，游戏结束");
+                var game = cc.find('Game').getComponent('Game');
+                cc.audioEngine.stop(game.current);
                 cc.director.loadScene('End');
             }
         }

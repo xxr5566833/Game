@@ -14,15 +14,15 @@
   "oauthLoginServer": "",
   "optimizeHotUpdate": false,
   "orientation": {
-    "landscapeLeft": true,
-    "landscapeRight": true,
-    "portrait": false,
+    "landscapeLeft": false,
+    "landscapeRight": false,
+    "portrait": true,
     "upsideDown": false
   },
-  "packageName": "org.cocos2d.helloworld",
+  "packageName": "org.cocos2d.game",
   "privateKey": "",
   "renderMode": "0",
-  "startScene": "1b2441cc-04b2-4f61-83ad-28b6b21c5730",
-  "title": "SoftwareDev",
+  "startScene": "7be405c8-cda9-4b45-9e76-bfcfa5be2c39",
+  "title": "Software",
   "webOrientation": "auto"
 }

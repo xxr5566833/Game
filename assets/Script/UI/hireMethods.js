@@ -18,7 +18,7 @@ cc.Class({
     },
 
     go: function() {
-        console.log("gogogogo")
+        //console.log("gogogogo")
     }
     // called every frame, uncomment this function to activate update callback
     // update: function (dt) {

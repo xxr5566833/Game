@@ -45,7 +45,7 @@ cc.Class({
     },
 
     see: function() {
-        console.log(this.entryOrder)
+        //.log(this.entryOrder)
         this.caller.showInfoByOrder(this.entryOrder)
     },
 
@@ -56,16 +56,16 @@ cc.Class({
         if (this.status == "NOT_CHOSEN") {
             this.status = "CHOSEN";
             //this.chosenRing.opacity = 255
-            console.log("find button: " + this.node.getComponent("Button"))
+            //console.log("find button: " + this.node.getComponent("Button"))
             this.node.getComponent("cc.Button").normalSprite = this.selectedSpriteFrame
             this.caller.selectedProject = this.entryOrder;
-            cc.log('not chosen to chosen');
+            //cc.log('not chosen to chosen');
             this.unselectOther();
         } else if (this.status = "CHOSEN") {
             this.status = "NOT_CHOSEN";
             this.node.getComponent("cc.Button").normalSprite = this.normalSprite
             //this.chosenRing.opacity = 0
-            cc.log('chosen to not chosen');
+           // cc.log('chosen to not chosen');
         }
     },
 

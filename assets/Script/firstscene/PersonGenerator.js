@@ -82,7 +82,7 @@ cc.Class({
     removePerson: function(index) {
         var person=null;
         for(var i=0;i<this.persons_.length;i++){
-            console.log(this.persons_[i].index_);
+            //console.log(this.persons_[i].index_);
             if(this.persons_[i].index_ == index){
                 person=this.persons_[i];
                 break;

@@ -33,8 +33,8 @@ cc.Class({
     // use this for initialization
     onLoad: function () {
         this.state = "TOGGLE_ON"
-        console.log("inited")
-        console.log(this.toggle_targets)
+        //console.log("inited")
+        //console.log(this.toggle_targets)
         this.node.on(cc.Node.EventType.TOUCH_END, this.toggle, this);
         this.game=cc.find('Game').getComponent('Game');
     },
@@ -54,7 +54,7 @@ cc.Class({
                 }
             }
             for (var node of this.toggle_targets) {  // Use of！
-                console.log("on")
+                //console.log("on")
                 node.active = true
             }
             this.state = "TOGGLE_OFF"
