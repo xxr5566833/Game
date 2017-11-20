@@ -93,7 +93,7 @@ cc.Class({
 
     getCandidateProjects: function() {
         // TODO: 和后端显示候选委托项目连接
-        return cc.find("ProjectGenerator").getComponent("ProjectGenerator").projects_
+        return cc.find("ProjectGenerator").getComponent("ProjectGenerator").getProjects();
     },
 
     accept: function() {

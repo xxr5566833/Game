@@ -36,6 +36,9 @@ cc.Class({
         receiveDay_:0,
         finishDay_:0,
         content_:"",
+        unlock_:false,
+        unlockRequire_:"",
+        index_: 0,
         
         // foo: {
         //    default: null,      // The default value will be used only when the component attaching
@@ -160,6 +163,7 @@ cc.Class({
         this.requireUi_=project.requireUi;
         this.requireFunc_=project.requireFunc;
         this.level_=project.level;
+        this.index_ = project.index;
     },
     // },
 });
