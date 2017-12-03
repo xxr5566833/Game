@@ -74,10 +74,8 @@ cc.Class({
             //console.log(this.gold_);
             this.gold_ = Math.floor(this.gold_ * 1.01);
             if(this.gold_ < -50000000){
-                this.msgBoxControl.alert('FAIL', "GG，游戏结束");
                 var game = cc.find('Game').getComponent('Game');
-                cc.audioEngine.stop(game.current);
-                cc.director.loadScene('End');
+                game.gameover();
             }
         }
     },

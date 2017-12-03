@@ -31,22 +31,22 @@ cc.Class({
     // use this for initialization
 
     init:function(projs){
-        this.projs=projs;
-        this.availableList = [0, 1, 2, 3];
-        var initnum = 4;
+        this.projs_=projs;
+        this.availableList_ = [0, 1, 2, 3];
         this.updateAll();
     },
     onLoad: function () {
         this.msgBoxControl = this.msgBox.getComponent("msgBoxControl")
+        
         //这里会onload两次，不知道为啥
     },
     updateAll:function(){
         //三个任务都更新,目前假设 只有3个任务
-        var num=3;
+        var num = 3;
         var choose = [];
         var i = 0;
         while(i < 3){
-            var randomnum = Math.floor(cc.random0To1() * this.availableList.length);
+            var randomnum = Math.floor(cc.random0To1() * this.availableList_.length);
             if(choose.indexOf(randomnum) == -1){
                 ++i;
                 choose.push(randomnum);
@@ -56,30 +56,18 @@ cc.Class({
         for(let j = 0; j < num; ++j)
         {
             var proj = new project();
-            var index = this.availableList[choose[j]];
-            for(let k = 0; k < this.projs.length; ++k)
+            var index = this.availableList_[choose[j]];
+            for(let k = 0; k < this.projs_.length; ++k)
             {
-                if(this.projs[k].index == index){
-                    proj.init(this.projs[k]);
+                if(this.projs_[k].index == index){
+                    proj.init(this.projs_[k]);
                     this.projects_[j] = proj;
                     break;
                 }
             }
         }
     },
-    generateProject:function(level){
-        var list = [];
-        for(let i=0;i<this.projs.length ;i++){
-            if(this.projs[i].level == level){
-                list.push(this.projs[i]);
-            }
-        }
-        var index=Math.floor(cc.random0To1()*(list.length ));
-        var tempproj=list[index];
-        var proj=new project();
-        proj.init(tempproj);
-        return proj;
-    },
+
 
     failProject:function(project){
         var company=cc.find(companypath).getComponent("Company");
@@ -93,7 +81,7 @@ cc.Class({
         company.profit(project.getReward(),"项目完成");
         project.setState(projectstate.finished);
         this.updateAvailable(project.index_);
-        console.log(this.availableList);
+        console.log(this.availableList_);
         var date=cc.find('Date').getComponent("Date");
         project.setFinishDay(date.getDate());
         this.msgBoxControl.alert('SUCCESS',"项目完成！获得"+project.getReward())
@@ -123,27 +111,28 @@ cc.Class({
     },
 
     updateAvailable:function(index){
-        if(this.projs[index].unlock){
+        if(this.projs_[index].unlock){
             return; 
         }
-        this.projs[index].unlock = true;
-        for(let i = 0; i < this.projs.length; i++){
+        
+        this.projs_[index].unlock = true;
+        for(let i = 0; i < this.projs_.length; i++){
             //如果availableList里已经有了这个project的index，那么已经可用了，那么就跳过
-            if(this.availableList.indexOf(this.projs[i].index) != -1){
+            if(this.availableList_.indexOf(this.projs_[i].index) != -1){
                 continue;
             }
-            var list = this.projs[i].unlockRequire;
+            var list = this.projs_[i].unlockRequire;
             var available = true;
             for(let j = 0; j < list.length; ++j)
             {
-                available = available && (this.availableList.indexOf(list[j]) != -1) && this.projs[list[j]].unlock;
+                available = available && (this.availableList_.indexOf(list[j]) != -1) && this.projs[list[j]].unlock;
             }
             if(available){
                 this.msgBoxControl.alert('SUCCESS',"解锁了新的任务!");
                 console.log('解锁新任务');
-                console.log(this.projs[index])
-                console.log(this.projs[i]);
-                this.availableList.push(this.projs[i].index);
+                console.log(this.projs_[index])
+                console.log(this.projs_[i]);
+                this.availableList_.push(this.projs_[i].index);
                 return ;
             }
         }

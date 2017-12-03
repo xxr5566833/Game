@@ -1,5 +1,6 @@
 var projectstate=require('global').projectState;
 var datepath=require('global').datePath;
+var projectstate = require("global").projectState
 cc.Class({
     extends: cc.Component,
 

@@ -8,7 +8,11 @@ cc.Class({
         music: {
             url: cc.AudioClip,
             default: null
-        }
+        },
+        msgBox:{
+            default:null,
+            type:cc.Node
+        },
         // foo: {
         //    default: null,      // The default value will be used only when the component attaching
         //                           to a node for the first time
@@ -32,6 +36,11 @@ cc.Class({
         cc.find('Company/Account').getComponent('Account').resume();
         cc.find('ProjectGenerator').getComponent('ProjectGenerator').resume();
     },
+    gameover:function(){
+        this.msgBoxControl.alert('FAIL', "GG，游戏结束");
+        cc.audioEngine.stop(this.current);
+        cc.director.loadScene('End');
+    },
     // use this for initialization
     onLoad: function () {
         cc.loader.loadRes('personinfo',function(err,data){
@@ -53,6 +62,7 @@ cc.Class({
         // 开启重复处理事件
         this.resume();
         this.current = cc.audioEngine.play(this.music, true,0.5);
+        this.msgBoxControl = this.msgBox.getComponent("msgBoxControl")
     },
 
     init:function(){
