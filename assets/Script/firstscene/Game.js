@@ -5,14 +5,14 @@ cc.Class({
     extends: cc.Component,
 
     properties: {
-        music: {
+        music_: {
             url: cc.AudioClip,
             default: null
         },
-        msgBox:{
-            default:null,
-            type:cc.Node
-        },
+        time_:  {
+            default:1.,
+        }
+
         // foo: {
         //    default: null,      // The default value will be used only when the component attaching
         //                           to a node for the first time
@@ -25,67 +25,35 @@ cc.Class({
         // ...
     },
     pause:function(){
-        cc.find("Company/PersonControl").getComponent("PersonControl").pause();
-        cc.find("Date").getComponent("Date").pause();
-        cc.find('Company/Account').getComponent('Account').pause();
-        cc.find('ProjectGenerator').getComponent('ProjectGenerator').pause();
+        event=new cc.Event.EventCustom('PAUSE', true);
+        this.node.dispatchEvent(event);
     },
     resume:function(){
-        cc.find("Company/PersonControl").getComponent("PersonControl").resume();      
-        cc.find("Date").getComponent("Date").resume();
-        cc.find('Company/Account').getComponent('Account').resume();
-        cc.find('ProjectGenerator').getComponent('ProjectGenerator').resume();
+        event=new cc.Event.EventCustom('RESUME', true);
+        this.node.dispatchEvent(event);
     },
-    gameover:function(){
-        this.msgBoxControl.alert('FAIL', "GG，游戏结束");
-        cc.audioEngine.stop(this.current);
-        cc.director.loadScene('End');
-    },
+    
     // use this for initialization
     onLoad: function () {
-        cc.loader.loadRes('personinfo',function(err,data){
+        cc.loader.loadRes('personinfo',function(err,data_pe){
             if(err){
                 cc.log(err);
             }else{
-                var persong=cc.find('PersonGenerator').getComponent('PersonGenerator');
-                persong.init(data);
-            }
-        });
-        cc.loader.loadRes('projectinfo',function(err,data){
-            if(err){
-                cc.log(err);
-            }else{
-                var projectg=cc.find('ProjectGenerator').getComponent('ProjectGenerator');
-                projectg.init(data);
+                cc.loader.loadRes('projectinfo',function(err,data_pr){
+                    if(err){
+                        cc.log(err);
+                    }else{
+                        event=new cc.Event.EventCustom('INIT', true);
+                        event.detail.data_pe=data_pe;
+                        event.detail.data_pr=data_pr;
+                        this.node.dispatchEvent(event);
+                    }
+                });
             }
         });
         // 开启重复处理事件
         this.resume();
         this.current = cc.audioEngine.play(this.music, true,0.5);
-        this.msgBoxControl = this.msgBox.getComponent("msgBoxControl")
-    },
-
-    init:function(){
-        cc.loader.loadRes('personinfo',function(err,data){
-            if(err){
-                cc.log(err);
-            }else{
-                //console.log(data);
-                this.persons=data;
-            }
-        },this);
-        cc.loader.loadRes('projectinfo',function(err,data){
-            if(err){
-                cc.log(err);
-            }else{
-               // console.log(data);
-                this.projects=data;
-            }
-        },this);
-        var persong=cc.find('PersonGenerator').getComponent('PersonGenerator');
-        persong.init(this.persons);
-        var projectg=cc.find('ProjectGenerator').getComponent('ProjectGenerator');
-        projectg.init(this.projects);
     },
 
     save: function(name){                                               //存档

@@ -10,46 +10,41 @@ cc.Class({
             default:[],
             type:[cc.String],
         },
-        msgBox: {
-            default: null,
-            type:cc.Node,
+        protect_: {
+            default: true,
         },
     },
 
     // use this for initialization
     onLoad: function () {
         this.gold_=10000;
-        this.msgBoxControl = this.msgBox.getComponent('msgBoxControl');
-        this.neg_flag = false;
+        this.protect_ = true;
     },
 
-
-    profit:function(num,cause){
+    profit: function(num,cause){
         this.gold_+=num;
-        if(this.gold_ > 0){
-            this.neg_flag = false;
-            if(this.gold_ > Number.MAX_VALUE / 10){
-                this.msgBoxControl.alert('SUCCESS','为了防止溢出，你的金钱减一半');
-                this.gold_ = this.gold_ / 2;
-            }
-        }
+        //记录cause
     },
 
-    expend:function(num,cause){
-        let gold_now=this.gold_-num;
-        //console.log(cause);
-        if(gold_now < 0){
-            //提示资金不足
-            this.gold_=gold_now;
-            if(!this.neg_flag){
-                this.msgBoxControl.alert('FAIL','出现亏本，开始高利贷');
-                this.neg_flag = true;
-            }
+    enoughThenExpend: function(num,cause){
+        if(this.isEnough(num)){
+            this.expend(num);
+            return true;
+        }
+        else{
             return false;
         }
-        //记录
-        this.gold_=gold_now;
-        return true;
+    },
+
+    expend: function(num,cause){
+        this.gold_=this.gold_-num;
+        if(this.gold>=0){
+            return;
+        }
+        else{
+            //调用破产保护
+            this.protect();
+        }
     },
 
     isEnough:function(num){
@@ -59,24 +54,25 @@ cc.Class({
         return true;
     },
     
-    pause:function(){
-        this.unschedule(this.loan);
+    getGold:function(){
+        return this.gold_;
     },
 
-    resume:function(){
-       // console.log('resume account');
-        this.schedule(this.loan, 1);
-    },
-
-    loan:function(){
-        //console.log(this.gold_);
-        if(this.gold_ < 0){
-            //console.log(this.gold_);
-            this.gold_ = Math.floor(this.gold_ * 1.01);
-            if(this.gold_ < -50000000){
-                var game = cc.find('Game').getComponent('Game');
-                game.gameover();
+    protect:function(money){
+        if(this.protect_){
+            var num=1;
+            while(num*100000<money){
+                num++;
             }
+            this.profit(num*100000,"保护");
+            event=new cc.Event.EventCustom('PROTECT', true);
+            this.node.dispatchEvent(event);
+            this.protect_=false;
+        }
+        else{
+            //GAME OVER
+            event=new cc.Event.EventCustom('GAMEOVER', true);
+            this.node.dispatchEvent(event);
         }
     },
 

@@ -11,7 +11,7 @@ cc.Class({
 
     // use this for initialization
     onLoad: function () {
-        this.game = cc.find('Game').getComponent('Game');
+        
     },
 
     resume:function(){

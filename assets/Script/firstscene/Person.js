@@ -9,94 +9,53 @@ cc.Class({
 
     properties: {
         /**能力值 */
-        abilityArt_:0,
-        abilityManage_:0,
-        abilityCoding_:0,
-        maxArt_:0,
-        maxManage_:0,
-        maxCoding_:0,
-        hp_:0,
-        level_:0,
-        grade_:0,
+        coding_:0.,
+        science_:0.,
+        art_:0.,
+        creativity_:0.,
+        manager_:0.,
+        business_:0.,
         /*状态，用枚举表示，定义在上面 */
         state_:{
             default:eState.free,
             type:eState,
         },
         /**工资 */
-        salary_:0,
-        /**公司 */
-        company:{
-            default:null,
-            type:cc.Node
-        },
-        /**正在开发的项目 */
-        project_:{
-            default:null,
-            type:cc.Prefab,
-        },
-        employMoney_:0,
+        salary_:0.,
+        employMoney_:0.,
         name_:"",
         profession_:"",
-        supplicateLine_:"",
         index_:0,
     },
 
     // use this for initialization
     onLoad: function () {
-        this.game=cc.find('Game').getComponent('Game');
+        
     },
     init:function(person){
-        this.abilityArt_=person.abilityArt;
-        this.abilityCoding_=person.abilityCoding;
-        this.abilityManage_=person.abilityManage;
-        this.maxArt_=person.maxArt;
-        this.maxCoding_=person.maxCoding;
-        this.maxManage_=person.maxManage;
-        this.hp_=person.hp;
-        this.level_=person.level;
-        this.grade_=person.grade;
-        this.salary_=person.salary;
-        this.employMoney_=person.employMoney;
-        this.name_=person.name;
-        this.profession_=person.grade;
-        this.index_=person.index;
-        this.supplicateLine_ = person.supplicateLine;
-    },
-    getCommit:function(persons,ability){
-        /*获得开发点数,这里就先return 1*/
-        var managearray=[]
-        for(let i=0;i<persons.length;++i){
-            managearray.push(persons[i].abilityManage_);
-        }
-        var maxManage=Math.max.apply(null,managearray);
-        var expo=50/(maxManage+50);
-        var incre=0;
-        switch(ability){
-            case 'ui':
-            incre=(1/Math.pow(persons.length,expo))*(this.abilityArt_/10)*(0.9+Math.random()*0.2);
-            break;
-            case 'func':
-            incre=(1/Math.pow(persons.length,expo))*(this.abilityCoding_/10)*(0.9+Math.random()*0.2);
-            break;
-            default:
-            console.log('error');
-        }
-        return incre;
-        
-    },
+        //初始化人物属性
 
-    commit:function(persons){
-        /**贡献开发点数到当前project */
-        var maxManage= Math.max.apply(null,[1,2,3]);
-        //var exponent_func=50/()
-        this.project_.augment('ui',this.getCommit(persons,'ui'));
-        this.project_.augment('func',this.getCommit(persons,'func'));
-        
     },
-    work:function(proj){
+    develop:function(mamager,n,project){
+        var F = (1 / (n ^ (50 / (manager + 50)))) * (this.coding_ / 10) * (rand(0.9 , 1.1));    //功能
+        var P = (1 / (n ^ (50 / (manager + 50)))) * (this.science_ / 10) * (rand(0.9 , 1.1));   //性能
+        var E = (1 / (n ^ (50 / (manager + 50)))) * (this.art_ / 10) * (rand(0.9 , 1.1));       //体验
+        var I = (1 / (n^ (50 / (manager + 50)))) * (this.creativity_ / 10) * (rand(0.9 , 1.1)); //创意
+        var criticalPro = this.creativity_/(this.creativity_+200);
+        var criticalRate = 1+(5*sqrt(this.science_))/100;
+        if((rand(0.0 , 1.0)<criticalPro)){
+            F=F*criticalRate;
+            P=P*criticalRate;
+            E=E*criticalRate;
+            I=I*criticalRate;
+        }
+        project.augment(0,F);
+        project.augment(1,P);
+        project.augment(2,E);
+        project.augment(3,I);
+    },
+    begin:function(){
         /**开始工作 */
-        this.project_=proj;
         this.state_=eState.working;
         //("开始工作");
     },
@@ -104,10 +63,6 @@ cc.Class({
         /**停止工作 */
         this.state_=eState.free;
         //cc.log("停止工作");
-    },
-    show:function(){
-        /**展示信息 */
-        return this;
     },
     setSalary:function(salary){
         this.salary_=salary;
@@ -122,16 +77,10 @@ cc.Class({
         this.employMoney_=money;
     },
     setAbility:function(ability){
-        this.abilityArt_=ability.art;
-        this.abilityCoding_=ability.coding;
-        this.abilityManage_=ability.manage;
+        
     },
     getAbility:function(){
-        var ability=new Object();
-        ability.art=this.abilityArt_;
-        ability.manage=this.abilityManage_;
-        ability.coding=this.abilityCoding_;
-        return ability;
+        
     },
     setName:function(name){
         this.name_=name;
@@ -145,17 +94,10 @@ cc.Class({
     getProfession:function(){
         return this.profession_;
     },
+    init:function(person){
+
+    },
     update:function(dt){
-        if(this.game.pause_){
-            return ;
-        }
-        /**不同状态输出不同信息 */
-        switch(this.eState){
-            case eState.free:
-            //cc.log('free状态');
-            break;
-            case eState.working:
-            //cc.log("正在工作");
-        }
-    }
+        
+    },
 });
