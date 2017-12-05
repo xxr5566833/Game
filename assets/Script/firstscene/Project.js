@@ -1,45 +1,77 @@
 var projectstate=require('global').projectState;
 var datepath=require('global').datePath;
 var projectstate = require("global").projectState
+var eAttri = cc.Enum({ function : 0, performance : 1, entertainment : 2, innovative : 3, });
+var eBug = cc.Enum({ low : 0, mid : 1, high: 2, });
 cc.Class({
     extends: cc.Component,
 
     properties: {
         //cocos creator对于自己定义的复杂类型不支持，所以这里分开写了
-        requireUi_:{
+        requireEntertainment_:{
             visible:false,
             default:0.,
         },
         
-        requireFunc_:{
+        currentEntertainment_:{
             visible:false,
             default:0.,
         },
 
-        currentUi_:{
-            visible:false,
-            default:0.,
-        },
-        currentFunc_:{
+        requireFunction_:{
             visible:false,
             default:0.,
         },
 
-        state_:projectstate.received,
-        category_:"",
+        currentFunction_:{
+            visible:false,
+            default:0.,
+        },
+
+        requireInnovation_:{
+            visible:false,
+            default:0.,
+        },
+
+        currentInnovation_:{
+            visible:false,
+            default:0.,
+        },
+
+        requireSafety_:{
+            visible:false,
+            default:0.,
+        },
+
+        currentSafety_:{
+            visible:false,
+            default:0.,
+        },
+
+        requirePerformance_:{
+            visible:false,
+            default:0.,
+        },
+
+        currentPerformance_:{
+            visible:false,
+            default:0.,
+        },
+
+        bugnum_:{
+            default:[],
+            type:[cc.Integer],
+        },
+
+        categories_:{
+            default:[],
+            type:[Object],
+        },
+
         reward_:0,
-        deadline_:0,
-        level_:0,
-        company_:{
-            default:null,
-            type:cc.Node,
-        },
         receiveDay_:0,
         finishDay_:0,
         content_:"",
-        unlock_:false,
-        unlockRequire_:"",
-        index_: 0,
         
         // foo: {
         //    default: null,      // The default value will be used only when the component attaching
@@ -56,22 +88,63 @@ cc.Class({
     // use this for initialization
     onLoad: function () {
     },
+
+    setReward:function(){
+        this.reward_=reward;
+    },
+
+    getReward:function(){
+        return this.reward_;
+    },
+
+    init:function(){
+
+    },
+
+    getRequire:function(){
+        var require=new Object;
+        require.function = this.requireFunction_;
+        require.entertainment = this.requireEntertainment_;
+        require.innovation = this.requireInnovation_;
+        require.safety = this.requireSafety_;
+        require.performance = this.requirePerformance_;
+        return require;
+    },
+
+    setrequire:function(require){
+        this.requireFunction_=require.function
+        this.requireEntertainment_=require.entertainment
+        this.requireInnovation_=require.innovation
+        this.requireSafety_=require.safety
+        this.requirePerformance_=require.performance
+    },
+
+    getCurrent:function(){
+        var current=new Object;
+        current.function=this.currentFunction_;
+        current.entertainment=this.currentEntertainment_;
+        current.innovation = this.currentInnovation_;
+        current.safety = this.currentSafety_;
+        current.performance = this.currentPerformance_;
+        return current;
+    },
+
     augment:function(attribute,increment){
         switch(attribute){
-            case 'ui':
-            this.currentUi_+=increment;
-            if (this.currentUi_ > this.requireUi_) {
-                this.currentUi_ = this.requireUi_
+            case 0:
+            this.currentFunction_+=increment;
+            if (this.currentFunction_ > this.requireFunction_) {
+                this.currentFunction_ = this.requireFunction_
             }
             break;
-            case 'func':
-            this.currentFunc_+=increment;
-            if (this.currentFunc_ > this.requireFunc_) {
-                this.currentFunc_ = this.requireFunc_
-            }
+            case 1:
+            this.currentPerformance_+=increment;
             break;
-            default:
-            throw "error attribute" + attribute;
+            case 2:
+            this.currentEntertainment_+=increment;
+            break;
+            case 3:
+            this.currentInnovation_+=increment;
             break;
         }
     },
@@ -81,66 +154,29 @@ cc.Class({
     // update: function (dt) {
 
     isFinished: function() {
-        return this.requireUi_<=this.currentUi_
-        &&this.requireFunc_<=this.currentFunc_;
+        return this.currentFunction_ >= this.requireFunction_ && this.currentEntertainment_ >= this.requireEntertainment_ && this.currentInnovation_ >= this.requireInnovation_ && this.currentSafety_ >= this.requireSafety_ && this.currentPerformance_ >= this.requirePerformance_
     },
-    isOverdue: function() {
-        var date=cc.find(datepath).getComponent('Date');
-        var currentday=date.getDate();
-        //注意这里deadline是以周围单位而其他的是以天为单位
-        return currentday>(this.receiveDay_ + this.deadline_ * 7);
+
+    addCategory:function(category){
+        this.categories_.push(category);
     },
-    setRequire:function(require){
-        this.requireUi_=require.ui;
-        this.requireFunc_=require.func;
+    getCategories:function(){
+        return this.categories_;
     },
-    getRequire:function(){
-        var require=new Object();
-        require.func=this.requireFunc_;
-        require.ui=this.requireUi_;
-        return require;
-    },
-    getCurrent:function(){
-        var current=new Object();
-        current.func=this.currentFunc_;
-        current.ui=this.currentUi_;
-        return current;      
-    },
-    setState:function(state){
-        this.state_=state;
-    },
-    getState:function(){
-        return this.state_;
-    },
-    setCategory:function(type){
-        this.category_=type;
-    },
-    getCategory:function(){
-        return this.category_;
-    },
-    setReward:function(reward){
-        this.reward_=reward;
-    },
-    getReward:function(){
-        return this.reward_;
-    },
-    setDeadline:function(deadline){
-        this.deadline_=deadline;
-    },
-    getDeadline:function(){
-        return this.deadline_;
-    },
-    setReceiveDay:function(receiveday){
-        this.receiveDay_=receiveday;
+    setReceiveDay:function(day){
+        this.receiveDay_=day;
     },
     getReceiveDay:function(){
         return this.receiveDay_;
     },
-    setFinishDay:function(finishDay){
-        this.finishDay_=finishDay;
+    setFinishDay:function(day){
+        this.finishDay_=day;
     },
     getFinishDay:function(){
         return this.finishDay_;
+    },
+    getPeriod:function(){
+        return this.finishDay_ - this.receiveDay_;
     },
     setContent:function(content){
         this.content_=content;
@@ -154,17 +190,66 @@ cc.Class({
     getName:function(){
         return this.name_;
     },
-    /*调试用的init函数，便于初始化一个project */
-    init:function(project){
-        this.content_=project.content;
-        this.reward_=project.reward;
-        this.deadline_=project.deadline;
-        this.category_=project.category;
-        this.name_=project.name;
-        this.requireUi_=project.requireUi;
-        this.requireFunc_=project.requireFunc;
-        this.level_=project.level;
-        this.index_ = project.index;
+
+    isDevelopEnough:function(){
+        return this.currentFunc_ / this.requireFunc_ >= 0.6
     },
-    // },
+
+    isDevelopEnd:function(){
+        return this.currentFunc_ >= this.requireFunc_;
+    }, 
+
+    setBug:function(highnum,midnum,lownum){
+        var c=highnum;
+        var b=midnum;
+        var a=lownum;
+        while(c!=0){
+            if(Math.random()<0.6){
+                if(a!=0){
+                    this.bugnum[1]++;
+                    a--;
+                }
+                else if(b!=0){
+                    this.bugnum[3]++;
+                    b--;
+                }
+                else{
+                    this.bugnum[5]++;
+                    c--;
+                }
+            }
+            else{
+                if(a!=0){
+                    this.bugnum[0]++;
+                    a--;
+                }
+                else if(b!=0){
+                    this.bugnum[2]++;
+                    b--;
+                }
+                else{
+                    this.bugnum[4]++;
+                    c--;
+                }
+            }
+        }
+
+    },
+
+    findBug:function(level,num){
+        if(this.bugnum_[level*2]>num){
+            this.bugnum_[level*2]-=num;
+            this.bugnum_[level*2+1]+=num;
+        }
+        else{
+            this.bugnum_[level*2+1]+=this.bugnum_[level*2];
+            this.bugnum_[level*2]=0;
+        }
+    },
+
+    removeBug:function(level,num){
+        if(this.bugnum_[level*2+1]>0){
+            this.bugnum_[level*2+1]-=num;
+        }
+    },
 });

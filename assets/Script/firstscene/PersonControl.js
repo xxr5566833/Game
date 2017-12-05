@@ -1,4 +1,6 @@
 var person=require("Person");
+var projectgroup=require("ProjectGroup");
+var persongenerator=require("PersonGenerator");
 cc.Class({
     extends: cc.Component,
 
@@ -11,19 +13,13 @@ cc.Class({
         // 当前员工数
         currentNum_:0, 
         // 当前最大员工数
-        maxNum_:0,
-        // 是否在工作状态
-        flag_:false,
-        // 当前项目 
-        project_:{   
-            default:null,
-            type:cc.Prefab
+        maxNum_:5,
+        // 当前项目组 
+        projectGroups_:{   
+            default:[],
+            type:[cc.Prefab]
         },
-        msgBox: {
-            default: null,
-            type:cc.Node,
-        },
-
+        credit_:0,
         //这里把Node改为了Prefab
     },
 
@@ -31,45 +27,49 @@ cc.Class({
     onLoad: function () {
         //调试用的新建员工的代码
         //var newperson=new person();
-        this.game = cc.find('Game').getComponent('Game');
         //this.hire(newperson);
-        this.pause_=false;
         this.maxNum_=5;
-        this.msgBoxControl = this.msgBox.getComponent("msgBoxControl");
     },
 
-    pause:function(){
-        this.unschedule(this.commit);
-        this.unschedule(this.paySalary);
+    changeCredit:function(num){
+        this.credit_+=num;
     },
 
-    resume:function(){
-        this.schedule(this.commit,1);
-        this.schedule(this.paySalary,1);
+    getCredit:function(num){
+        return this.credit_ <= 0 ? 0 : this.credit_;
     },
 
     canHire:function(){
         return this.currentNum_<this.maxNum_;
     },
 
-    hire: function (newPerson) {
-            // 雇佣一个员工，如果已达人数上限，则返回false
-       // cc.log("now:"+this.currentNum_);
-       // cc.log("max:"+this.maxNum_);
-        if(this.currentNum_<this.maxNum_){
+    hire: function (person) {
+        // 雇佣一个员工，如果已达人数上限，则返回false
+        // cc.log("now:"+this.currentNum_);
+        // cc.log("max:"+this.maxNum_);
+        if(this.currentNum_>=this.maxNum_){
+            return false;
+        }
+        event=new cc.Event.EventCustom('MONEYCUT', true);
+        event.detail.force=false;
+        event.detail.money=person.getComponent(Person).employMoney_;
+        this.node.dispatchEvent(event);
+        if(event.detail.back==true){
             this.currentNum_++;
-            newPerson.project_=cc.find("Company").getComponent("Company").project_;
-            this.persons_.push(newPerson);
-           // cc.log("after hire:"+this.currentNum_);
+            this.persons_.push(person);
             return true;
         }
-       // cc.log("can't hire:"+this.currentNum_);
-        return false;
+        else{
+            return false;
+        }
     },
 
     fire: function (index){     // 解雇老员工
         for(let i=0;i<this.currentNum_;i++){
             if(this.persons_[i].index_== index){
+                for(let j=0;j<this.projectGroups_.length;j++){
+                    this.projectGroups_[j].removePerson(this.persons_[i]);
+                }
                 var oldperson=this.persons_[i];
                 this.persons_.splice(i,1);
                 this.currentNum_--;
@@ -79,45 +79,62 @@ cc.Class({
         return null;
     },
 
-    work: function (newProject){
-        this.project_ = newProject;
-        this.flag_ = true;
-        for(let i=0;i<this.currentNum_;i++){
-            this.persons_[i].work(newProject);
-            //this.persons_[i].getComponent("Person").work(newProject);
-            //这里和下面删去了getComponent
+    begin:function(project,persons){
+        var group=new projectgroup();
+        group.node=persongenerator;
+        group.begin(project,persons);
+        this.projectGroups_.push(group);
+    },
+
+    stop: function (group){
+        group.stop();
+        var i=0;
+        while(this.personGroups_[i]!=group){
+            i++;
+        }
+        if(i<this.personGroups_.length){
+            this.personGroups_.splice(i,1);
         }
     },
 
-    stop: function (){
-        this.flag_ = false;
-        for(let i=0;i<this.currentNum_;i++){
-            this.persons_[i].stop();
-            //this.persons_[i].getComponent("Person").stop();
+    finish:function(){
+        var tag=new Array;
+        var i=0;
+        event=new cc.Event.EventCustom('MONEYCUT', true);
+        event.detail.force=false;
+        event.detail.money=person.getComponent(Person).employMoney_;
+        this.node.dispatchEvent(event);
+        for(i=1;i=this.projectGroups_.length;i++){
+            group=this.projectGroups_[i];
+            if(group.isFinished()){
+                if(group.isConsign()){
+                    event=new cc.Event.EventCustom('PROJECTSUCCESS', true);
+                    event.detail.project = group.getProject()
+                    this.node.dispatchEvent(event);
+                    tag.push(i);
+                }
+            }
+            else{
+                if(group.isOverdue()){
+                    event=new cc.Event.EventCustom('PROJECTFAIL', true);
+                    event.detail.project = group.getProject()
+                    this.node.dispatchEvent(event);
+                    tag.push(i);
+                }
+            }
+        }
+        for(i=1;i=tag.length;i++){
+            this.projectGroups_[tag[i]].stop();
         }
     },
 
-    commit: function () {
-        if(!this.flag_)
-            return;
-        //console.log( this.persons_);
-       // console.log( "current people: "+ this.currentNum_)
-        for(let i=0;i<this.currentNum_;i++){
-            this.persons_[i].commit(this.persons_);
-            //this.persons_[i].getComponent("Person").commit();
-        }
-        
-        let pg = cc.find("ProjectGenerator").getComponent("ProjectGenerator");
-        //if(this.project_.getComponent("Project").isFinished()){
-        if(this.project_.isFinished()){
-            this.stop();
-            pg.finishProject(this.project_);
-        }
-        else{
-            //if(this.project_.getComponent("Project").isOverdue()){
-            if(this.project_.isOverdue()){
-                this.stop();
-                pg.failProject(this.project_);
+    work:function(){
+        for(i=1;i=this.projectGroups_.length;i++){
+            group=this.projectGroups_[i];
+            group.work();
+            group.finish();
+            if(group.isDevelopEnd()){
+                this.evolve(group);
             }
         }
     },
@@ -126,28 +143,30 @@ cc.Class({
         return this.persons_;
     },
 
-    isWorking:function(){
-        return this.flag_;
-    },
-
-    getProject:function(){
-        return this.project_;
-    },
     paySalary:function(){
-        var date = cc.find('Date').getComponent('Date');
-        if(date.getDate()%90 != 1){
+        event=new cc.Event.EventCustom('PROJECTFAIL', true);
+        this.node.dispatchEvent(event);
+        if(event.detail.back%30 != 1){
             return ;
         }
         var sumSalary = 0;
-        for(let i =0;i<this.persons_.length ; i++){
+        for(let i = 0;i<this.persons_.length ; i++){
             sumSalary = sumSalary + this.persons_[i].salary_;
         }
-        if(sumSalary > 0){
-            this.msgBoxControl.alert('SUCCESS', '支付员工薪水' +Math.floor(sumSalary));
-            var ac = cc.find('Company/Account').getComponent('Account');
-            ac.expend(sumSalary , '支付薪水');
-        }
+        event=new cc.Event.EventCustom('MONEYCUT', true);
+        event.detail.money = sumSalary;
+        event.detail.record = "付工资";
+        event.detail.force = true;
+        this.node.dispatchEvent(event);
     },
 
-    
+    pause:function(){
+        this.unschedule(this.work);
+        this.unschedule(this.paySalary);
+    },
+
+    resume:function(time){
+        this.schedule(this.work,time);
+        this.schedule(this.paySalary,time);
+    },
 });

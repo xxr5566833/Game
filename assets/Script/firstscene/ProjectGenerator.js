@@ -10,11 +10,14 @@ cc.Class({
             type:[cc.Prefab],
             visible:false,
         },
-        msgBox: {
-            default: null,
-            type:cc.Node,
+        projs_:{
+            default: [],
+            type:[Object],
         },
-        
+        availableList_:{
+            default: [],
+            type:[cc.Integer],
+        },
 
         // foo: {
         //    default: null,      // The default value will be used only when the component attaching
@@ -36,10 +39,33 @@ cc.Class({
         this.updateAll();
     },
     onLoad: function () {
-        this.msgBoxControl = this.msgBox.getComponent("msgBoxControl")
         
         //这里会onload两次，不知道为啥
     },
+
+    failProject:function(project){
+        event=new cc.Event.EventCustom('CREDITCHANGE', true);
+        event.detail.change = -2;
+        this.node.dispatchEvent(event);
+        event=new cc.Event.EventCustom('MESSAGE', true);
+        event.detail.id = 'consignprojectfail';
+        this.node.dispatchEvent(event);
+    },
+
+    finishProject:function(project){
+        event=new cc.Event.EventCustom('MONEYADD', true);
+        event.detail.money=project.reward_;
+        event.detail.record = "委托任务完成";
+        this.node.dispatchEvent(event);
+        event=new cc.Event.EventCustom('CREDITCHANGE', true);
+        event.detail.change = 1;
+        this.node.dispatchEvent(event);
+        event=new cc.Event.EventCustom('MESSAGE', true);
+        event.detail.id = 'consignprojectfinish';
+        this.node.dispatchEvent(event);
+        this.updateAvailable(project.getIndex());
+    },
+
     updateAll:function(){
         //三个任务都更新,目前假设 只有3个任务
         var num = 3;
@@ -52,7 +78,6 @@ cc.Class({
                 choose.push(randomnum);
             }
         }
-        console.log(choose);
         for(let j = 0; j < num; ++j)
         {
             var proj = new project();
@@ -68,34 +93,14 @@ cc.Class({
         }
     },
 
-
-    failProject:function(project){
-        var company=cc.find(companypath).getComponent("Company");
-        var date=cc.find('Date').getComponent("Date");
-        project.setState(projectstate.overdue);
-        project.setFinishDay(date.getDate());
-        this.msgBoxControl.alert('FAIL',"未能及时完成任务！声誉下降")
-    },
-    finishProject:function(project){
-        var company=cc.find(companypath).getComponent("Company");
-        company.profit(project.getReward(),"项目完成");
-        project.setState(projectstate.finished);
-        this.updateAvailable(project.index_);
-        console.log(this.availableList_);
-        var date=cc.find('Date').getComponent("Date");
-        project.setFinishDay(date.getDate());
-        this.msgBoxControl.alert('SUCCESS',"项目完成！获得"+project.getReward())
-    },
     getProjects:function(){
-        //每一次给前端返回可选的project时，都重新生成一下可选project
-        this.updateAll();
         return this.projects_;
     },
     pause:function(){
         this.unschedule(this.changeRequire);
     },
-    resume:function(){
-        this.schedule(this.changeRequire, 2);
+    resume:function(time){
+        this.schedule(this.changeRequire, time);
     },
     changeRequire:function(){
         var pc = cc.find('Company/PersonControl').getComponent('PersonControl');
@@ -128,10 +133,9 @@ cc.Class({
                 available = available && (this.availableList_.indexOf(list[j]) != -1) && this.projs[list[j]].unlock;
             }
             if(available){
-                this.msgBoxControl.alert('SUCCESS',"解锁了新的任务!");
-                console.log('解锁新任务');
-                console.log(this.projs_[index])
-                console.log(this.projs_[i]);
+                event=new cc.Event.EventCustom('MEAASGE', true);
+                event.detail.id = 'consignprojectunlock';
+                this.node.dispatchEvent(event);
                 this.availableList_.push(this.projs_[i].index);
                 return ;
             }

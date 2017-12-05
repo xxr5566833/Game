@@ -8,10 +8,6 @@ cc.Class({
             default:[],
             type:[cc.Prefab]
         },
-        msgBox:{
-            default:null,
-            type:cc.Node
-        },
     },
     //根据传入的level返回可用的person列表,在人们选择好某种招聘方式时调用它，所以这里还需要调用expend扣除一定招聘费用
     showPersons:function(l){
@@ -28,56 +24,6 @@ cc.Class({
         }
         return list;
     },
-    //返回不同招聘方式的object列表
-    showDifferentWay:function(){
-        return this.pgs;
-    },
-
-    /*showPersons: function() {
-        return [
-             {
-                 abilityCoding_: 0,
-                 abilityManage_: 10,
-                 abilityArt_: 0,
-                 salary_: 250,
-                 employMoney_: 1000,
- 
-                 name_: "陈小武",
-                 profession_: "程序员"
-             },
-             {
-                 abilityCoding_: 100,
-                 abilityManage_: 10,
-                 abilityArt_: 60,
-                 salary_: 250,
-                 employMoney_: 1000,
- 
-                 name_: "乔布斯",
-                 profession_: "程序员"
-             },
-             {
-                 abilityCoding_: 1000,
-                 abilityManage_: 50,
-                 abilityArt_: 60,
-                 salary_: 290,
-                 employMoney_: 1000,
- 
-                 name_: "夜神月",
-                 profession_: "产品经理"
-             },
-             {
-                 abilityCoding_: 1000,
-                 abilityManage_: 1050,
-                 abilityArt_: 60,
-                 salary_: 250,
-                 employMoney_: 1000,
- 
-                 name_: "汉尼拔·莱克特",
-                 profession_: "设计师"
-             },                      
-         ] 
-        return this.persons_;
-    },*/
 
     removePerson: function(index) {
         var person=null;
@@ -88,7 +34,10 @@ cc.Class({
                 break;
             }
         }
-        if(cc.find(companypath).getComponent("Company").hire(person)){
+        event=new cc.Event.EventCustom('HIRE', true);
+        event.detail.person=person;
+        this.node.dispatchEvent(event);
+        if(event.detail.back){
             for(let i=0;i<this.persons_.length;i++){
                 if(this.persons_[i].index_== index){
                     this.persons_.splice(i,1);
@@ -99,10 +48,10 @@ cc.Class({
     },
 
     addPerson: function(index){
-        var person=null;
-        if(person=cc.find(companypath).getComponent("Company").fire(index)){
-            this.persons_.push(person);
-        }
+        event=new cc.Event.EventCustom('FIRE', true);
+        event.detail.index=index;
+        this.node.dispatchEvent(event);
+        this.persons_.push(event.detail.back);
     },
     // use this for initialization
     init:function(persons){
@@ -222,8 +171,6 @@ cc.Class({
             var pg = templist[i];
             this.pgs.push(pg);
         }
-        this.msgBoxControl = this.msgBox.getComponent('msgBoxControl');
-
     },
 
     // called every frame, uncomment this function to activate update callback
