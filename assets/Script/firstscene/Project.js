@@ -68,10 +68,11 @@ cc.Class({
             type:[Object],
         },
 
-        reward_:0,
+        reward_:0.,
         receiveDay_:0,
         finishDay_:0,
         content_:"",
+        name_:"",
         
         // foo: {
         //    default: null,      // The default value will be used only when the component attaching
