@@ -32,6 +32,11 @@ cc.Class({
         event=new cc.Event.EventCustom('RESUME', true);
         this.node.dispatchEvent(event);
     },
+    //游戏结束，切换场景，关闭音乐
+    gameover:function(){
+        cc.audioEngine.pause(this.current);
+        cc.loader.loadScene("End");
+    },
     
     // use this for initialization
     onLoad: function () {
