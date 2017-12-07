@@ -13,16 +13,18 @@ cc.Class({
         protect_: {
             default: true,
         },
+        coef:null
     },
 
     // use this for initialization
     onLoad: function () {
         this.gold_=10000;
         this.protect_ = true;
+        this.coef = new Object;
     },
 
     profit: function(num,cause){
-        this.gold_+=num;
+        this.gold_+=this.coef.IN*num;
         //记录cause
     },
 
@@ -37,7 +39,7 @@ cc.Class({
     },
 
     expend: function(num,cause){
-        this.gold_=this.gold_-num;
+        this.gold_=this.gold_-this.coef.OUT*num;
         if(this.gold>=0){
             return;
         }

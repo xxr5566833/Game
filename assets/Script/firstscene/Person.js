@@ -77,23 +77,24 @@ cc.Class({
         index_: 0,
         power: 10,
         modd: 10,
+        coef:null
     },
 
     // use this for initialization
     onLoad: function () {
-
+        this.coef = new Object;
     },
     init: function (person) {
         //初始化人物属性
 
     },
     develop: function (mamager, n, project) {
-        var F = (1 / (n ^ (50 / (manager + 50)))) * (this.coding_ / 10) * (rand(0.9, 1.1));    //功能
-        var P = (1 / (n ^ (50 / (manager + 50)))) * (this.science_ / 10) * (rand(0.9, 1.1));   //性能
-        var E = (1 / (n ^ (50 / (manager + 50)))) * (this.art_ / 10) * (rand(0.9, 1.1));       //体验
-        var I = (1 / (n ^ (50 / (manager + 50)))) * (this.creativity_ / 10) * (rand(0.9, 1.1)); //创意
-        var criticalPro = this.creativity_ / (this.creativity_ + 200);
-        var criticalRate = 1 + (5 * sqrt(this.science_)) / 100;
+        var F = this.coef.F * (1 / (n ^ (50 / (manager + 50)))) * (this.coding_ / 10) * (rand(0.9, 1.1));    //功能
+        var P = this.coef.P * (1 / (n ^ (50 / (manager + 50)))) * (this.science_ / 10) * (rand(0.9, 1.1));   //性能
+        var E = this.coef.E * (1 / (n ^ (50 / (manager + 50)))) * (this.art_ / 10) * (rand(0.9, 1.1));       //体验
+        var I = this.coef.I * (1 / (n ^ (50 / (manager + 50)))) * (this.creativity_ / 10) * (rand(0.9, 1.1)); //创意
+        var criticalPro = this.coef.CP * this.creativity_ / (this.creativity_ + 200);
+        var criticalRate = this.coef.CR * (1 + (5 * sqrt(this.science_)) / 100);
         if ((rand(0.0, 1.0) < criticalPro)) {
             F = F * criticalRate;
             P = P * criticalRate;
@@ -122,7 +123,7 @@ cc.Class({
         return this.salary_;
     },
     getEmployMoney: function () {
-        return this.employMoney_;
+        return this.ceof.EM * this.employMoney_;
     },
     setEmployMoney: function (money) {
         this.employMoney_ = money;
