@@ -57,6 +57,7 @@ cc.Class({
         if(event.detail.back==true){
             this.currentNum_++;
             this.persons_.push(person);
+            person.node = this.node;
             return true;
         }
         else{
@@ -158,6 +159,17 @@ cc.Class({
         event.detail.record = "付工资";
         event.detail.force = true;
         this.node.dispatchEvent(event);
+    },
+
+    updateCoef:function(coef){
+        for(let i = 0 ; i < this.persons_.length ; i++)
+        {
+            this.persons_[i].updateCoef(coef);
+        }
+    },
+
+    addLimit:function(){
+        this.maxNum_ += 1;
     },
 
     pause:function(){
