@@ -20,7 +20,11 @@ cc.Class({
     onLoad: function () {
         this.gold_=10000;
         this.protect_ = true;
-        this.coef = new Object;
+        this.coef = new Object();
+        // Account
+        this.coef.IN=1;  // 收入 19,23
+        this.coef.OUT=1; // 支出 18,21
+        this.coef.PM=1;  // 项目启动金 14 *
     },
 
     profit: function(num,cause){
@@ -76,6 +80,10 @@ cc.Class({
             event=new cc.Event.EventCustom('GAMEOVER', true);
             this.node.dispatchEvent(event);
         }
+    },
+
+    updateCoef:function(coef){
+        this.coef = coef;
     },
 
     update:function(dt){

@@ -68,12 +68,13 @@ cc.Class({
             type: [Object],
         },
 
-        reward_: 0.,
-        receiveDay_: 0,
-        finishDay_: 0,
-        content_: "",
-        name_: "",
-
+        reward_:0.,
+        receiveDay_:0,
+        finishDay_:0,
+        content_:"",
+        name_:"",
+        difficulty_ : 0., 
+        
         // foo: {
         //    default: null,      // The default value will be used only when the component attaching
         //                           to a node for the first time
@@ -130,8 +131,10 @@ cc.Class({
         return current;
     },
 
-    augment: function (attribute, increment) {
-        switch (attribute) {
+    augment:function(attribute,increment){
+        var negrate = (this.difficulty_ * 0.06 ) / (1 + this.difficulty_ * 0.06);
+        increment = increment * (1 - negrate);
+        switch(attribute){
             case 0:
                 this.currentFunction_ += increment;
                 if (this.currentFunction_ > this.requireFunction_) {
