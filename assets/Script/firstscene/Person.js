@@ -13,7 +13,7 @@ var Character = cc.Enum({
     optimist: 5,
     serious: 6,
     ambition: 7,
-    unyieelding: 8,
+    unyielding: 8,
     thoughtful: 9,
     keen: 10,
     persistent: 11,
@@ -71,13 +71,24 @@ cc.Class({
         },
         /**工资 */
         salary_: 0.,
+        /**雇佣金 */
         employMoney_: 0.,
+        // 姓名
         name_: "",
+        // 职能
         profession_: Occupation.develper,
         index_: 0,
-        power: 10,
-        modd: 10,
-        coef:null
+        // 体力值
+        power_: 100,
+        // 心情
+        mood_: 10,
+        // 通过活动可以获得
+        moodAddition_: 0,
+        // 性格
+        character_: Character.slience,
+        coef: null,
+        // 剩余的休息时间
+        relaxDays: 0,
     },
 
     // use this for initialization
@@ -95,16 +106,46 @@ cc.Class({
         var I = this.coef.I * (1 / (n ^ (50 / (manager + 50)))) * (this.creativity_ / 10) * (rand(0.9, 1.1)); //创意
         var criticalPro = this.coef.CP * this.creativity_ / (this.creativity_ + 200);
         var criticalRate = this.coef.CR * (1 + (5 * sqrt(this.science_)) / 100);
+
+        var diffculty = project.difficulty_
+        // 冷静(calm):暴击率-10%
+        if (this.character_ === Character.calm) {
+            criticalPro *= 0.9
+            diffculty *= 0.8
+        }
         if ((rand(0.0, 1.0) < criticalPro)) {
             F = F * criticalRate;
             P = P * criticalRate;
             E = E * criticalRate;
             I = I * criticalRate;
         }
-        project.augment(0, F);
-        project.augment(1, P);
-        project.augment(2, E);
-        project.augment(3, I);
+
+        // 根据项目难度：减少的任务点数增量百分比 = (任务难度 * 0.06) / (任务难度 * 0.06 + 1)
+        F *= (1 - (diffculty * 0.06) / (0.06 * diffculty + 1))
+        P *= (1 - (diffculty * 0.06) / (0.06 * diffculty + 1))
+        E *= (1 - (diffculty * 0.06) / (0.06 * diffculty + 1))
+        I *= (1 - (diffculty * 0.06) / (0.06 * diffculty + 1))
+
+        switch (this.character_) {
+            case Character.funny:
+                // 有5%概率不贡献任何点数
+                rnd = Math.random();
+                if (rnd < 0.05) {
+                    F = 0
+                    P = 0
+                    E = 0
+                    I = 0
+                }
+                break;
+        }
+
+        // 只有处于工作状态的员工才会增加进度
+        if (this.state_ == eState.working) {
+            project.augment(0, F);
+            project.augment(1, P);
+            project.augment(2, E);
+            project.augment(3, I);
+        }
     },
     begin: function () {
         /**开始工作 */
@@ -163,18 +204,93 @@ cc.Class({
         return this.profession_;
     },
     init: function (person) {
-
+        // 根据一定概率初始化人物性格
+        rnd = Math.random();
+        if (rnd < 0.75) {
+            rndInt = getRandomInt(Character.imageKing, Character.persistent + 1);
+            this.character_ = rndInt;
+        } else if (rnd < 0.95) {
+            rndInt = getRandomInt(Character.steady, Character.genius + 1);
+            this.character_ = rndInt;
+        } else {
+            rndInt = getRandomInt(Character.insight, Character.spirituality + 1);
+            this.character_ = rndInt;
+        }
     },
     update: function (dt) {
 
     },
-    sendSticker(sticker) {
-        cc.log(sticker)
+    sendSticker: function (sticker) {
+        cc.log(this.name + ": " + sticker)
     },
-    speakSomething(saying) {
-        cc.log(saying)
+    speakSomething: function (saying) {
+        cc.log(this.name + ": " + saying)
     },
-    moodIncrement(value) {
+    moodIncrement: function (value) {
         this.mood = (this.mood + value) % 10
+    },
+    weekly: function () {
+        // 每周被调用一次
+    },
+    daily: function () {
+        // 每天被调用一次
+        if (this.state_ == eState.working) {
+            this.power_ -= 5;
+            this.mood_ = (this.moodAddition_ + getRandomInt(0, 10)) % 10;
+            if (this.moodAddition_ > -5) {
+                this.moodAddition_--;
+            }
+            if (this.character_ == Character.optimist) {
+                this.mood_ = getRandomInt(5, 11)
+            }
+            if (this.mood_ <= 0) {
+                this.relaxAWeek();
+            }
+        } else if (this.state_ == eState.relaxing) {
+            this.relaxDays --;
+            if (this.relaxDays <= 0) {
+                this.state_ = eState.free;
+            }
+        }
+    },
+    relaxAWeek: function () {
+        this.state_ = eState.relaxing;
+        this.relaxDays = 7
+    },
+    charactorEffect: function () {
+        // 这个函数期望每周被调用一次，以实现个别性格实现的特效
+        switch (this.character_) {
+            case Character.imageKing:
+                sendSticker(getRandomInt(0, Saying.length));
+                break;
+            case Character.blabla:
+                speakSomething(getRandomInt(0, Saying.length));
+                break;
+            case Character.slience:
+                speakSomething(Saying.ellisis);
+                break;
+            case Character.funny:
+                rnd = Math.random()
+                if (rnd < 0.25) {
+                    // 触发事件，使得团队中的随机一人心情增加。具体是谁增加，不关心，由上层节点决定
+                    this.node.emit('increaseTeammateMood', {
+                        value: 1,
+                    });
+                } else if (rnd < 0.5) {
+                    this.node.emit('increaseTeammateMood', {
+                        value: 3,
+                    });
+                } else {
+                    //pass
+                }
+                break;
+        }
+
     }
 });
+
+function getRandomInt(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min)) + min; //The maximum is exclusive and the minimum is inclusive
+}
