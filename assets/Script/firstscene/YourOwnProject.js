@@ -36,17 +36,76 @@ cc.Class({
     },
 
     setPlatform:function(platform){
-        this.platForm_ = platform;
+        this.platform_ = platform;
         this.budget_ += platform.budget_;
+        this.difficulty_ += platform.difficulty_;
+    },
+
+    unsetPlatform : function()
+    {
+        this.budget_ -= this.platform_.budget_;
+        this.difficulty_ -= this.platform_.difficulty_;
+        this.platform = null;
     },
 
     addFunction:function(func){
         this.functions_.push[func];
         this.requireFunction_ += func.function_;
+        this.difficulty_ += func.difficulty_;
+    },
+
+    subFunction:function(func){
+        for(let i = 0 ; i < this.functions_.length ; i++)
+        {
+            var tempfunc = this.functions_[i];
+            if(tempfunc.name_ == func.name_)
+            {
+                this.difficulty_ -= tempfunc.difficulty_;
+                this.requireFunction_ -= tempfunc.function_;
+                this.functions_.splice(i, 1);
+                return ;
+            }
+        }
+    },
+
+    subAllFunction:function(){
+        for(let i = 0 ; i < this.functions_.length ; i++)
+        {
+            var tempfunc = this.functions_[i];
+            this.difficulty_ -= tempfunc.difficulty_;
+            this.requireFunction_ -= tempfunc.function_;
+        }
+        this.functions_ = [];
     },
 
     addTech:function(tech){
         this.techs_.push[tech];
+        this.difficulty_ += tech.difficulty_;
+        this.budget_ += tech.budget_;
+    },
+
+    subTech:function(tech){
+        for(let i = 0 ; i < this.techs_.length ; i++)
+        {
+            var temptech = this.techs_[i];
+            if(temptech.name_ == tech.name_)
+            {
+                this.difficulty_ -= temptech.difficulty_;
+                this.budget_ -= temptech.budget_;
+                this.techs_.splice(i, 1);
+                return ;
+            }
+        }
+    },
+
+    subAllTech:function(){
+        for(let i = 0 ; i < this.techs_.length ; i++)
+        {
+            var temptech = this.techs_[i];
+            this.difficulty_ -= temptech.difficulty_;
+            this.budget_ -= temptech.budget_;
+        }
+        this.techs_ = [];
     },
 
     init:function(platform,categories,funcs,name,techs){
