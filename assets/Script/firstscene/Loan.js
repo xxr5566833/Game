@@ -32,7 +32,7 @@ cc.Class({
     },
 
     grow:function(){
-
+        this.currentMoney_=this.currentMoney_*this.interest_;
     },
 
     isDue:function(nowday){
