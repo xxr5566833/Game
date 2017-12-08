@@ -126,15 +126,30 @@ cc.Class({
 
         var diffculty = project.difficulty_
         // 冷静(calm):暴击率-10%
-        if (this.character_ === Character.calm) {
+        if (this.character_ == Character.calm) {
             criticalPro *= 0.9
             diffculty *= 0.8
+        }
+        // 稳重(steady):暴击率-5%，无视30%任务难度
+        if (this.character_ == Character.steady) {
+            criticalPro *= 0.95
+            diffculty *= 0.7
+        }
+        // 敏锐(keen):暴击率增加5%，暴击倍率增加5%
+        if (this.character_ == Character.keen) {
+            criticalPro *= 1.05
+            diffculty *= 1.05
         }
         if ((rand(0.0, 1.0) < criticalPro)) {
             F = F * criticalRate;
             P = P * criticalRate;
             E = E * criticalRate;
             I = I * criticalRate;
+            if (this.character_ == Character.persistent) {
+                if (Math.random() < 0.5) {
+                    this.node.dispatchEvent(new cc.Event.EventCustom('increase-50-percent-science-point'));
+                }
+            }
         }
 
         // 根据项目难度：减少的任务点数增量百分比 = (任务难度 * 0.06) / (任务难度 * 0.06 + 1)
@@ -143,8 +158,7 @@ cc.Class({
         E *= (1 - (diffculty * 0.06) / (0.06 * diffculty + 1))
         I *= (1 - (diffculty * 0.06) / (0.06 * diffculty + 1))
 
-        switch (this.character_) {
-            case Character.funny:
+        if (this.character_ == Character.funny) {
                 // 有5%概率不贡献任何点数
                 rnd = Math.random();
                 if (rnd < 0.05) {
@@ -154,6 +168,11 @@ cc.Class({
                     I = 0
                 }
                 break;
+        }
+
+        // 执着(persistent):获得科研点数有50%概率增加50%
+        if (this.character_ == Character.persistent) {
+
         }
 
         // 只有处于工作状态的员工才会增加进度
@@ -249,6 +268,9 @@ cc.Class({
     },
     init: function (person) {
         // 根据一定概率初始化人物性格
+        randomCharactor()
+    },
+    randomCharactor: function () {
         rnd = Math.random();
         if (rnd < 0.75) {
             rndInt = getRandomInt(Character.imageKing, Character.persistent + 1);
