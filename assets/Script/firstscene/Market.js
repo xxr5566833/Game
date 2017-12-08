@@ -21,7 +21,6 @@ cc.Class({
     },
 
     Update:function(){
-        var T=this.getTimeFromInit();
         this.totalPeopleNum_=this.totalPeopleNum_*(1+0.01*this.A_);
         var temp=(1+0.01*this.A_)*this.currentPeopleNum_;
         if(temp>this.totalPeopleNum_){
@@ -33,9 +32,20 @@ cc.Class({
     },
 
     getCurrentPeople:function(project){
-        var m=project.getM();
-        var m0=1000*Math.sqrt(this.getTimeFromInit());
-        return m/(m+m0)*this.currentPeopleNum_;
+        if(this.currentPeopleNum_==0){
+            var m=project.getM();
+            var m0=1000*Math.sqrt(this.getTimeFromInit());
+            return m/(m+m0)*this.currentPeopleNum_;
+        }
+        else{
+            var temp=(1+0.01*this.A_)*this.currentPeopleNum_;
+            if(temp>this.totalPeopleNum_){
+                this.currentPeopleNum_=temp;
+            }
+            else{
+                this.currentPeopleNum_=this.totalPeopleNum_;
+            }
+        }
     },
 
     getTimeFromInit:function(){

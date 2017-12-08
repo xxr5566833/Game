@@ -106,7 +106,29 @@ cc.Class({
     },
 
     generateBug:function(){
-
+        var F=this.project_.currentFunction_;
+        var T=this.project_.getPeriod()/7;
+        var i=this.project_.currentInnovation_;
+        var HB,MB,LB;
+        var B0=F*T/25;
+        var minNum=B0 / (1 + (0.1*I / F));
+        var maxNum=B0 * (1 + (0.1*I / F));
+        var B=parseInt(Math.random()*(maxNum-minNum+1)+minNum,10);
+        var HBA=parseInt(Math.random()*(15-5+1)+5,10);
+        var MBA=parseInt(Math.random()*(40-20+1)+20,10)+HBA;
+        while(B!=0){
+            B0=Math.random()*100;
+            if(B0<HBA){
+                HB++;
+            }
+            else if(B0<MBA){
+                MB++;
+            }
+            else{
+                LB++;
+            }
+            B--;
+        }
     },
 
     evolve:function(){
