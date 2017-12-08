@@ -159,15 +159,15 @@ cc.Class({
         I *= (1 - (diffculty * 0.06) / (0.06 * diffculty + 1))
 
         if (this.character_ == Character.funny) {
-                // 有5%概率不贡献任何点数
-                rnd = Math.random();
-                if (rnd < 0.05) {
-                    F = 0
-                    P = 0
-                    E = 0
-                    I = 0
-                }
-                break;
+            // 有5%概率不贡献任何点数
+            rnd = Math.random();
+            if (rnd < 0.05) {
+                F = 0
+                P = 0
+                E = 0
+                I = 0
+            }
+            break;
         }
 
         // 执着(persistent):获得科研点数有50%概率增加50%
@@ -306,8 +306,13 @@ cc.Class({
             if (this.moodAddition_ > -5) {
                 this.moodAddition_--;
             }
+            // 乐天(optimist):心情肯定大于等于5
             if (this.character_ == Character.optimist) {
                 this.mood_ = getRandomInt(5, 11)
+            }
+            // 乐观(bigOptimist):心情肯定大于等于7
+            if (this.character_ == Character.bigOptimist) {
+                this.mood_ = getRandomInt(7, 11)
             }
             if (this.mood_ <= 0) {
                 if (this.character_ == Character.unyielding) {
@@ -368,8 +373,16 @@ cc.Class({
     }
 });
 
+// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random
+
+// Getting a random integer between two values
 function getRandomInt(min, max) {
     min = Math.ceil(min);
     max = Math.floor(max);
     return Math.floor(Math.random() * (max - min)) + min; //The maximum is exclusive and the minimum is inclusive
 }
+
+// Getting a random number between two values
+function rand(min, max) {
+    return Math.random() * (max - min) + min;
+  }
