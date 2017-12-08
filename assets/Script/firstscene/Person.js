@@ -116,15 +116,23 @@ cc.Class({
         //初始化人物属性
 
     },
-    develop: function (mamager, n, project, flag) {
+    // ambitionBuff是团队中产生的野心buff, 默认为1，即不加成
+    develop: function (mamager, n, project, flag, ambitionBuff) {
         var F = this.coef.F * (1 / (n ^ (50 / (manager + 50)))) * (this.coding_ / 10) * (rand(0.9, 1.1));    //功能
         var P = this.coef.P * (1 / (n ^ (50 / (manager + 50)))) * (this.science_ / 10) * (rand(0.9, 1.1));   //性能
         var E = this.coef.E * (1 / (n ^ (50 / (manager + 50)))) * (this.art_ / 10) * (rand(0.9, 1.1));       //体验
         var I = this.coef.I * (1 / (n ^ (50 / (manager + 50)))) * (this.creativity_ / 10) * (rand(0.9, 1.1)); //创意
-        var criticalPro = this.coef.CP * this.creativity_ / (this.creativity_ + 200);
-        var criticalRate = this.coef.CR * (1 + (5 * sqrt(this.science_)) / 100);
+        var criticalPro = this.coef.CP * this.creativity_ / (this.creativity_ + 200); // 暴击率
+        var criticalRate = this.coef.CR * (1 + (5 * sqrt(this.science_)) / 100);    // 暴击倍率
 
         var diffculty = project.difficulty_
+
+                
+        // 逆境(adversity):体力为0时仍可以继续工作1周，且该周暴击倍率增加100%
+        if (this.character_ == Character.adversity && this.unyieldingDays_ < 7 && this.unyieldingDays_ >= 0) {
+            criticalRate *= 2
+        }
+
         // 冷静(calm):暴击率-10%
         if (this.character_ == Character.calm) {
             criticalPro *= 0.9
@@ -145,6 +153,7 @@ cc.Class({
             P = P * criticalRate;
             E = E * criticalRate;
             I = I * criticalRate;
+            // 执着(persistent):获得科研点数有50%概率增加50%
             if (this.character_ == Character.persistent) {
                 if (Math.random() < 0.5) {
                     this.node.dispatchEvent(new cc.Event.EventCustom('increase-50-percent-science-point'));
@@ -158,6 +167,7 @@ cc.Class({
         E *= (1 - (diffculty * 0.06) / (0.06 * diffculty + 1))
         I *= (1 - (diffculty * 0.06) / (0.06 * diffculty + 1))
 
+        // 逗逼(funny):集成了图王和唠叨的所有缺(划)优点，以下技能每周触发一次： 有25%概率使项目组中的某一个人心情+1;有25%概率使项目组中的某一个人心情+3; 有5%概率不贡献任何点数
         if (this.character_ == Character.funny) {
             // 有5%概率不贡献任何点数
             rnd = Math.random();
@@ -170,15 +180,10 @@ cc.Class({
             break;
         }
 
-        // 执着(persistent):获得科研点数有50%概率增加50%
-        if (this.character_ == Character.persistent) {
-
-        }
-
         // 只有处于工作状态的员工才会增加进度
         if (this.state_ == eState.working && flag) {
+            // 认真(serious):开发时额外增加5%点数，参与项目bug数量降低30%
             if (this.character_ == this.serious) {
-                // 认真(serious):开发时额外增加5%点数，参与项目bug数量降低30%
                 for (var i = 0; i < project.bugnum_.length; i++) {
                     project.bugnum_[i] *= 0.7
                 }
@@ -187,6 +192,17 @@ cc.Class({
                 E *= 1.05
                 I *= 1.05
             }
+            // 实干(hardWork):开发时额外增加10%点数，参与项目bug数量降低50%
+            if (this.character_ == this.hardWork) {
+                for (var i = 0; i < project.bugnum_.length; i++) {
+                    project.bugnum_[i] *= 0.5
+                }
+                F *= 1.1
+                P *= 1.1
+                E *= 1.1
+                I *= 1.1
+            }
+            // 好胜(ambition):同项目组中如果有比他能力强的人，则开发时额外增加10%点数
             if (this.character_ == this.ambition) {
                 this.node.dispatchEvent(new cc.Event.EventCustom('teammates-ability-is-stronger'));
                 if (this.ambitionAcitve_) {
@@ -196,6 +212,24 @@ cc.Class({
                     I *= 1.1
                 }
             }
+            if (this.character_ == this.bigAmnition) {
+                this.node.dispatchEvent(new cc.Event.EventCustom('teammates-ability-is-stronger'));
+                if (this.ambitionAcitve_) {
+                    F *= 1.1
+                    P *= 1.1
+                    E *= 1.1
+                    I *= 1.1
+                } else {
+                    this.node.dispatchEvent(new cc.Event.EventCustom('all-teammates-increase-develop-points'));
+                }
+            }
+            // 团队中产生的野心buff
+            // 野心(bigAmnition):若是项目组中能力最强的人，将提升所有人10%点数；若不是则自己增加额外10%点数。
+            F *= ambitionBuff
+            P *= ambitionBuff
+            P *= ambitionBuff
+            I *= ambitionBuff
+
             project.augment(0, F);
             project.augment(1, P);
             project.augment(2, E);
@@ -314,8 +348,8 @@ cc.Class({
             if (this.character_ == Character.bigOptimist) {
                 this.mood_ = getRandomInt(7, 11)
             }
-            if (this.mood_ <= 0) {
-                if (this.character_ == Character.unyielding) {
+            if (this.power_ <= 0) {
+                if (this.character_ == Character.unyielding || this.character_ == Character.adversity) {
                     this.unyieldingDays_--;
                     if (this.unyieldingDays_ <= 0) {
                         this.relaxAWeek()
@@ -385,4 +419,4 @@ function getRandomInt(min, max) {
 // Getting a random number between two values
 function rand(min, max) {
     return Math.random() * (max - min) + min;
-  }
+}
