@@ -145,7 +145,7 @@ cc.Class({
         this.price_ = price;
     },
 
-    updateM:function(t){
+    updateM:function(t, burstbugs){
         var cur=this.getCurrent();
         var F=cur.function;
         var E=cur.entertainment;
@@ -155,10 +155,30 @@ cc.Class({
             this.m_ = Math.sqrt(7*E + 3*P) *F *(t + Math.sqrt(I))/t;
             this.m_=this.m_*this.getExpectPrice()/this.price_;
         }
+        else{
+            var rate = 1.;
+            for(var i = 0 ; i < burstbugs.length ; i++)
+            {
+                switch(burstbugs[i])
+                {
+                    case 0:
+                        rate = rate * 0.8;
+                        break;
+                    case 1 :
+                        rate = rate * 0.5;
+                        break;
+                    case 2 :
+                        rate = rate *0.2;
+                        break;
+                }
+            }
+            //这里还缺少f(p,t)
+            this.m_ = rate * this.m_ ;
+        }
     },
 
     getM:function(){
-        returnthis.m_;
+        return this.m_;
     },
 
     getTimeFromPublish:function(nowday){
