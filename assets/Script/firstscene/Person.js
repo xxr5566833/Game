@@ -88,7 +88,8 @@ cc.Class({
         character_: Character.slience,
         coef: null,
         // 剩余的休息时间
-        relaxDays: 0,
+        relaxDays_: 0,
+        ambitionAcitve_ : false,
     },
 
     // use this for initialization
@@ -154,6 +155,25 @@ cc.Class({
 
         // 只有处于工作状态的员工才会增加进度
         if (this.state_ == eState.working) {
+            if (this.character_ == this.serious) {
+                // 认真(serious):开发时额外增加5%点数，参与项目bug数量降低30%
+                for (var i = 0; i < project.bugnum_.length; i++) {
+                    project.bugnum_[i] *= 0.7
+                }
+                F *= 1.05
+                P *= 1.05
+                E *= 1.05
+                I *= 1.05
+            }
+            if (this.character_ == this.ambition) {
+                this.node.dispatchEvent( new cc.Event.EventCustom('teammates-ability-is-stronger') );
+                if (this.ambitionAcitve_ ) {
+                    F *= 1.1
+                    P *= 1.1
+                    E *= 1.1
+                    I *= 1.1
+                }
+            }
             project.augment(0, F);
             project.augment(1, P);
             project.augment(2, E);
@@ -263,15 +283,15 @@ cc.Class({
                 this.relaxAWeek();
             }
         } else if (this.state_ == eState.relaxing) {
-            this.relaxDays --;
-            if (this.relaxDays <= 0) {
+            this.relaxDays_ --;
+            if (this.relaxDays_ <= 0) {
                 this.state_ = eState.free;
             }
         }
     },
     relaxAWeek: function () {
         this.state_ = eState.relaxing;
-        this.relaxDays = 7
+        this.relaxDays_ = 7
     },
     charactorEffect: function () {
         // 这个函数期望每周被调用一次，以实现个别性格实现的特效
