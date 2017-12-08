@@ -89,24 +89,27 @@ cc.Class({
         coef: null,
         // 剩余的休息时间
         relaxDays_: 0,
-        ambitionAcitve_ : false,
+        // 团队同事中是否有比自己能力强的人
+        ambitionAcitve_: false,
+        // 不屈性格激活，剩余工作天数,
+        unyieldingDays_: 0,
     },
 
     // use this for initialization
     onLoad: function () {
         this.coef = new Object();
         //这里需要把相关属性初始化为1
-        coef.F=1;   // 功能 受2,6,7,8影响
-        coef.P=1;   // 性能 6,8,9
-        coef.E=1;   // 体验 3,31,35,36
-        coef.I=1;   // 创新 32,34
-        coef.CP=1;  // 暴击概率 11
-        coef.CR=1;  // 暴击倍率
-        coef.EM=1;  // 雇佣金 15 *
-        coef.MA=1;  // 管理能力 16 *
-        coef.SC=1;  // 体力消耗 17 *
+        coef.F = 1;   // 功能 受2,6,7,8影响
+        coef.P = 1;   // 性能 6,8,9
+        coef.E = 1;   // 体验 3,31,35,36
+        coef.I = 1;   // 创新 32,34
+        coef.CP = 1;  // 暴击概率 11
+        coef.CR = 1;  // 暴击倍率
+        coef.EM = 1;  // 雇佣金 15 *
+        coef.MA = 1;  // 管理能力 16 *
+        coef.SC = 1;  // 体力消耗 17 *
     },
-    updateCoef:function(coef){
+    updateCoef: function (coef) {
         this.coef = coef;
     },
     init: function (person) {
@@ -166,8 +169,8 @@ cc.Class({
                 I *= 1.05
             }
             if (this.character_ == this.ambition) {
-                this.node.dispatchEvent( new cc.Event.EventCustom('teammates-ability-is-stronger') );
-                if (this.ambitionAcitve_ ) {
+                this.node.dispatchEvent(new cc.Event.EventCustom('teammates-ability-is-stronger'));
+                if (this.ambitionAcitve_) {
                     F *= 1.1
                     P *= 1.1
                     E *= 1.1
@@ -182,7 +185,11 @@ cc.Class({
     },
     begin: function () {
         /**开始工作 */
-        this.state_ = eState.working;
+        if (this.state_ == eState.free) {
+            this.state_ = eState.working;
+        } else {
+            cc.log("Can not begin work");
+        }
         //("开始工作");
     },
     stop: function () {
@@ -193,8 +200,7 @@ cc.Class({
     setSalary: function (salary) {
         this.salary_ = salary;
     },
-    updateCoef:function(coef)
-    {
+    updateCoef: function (coef) {
         this.coef = coef;
     },
     getSalary: function () {
@@ -218,12 +224,12 @@ cc.Class({
     getAbility: function () {
         var r = new Object();
         r.gift_ = this.gift_,
-        r.coding_ = this.coding_,
-        r.science_ = this.science_,
-        r.art_ = this.art_,
-        r.creativity_ = this.creativity_,
-        r.manager_ = this.manager_,
-        r.business_ = this.business_
+            r.coding_ = this.coding_,
+            r.science_ = this.science_,
+            r.art_ = this.art_,
+            r.creativity_ = this.creativity_,
+            r.manager_ = this.manager_,
+            r.business_ = this.business_
 
         return r
     },
@@ -280,10 +286,22 @@ cc.Class({
                 this.mood_ = getRandomInt(5, 11)
             }
             if (this.mood_ <= 0) {
-                this.relaxAWeek();
+                if (this.character_ == Character.unyielding) {
+                    this.unyieldingDays_--;
+                    if (this.unyieldingDays_ <= 0) {
+                        this.relaxAWeek()
+                    }
+                } else {
+                    this.relaxAWeek();
+                }
+            }
+            if (this.character_ == Character.thoughtful) {
+                this.node.emit('increaseAllTeammatesMood', {
+                    value: 1,
+                });
             }
         } else if (this.state_ == eState.relaxing) {
-            this.relaxDays_ --;
+            this.relaxDays_--;
             if (this.relaxDays_ <= 0) {
                 this.state_ = eState.free;
             }
@@ -291,7 +309,8 @@ cc.Class({
     },
     relaxAWeek: function () {
         this.state_ = eState.relaxing;
-        this.relaxDays_ = 7
+        this.relaxDays_ = 7;
+        this.unyieldingDays_ = 7;
     },
     charactorEffect: function () {
         // 这个函数期望每周被调用一次，以实现个别性格实现的特效
