@@ -88,7 +88,8 @@ cc.Class({
         character_: Character.slience,
         coef: null,
         // 剩余的休息时间
-        relaxDays: 0,
+        relaxDays_: 0,
+        ambitionAcitve_ : false,
     },
 
     // use this for initialization
@@ -265,15 +266,15 @@ cc.Class({
                 this.relaxAWeek();
             }
         } else if (this.state_ == eState.relaxing) {
-            this.relaxDays --;
-            if (this.relaxDays <= 0) {
+            this.relaxDays_ --;
+            if (this.relaxDays_ <= 0) {
                 this.state_ = eState.free;
             }
         }
     },
     relaxAWeek: function () {
         this.state_ = eState.relaxing;
-        this.relaxDays = 7
+        this.relaxDays_ = 7
     },
     charactorEffect: function () {
         // 这个函数期望每周被调用一次，以实现个别性格实现的特效
