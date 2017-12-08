@@ -88,7 +88,8 @@ cc.Class({
         character_: Character.slience,
         coef: null,
         // 剩余的休息时间
-        relaxDays: 0,
+        relaxDays_: 0,
+        ambitionAcitve_ : false,
     },
 
     // use this for initialization
@@ -112,7 +113,7 @@ cc.Class({
         //初始化人物属性
 
     },
-    develop: function (mamager, n, project) {
+    develop: function (mamager, n, project, flag) {
         var F = this.coef.F * (1 / (n ^ (50 / (manager + 50)))) * (this.coding_ / 10) * (rand(0.9, 1.1));    //功能
         var P = this.coef.P * (1 / (n ^ (50 / (manager + 50)))) * (this.science_ / 10) * (rand(0.9, 1.1));   //性能
         var E = this.coef.E * (1 / (n ^ (50 / (manager + 50)))) * (this.art_ / 10) * (rand(0.9, 1.1));       //体验
@@ -152,13 +153,15 @@ cc.Class({
                 break;
         }
 
-        // 只有处于工作状态的员工才会增加进度
-        if (this.state_ == eState.working) {
+        // 只有处于工作状态 且flag为true 的员工才会增加进度，这里flag表示是否处于开发状态
+        if (this.state_ == eState.working && flag) {
             project.augment(0, F);
             project.augment(1, P);
             project.augment(2, E);
             project.augment(3, I);
         }
+        //为了更好的实现bug减少的机制，所以这里返回增加的功能点数...
+        return F;
     },
     begin: function () {
         /**开始工作 */
@@ -263,15 +266,15 @@ cc.Class({
                 this.relaxAWeek();
             }
         } else if (this.state_ == eState.relaxing) {
-            this.relaxDays --;
-            if (this.relaxDays <= 0) {
+            this.relaxDays_ --;
+            if (this.relaxDays_ <= 0) {
                 this.state_ = eState.free;
             }
         }
     },
     relaxAWeek: function () {
         this.state_ = eState.relaxing;
-        this.relaxDays = 7
+        this.relaxDays_ = 7
     },
     charactorEffect: function () {
         // 这个函数期望每周被调用一次，以实现个别性格实现的特效
