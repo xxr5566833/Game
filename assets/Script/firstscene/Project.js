@@ -132,8 +132,6 @@ cc.Class({
     },
 
     augment:function(attribute,increment){
-        var negrate = (this.difficulty_ * 0.06 ) / (1 + this.difficulty_ * 0.06);
-        increment = increment * (1 - negrate);
         switch(attribute){
             case 0:
                 this.currentFunction_ += increment;
@@ -254,6 +252,27 @@ cc.Class({
     removeBug: function (level, num) {
         if (this.bugnum_[level * 2 + 1] > 0) {
             this.bugnum_[level * 2 + 1] -= num;
+            return ;
         }
+        if(level == 0)
+            return ;
+        if(level >1 )
+        {
+            level -= 1;
+            if(this.bugnum_[level * 2 + 1] > 0)
+            {
+                this.bugnum_[level * 2 + 1] -= num;
+                return ;
+            }
+            
+                
+        }
+        level -= 1;
+        if(this.bugnum_[level * 2 + 1] > 0)
+        {
+            this.bugnum_[level * 2 + 1] -= num;
+        }
+
+        
     },
 });
