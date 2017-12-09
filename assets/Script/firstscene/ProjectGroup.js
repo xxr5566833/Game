@@ -166,13 +166,32 @@ cc.Class({
                 else{
                     event.detail.money=this.usernum_ * this.project_.getPrice();
                 }
+                if(this.persons_.length!=0){
+                    var C=this.persons_[0].creativity_;
+                    if(0<=C&&C<=50){
+                        event.detail.money = event.detail.money*(0.5+C*0.01);
+                    }
+                    else if(C<=200){
+                        event.detail.money = event.detail.money*(1.0+(C-50)*0.004);
+                    }
+                    else if(C<=600){
+                        event.detail.money = event.detail.money*(1.6+(C-200)*0.001);
+                    }
+                    else if(C<=1200){
+                        event.detail.money = event.detail.money*(2.0+(C-600)*0.0005);
+                    }
+                    else{
+                        event.detail.money = event.detail.money*(2.3+(C-1200)*0.00025);
+                    }
+                }
+                this.node.dispatchEvent(event);
                 event=new cc.Event.EventCustom('GETDATE', true);
                 this.node.dispatchEvent(event);
                 var nowday=event.detail.back;
                 var t=this.project_.getTimeFromPublish(nowday);
                 //因为现在影响力和已经爆发的bug还有关，所以这里需要传入this.burstBugs_
                 this.project_.updateM(t, this.burstBugs_);
-            //维护人员减少bug
+                //维护人员减少bug
                 var n=this.maintainers_.length;
                 var manager=0;
                 var maxmanager=0;
