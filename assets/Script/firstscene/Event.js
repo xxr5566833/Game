@@ -115,6 +115,10 @@ cc.Class({
             event.detail.back = date;
         }, this);
 
+        this.node.on("GETMONEY", function(event){
+            event.detail.back = this.account_.getComponent("Account").gold_;
+        }, this);
+
         this.node.on("MONEYCUT", function(event){
             var money = event.detail.money;
             var force = event.detail.force;

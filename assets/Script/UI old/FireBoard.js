@@ -22,7 +22,7 @@ cc.Class({
         var errormsg = "";
         var pc = cc.find('Company/PersonControl').getComponent('PersonControl');
         if(pc.currentNum_ == 0){
-            errormsg = "无可雇佣员工";
+            errormsg = "无可解雇员工";
         }
         return errormsg;
     }

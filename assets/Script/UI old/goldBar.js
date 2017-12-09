@@ -48,7 +48,9 @@ cc.Class({
 
     getGold: function() {
         // TODO: 返回当前公司的资产，number
-        return cc.find("Company/Account").getComponent("Account").gold_;
+        event = new EventCustom("GETMONEY",true);  
+        this.node.dispatchEvent(event);
+        return event.detail.back;
     },
 
     addCommas: function (nStr) {

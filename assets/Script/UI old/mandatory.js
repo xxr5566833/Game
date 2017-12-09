@@ -93,7 +93,7 @@ cc.Class({
 
     getCandidateProjects: function() {
         // TODO: 和后端显示候选委托项目连接
-        return cc.find("ProjectGenerator").getComponent("ProjectGenerator").getProjects();
+        return cc.find("Event").getComponent("ProjectGenerator").getProjects();
     },
 
     accept: function() {
@@ -101,11 +101,11 @@ cc.Class({
         // this.selectedProject 表示 this.candidateProjects 被用户选中了哪个
         // TODO for UI designer:
         // 当前没有雇佣任何员工，未选任何项目时提示用户
-        var projs=cc.find("ProjectGenerator").getComponent("ProjectGenerator").projects_;
+        var projs=cc.find("Event").getComponent("ProjectGenerator").projects_;
         var temp=projs[this.selectedProject];
         this.ancestorNode.getComponent("btnToggleActive").toggle()
         this.msgBoxControl.alert("SUCCESS", "接受项目: " + temp.name_)
-        cc.find("Company").getComponent("Company").receiveProject(temp)
+        //cc.find("Event").getComponent("Company").receiveProject(temp)
         //.log("Accepted.")
 
     }
