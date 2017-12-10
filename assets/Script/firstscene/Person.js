@@ -31,17 +31,9 @@ var Character = cc.Enum({
     storming: 201,
     spirituality: 202
 });
-var Image = cc.Enum({
-    image0: 0,
-    image1: 1
-});
 var Sticker = cc.Enum({
     sticker0: 0,
     sticker1: 1
-});
-var Saying = cc.Enum({
-    ellisis: 0,
-    saying1: 1
 });
 var Occupation = cc.Enum({
     develper: 0,
@@ -129,31 +121,31 @@ cc.Class({
 
 
         // 逆境(adversity):体力为0时仍可以继续工作1周，且该周暴击倍率增加100%
-        if (this.character_ == Character.adversity && this.unyieldingDays_ < 7 && this.unyieldingDays_ >= 0) {
+        if (this.character_ === Character.adversity && this.unyieldingDays_ < 7 && this.unyieldingDays_ >= 0) {
             criticalRate *= 2
         }
 
         // 冷静(calm):暴击率-10%，无视20%任务难度
-        if (this.character_ == Character.calm) {
+        if (this.character_ === Character.calm) {
             criticalPro *= 0.9
             diffculty *= 0.8
         }
         // 攻坚(storming):无视项目难度20%，结算点数时额外增加剩余功能点数的8%（该点数无视任务难度），一周触发一次。
-        if (this.character_ == Character.calm) {
+        if (this.character_ === Character.calm) {
             diffculty *= 0.8
         }
         // 稳重(steady):暴击率-5%，无视30%任务难度
-        if (this.character_ == Character.steady) {
+        if (this.character_ === Character.steady) {
             criticalPro *= 0.95
             diffculty *= 0.7
         }
         // 敏锐(keen):暴击率增加5%，暴击倍率增加5%
-        if (this.character_ == Character.keen) {
+        if (this.character_ === Character.keen) {
             criticalPro *= 1.05
             diffculty *= 1.05
         }
         // 鬼才(ghost):暴击率增加10%，暴击倍率增加10%
-        if (this.character_ == Character.keen) {
+        if (this.character_ === Character.keen) {
             criticalPro *= 1.1
             diffculty *= 1.1
         }
@@ -165,13 +157,13 @@ cc.Class({
             E = E * criticalRate;
             I = I * criticalRate;
             // 执着(persistent):获得科研点数有50%概率增加50%
-            if (this.character_ == Character.persistent) {
+            if (this.character_ === Character.persistent) {
                 if (Math.random() < 0.5) {
                     this.node.dispatchEvent(new cc.Event.EventCustom('increase-50-percent-science-point'));
                 }
             }
             // 天才(genius):获得科研点数增加50%
-            if (this.character_ == Character.genius) {
+            if (this.character_ === Character.genius) {
                 this.node.dispatchEvent(new cc.Event.EventCustom('increase-50-percent-science-point'));
             }
         }
@@ -183,7 +175,7 @@ cc.Class({
         I *= (1 - (diffculty * 0.06) / (0.06 * diffculty + 1))
 
         // 逗逼(funny):集成了图王和唠叨的所有缺(划)优点，以下技能每周触发一次： 有25%概率使项目组中的某一个人心情+1;有25%概率使项目组中的某一个人心情+3; 有5%概率不贡献任何点数
-        if (this.character_ == Character.funny) {
+        if (this.character_ === Character.funny) {
             // 有5%概率不贡献任何点数
             rnd = Math.random();
             if (rnd < 0.05) {
@@ -196,9 +188,9 @@ cc.Class({
         }
 
         // 只有处于工作状态的员工才会增加进度
-        if (this.state_ == eState.working && flag) {
+        if (this.state_ === eState.working && flag) {
             // 认真(serious):开发时额外增加5%点数，参与项目bug数量降低30%
-            if (this.character_ == this.serious) {
+            if (this.character_ === this.serious) {
                 for (var i = 0; i < project.bugnum_.length; i++) {
                     project.bugnum_[i] *= 0.7
                 }
@@ -208,7 +200,7 @@ cc.Class({
                 I *= 1.05
             }
             // 实干(hardWork):开发时额外增加10%点数，参与项目bug数量降低50%
-            if (this.character_ == this.hardWork) {
+            if (this.character_ === this.hardWork) {
                 for (var i = 0; i < project.bugnum_.length; i++) {
                     project.bugnum_[i] *= 0.5
                 }
@@ -218,7 +210,7 @@ cc.Class({
                 I *= 1.1
             }
             // 好胜(ambition):同项目组中如果有比他能力强的人，则开发时额外增加10%点数
-            if (this.character_ == this.ambition) {
+            if (this.character_ === this.ambition) {
                 this.node.dispatchEvent(new cc.Event.EventCustom('teammates-ability-is-stronger'));
                 if (this.ambitionAcitve_) {
                     F *= 1.1
@@ -227,7 +219,7 @@ cc.Class({
                     I *= 1.1
                 }
             }
-            if (this.character_ == this.bigAmnition) {
+            if (this.character_ === this.bigAmnition) {
                 this.node.dispatchEvent(new cc.Event.EventCustom('teammates-ability-is-stronger'));
                 if (this.ambitionAcitve_) {
                     F *= 1.1
@@ -246,7 +238,7 @@ cc.Class({
             I *= ambitionBuff
 
             // 灵性(spirituality):增加项目点数时有30%概率使增加点数翻倍，可叠加暴击
-            if (this.character_ == this.spirituality) {
+            if (this.character_ === this.spirituality) {
                 if (Math.random() < 0.3) {
                     F *= 2
                     P *= 2
@@ -262,7 +254,7 @@ cc.Class({
             project.augment(3, I);
 
             // 洞察(insight):如果参与测试阶段，所有bug将被发现
-            if (this.character_ == Character.insight) {
+            if (this.character_ === Character.insight) {
                 var iftesting = this.node.dispatchEvent(new cc.Event.EventCustom('if-testing'));
                 if (iftesting) {
                     project.bugnum_[1] += project.bugnum_[0]
@@ -279,7 +271,7 @@ cc.Class({
     },
     test: function (project) {
         // 洞察(insight):如果参与测试阶段，所有bug将被发现
-        if (this.character_ == Character.insight) {
+        if (this.character_ === Character.insight) {
             for (var i = 0; i < project.bugnum_.length; i++) {
                 project.bugnum_[i] = 0
             }
@@ -287,7 +279,7 @@ cc.Class({
     },
     begin: function () {
         /**开始工作 */
-        if (this.state_ == eState.free) {
+        if (this.state_ === eState.free) {
             this.state_ = eState.working;
         } else {
             cc.log("Can not begin work");
@@ -370,8 +362,22 @@ cc.Class({
     sendSticker: function (sticker) {
         cc.log(this.name + ": " + sticker);
     },
-    speakSomething: function (saying) {
+    saySomething: function (saying) {
         cc.log(this.name + ": " + saying);
+    },
+    sayPublic: function (set) {
+        var s = set.entries()[0][0]
+        if (this.character_ === Character.blabla || this.character_ === Character.funny) {
+            this.saySomething(s)
+        } else {
+            if (Math.random() < 0.2) {
+                if (this.character_ === Character.slience) {
+                    this.saySomething("......")
+                } else {
+                    this.saySomething(s)
+                }
+            }
+        }
     },
     moodIncrement: function (value) {
         this.mood = (this.mood + value) % 10;
@@ -379,28 +385,28 @@ cc.Class({
     weekly: function () {
         // 每周被调用一次
         // 攻坚(storming):无视项目难度20%，结算点数时额外增加剩余功能点数的8%（该点数无视任务难度），一周触发一次。
-        if (this.character_ == Character.storming) {
+        if (this.character_ === Character.storming) {
 
         }
     },
     daily: function () {
         // 每天被调用一次
-        if (this.state_ == eState.working) {
+        if (this.state_ === eState.working) {
             this.power_ -= 5;
             this.mood_ = (this.moodAddition_ + getRandomInt(0, 10)) % 10;
             if (this.moodAddition_ > -5) {
                 this.moodAddition_--;
             }
             // 乐天(optimist):心情肯定大于等于5
-            if (this.character_ == Character.optimist) {
+            if (this.character_ === Character.optimist) {
                 this.mood_ = getRandomInt(5, 11)
             }
             // 乐观(bigOptimist):心情肯定大于等于7
-            if (this.character_ == Character.bigOptimist) {
+            if (this.character_ === Character.bigOptimist) {
                 this.mood_ = getRandomInt(7, 11)
             }
             if (this.power_ <= 0) {
-                if (this.character_ == Character.unyielding || this.character_ == Character.adversity) {
+                if (this.character_ === Character.unyielding || this.character_ === Character.adversity) {
                     this.unyieldingDays_--;
                     if (this.unyieldingDays_ <= 0) {
                         this.relaxAWeek()
@@ -410,18 +416,18 @@ cc.Class({
                 }
             }
             // 体贴(thoughtful):同项目组中所有人的心情+1
-            if (this.character_ == Character.thoughtful) {
+            if (this.character_ === Character.thoughtful) {
                 this.node.emit('increaseAllTeammatesMood', {
                     value: 1,
                 });
             }
             // 辅佐(adjuvant):同项目组中所有人的心情+2
-            if (this.character_ == Character.thoughtful) {
+            if (this.character_ === Character.thoughtful) {
                 this.node.emit('increaseAllTeammatesMood', {
                     value: 2,
                 });
             }
-        } else if (this.state_ == eState.relaxing) {
+        } else if (this.state_ === eState.relaxing) {
             this.relaxDays_--;
             if (this.relaxDays_ <= 0) {
                 this.state_ = eState.free;
