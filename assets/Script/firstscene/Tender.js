@@ -1,5 +1,5 @@
-var Project = require(Project);
-var TenderGroup = require(TenderGroup);
+var Project = require("Project");
+var TenderGroup = require("TenderGroup");
 cc.Class({
     extends: cc.Component,
 

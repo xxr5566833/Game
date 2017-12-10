@@ -1,14 +1,9 @@
-var eState = cc.Enum({ end:-1, develop :0, test : 1, operative : 2,});
+var eState = cc.Enum({  develop :0, test : 1, operative : 2,end:3,});
 var eIncomeWay = cc.Enum({ oneoff : 0, period : 1, });
 cc.Class({
     extends: cc.Component,
 
     properties: {
-        node:{
-            default:null,
-            override:true,
-            type:cc.Node,
-        },
         persons_:{   
             default:[],
             type:[cc.Prefab]
