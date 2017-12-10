@@ -591,7 +591,7 @@ cc.Class({
 
     // use this for initialization
     onLoad: function () {
-        var event = new cc.Event.EventCustom('get-company-name', true);
+        var event = new cc.Event.EventCustom('GETNAME', true);
         this.node.dispatchEvent(event);
         var companyName = event.detail.back
         publicDialogue.add("凌晨5点的 " + companyName + " 公司，好安静")

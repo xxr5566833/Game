@@ -157,12 +157,12 @@ cc.Class({
             // 执着(persistent):获得科研点数有50%概率增加50%
             if (this.character_ === Character.persistent) {
                 if (Math.random() < 0.5) {
-                    this.node.dispatchEvent(new cc.Event.EventCustom('increase-50-percent-science-point'));
+                    this.node.dispatchEvent(new cc.Event.EventCustom('addS5'));
                 }
             }
             // 天才(genius):获得科研点数增加50%
             if (this.character_ === Character.genius) {
-                this.node.dispatchEvent(new cc.Event.EventCustom('increase-50-percent-science-point'));
+                this.node.dispatchEvent(new cc.Event.EventCustom('addS5'));
             }
         }
 
@@ -189,7 +189,7 @@ cc.Class({
             // 认真(serious):开发时额外增加5%点数，参与项目bug数量降低30%
             if (this.character_ === this.serious) {
                 for (var i = 0; i < project.bugnum_.length; i++) {
-                    project.bugnum_[i] *= 0.7
+                    project.bugnum_[i] = Math.floor(project.bugnum_[i] * 0.7)
                 }
                 F *= 1.05
                 P *= 1.05
@@ -199,7 +199,7 @@ cc.Class({
             // 实干(hardWork):开发时额外增加10%点数，参与项目bug数量降低50%
             if (this.character_ === this.hardWork) {
                 for (var i = 0; i < project.bugnum_.length; i++) {
-                    project.bugnum_[i] *= 0.5
+                    project.bugnum_[i] = Math.floor(project.bugnum_[i] * 0.5)
                 }
                 F *= 1.1
                 P *= 1.1
@@ -209,6 +209,7 @@ cc.Class({
             // 好胜(ambition):同项目组中如果有比他能力强的人，则开发时额外增加10%点数
             if (this.character_ === this.ambition) {
                 var event = new cc.Event.EventCustom('teammates-ability-is-stronger', true)
+                event.detail.person = this
                 this.node.dispatchEvent(event);
                 var ambitionAcitve_ = event.detail.back
                 if (ambitionAcitve_) {
@@ -220,6 +221,7 @@ cc.Class({
             }
             if (this.character_ === this.bigAmnition) {
                 var event = new cc.Event.EventCustom('teammates-ability-is-stronger', true)
+                event.detail.person = this
                 this.node.dispatchEvent(event);
                 var ambitionAcitve_ = event.detail.back
                 if (ambitionAcitve_) {
@@ -228,15 +230,17 @@ cc.Class({
                     E *= 1.1
                     I *= 1.1
                 } else {
-                    this.node.dispatchEvent(new cc.Event.EventCustom('all-teammates-increase-develop-points'));
+                    this.group_.amibitionBuff_ = 1.1
                 }
             }
             // 团队中产生的野心buff
             // 野心(bigAmnition):若是项目组中能力最强的人，将提升所有人10%点数；若不是则自己增加额外10%点数。
-            F *= ambitionBuff
-            P *= ambitionBuff
-            E *= ambitionBuff
-            I *= ambitionBuff
+            if (ambitionBuff != undefined) {
+                F *= ambitionBuff
+                P *= ambitionBuff
+                E *= ambitionBuff
+                I *= ambitionBuff
+            }
 
             // 灵性(spirituality):增加项目点数时有30%概率使增加点数翻倍，可叠加暴击
             if (this.character_ === this.spirituality) {
@@ -256,10 +260,7 @@ cc.Class({
 
             // 洞察(insight):如果参与测试阶段，所有bug将被发现
             if (this.character_ === Character.insight) {
-                var event = new cc.Event.EventCustom('if-testing', true)
-                this.node.dispatchEvent(event);
-                var iftesting = event.detail.back
-                if (iftesting) {
+                if (this.group_.state_ === 1) {
                     project.bugnum_[1] += project.bugnum_[0]
                     project.bugnum_[3] += project.bugnum_[2]
                     project.bugnum_[5] += project.bugnum_[4]
@@ -456,15 +457,17 @@ cc.Class({
             }
             // 体贴(thoughtful):同项目组中所有人的心情+1
             if (this.character_ === Character.thoughtful) {
-                this.node.emit('increaseAllTeammatesMood', {
-                    value: 1,
-                });
+                var event = new cc.Event.EventCustom('increase-all-teammates-mood', true)
+                event.detail.person = this
+                event.detail.value = 1
+                this.node.dispatchEvent(event);
             }
             // 辅佐(adjuvant):同项目组中所有人的心情+2
             if (this.character_ === Character.thoughtful) {
-                this.node.emit('increaseAllTeammatesMood', {
-                    value: 2,
-                });
+                var event = new cc.Event.EventCustom('increase-all-teammates-mood', true)
+                event.detail.person = this
+                event.detail.value = 2
+                this.node.dispatchEvent(event);
             }
         } else if (this.state_ === eState.relaxing) {
             this.relaxDays_--;
@@ -494,13 +497,15 @@ cc.Class({
                 rnd = Math.random()
                 if (rnd < 0.25) {
                     // 触发事件，使得团队中的随机一人心情增加。具体是谁增加，不关心，由上层节点决定
-                    this.node.emit('increaseTeammateMood', {
-                        value: 1,
-                    });
+                    var event = new cc.Event.EventCustom('increase-teammate-mood', true)
+                    event.detail.person = this
+                    event.detail.value = 1
+                    this.node.dispatchEvent(event);
                 } else if (rnd < 0.5) {
-                    this.node.emit('increaseTeammateMood', {
-                        value: 3,
-                    });
+                    var event = new cc.Event.EventCustom('increase-teammate-mood', true)
+                    event.detail.person = this
+                    event.detail.value = 3
+                    this.node.dispatchEvent(event);
                 } else {
                     //pass
                 }
