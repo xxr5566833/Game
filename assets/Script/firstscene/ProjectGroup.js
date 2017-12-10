@@ -514,6 +514,55 @@ cc.Class({
             persons_[index].sayPublic(publicDialogue)
         } else {
             // say special dialogue
+            var dialogueIndex = getRandomInt(21, 26)
+            switch (dialogueIndex) {
+                case 21:
+                case 22:
+                case 23:
+                    if (persons_.length < 2) {
+                        break
+                    }
+                    // 直邮项目组成员数不小于2时，此对话才可能触发
+                    var ps = getUnique(persons_, 2)
+                    p1, p2 = ps
+                    p1.saySomething("同志们，你们帮我看看这个怎么就崩了…… ")
+                    rnd1 = getRandomInt(0, 3)
+                    switch (rnd1) {
+                        case 0:
+                            p2.saySomething("先自己上网搜一下吧")
+                            break
+                        case 1:
+                            p2.saySomething("好吧，我正好不忙，帮你看看 ")
+                            p1.saySomething("谢啦，中午请你吃饭哈")
+                            break
+                        case 2:
+                            p2.saySomething("这个不太重要，你先做其他的，等我有空了帮你看看.")
+                            p1.saySomething("┗|｀O′|┛ 喵喵喵~~")
+                            break
+                        default:
+                            break
+                    }
+                case 24:
+                case 25:
+                default:
+                    break
+            }
+
         }
     }
 });
+
+// 从数组arrayNum中不重复的随机抽取count个element，返回一个新的数组
+function getUnique(arrayNum, count) {
+    // Make a copy of the array
+    var tmp = arrayNum.slice(arrayNum);
+    var ret = [];
+
+    for (var i = 0; i < count; i++) {
+        var index = Math.floor(Math.random() * tmp.length);
+        var removed = tmp.splice(index, 1);
+        // Since we are only removing one element
+        ret.push(removed[0]);
+    }
+    return ret;
+}
