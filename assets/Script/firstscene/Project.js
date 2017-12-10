@@ -65,13 +65,6 @@ cc.Class({
             default: [],
             type: [Object],
         },
-        kind_ : -1,
-        reward_:0.,
-        receiveDay_:0,
-        finishDay_:0,
-        content_:"",
-        name_:"",
-        difficulty_ : 0., 
         
         // foo: {
         //    default: null,      // The default value will be used only when the component attaching
@@ -86,10 +79,26 @@ cc.Class({
     },
 
     // use this for initialization
-    onLoad: function () {
+
+    init: function (kind, proj) {
+        this.kind_ = kind;
+        if(kind == 0 || kind == 2)
+        {
+            this.requireEntertainment_=proj.requireEntertainment_;
+            this.requireFunction_=proj.requireFunction_;
+            this.requireInnovation_ = proj.requireInnovation_;
+            this.requirePerformance_ = proj.requirePerformance_;
+            this.content_=proj.content_;
+            this.reward_=proj.reward_;
+            this.deadline_=proj.deadline_;
+            this.categories_=proj.categories_;
+            this.name_=proj.name_;
+            this.level_=project.level_;
+            this.index_ = project.index_;
+        }
     },
 
-    setReward: function () {
+    setReward: function (reward) {
         this.reward_ = reward;
     },
 
@@ -97,10 +106,19 @@ cc.Class({
         return this.reward_;
     },
 
-    init: function (proj, kind) {
-        //待编写。。
-        proj.name_ = proj.name_;
+    setContent: function (content) {
+        this.content_ = content;
     },
+    getContent: function () {
+        return this.content_;
+    },
+    setName: function (name) {
+        this.name_ = name;
+    },
+    getName: function () {
+        return this.name_;
+    },
+
 
     getRequire: function () {
         var require = new Object;
@@ -121,7 +139,7 @@ cc.Class({
     },
 
     getCurrent: function () {
-        var current = new Object;
+        var current = new Object();
         current.function = this.currentFunction_;
         current.entertainment = this.currentEntertainment_;
         current.innovation = this.currentInnovation_;
@@ -158,12 +176,145 @@ cc.Class({
         return this.currentFunction_ >= this.requireFunction_ && this.currentEntertainment_ >= this.requireEntertainment_ && this.currentInnovation_ >= this.requireInnovation_ && this.currentSafety_ >= this.requireSafety_ && this.currentPerformance_ >= this.requirePerformance_
     },
 
+    isDevelopEnough: function () {
+        return this.currentFunc_ / this.requireFunc_ >= 0.6
+    },
+
+    isDevelopEnd: function () {
+        return this.currentFunc_ >= this.requireFunc_;
+    },
+
+    isOverdue:function(nowday){
+        if(this.kind_ == 1)
+            return false;
+        if(nowday - this.receiveDay_ > deadline_){
+            return true;
+        }
+        return false;
+    },
+
+    isSeriousOverdue:function(nowday){
+        //竞标任务超时一周
+        return nowday - this.receiveDay_ >= 2 * this.deadline_;
+    },
+
+    //委托开发相关
+    setDeadline:function(deadline){
+        this.deadline_=deadline;
+    },
+
+    getDeadline:function(){
+        return this.deadline_;
+    },
+
+    setIndex:function(index){
+        this.index_=index;
+    },
+
+    getIndex:function(){
+        return this.index_
+    },
+
+    //独立开发相关
+
+    setPlatform:function(platform){
+        this.platform_ = platform;
+        this.budget_ += platform.budget_;
+        this.difficulty_ += platform.difficulty_;
+    },
+
+    unsetPlatform : function()
+    {
+        this.budget_ -= this.platform_.budget_;
+        this.difficulty_ -= this.platform_.difficulty_;
+        this.platform = null;
+    },
+
+    addFunction:function(func){
+        this.functions_.push[func];
+        this.requireFunction_ += func.function_;
+        this.difficulty_ += func.difficulty_;
+    },
+
+    subFunction:function(func){
+        for(let i = 0 ; i < this.functions_.length ; i++)
+        {
+            var tempfunc = this.functions_[i];
+            if(tempfunc.name_ == func.name_)
+            {
+                this.difficulty_ -= tempfunc.difficulty_;
+                this.requireFunction_ -= tempfunc.function_;
+                this.functions_.splice(i, 1);
+                return ;
+            }
+        }
+    },
+
+    subAllFunction:function(){
+        for(let i = 0 ; i < this.functions_.length ; i++)
+        {
+            var tempfunc = this.functions_[i];
+            this.difficulty_ -= tempfunc.difficulty_;
+            this.requireFunction_ -= tempfunc.function_;
+        }
+        this.functions_ = [];
+    },
+
+    addTech:function(tech){
+        this.techs_.push[tech];
+        this.difficulty_ += tech.difficulty_;
+        this.budget_ += tech.budget_;
+    },
+
+    subTech:function(tech){
+        for(let i = 0 ; i < this.techs_.length ; i++)
+        {
+            var temptech = this.techs_[i];
+            if(temptech.name_ == tech.name_)
+            {
+                this.difficulty_ -= temptech.difficulty_;
+                this.budget_ -= temptech.budget_;
+                this.techs_.splice(i, 1);
+                return ;
+            }
+        }
+    },
+
+    subAllTech:function(){
+        for(let i = 0 ; i < this.techs_.length ; i++)
+        {
+            var temptech = this.techs_[i];
+            this.difficulty_ -= temptech.difficulty_;
+            this.budget_ -= temptech.budget_;
+        }
+        this.techs_ = [];
+    },
+
+
     addCategory: function (category) {
         this.categories_.push(category);
     },
     getCategories: function () {
-        return this.categories_;
+        var result = null;
+        switch(this.kind_)
+        {
+            case 0:
+                result = this.categories_[0];
+                break;
+            case 1:
+                result = this.categories_;
+                break;
+            case 2:
+                result = this.categories_[0];
+                break;
+        }
+        return result;
     },
+
+    getBudget:function(){
+        return this.budget_;
+    },
+
     setReceiveDay: function (day) {
         this.receiveDay_ = day;
     },
@@ -177,28 +328,68 @@ cc.Class({
         return this.finishDay_;
     },
     getPeriod: function () {
+        //返回开发了多少天
         return this.finishDay_ - this.receiveDay_;
     },
-    setContent: function (content) {
-        this.content_ = content;
-    },
-    getContent: function () {
-        return this.content_;
-    },
-    setName: function (name) {
-        this.name_ = name;
-    },
-    getName: function () {
-        return this.name_;
+    setPublishDay:function(day){
+        this.publishDay_ = day;
     },
 
-    isDevelopEnough: function () {
-        return this.currentFunc_ / this.requireFunc_ >= 0.6
+    getPublishDay:function(){
+        return this.publishDay_;
     },
 
-    isDevelopEnd: function () {
-        return this.currentFunc_ >= this.requireFunc_;
+    getExpectPrice:function(){
+        var cur=this.getCurrent();
+        var F=cur.function;
+        return F*F/1000;
     },
+
+    setPrice:function(price){
+        this.price_ = price;
+    },
+
+    updateM:function(t, burstbugs){
+        var cur=this.getCurrent();
+        var F=cur.function;
+        var E=cur.entertainment;
+        var P=cur.performance;
+        var I=cur.innovation;
+        if(this.m_==0){
+            this.m_ = Math.sqrt(7*E + 3*P) *F *(t + Math.sqrt(I))/t;
+            this.m_=this.m_*this.getExpectPrice()/this.price_;
+        }
+        else{
+            var rate = 1.;
+            for(var i = 0 ; i < burstbugs.length ; i++)
+            {
+                switch(burstbugs[i])
+                {
+                    case 0:
+                        rate = rate * 0.8;
+                        break;
+                    case 1 :
+                        rate = rate * 0.5;
+                        break;
+                    case 2 :
+                        rate = rate *0.2;
+                        break;
+                }
+            }
+            //这里还缺少f(p,t)
+            this.m_ = rate * this.m_ ;
+        }
+    },
+
+    getM:function(){
+        return this.m_;
+    },
+
+    getTimeFromPublish:function(nowday){
+        return nowday - this.publishDay_;
+    },
+
+
 
     setBug: function (highnum, midnum, lownum) {
         var c = highnum;
@@ -271,10 +462,6 @@ cc.Class({
         {
             this.bugnum_[level * 2 + 1] -= num;
         }
-
         
-    },
-    isSeriousOverdue:function(nowday){
-        return nowday - this.receiveDay_ >= 2 * this.deadline_;
     },
 });

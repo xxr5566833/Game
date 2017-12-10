@@ -2,32 +2,22 @@ cc.Class({
     extends: cc.Component,
 
     properties: {
-        S_:0,       // 科研点数
-        coefS1_:0,  // 受1号科技影响
-        coefS2_:0,  // 12
-        coef:null,
-        // 科技编号从1开始
-        name_:[],       // 科技名
-        lv_:[],         // 科技等级(0为未解锁)
-        effect_:[],     // 效果
-        preId_:[],      // 前置科技编号(无需前置则为0)
-        preLv_:[],      // 前置科技等级
-        costs_:[],      // 解锁各级需花费的科研点(二维数组)
     },
     
     add: function(id, name, effect, preId, preLv, costs){
-        this.name_[id]=name;
-        this.lv_[id]=0; 
-        this.effect_[id]=effect;
-        this.preId_[id]=preId;
-        this.preLv_[id]=preLv;
-        this.costs_[id]=costs;
+        this.name_[id]=name;         // 科技名
+        this.lv_[id]=0;              // 科技等级(0为未解锁)
+        this.effect_[id]=effect;     // 效果
+        this.preId_[id]=preId;  // 前置科技编号(无需前置则为0)
+        this.preLv_[id]=preLv;  // 前置科技等级
+        this.costs_[id]=costs;  // 解锁各级需花费的科研点(二维数组)
     },
 
     // use this for initialization
     onLoad: function () {
-        this.S_=0;
-        this.coefS1_=0;this.coefS2_=0;  // 12
+        this.S_=0;  // 科研点数
+        this.coefS1_=0;
+        this.coefS2_=0;  // 12
         this.coef=new Object();
         // 带*的表示未找到在外部用该参数的地方
         // Person
@@ -207,6 +197,11 @@ cc.Class({
         console.log("科研点数："+this.S_);
         this.S_ += this.S_*this.coefS1_ + Function/10*this.coefS2_;
         console.log("科研点数："+this.S_);
+    },
+
+    addS4:function(increment){
+        //竞标任务额外增加的科研点数
+        this.S_ += increment;
     },
 
     show: function(id){

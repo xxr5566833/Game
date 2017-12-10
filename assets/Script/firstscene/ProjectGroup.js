@@ -1,5 +1,5 @@
-var eState = cc.Enum({ end: -1, develop: 0, test: 1, operative: 2, });
-var eIncomeWay = cc.Enum({ oneoff: 0, period: 1, });
+var eState = cc.Enum({  develop :0, test : 1, operative : 2,end:3,});
+var eIncomeWay = cc.Enum({ oneoff : 0, period : 1, });
 var gameList = [
     "码帅leader",
     "野蛮滚出地球",
@@ -173,7 +173,9 @@ cc.Class({
             this.persons_[i] = persons[i];
             this.persons_[i].begin();
         }
-        this.state_ = develop;
+        this.persons_ = [];
+        this.maintainers_ = [];
+        this.state_ = eState.develop;
     },
 
     stop: function () {
