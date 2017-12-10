@@ -1,8 +1,6 @@
-var projectstate = require('global').projectState;
-var datepath = require('global').datePath;
-var projectstate = require("global").projectState
 var eAttri = cc.Enum({ function: 0, performance: 1, entertainment: 2, innovative: 3, });
 var eBug = cc.Enum({ low: 0, mid: 1, high: 2, });
+var eKind = cc.Enum({consign : 0, yourown : 1, bid : 2});
 cc.Class({
     extends: cc.Component,
 
@@ -67,7 +65,7 @@ cc.Class({
             default: [],
             type: [Object],
         },
-
+        kind_ : -1,
         reward_:0.,
         receiveDay_:0,
         finishDay_:0,
@@ -99,8 +97,9 @@ cc.Class({
         return this.reward_;
     },
 
-    init: function () {
-
+    init: function (proj, kind) {
+        //待编写。。
+        proj.name_ = proj.name_;
     },
 
     getRequire: function () {
@@ -274,5 +273,8 @@ cc.Class({
         }
 
         
+    },
+    isSeriousOverdue:function(nowday){
+        return nowday - this.receiveDay_ >= 2 * this.deadline_;
     },
 });

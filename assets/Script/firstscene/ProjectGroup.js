@@ -1,4 +1,4 @@
-var eState = cc.Enum({ develop: 0, test: 1, operative: 2, });
+var eState = cc.Enum({ end: -1, develop: 0, test: 1, operative: 2, });
 var eIncomeWay = cc.Enum({ oneoff: 0, period: 1, });
 cc.Class({
     extends: cc.Component,
@@ -7,7 +7,7 @@ cc.Class({
         node: {
             default: null,
             override: true,
-            type: cc.Node
+            type: cc.Node,
         },
         persons_: {
             default: [],
@@ -131,6 +131,113 @@ cc.Class({
                 manager = maxmanager;
                 for (let i = 0; i < this.persons_.length; i++) {
                     this.persons_[i].develop(manager, n, this.project_, true);
+                }
+                var dateevent = new EventCustom("GETDATE", true);
+                this.node.dispatchEvent(dateevent);
+                var nowday = dateevent.detail.back;
+                switch (this.project_.kind_) {
+                    case 0:
+                        //表示委托开发
+                        if (this.project_.isFinished()) {
+                            var event = new EventCustom("PROJECTSUCCESS", true);
+                            event.detail.project = this.project_;
+                            this.node.dispatchEvent(event);
+                            //然后设置自己的状态为结束状态，等待personcontrol回收
+                            this.state_ = eState.end;
+                        }
+                        else {
+                            if (this.project_.isOverdue(nowday)) {
+                                var event = new EventCustom("PROJECTFAIL", true);
+                                event.detail.project = this.project_;
+                                this.node.dispatchEvent(event);
+                                //然后设置自己的状态为结束状态，等待personcontrol回收
+                                this.state_ = eState.end;
+                            }
+                        }
+                        break;
+                    case 1:
+                        if (this.isDevelopEnough()) {
+                            //表示进入测试阶段的按钮可以点了
+                            var event = new EventCustom("CANTEST", true);
+                            event.detail.group = this;
+                            this.node.dispatch(event);
+                            if (this.isDevelopEnough()) {
+                                //表示需要进入测试阶段了
+                                this.evolve();
+                            }
+                        }
+                        break;
+                    case 2:
+                        //表示是个竞标任务
+                        if (this.isFinished()) {
+                            //获得剩下的80%
+                            if (!this.isOverdue()) {
+                                var event = new EventCustom("MONEYADD", true);
+                                event.detail.money = 0.8 * this.project_.getReward();
+                                this.node.dispatchEvent(event);
+
+                                //提高声望
+                                switch (this.project_.categories_[0].categoryId_) {
+                                    case 0:
+                                        event = new EventCustom("TECHNOLOGYADD", true);
+                                        event.detail.technology = this.project_.getRequire().requireFunction_ * 0.25;
+                                        this.node.dispatch(event);
+                                        //获得额外奖金
+                                        var otherreward = this.project_.getReward() * 0.25;
+                                        event.type = "MONEYADD";
+                                        event.detail.money = otherreward;
+                                        this.node.dispatch(event);
+                                        //声誉
+                                        var growth = this.project_.level_.creditGrowth_ * 1.5;
+                                        event.type = "CREDITCHANGE";
+                                        event.detail.change = growth;
+                                        this.node.dispatchEvent(event);
+                                        break;
+                                    case 1:
+                                        var growth = this.project_.level_.creditGrowth_ * 2;
+                                        event.type = "CREDITCHANGE";
+                                        event.detail.change = growth;
+                                        this.node.dispatchEvent(event);
+                                        break;
+                                    case 2:
+                                        //额外50%的奖金
+                                        var otherreward = this.project_.getReward() * 0.5;
+                                        event.type = "MONEYADD";
+                                        event.detail.money = otherreward;
+                                        this.node.dispatch(event);
+                                    case 3:
+                                        event = new EventCustom("TECHNOLOGYADD", true);
+                                        event.detail.technology = this.project_.getRequire().requireFunction_ * 0.5;
+                                        this.node.dispatch(event);
+                                        break;
+
+                                }
+                            }
+                            else {
+                                var cutevent = new CustomEvent("CREDITCHANGE", true);
+                                cutevent.detail.change = - this.project_.level_.creditGrowth_;
+                                this.dispatchEvent(cutevent);
+                            }
+
+
+                        }
+                        else {
+                            if (this.project_.isSeriousOverdue(nowday)) {
+                                //这里倒扣三倍价格，是强制的
+                                var cut = this.project_.getReward() * 3;
+                                var cutevent = new CustomEvent("MONEYCUT", true);
+                                cutevent.detail.money = cut;
+                                cutevent.detail.force = true;
+                                cutevent.detail.record = "违约金";
+                                this.node.dispatchEvent(cutevent);
+                                //扣声誉   
+                                var creditcut = 0.5 * this.project_.level_.creditGrowth_;
+                                cutevent.type = "CREDITCHANGE";
+                                cutevent.detail.change = - creditcut;
+                                this.node.dispatchEvent(cutevent);
+                            }
+                        }
+                        break;
                 }
                 break;
             case 1:
