@@ -81,8 +81,6 @@ cc.Class({
         coef: null,
         // 剩余的休息时间
         relaxDays_: 0,
-        // 团队同事中是否有比自己能力强的人
-        ambitionAcitve_: false,
         // 不屈性格激活，剩余工作天数,
         unyieldingDays_: 0,
     },
@@ -210,8 +208,10 @@ cc.Class({
             }
             // 好胜(ambition):同项目组中如果有比他能力强的人，则开发时额外增加10%点数
             if (this.character_ === this.ambition) {
-                this.node.dispatchEvent(new cc.Event.EventCustom('teammates-ability-is-stronger'));
-                if (this.ambitionAcitve_) {
+                var event = new cc.Event.EventCustom('teammates-ability-is-stronger', true)
+                this.node.dispatchEvent(event);
+                var ambitionAcitve_ = event.detail.back
+                if (ambitionAcitve_) {
                     F *= 1.1
                     P *= 1.1
                     E *= 1.1
@@ -219,8 +219,10 @@ cc.Class({
                 }
             }
             if (this.character_ === this.bigAmnition) {
-                this.node.dispatchEvent(new cc.Event.EventCustom('teammates-ability-is-stronger'));
-                if (this.ambitionAcitve_) {
+                var event = new cc.Event.EventCustom('teammates-ability-is-stronger', true)
+                this.node.dispatchEvent(event);
+                var ambitionAcitve_ = event.detail.back
+                if (ambitionAcitve_) {
                     F *= 1.1
                     P *= 1.1
                     E *= 1.1
@@ -254,7 +256,9 @@ cc.Class({
 
             // 洞察(insight):如果参与测试阶段，所有bug将被发现
             if (this.character_ === Character.insight) {
-                var iftesting = this.node.dispatchEvent(new cc.Event.EventCustom('if-testing'));
+                var event = new cc.Event.EventCustom('if-testing', true)
+                this.node.dispatchEvent(event);
+                var iftesting = event.detail.back
                 if (iftesting) {
                     project.bugnum_[1] += project.bugnum_[0]
                     project.bugnum_[3] += project.bugnum_[2]
@@ -362,7 +366,13 @@ cc.Class({
         cc.log(this.name + ": " + sticker);
     },
     saySomething: function (saying) {
-        cc.log(this.name + ": " + saying);
+        if (this.character_ === Character.slience) {
+            cc.log(this.name + ": " + "......");
+            return false
+        } else {
+            cc.log(this.name + ": " + saying);
+            return true
+        }
     },
     sayPublic: function (set) {
         var s = set.entries()[0][0]
@@ -370,11 +380,7 @@ cc.Class({
             this.saySomething(s)
         } else {
             if (Math.random() < 0.2) {
-                if (this.character_ === Character.slience) {
-                    this.saySomething("......")
-                } else {
-                    this.saySomething(s)
-                }
+                this.saySomething(s)
             }
         }
     },
@@ -404,6 +410,40 @@ cc.Class({
             if (this.character_ === Character.bigOptimist) {
                 this.mood_ = getRandomInt(7, 11)
             }
+
+            if (this.mood_ <= 1) {
+                var rnd = Math.random()
+                if (rnd < 0.33) {
+                    // 感觉身体被掏空……（心情很差时出现）
+                    this.saySomething("感觉身体被掏空……")
+                } else if (end < 0.66) {
+                    // 感觉今天好虚啊……（心情差或很差时出现）
+                    this.saySomething("感觉今天好虚啊……")
+                } else {
+                    // 这段代码谁写的，这么丑（心情差或很差时出现）
+                    this.saySomething("这段代码谁写的，这么丑")
+                }
+            } else if (this.mood_ <= 3) {
+                var rnd = Math.random()
+                if (rnd < 0.5) {
+                    // 感觉今天好虚啊……（心情差或很差时出现）
+                    this.saySomething("感觉今天好虚啊……")
+                } else {
+                    // 这段代码谁写的，这么丑（心情差或很差时出现）
+                    this.saySomething("这段代码谁写的，这么丑")
+                }
+            } else if (this.mood_ <= 6) {
+
+            } else if (this.mood_ <= 8) {
+
+            } else {
+                if (Math.random() < 0.5) {
+                    this.saySomething("就这么点功能，我能做十个")
+                } else {
+                    this.saySomething("产品经理真是体贴，居然让我做了我最喜欢做的功能")
+                }
+            }
+
             if (this.power_ <= 0) {
                 if (this.character_ === Character.unyielding || this.character_ === Character.adversity) {
                     this.unyieldingDays_--;
