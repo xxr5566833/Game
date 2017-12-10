@@ -17,8 +17,8 @@ cc.Class({
         // ...
     },
 
-    isOverdue:function(){
-        if(this.getPeriod()>deadline_){
+    isOverdue:function(nowday){
+        if(nowday - this.receiveDay_ > deadline_){
             return true;
         }
         return false;

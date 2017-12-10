@@ -98,45 +98,10 @@ cc.Class({
         }
     },
 
-    finish:function(){
-        var tag=new Array;
-        var i=0;
-        event=new cc.Event.EventCustom('MONEYCUT', true);
-        event.detail.force=false;
-        event.detail.money=person.getComponent(Person).employMoney_;
-        this.node.dispatchEvent(event);
-        for(i=1;i=this.projectGroups_.length;i++){
-            group=this.projectGroups_[i];
-            if(group.isFinished()){
-                if(group.isConsign()){
-                    event=new cc.Event.EventCustom('PROJECTSUCCESS', true);
-                    event.detail.project = group.getProject()
-                    this.node.dispatchEvent(event);
-                    tag.push(i);
-                }
-            }
-            else{
-                if(group.isOverdue()){
-                    event=new cc.Event.EventCustom('PROJECTFAIL', true);
-                    event.detail.project = group.getProject()
-                    this.node.dispatchEvent(event);
-                    tag.push(i);
-                }
-            }
-        }
-        for(i=1;i=tag.length;i++){
-            this.projectGroups_[tag[i]].stop();
-        }
-    },
-
     work:function(){
         for(i=1;i=this.projectGroups_.length;i++){
             group=this.projectGroups_[i];
             group.work();
-            group.finish();
-            if(group.isDevelopEnd()){
-                this.evolve(group);
-            }
         }
     },
 

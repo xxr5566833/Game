@@ -1,6 +1,4 @@
-var projectstate=require('global').projectState;
 var project=require('Project');
-var companypath=require('global').companyPath;
 cc.Class({
     extends: cc.Component,
 
@@ -17,6 +15,7 @@ cc.Class({
         availableList_:{
             default: [],
             type:[cc.Integer],
+            visible:false,
         },
 
         // foo: {
