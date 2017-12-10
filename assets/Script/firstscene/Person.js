@@ -127,15 +127,19 @@ cc.Class({
 
         var diffculty = project.difficulty_
 
-                
+
         // 逆境(adversity):体力为0时仍可以继续工作1周，且该周暴击倍率增加100%
         if (this.character_ == Character.adversity && this.unyieldingDays_ < 7 && this.unyieldingDays_ >= 0) {
             criticalRate *= 2
         }
 
-        // 冷静(calm):暴击率-10%
+        // 冷静(calm):暴击率-10%，无视20%任务难度
         if (this.character_ == Character.calm) {
             criticalPro *= 0.9
+            diffculty *= 0.8
+        }
+        // 攻坚(storming):无视项目难度20%，结算点数时额外增加剩余功能点数的8%（该点数无视任务难度），一周触发一次。
+        if (this.character_ == Character.calm) {
             diffculty *= 0.8
         }
         // 稳重(steady):暴击率-5%，无视30%任务难度
@@ -148,6 +152,13 @@ cc.Class({
             criticalPro *= 1.05
             diffculty *= 1.05
         }
+        // 鬼才(ghost):暴击率增加10%，暴击倍率增加10%
+        if (this.character_ == Character.keen) {
+            criticalPro *= 1.1
+            diffculty *= 1.1
+        }
+
+        // 触发暴击
         if ((rand(0.0, 1.0) < criticalPro)) {
             F = F * criticalRate;
             P = P * criticalRate;
@@ -158,6 +169,10 @@ cc.Class({
                 if (Math.random() < 0.5) {
                     this.node.dispatchEvent(new cc.Event.EventCustom('increase-50-percent-science-point'));
                 }
+            }
+            // 天才(genius):获得科研点数增加50%
+            if (this.character_ == Character.genius) {
+                this.node.dispatchEvent(new cc.Event.EventCustom('increase-50-percent-science-point'));
             }
         }
 
@@ -227,16 +242,48 @@ cc.Class({
             // 野心(bigAmnition):若是项目组中能力最强的人，将提升所有人10%点数；若不是则自己增加额外10%点数。
             F *= ambitionBuff
             P *= ambitionBuff
-            P *= ambitionBuff
+            E *= ambitionBuff
             I *= ambitionBuff
 
+            // 灵性(spirituality):增加项目点数时有30%概率使增加点数翻倍，可叠加暴击
+            if (this.character_ == this.spirituality) {
+                if (Math.random() < 0.3) {
+                    F *= 2
+                    P *= 2
+                    E *= 2
+                    I *= 2
+                }
+            }
+
+            // 增加项目的点数
             project.augment(0, F);
             project.augment(1, P);
             project.augment(2, E);
             project.augment(3, I);
+
+            // 洞察(insight):如果参与测试阶段，所有bug将被发现
+            if (this.character_ == Character.insight) {
+                var iftesting = this.node.dispatchEvent(new cc.Event.EventCustom('if-testing'));
+                if (iftesting) {
+                    project.bugnum_[1] += project.bugnum_[0]
+                    project.bugnum_[3] += project.bugnum_[2]
+                    project.bugnum_[5] += project.bugnum_[4]
+                    project.bugnum_[0] = 0
+                    project.bugnum_[2] = 0
+                    project.bugnum_[4] = 0
+                }
+            }
         }
         //为了更好的实现bug减少的机制，所以这里返回增加的功能点数...
         return F;
+    },
+    test: function (project) {
+        // 洞察(insight):如果参与测试阶段，所有bug将被发现
+        if (this.character_ == Character.insight) {
+            for (var i = 0; i < project.bugnum_.length; i++) {
+                project.bugnum_[i] = 0
+            }
+        }
     },
     begin: function () {
         /**开始工作 */
@@ -321,16 +368,20 @@ cc.Class({
 
     },
     sendSticker: function (sticker) {
-        cc.log(this.name + ": " + sticker)
+        cc.log(this.name + ": " + sticker);
     },
     speakSomething: function (saying) {
-        cc.log(this.name + ": " + saying)
+        cc.log(this.name + ": " + saying);
     },
     moodIncrement: function (value) {
-        this.mood = (this.mood + value) % 10
+        this.mood = (this.mood + value) % 10;
     },
     weekly: function () {
         // 每周被调用一次
+        // 攻坚(storming):无视项目难度20%，结算点数时额外增加剩余功能点数的8%（该点数无视任务难度），一周触发一次。
+        if (this.character_ == Character.storming) {
+
+        }
     },
     daily: function () {
         // 每天被调用一次
@@ -358,9 +409,16 @@ cc.Class({
                     this.relaxAWeek();
                 }
             }
+            // 体贴(thoughtful):同项目组中所有人的心情+1
             if (this.character_ == Character.thoughtful) {
                 this.node.emit('increaseAllTeammatesMood', {
                     value: 1,
+                });
+            }
+            // 辅佐(adjuvant):同项目组中所有人的心情+2
+            if (this.character_ == Character.thoughtful) {
+                this.node.emit('increaseAllTeammatesMood', {
+                    value: 2,
                 });
             }
         } else if (this.state_ == eState.relaxing) {
