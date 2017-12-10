@@ -1,4 +1,3 @@
-var companypath=require('global').companyPath;
 var personObj=require('Person');
 cc.Class({
     extends: cc.Component,

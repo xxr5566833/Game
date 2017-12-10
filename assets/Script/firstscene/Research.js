@@ -199,6 +199,11 @@ cc.Class({
         console.log("科研点数："+this.S_);
     },
 
+    addS4:function(increment){
+        //竞标任务额外增加的科研点数
+        this.S_ += increment;
+    },
+
     show: function(id){
         var info;
         info.name = this.name_[id];

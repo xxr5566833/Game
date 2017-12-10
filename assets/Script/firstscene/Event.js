@@ -49,7 +49,11 @@ cc.Class({
         Msgbox_:{
             type:cc.Node,
             default:null,
-        }
+        },
+        research_:{
+            type:cc.Node,
+            default:null,
+        },
     },
 
     // use this for initialization
@@ -98,7 +102,7 @@ cc.Class({
                     this.msgcontrol.alert("SUCCESS", "解锁了新的任务");
                     break;
             }
-        }, this)
+        }, this);
 
         this.node.on("GAMEOVER",function(event){
             this.game_.getComponent("Game").gameover();;
@@ -141,6 +145,10 @@ cc.Class({
             this.personControl_.getComponent("PersonControl").changeCredit(event.detail.change);
         }, this);
 
+        this.node.on("CANTEST", function(){
+            //调用相关ui逻辑，表示要可以进入测试阶段了
+        }, this);
+
         this.node.on("TEST", function(event){
             //调用UI，表示要进入测试阶段
         }, this);
@@ -177,6 +185,29 @@ cc.Class({
         this.node.on("ADDLIMIT", function(event){
             this.personControl_.getComponent("PersonControl").addLimit();
         }, this);
+
+        this.node.on("RECEIVEPROJ", function(event){
+            //弹出选人框，返回所选的人员数组
+            this.personControl_.getComponnet("PersonControl").begin(project, persons);
+        }, this);
+
+        this.node.on("ANNOUNCE", function(event){
+            //弹出宣布框，表示发布招聘信息，显示酬金和参与竞争的公司等
+        }, this);
+
+        this.node.on("STEALBIDINFORMATION", function(event){
+            //根据event.detail.bestprice 调用相关ui逻辑
+        }, this);
+
+        this.node.on("GETPRICE", function(event){
+            //调用ui逻辑，获得玩家的出价
+        }, this);
+
+        this.node.on("TECHNOLOGYADD", function(event){
+            this.research_.getComponent("Research").addS4(event.detail.technology);
+        }, this);
+
+        
 
     },
 

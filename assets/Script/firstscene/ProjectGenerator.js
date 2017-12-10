@@ -3,20 +3,6 @@ cc.Class({
     extends: cc.Component,
 
     properties: {
-        projects_:{
-            default: [],
-            type:[cc.Prefab],
-            visible:false,
-        },
-        projs_:{
-            default: [],
-            type:[Object],
-        },
-        availableList_:{
-            default: [],
-            type:[cc.Integer],
-            visible:false,
-        },
 
         // foo: {
         //    default: null,      // The default value will be used only when the component attaching

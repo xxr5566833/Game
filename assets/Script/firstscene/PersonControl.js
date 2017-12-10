@@ -81,10 +81,18 @@ cc.Class({
     },
 
     begin:function(project,persons){
+        //预算什么的需要放在前端判断
         var group=new projectgroup();
         group.node=persongenerator;
+        project.node = this.node;
+        //这里需要设置一下接受时间
+        var event = new EventCustom("GETDATE", true);
+        this.node.dispatchEvent(event);
+        var date = event.detail.back;
+        project.setReceiveDay(date);
         group.begin(project,persons);
         this.projectGroups_.push(group);
+        return true;
     },
 
     stop: function (group){
