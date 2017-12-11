@@ -49,6 +49,12 @@ cc.Class({
         this.persons_ = [];
         this.maintainers_ = [];
         this.state_ = eState.develop;
+        //buff
+        for(let i = 0 ; i < persons.length ; i++)
+        {
+            persons[i].group_ = this;
+        }
+        this.ambitionBuff_ = 1;
     },
 
     stop: function () {
@@ -473,11 +479,32 @@ cc.Class({
     // },
     pause: function () {
         this.unschedule(this.dialogueSystem);
+        this.unshedule(this.individual);
+        this.unshedule(this.weekIndividual);
     },
 
     resume: function (time) {
-        this.schedule(this.dialogueSystem, 2);
+        this.schedule(this.dialogueSystem, time);
+        this.schedule(this.individual, time);
+        this.schedule(this.weekIndividual, time * 7);
     },
+
+    individual:function(){
+        for(let i = 0 ; i < this.persons_.length ; i++)
+        {
+            var person = this.persons_[i];
+            person.daily();
+        }
+    },
+
+    weekIndividual:function(){
+        for(let i = 0 ; i < this.persons_.length ; i++)
+        {
+            var person = this.persons_[i];
+            person.weekly();
+        }
+    },
+
     dialogueSystem: function () {
         var rnd = Math.random()
         if (rnd < 0.9) {
@@ -521,7 +548,21 @@ cc.Class({
             }
 
         }
+    },
+
+    addMood:function(value)
+    {
+        for(let i = 0 ; i < this.persons_.length ; i++)
+        {
+            this.persons_[i].mood_ += value;
+        }
+    },
+    addMoodRandom:function(value)
+    {
+        var index = Math.floor(this.persons_.length * Math.random());
+        this.persons_[index].mood_ += value;
     }
+
 });
 
 // 从数组arrayNum中不重复的随机抽取count个element，返回一个新的数组

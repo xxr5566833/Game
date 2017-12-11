@@ -1,26 +1,8 @@
-var person=require("Person");
 var projectgroup=require("ProjectGroup");
-var persongenerator=require("PersonGenerator");
 cc.Class({
     extends: cc.Component,
 
     properties: {
-        // 员工列表
-        persons_:{   
-            default:[],
-            type:[cc.Prefab]
-        },
-        // 当前员工数
-        currentNum_:0, 
-        // 当前最大员工数
-        maxNum_:5,
-        // 当前项目组 
-        projectGroups_:{   
-            default:[],
-            type:[cc.Prefab]
-        },
-        credit_:0,
-        //这里把Node改为了Prefab
     },
 
     // use this for initialization
@@ -29,6 +11,39 @@ cc.Class({
         //var newperson=new person();
         //this.hire(newperson);
         this.maxNum_=5;
+        // 员工列表
+        this.persons_ = [];
+        // 当前员工数
+        this.currentNum_ = 0;
+        //声誉
+        this.credit_ = 0;
+        //项目组数组初始化
+        this.projectGroups_ = [];
+        // 当前最大员工数
+        this.maxNum_ = 5;
+        //名字
+        this.name_ = "体验极其差的公司";
+    },
+
+    getName:function(){
+        return this.name_;
+    },
+
+    init:function(platfroms){
+        //接受外界的平台数组
+        this.platforms_ = platforms;
+    },
+
+    getAvailablePlatform:function(){
+        var list = [];
+        for(let i = 0 ; i < this.platforms_.length ; i++)
+        {
+            if(platforms[i].unlock_)
+            {
+                list.push(platforms[i].index_);
+            }
+        }
+        return platforms;
     },
 
     changeCredit:function(num){
@@ -92,6 +107,7 @@ cc.Class({
         project.setReceiveDay(date);
         group.begin(project,persons);
         this.projectGroups_.push(group);
+        for(let i = 0 ; i < persons.length ; )
         return true;
     },
 

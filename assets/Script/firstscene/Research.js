@@ -214,6 +214,10 @@ cc.Class({
         this.S_ += increment;
     },
 
+    addS5:function(){
+        this.S_ = this.S_ * 1.5;
+    },
+
     show: function(id){
         var info;
         info.name = this.name_[id];
