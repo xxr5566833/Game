@@ -1,23 +1,14 @@
 {
   "ver": "1.0.0",
-<<<<<<< HEAD
-  "uuid": "6abd7425-50f7-4ba9-a737-5954d205ae08",
-=======
-  "uuid": "56fb52e1-b074-4719-ab8e-c0dedfb22e00",
->>>>>>> 4dfaf38f7035d7850bc6cc450a9e5bc806903fe9
+  "uuid": "6cc426cd-cbf1-4322-87aa-ff613566f53d",
   "type": "sprite",
   "wrapMode": "clamp",
   "filterMode": "bilinear",
   "subMetas": {
     "黄色次主要按钮": {
       "ver": "1.0.3",
-<<<<<<< HEAD
-      "uuid": "b8bd8593-383f-4c90-8144-45fecd81f024",
-      "rawTextureUuid": "6abd7425-50f7-4ba9-a737-5954d205ae08",
-=======
-      "uuid": "38739d37-68fe-4571-8fb6-63f7c0d7ba77",
-      "rawTextureUuid": "56fb52e1-b074-4719-ab8e-c0dedfb22e00",
->>>>>>> 4dfaf38f7035d7850bc6cc450a9e5bc806903fe9
+      "uuid": "7113dbff-60db-4c92-ab3e-526b6e3abfb5",
+      "rawTextureUuid": "6cc426cd-cbf1-4322-87aa-ff613566f53d",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,

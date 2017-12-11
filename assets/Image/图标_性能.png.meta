@@ -1,23 +1,14 @@
 {
   "ver": "1.0.0",
-<<<<<<< HEAD
-  "uuid": "c4ee962a-c2b7-4c5c-a277-528657b40cb4",
-=======
-  "uuid": "5cf25575-5f58-4664-a52e-fb3794da0654",
->>>>>>> 4dfaf38f7035d7850bc6cc450a9e5bc806903fe9
+  "uuid": "197da0b7-9417-4557-b0f7-0699557c89a5",
   "type": "sprite",
   "wrapMode": "clamp",
   "filterMode": "bilinear",
   "subMetas": {
     "图标_性能": {
       "ver": "1.0.3",
-<<<<<<< HEAD
-      "uuid": "c112746e-42e9-4615-801e-98f89152a086",
-      "rawTextureUuid": "c4ee962a-c2b7-4c5c-a277-528657b40cb4",
-=======
-      "uuid": "0a229b84-c170-42eb-8c98-dfced2d02e28",
-      "rawTextureUuid": "5cf25575-5f58-4664-a52e-fb3794da0654",
->>>>>>> 4dfaf38f7035d7850bc6cc450a9e5bc806903fe9
+      "uuid": "4d9f580a-e497-4bef-a9f7-024ac4165e90",
+      "rawTextureUuid": "197da0b7-9417-4557-b0f7-0699557c89a5",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,

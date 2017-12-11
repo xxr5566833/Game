@@ -1,23 +1,14 @@
 {
   "ver": "1.0.0",
-<<<<<<< HEAD
-  "uuid": "3db72b93-7159-4f49-bec6-18418de18a17",
-=======
-  "uuid": "bae67499-2687-48f5-8330-934311e8f67d",
->>>>>>> 4dfaf38f7035d7850bc6cc450a9e5bc806903fe9
+  "uuid": "d1d8811d-965a-44bc-8036-510fb2ebdfee",
   "type": "sprite",
   "wrapMode": "clamp",
   "filterMode": "bilinear",
   "subMetas": {
     "图标_招聘": {
       "ver": "1.0.3",
-<<<<<<< HEAD
-      "uuid": "61f982a4-e163-45b7-8136-44445ec85269",
-      "rawTextureUuid": "3db72b93-7159-4f49-bec6-18418de18a17",
-=======
-      "uuid": "08dec17d-f40c-40c4-be75-2950ee84f9f2",
-      "rawTextureUuid": "bae67499-2687-48f5-8330-934311e8f67d",
->>>>>>> 4dfaf38f7035d7850bc6cc450a9e5bc806903fe9
+      "uuid": "9b75c8f4-b3bf-4b92-8bed-3c31654f2ae6",
+      "rawTextureUuid": "d1d8811d-965a-44bc-8036-510fb2ebdfee",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,
