@@ -203,6 +203,8 @@ cc.Class({
             //调用ui逻辑，获得玩家的出价
         }, this);
 
+        
+
         this.node.on("TECHNOLOGYADD", function(event){
             this.research_.getComponent("Research").addS4(event.detail.technology);
         }, this);

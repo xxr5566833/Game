@@ -1,0 +1,30 @@
+{
+  "ver": "1.0.0",
+  "uuid": "3db72b93-7159-4f49-bec6-18418de18a17",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "subMetas": {
+    "图标_招聘": {
+      "ver": "1.0.3",
+      "uuid": "61f982a4-e163-45b7-8136-44445ec85269",
+      "rawTextureUuid": "3db72b93-7159-4f49-bec6-18418de18a17",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 0,
+      "offsetY": 0,
+      "trimX": 0,
+      "trimY": 0,
+      "width": 428,
+      "height": 428,
+      "rawWidth": 428,
+      "rawHeight": 428,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}

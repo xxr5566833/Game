@@ -1,0 +1,30 @@
+{
+  "ver": "1.0.0",
+  "uuid": "9435921d-adda-401c-82c3-09921716bac7",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "subMetas": {
+    "银行_贷款_设计": {
+      "ver": "1.0.3",
+      "uuid": "975dd68a-9497-4db3-849d-774b38a99b58",
+      "rawTextureUuid": "9435921d-adda-401c-82c3-09921716bac7",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 0,
+      "offsetY": 0,
+      "trimX": 0,
+      "trimY": 0,
+      "width": 374,
+      "height": 523,
+      "rawWidth": 374,
+      "rawHeight": 523,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}
