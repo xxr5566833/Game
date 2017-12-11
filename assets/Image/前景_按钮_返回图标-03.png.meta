@@ -1,14 +1,14 @@
 {
   "ver": "1.0.0",
-  "uuid": "449c0c7a-71b6-4002-8741-b8e1a8a8299a",
+  "uuid": "53784bde-5cee-409c-a5cf-37ca6a5b6ae2",
   "type": "sprite",
   "wrapMode": "clamp",
   "filterMode": "bilinear",
   "subMetas": {
     "前景_按钮_返回图标-03": {
       "ver": "1.0.3",
-      "uuid": "b77bb4cf-a843-40bf-bdae-7d887aa48f4e",
-      "rawTextureUuid": "449c0c7a-71b6-4002-8741-b8e1a8a8299a",
+      "uuid": "675be42d-7f6d-439d-bcc1-1e8b089c96ae",
+      "rawTextureUuid": "53784bde-5cee-409c-a5cf-37ca6a5b6ae2",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,
