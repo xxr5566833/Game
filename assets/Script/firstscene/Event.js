@@ -231,7 +231,7 @@ cc.Class({
             return false;
         }, this);
 
-        this.node.on();
+        this.node.on("");
 
 
 

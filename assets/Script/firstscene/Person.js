@@ -81,8 +81,6 @@ cc.Class({
         coef: null,
         // 剩余的休息时间
         relaxDays_: 0,
-        // 团队同事中是否有比自己能力强的人
-        ambitionAcitve_: false,
         // 不屈性格激活，剩余工作天数,
         unyieldingDays_: 0,
     },
@@ -159,12 +157,20 @@ cc.Class({
             // 执着(persistent):获得科研点数有50%概率增加50%
             if (this.character_ === Character.persistent) {
                 if (Math.random() < 0.5) {
-                    this.node.dispatchEvent(new cc.Event.EventCustom('increase-50-percent-science-point'));
+                    this.node.dispatchEvent(new cc.Event.EventCustom('addS5'));
                 }
             }
             // 天才(genius):获得科研点数增加50%
             if (this.character_ === Character.genius) {
-                this.node.dispatchEvent(new cc.Event.EventCustom('increase-50-percent-science-point'));
+                this.node.dispatchEvent(new cc.Event.EventCustom('addS5'));
+            }
+
+            // 嘿，我真是个天才（暴击时）
+            // 精力集中，一发入魂（暴击时）
+            if (Math.random() < 0.5) {
+                this.saySomething("嘿，我真是个天才")
+            } else {
+                this.saySomething("精力集中，一发入魂")
             }
         }
 
@@ -191,7 +197,7 @@ cc.Class({
             // 认真(serious):开发时额外增加5%点数，参与项目bug数量降低30%
             if (this.character_ === this.serious) {
                 for (var i = 0; i < project.bugnum_.length; i++) {
-                    project.bugnum_[i] *= 0.7
+                    project.bugnum_[i] = Math.floor(project.bugnum_[i] * 0.7)
                 }
                 F *= 1.05
                 P *= 1.05
@@ -201,7 +207,7 @@ cc.Class({
             // 实干(hardWork):开发时额外增加10%点数，参与项目bug数量降低50%
             if (this.character_ === this.hardWork) {
                 for (var i = 0; i < project.bugnum_.length; i++) {
-                    project.bugnum_[i] *= 0.5
+                    project.bugnum_[i] = Math.floor(project.bugnum_[i] * 0.5)
                 }
                 F *= 1.1
                 P *= 1.1
@@ -210,8 +216,11 @@ cc.Class({
             }
             // 好胜(ambition):同项目组中如果有比他能力强的人，则开发时额外增加10%点数
             if (this.character_ === this.ambition) {
-                this.node.dispatchEvent(new cc.Event.EventCustom('teammates-ability-is-stronger'));
-                if (this.ambitionAcitve_) {
+                var event = new cc.Event.EventCustom('teammates-ability-is-stronger', true)
+                event.detail.person = this
+                this.node.dispatchEvent(event);
+                var ambitionAcitve_ = event.detail.back
+                if (ambitionAcitve_) {
                     F *= 1.1
                     P *= 1.1
                     E *= 1.1
@@ -219,22 +228,27 @@ cc.Class({
                 }
             }
             if (this.character_ === this.bigAmnition) {
-                this.node.dispatchEvent(new cc.Event.EventCustom('teammates-ability-is-stronger'));
-                if (this.ambitionAcitve_) {
+                var event = new cc.Event.EventCustom('teammates-ability-is-stronger', true)
+                event.detail.person = this
+                this.node.dispatchEvent(event);
+                var ambitionAcitve_ = event.detail.back
+                if (ambitionAcitve_) {
                     F *= 1.1
                     P *= 1.1
                     E *= 1.1
                     I *= 1.1
                 } else {
-                    this.node.dispatchEvent(new cc.Event.EventCustom('all-teammates-increase-develop-points'));
+                    this.group_.amibitionBuff_ = 1.1
                 }
             }
             // 团队中产生的野心buff
             // 野心(bigAmnition):若是项目组中能力最强的人，将提升所有人10%点数；若不是则自己增加额外10%点数。
-            F *= ambitionBuff
-            P *= ambitionBuff
-            E *= ambitionBuff
-            I *= ambitionBuff
+            if (ambitionBuff != undefined) {
+                F *= ambitionBuff
+                P *= ambitionBuff
+                E *= ambitionBuff
+                I *= ambitionBuff
+            }
 
             // 灵性(spirituality):增加项目点数时有30%概率使增加点数翻倍，可叠加暴击
             if (this.character_ === this.spirituality) {
@@ -252,10 +266,19 @@ cc.Class({
             project.augment(2, E);
             project.augment(3, I);
 
+            // 我找到了一个bug（测试阶段时出现）
+            // 又到了捉虫子的时候了（测试阶段时出现）
+            if (this.group_.state_ === 1) {
+                if (Math.random() < 0.5) {
+                    this.saySomething("我找到了一个bug")
+                } else {
+                    this.saySomething("又到了捉虫子的时候了")
+                }
+            }
+
             // 洞察(insight):如果参与测试阶段，所有bug将被发现
             if (this.character_ === Character.insight) {
-                var iftesting = this.node.dispatchEvent(new cc.Event.EventCustom('if-testing'));
-                if (iftesting) {
+                if (this.group_.state_ === 1) {
                     project.bugnum_[1] += project.bugnum_[0]
                     project.bugnum_[3] += project.bugnum_[2]
                     project.bugnum_[5] += project.bugnum_[4]
@@ -362,7 +385,13 @@ cc.Class({
         cc.log(this.name + ": " + sticker);
     },
     saySomething: function (saying) {
-        cc.log(this.name + ": " + saying);
+        if (this.character_ === Character.slience) {
+            cc.log(this.name + ": " + "......");
+            return false
+        } else {
+            cc.log(this.name + ": " + saying);
+            return true
+        }
     },
     sayPublic: function (set) {
         var s = set.entries()[0][0]
@@ -370,11 +399,7 @@ cc.Class({
             this.saySomething(s)
         } else {
             if (Math.random() < 0.2) {
-                if (this.character_ === Character.slience) {
-                    this.saySomething("......")
-                } else {
-                    this.saySomething(s)
-                }
+                this.saySomething(s)
             }
         }
     },
@@ -404,27 +429,96 @@ cc.Class({
             if (this.character_ === Character.bigOptimist) {
                 this.mood_ = getRandomInt(7, 11)
             }
+
+            if (this.mood_ <= 1) {
+                var rnd = Math.random()
+                if (rnd < 0.33) {
+                    // 感觉身体被掏空……（心情很差时出现）
+                    this.saySomething("感觉身体被掏空……")
+                } else if (end < 0.66) {
+                    // 感觉今天好虚啊……（心情差或很差时出现）
+                    this.saySomething("感觉今天好虚啊……")
+                } else {
+                    // 这段代码谁写的，这么丑（心情差或很差时出现）
+                    this.saySomething("这段代码谁写的，这么丑")
+                }
+            } else if (this.mood_ <= 3) {
+                var rnd = Math.random()
+                if (rnd < 0.5) {
+                    // 感觉今天好虚啊……（心情差或很差时出现）
+                    this.saySomething("感觉今天好虚啊……")
+                } else {
+                    // 这段代码谁写的，这么丑（心情差或很差时出现）
+                    this.saySomething("这段代码谁写的，这么丑")
+                }
+            } else if (this.mood_ <= 6) {
+                // 心无旁骛（心情一般、好或很好时出现）
+                this.saySomething("心无旁骛")
+            } else if (this.mood_ <= 8) {
+                if (Math.random() < 0.5) {
+                    this.saySomething("就这么点功能，我能做十个")
+                } else {
+                    this.saySomething("心无旁骛")
+                }
+            } else {
+                // 就这么点功能，我能做十个（心情好或很好的时候出现）
+                // 产品经理真是体贴，居然让我做了我最喜欢做的功能（心情很好时出现）
+                var rnd = Math.random()
+                if (rnd < 0.33) {
+                    this.saySomething("就这么点功能，我能做十个")
+                } else if (rnd < 0.66) {
+                    this.saySomething("心无旁骛")
+                }
+                else {
+                    this.saySomething("产品经理真是体贴，居然让我做了我最喜欢做的功能")
+                }
+            }
+
             if (this.power_ <= 0) {
                 if (this.character_ === Character.unyielding || this.character_ === Character.adversity) {
                     this.unyieldingDays_--;
                     if (this.unyieldingDays_ <= 0) {
+                        var rnd = Math.random()
+                        if (rnd < 0.33) {
+                            this.saySomething("看我反向工作")
+                            // 看我反向工作（体力为0准备休息时出现）
+                            // 回家养生去咯（体力为0准备休息时出现）
+                            // ……回家（体力为0准备休息时出现）
+                        } else if (rnd < 0.66) {
+                            this.saySomething("回家养生去咯")
+                        } else {
+                            this.saySomething("……回家")
+                        }
                         this.relaxAWeek()
                     }
                 } else {
+                    var rnd = Math.random()
+                    if (rnd < 0.33) {
+                        this.saySomething("看我反向工作")
+                        // 看我反向工作（体力为0准备休息时出现）
+                        // 回家养生去咯（体力为0准备休息时出现）
+                        // ……回家（体力为0准备休息时出现）
+                    } else if (rnd < 0.66) {
+                        this.saySomething("回家养生去咯")
+                    } else {
+                        this.saySomething("……回家")
+                    }
                     this.relaxAWeek();
                 }
             }
             // 体贴(thoughtful):同项目组中所有人的心情+1
             if (this.character_ === Character.thoughtful) {
-                this.node.emit('increaseAllTeammatesMood', {
-                    value: 1,
-                });
+                var event = new cc.Event.EventCustom('increase-all-teammates-mood', true)
+                event.detail.person = this
+                event.detail.value = 1
+                this.node.dispatchEvent(event);
             }
             // 辅佐(adjuvant):同项目组中所有人的心情+2
             if (this.character_ === Character.thoughtful) {
-                this.node.emit('increaseAllTeammatesMood', {
-                    value: 2,
-                });
+                var event = new cc.Event.EventCustom('increase-all-teammates-mood', true)
+                event.detail.person = this
+                event.detail.value = 2
+                this.node.dispatchEvent(event);
             }
         } else if (this.state_ === eState.relaxing) {
             this.relaxDays_--;
@@ -454,13 +548,15 @@ cc.Class({
                 rnd = Math.random()
                 if (rnd < 0.25) {
                     // 触发事件，使得团队中的随机一人心情增加。具体是谁增加，不关心，由上层节点决定
-                    this.node.emit('increaseTeammateMood', {
-                        value: 1,
-                    });
+                    var event = new cc.Event.EventCustom('increase-teammate-mood', true)
+                    event.detail.person = this
+                    event.detail.value = 1
+                    this.node.dispatchEvent(event);
                 } else if (rnd < 0.5) {
-                    this.node.emit('increaseTeammateMood', {
-                        value: 3,
-                    });
+                    var event = new cc.Event.EventCustom('increase-teammate-mood', true)
+                    event.detail.person = this
+                    event.detail.value = 3
+                    this.node.dispatchEvent(event);
                 } else {
                     //pass
                 }
