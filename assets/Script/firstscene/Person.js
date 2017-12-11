@@ -157,12 +157,15 @@ cc.Class({
             // 执着(persistent):获得科研点数有50%概率增加50%
             if (this.character_ === Character.persistent) {
                 if (Math.random() < 0.5) {
-                    this.node.dispatchEvent(new cc.Event.EventCustom('addS5'));
+                    this.node.dispatchEvent(new cc.Event.EventCustom('addS5',true));
                 }
             }
             // 天才(genius):获得科研点数增加50%
-            if (this.character_ === Character.genius) {
-                this.node.dispatchEvent(new cc.Event.EventCustom('addS5'));
+            else if (this.character_ === Character.genius) {
+                this.node.dispatchEvent(new cc.Event.EventCustom('addS5',true));
+            }
+            else {
+                this.node.dispatchEvent(new cc.Event.EventCustom('addS1',true));
             }
 
             // 嘿，我真是个天才（暴击时）

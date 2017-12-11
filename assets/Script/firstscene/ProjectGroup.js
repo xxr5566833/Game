@@ -244,6 +244,9 @@ cc.Class({
                     case 0:
                         //表示委托开发
                         if (this.project_.isFinished()) {
+                            var event = new EventCustom("UPDATACOEF",true);  
+                            event.detail.f=this.project_.requireFunction_;  
+                            this.node.dispatchEvent(event);
                             var event = new EventCustom("PROJECTSUCCESS", true);
                             event.detail.project = this.project_;
                             this.node.dispatchEvent(event);
@@ -274,9 +277,12 @@ cc.Class({
                         break;
                     case 2:
                         //表示是个竞标任务
-                        if (this.isFinished()) {
+                        if (this.project_.isFinished()) {
+                            var event = new EventCustom("UPDATACOEF",true);  
+                            event.detail.f=this.project_.requireFunction_;  
+                            this.node.dispatchEvent(event);
                             //获得剩下的80%
-                            if (!this.isOverdue()) {
+                            if (!this.project_.isOverdue()) {
                                 var event = new EventCustom("MONEYADD", true);
                                 event.detail.money = 0.8 * this.project_.getReward();
                                 this.node.dispatchEvent(event);

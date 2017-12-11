@@ -1,23 +1,14 @@
 {
   "ver": "1.0.0",
-<<<<<<< HEAD
   "uuid": "1fb7da8d-c8c5-4c76-b74a-026a3231ffe8",
-=======
-  "uuid": "3d71b96e-8e43-47e2-ad71-94b680a4329e",
->>>>>>> 4dfaf38f7035d7850bc6cc450a9e5bc806903fe9
   "type": "sprite",
   "wrapMode": "clamp",
   "filterMode": "bilinear",
   "subMetas": {
     "图标_邮件": {
       "ver": "1.0.3",
-<<<<<<< HEAD
-      "uuid": "95d0c2c8-f74f-417b-a034-88e2c6cca42a",
+      "uuid": "ed7658d7-aaa3-49d6-9a59-b5f0fb9fbf9e",
       "rawTextureUuid": "1fb7da8d-c8c5-4c76-b74a-026a3231ffe8",
-=======
-      "uuid": "0b885818-dd1f-4edc-8781-d33de0027102",
-      "rawTextureUuid": "3d71b96e-8e43-47e2-ad71-94b680a4329e",
->>>>>>> 4dfaf38f7035d7850bc6cc450a9e5bc806903fe9
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,

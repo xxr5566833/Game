@@ -1,5 +1,3 @@
-
-
 cc.Class({
     extends: cc.Component,
 
@@ -188,6 +186,26 @@ cc.Class({
             this.personControl_.getComponent("PersonControl").addLimit();
         }, this);
 
+        this.node.on("addS1", function(event){
+            this.research_.getComponent("Research").addS1();
+        }, this);
+
+        this.node.on("addS3", function(event){
+            this.research_.getComponent("Research").addS3(event.detail.f);
+        }, this);
+
+        this.node.on("addS5", function(event){
+            this.research_.getComponent("Research").addS5();
+        }, this);
+
+        this.node.on("UNLOCKPLATFORM", function(event){
+            // event.detail.id为平台编号 0:客户端 1：网页 2：跨平台
+        }, this);
+
+        this.node.on("UNLOCKTYPE", function(event){
+            // event.detail.id为类型编号 0~6  社交、多媒体、游戏、安全、数据科学、办公、电商
+        }, this);
+
         this.node.on("RECEIVEPROJ", function(event){
             //弹出选人框，返回所选的人员数组
             this.personControl_.getComponnet("PersonControl").begin(project, persons);
@@ -215,10 +233,6 @@ cc.Class({
             event.detail.back = this.personControl_s.getComponent("PersonControl").getName();
         }, this);
 
-        this.node.on("addS5", function(event){
-            this.research_.getComponent("Research").addS5();
-        }, this);
-
         this.node.on("teammates-ability-is-stronger", function(event){
             var persons = event.detail.group.persons_;
             var person = event.detail.person;
@@ -233,7 +247,6 @@ cc.Class({
             return false;
         }, this);
 
-        this.node.on("");
 
 
 
@@ -241,9 +254,5 @@ cc.Class({
 
 
     },
-
-    // called every frame, uncomment this function to activate update callback
-    // update: function (dt) {
-
-    // },
 });
+        

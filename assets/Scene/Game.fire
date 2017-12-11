@@ -21,7 +21,7 @@
     "_active": true,
     "_components": [],
     "_prefab": null,
-    "_id": "32ce3c02-049a-493b-ab97-1db637c5fc50",
+    "_id": "534aaec1-ee88-4450-8673-180e9420a1b2",
     "_opacity": 255,
     "_color": {
       "__type__": "cc.Color",
@@ -348,10 +348,7 @@
     "node": {
       "__id__": 6
     },
-    "_enabled": true,
-    "projects_": [],
-    "projs_": [],
-    "availableList_": []
+    "_enabled": true
   },
   {
     "__type__": "cc.Node",
@@ -412,12 +409,7 @@
     "node": {
       "__id__": 8
     },
-    "_enabled": true,
-    "persons_": [],
-    "currentNum_": 0,
-    "maxNum_": 4,
-    "projectGroups_": [],
-    "credit_": 0
+    "_enabled": true
   },
   {
     "__type__": "cc.Node",
@@ -8924,7 +8916,7 @@
       }
     ],
     "_tag": -1,
-    "_active": false,
+    "_active": true,
     "_components": [],
     "_prefab": null,
     "_id": "b7OJQZF2tOFbupAlyp57C8",
@@ -20180,7 +20172,7 @@
       }
     ],
     "_tag": -1,
-    "_active": true,
+    "_active": false,
     "_components": [
       {
         "__id__": 562
@@ -23971,6 +23963,7 @@
     },
     "Msgbox_": {
       "__id__": 419
-    }
+    },
+    "research_": null
   }
 ]
