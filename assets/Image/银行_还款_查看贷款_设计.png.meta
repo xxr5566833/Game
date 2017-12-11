@@ -1,0 +1,30 @@
+{
+  "ver": "1.0.0",
+  "uuid": "fc57994b-3910-4614-a366-299cae29f5c4",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "subMetas": {
+    "银行_还款_查看贷款_设计": {
+      "ver": "1.0.3",
+      "uuid": "52debdd2-7aae-4a22-a77b-eea8b95cf6b0",
+      "rawTextureUuid": "fc57994b-3910-4614-a366-299cae29f5c4",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 0,
+      "offsetY": 0,
+      "trimX": 0,
+      "trimY": 0,
+      "width": 374,
+      "height": 523,
+      "rawWidth": 374,
+      "rawHeight": 523,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}

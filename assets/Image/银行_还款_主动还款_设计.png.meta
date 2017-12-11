@@ -1,0 +1,30 @@
+{
+  "ver": "1.0.0",
+  "uuid": "9539e92b-c690-431c-8ca3-9c25e108ef6a",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "subMetas": {
+    "银行_还款_主动还款_设计": {
+      "ver": "1.0.3",
+      "uuid": "66b7d79d-3515-4e62-9c8b-4f24f438bbc2",
+      "rawTextureUuid": "9539e92b-c690-431c-8ca3-9c25e108ef6a",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 0,
+      "offsetY": 0,
+      "trimX": 0,
+      "trimY": 0,
+      "width": 374,
+      "height": 523,
+      "rawWidth": 374,
+      "rawHeight": 523,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}

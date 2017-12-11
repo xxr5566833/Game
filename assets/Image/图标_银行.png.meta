@@ -1,0 +1,30 @@
+{
+  "ver": "1.0.0",
+  "uuid": "5c72b495-fd37-4f99-a920-adbc780fefb5",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "subMetas": {
+    "图标_银行": {
+      "ver": "1.0.3",
+      "uuid": "f9bbe14c-999e-4c56-8807-003711e284fc",
+      "rawTextureUuid": "5c72b495-fd37-4f99-a920-adbc780fefb5",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 0,
+      "offsetY": 0,
+      "trimX": 0,
+      "trimY": 0,
+      "width": 650,
+      "height": 728,
+      "rawWidth": 650,
+      "rawHeight": 728,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}
