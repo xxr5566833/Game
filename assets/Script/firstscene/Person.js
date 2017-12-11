@@ -164,6 +164,14 @@ cc.Class({
             if (this.character_ === Character.genius) {
                 this.node.dispatchEvent(new cc.Event.EventCustom('addS5'));
             }
+
+            // 嘿，我真是个天才（暴击时）
+            // 精力集中，一发入魂（暴击时）
+            if (Math.random() < 0.5) {
+                this.saySomething("嘿，我真是个天才")
+            } else {
+                this.saySomething("精力集中，一发入魂")
+            }
         }
 
         // 根据项目难度：减少的任务点数增量百分比 = (任务难度 * 0.06) / (任务难度 * 0.06 + 1)
@@ -257,6 +265,16 @@ cc.Class({
             project.augment(1, P);
             project.augment(2, E);
             project.augment(3, I);
+
+            // 我找到了一个bug（测试阶段时出现）
+            // 又到了捉虫子的时候了（测试阶段时出现）
+            if (this.group_.state_ === 1) {
+                if (Math.random() < 0.5) {
+                    this.saySomething("我找到了一个bug")
+                } else {
+                    this.saySomething("又到了捉虫子的时候了")
+                }
+            }
 
             // 洞察(insight):如果参与测试阶段，所有bug将被发现
             if (this.character_ === Character.insight) {
@@ -434,13 +452,24 @@ cc.Class({
                     this.saySomething("这段代码谁写的，这么丑")
                 }
             } else if (this.mood_ <= 6) {
-
+                // 心无旁骛（心情一般、好或很好时出现）
+                this.saySomething("心无旁骛")
             } else if (this.mood_ <= 8) {
-
-            } else {
                 if (Math.random() < 0.5) {
                     this.saySomething("就这么点功能，我能做十个")
                 } else {
+                    this.saySomething("心无旁骛")
+                }
+            } else {
+                // 就这么点功能，我能做十个（心情好或很好的时候出现）
+                // 产品经理真是体贴，居然让我做了我最喜欢做的功能（心情很好时出现）
+                var rnd = Math.random()
+                if (rnd < 0.33) {
+                    this.saySomething("就这么点功能，我能做十个")
+                } else if (rnd < 0.66) {
+                    this.saySomething("心无旁骛")
+                }
+                else {
                     this.saySomething("产品经理真是体贴，居然让我做了我最喜欢做的功能")
                 }
             }
@@ -449,9 +478,31 @@ cc.Class({
                 if (this.character_ === Character.unyielding || this.character_ === Character.adversity) {
                     this.unyieldingDays_--;
                     if (this.unyieldingDays_ <= 0) {
+                        var rnd = Math.random()
+                        if (rnd < 0.33) {
+                            this.saySomething("看我反向工作")
+                            // 看我反向工作（体力为0准备休息时出现）
+                            // 回家养生去咯（体力为0准备休息时出现）
+                            // ……回家（体力为0准备休息时出现）
+                        } else if (rnd < 0.66) {
+                            this.saySomething("回家养生去咯")
+                        } else {
+                            this.saySomething("……回家")
+                        }
                         this.relaxAWeek()
                     }
                 } else {
+                    var rnd = Math.random()
+                    if (rnd < 0.33) {
+                        this.saySomething("看我反向工作")
+                        // 看我反向工作（体力为0准备休息时出现）
+                        // 回家养生去咯（体力为0准备休息时出现）
+                        // ……回家（体力为0准备休息时出现）
+                    } else if (rnd < 0.66) {
+                        this.saySomething("回家养生去咯")
+                    } else {
+                        this.saySomething("……回家")
+                    }
                     this.relaxAWeek();
                 }
             }
