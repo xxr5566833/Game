@@ -18,7 +18,8 @@ cc.Class({
 
     // use this for initialization
     onLoad: function () {
-        this.gold_=10000;
+        //初始资金10万
+        this.gold_=100000;
         this.protect_ = true;
         this.coef = new Object();
         // Account

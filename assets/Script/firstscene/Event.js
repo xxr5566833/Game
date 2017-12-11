@@ -101,6 +101,8 @@ cc.Class({
                 case this.message.consignprojectunlock:
                     this.msgcontrol.alert("SUCCESS", "解锁了新的任务");
                     break;
+                default:
+                    this.msgcontrol.alert(event.deatil.type, event.deatil.string);
             }
         }, this);
 
@@ -209,7 +211,34 @@ cc.Class({
             this.research_.getComponent("Research").addS4(event.detail.technology);
         }, this);
 
-        
+        this.node.on("GETNAME", function(event){
+            event.detail.back = this.personControl_s.getComponent("PersonControl").getName();
+        }, this);
+
+        this.node.on("addS5", function(event){
+            this.research_.getComponent("Research").addS5();
+        }, this);
+
+        this.node.on("teammates-ability-is-stronger", function(event){
+            var persons = event.detail.group.persons_;
+            var person = event.detail.person;
+            for(let i = 0 ; i < persons.length ; i++)
+            {
+                var tempperson = persons[i];
+                if(tempperson.coding_ > person.coding_ || tempperson.science_ >
+                    person.science_ || tempperson.art_ > person.art_ || tempperson.creativity_ >
+                person.creativity_ || tempperson.manager_ > person.manager_)
+                    return true;
+            }
+            return false;
+        }, this);
+
+        this.node.on("");
+
+
+
+
+
 
     },
 

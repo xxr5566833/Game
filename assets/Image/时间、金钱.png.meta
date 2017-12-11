@@ -1,14 +1,23 @@
 {
   "ver": "1.0.0",
+<<<<<<< HEAD
   "uuid": "d6e25f16-0898-440e-a186-7507c9be6e7f",
+=======
+  "uuid": "d1e46e17-fa55-4f72-b405-ad37ff75ea81",
+>>>>>>> 4dfaf38f7035d7850bc6cc450a9e5bc806903fe9
   "type": "sprite",
   "wrapMode": "clamp",
   "filterMode": "bilinear",
   "subMetas": {
     "时间、金钱": {
       "ver": "1.0.3",
+<<<<<<< HEAD
       "uuid": "d42bd702-048a-497e-89c3-4a5e25f0a95e",
       "rawTextureUuid": "d6e25f16-0898-440e-a186-7507c9be6e7f",
+=======
+      "uuid": "9555a38e-87df-4022-b4dd-c95f378125ae",
+      "rawTextureUuid": "d1e46e17-fa55-4f72-b405-ad37ff75ea81",
+>>>>>>> 4dfaf38f7035d7850bc6cc450a9e5bc806903fe9
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,
