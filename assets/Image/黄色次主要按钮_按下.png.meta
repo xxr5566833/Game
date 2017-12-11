@@ -1,14 +1,14 @@
 {
   "ver": "1.0.0",
-  "uuid": "a4fedeee-73b8-45f8-9d71-f047c8b5257d",
+  "uuid": "5e8c3bc2-012c-41fe-bf1b-4ae418c0499d",
   "type": "sprite",
   "wrapMode": "clamp",
   "filterMode": "bilinear",
   "subMetas": {
     "黄色次主要按钮_按下": {
       "ver": "1.0.3",
-      "uuid": "7ab41054-5391-4b04-b1b6-d81195d1839f",
-      "rawTextureUuid": "a4fedeee-73b8-45f8-9d71-f047c8b5257d",
+      "uuid": "f08e045a-e290-4249-b1c2-121c44d03c8c",
+      "rawTextureUuid": "5e8c3bc2-012c-41fe-bf1b-4ae418c0499d",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,

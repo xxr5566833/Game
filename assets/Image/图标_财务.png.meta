@@ -1,14 +1,14 @@
 {
   "ver": "1.0.0",
-  "uuid": "45d8053c-96ef-49bf-96e9-ddb1b0f7b0d3",
+  "uuid": "c9d90729-daca-4fa7-a82c-3ef067d79720",
   "type": "sprite",
   "wrapMode": "clamp",
   "filterMode": "bilinear",
   "subMetas": {
     "图标_财务": {
       "ver": "1.0.3",
-      "uuid": "debddcf0-07f2-4053-b8ca-23a7dae6aff1",
-      "rawTextureUuid": "45d8053c-96ef-49bf-96e9-ddb1b0f7b0d3",
+      "uuid": "df986f20-f819-408e-a701-6ae7989b2eb9",
+      "rawTextureUuid": "c9d90729-daca-4fa7-a82c-3ef067d79720",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,

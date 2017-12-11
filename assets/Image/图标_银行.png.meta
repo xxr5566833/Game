@@ -1,14 +1,14 @@
 {
   "ver": "1.0.0",
-  "uuid": "11d93944-cc39-42c1-bb72-1ef3c0f327e6",
+  "uuid": "b8db116a-e966-40a2-979f-93c185d9b2cb",
   "type": "sprite",
   "wrapMode": "clamp",
   "filterMode": "bilinear",
   "subMetas": {
     "图标_银行": {
       "ver": "1.0.3",
-      "uuid": "21fbad1b-3a9c-4a45-84dc-b0a9f8785d0c",
-      "rawTextureUuid": "11d93944-cc39-42c1-bb72-1ef3c0f327e6",
+      "uuid": "62ab3902-e936-4c0e-bd61-b95f0422b13c",
+      "rawTextureUuid": "b8db116a-e966-40a2-979f-93c185d9b2cb",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,

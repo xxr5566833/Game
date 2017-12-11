@@ -1,14 +1,14 @@
 {
   "ver": "1.0.0",
-  "uuid": "d6e25f16-0898-440e-a186-7507c9be6e7f",
+  "uuid": "8287a61a-d3a3-48bb-8e0f-5b6de9f5bf23",
   "type": "sprite",
   "wrapMode": "clamp",
   "filterMode": "bilinear",
   "subMetas": {
     "时间、金钱": {
       "ver": "1.0.3",
-      "uuid": "5a703cbb-d74b-4db5-be4e-6792cf598ebb",
-      "rawTextureUuid": "d6e25f16-0898-440e-a186-7507c9be6e7f",
+      "uuid": "5d77eae8-3df5-4c39-b352-be28fa51c935",
+      "rawTextureUuid": "8287a61a-d3a3-48bb-8e0f-5b6de9f5bf23",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,
