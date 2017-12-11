@@ -1,23 +1,14 @@
 {
   "ver": "1.0.0",
-<<<<<<< HEAD
-  "uuid": "faff9402-e124-487d-816d-974c5f0f8a54",
-=======
   "uuid": "9539e92b-c690-431c-8ca3-9c25e108ef6a",
->>>>>>> b2e7d06d2d1c2964a4c7e9088f3ad6949d27ec57
   "type": "sprite",
   "wrapMode": "clamp",
   "filterMode": "bilinear",
   "subMetas": {
     "银行_还款_主动还款_设计": {
       "ver": "1.0.3",
-<<<<<<< HEAD
-      "uuid": "88f214ea-cfac-4a4c-bd44-83654fc59f93",
-      "rawTextureUuid": "faff9402-e124-487d-816d-974c5f0f8a54",
-=======
-      "uuid": "a2a55242-12f9-40fd-b870-dc21bc71053d",
+      "uuid": "66b7d79d-3515-4e62-9c8b-4f24f438bbc2",
       "rawTextureUuid": "9539e92b-c690-431c-8ca3-9c25e108ef6a",
->>>>>>> b2e7d06d2d1c2964a4c7e9088f3ad6949d27ec57
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,
