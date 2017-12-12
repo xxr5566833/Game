@@ -8,7 +8,35 @@ cc.Class({
         function:cc.Node,
         technology:cc.Node,
         confirm:cc.Node,
-        employee:cc.Node
+        employee:cc.Node,
+        page:cc.Node,
+        typelist:cc.Node,
+        funclist:cc.Node,
+        techlist:cc.Node,
+        emplist:cc.Node,
+        typereq:cc.Node,
+        funcreq:cc.Node,
+        techreq:cc.Node,
+        empreq:cc.Node,
+        background:cc.Node,
+        bugget:cc.Integer,
+        money:cc.Integer,
+        targetfunc:cc.Integer,
+        select_pf:cc.Integer,
+        select_typ:[cc.Integer],
+        select_fun:[cc.Integer],
+        select_tech:[cc.Integer],
+        select_em:[cc.Integer],
+    },
+
+    onEnable:function(){
+        //获取数据
+        var pf_data=new object;
+        var typ_data=new object;
+        var fun_data=new object;
+        var tech_data=new object;
+        var em_data=new object;
+        
     },
 
     platform_next:function(){
@@ -20,6 +48,7 @@ cc.Class({
         this.node.getChildByName("type").active==false;     // 关闭当前界面
         this.node.getChildByName("platform").active==true;  // 打开上一界面
     },
+
     type_next:function(){
         this.node.getChildByName("type").active==false;     // 关闭当前窗口
         this.node.getChildByName("function").active==true;      // 打开下一窗口
@@ -29,6 +58,7 @@ cc.Class({
         this.node.getChildByName("function").active==false;  
         this.node.getChildByName("type").active==true;       
     },
+
     function_next:function(){
         this.node.getChildByName("function").active==false; // 关闭当前窗口
         this.node.getChildByName("technology").active==true;      // 打开下一窗口
