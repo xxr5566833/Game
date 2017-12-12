@@ -1,3 +1,4 @@
+var projectgroup=require("ProjectGroup");
 cc.Class({
     extends: cc.Component,
 
@@ -12,37 +13,70 @@ cc.Class({
         //    readonly: false,    // optional, default is false
         // },
         // ...
-        bubbles: {
+        bubbles_: {
             default: [],
             type: [cc.Label]
         },
-        head: 0,
-        tail: 0,
-        length_ : 10,
+        projectGroups_: {
+            default: [],
+            type: [projectgroup]
+        },
+        currentProjectGroup_: {
+            default: null,
+            type: projectgroup
+        }
     },
 
     // use this for initialization
     onLoad: function () {
-        // 初始化length个对话气泡
-        for (var i = 0; i < length_; i++) {
-            var l = new cc.Label()
-            l.string = "test"
-            bubbles.push(l)
+        var event = new cc.Event.EventCustom('get-all-project-groups', true)
+        event.detail.person = this
+        this.node.dispatchEvent(event);    
+        this.projectGroups_ = event.detail.back        
+        if (this.projectGroups_.length > 0) {
+            // 默认为第一个项目组
+            this.currentProjectGroup_ = this.projectGroups_[0]
+        }
+        // 初始化4个对话气泡
+        for (var i = 0; i < 4; i++) {
+            this.bubbles_.push(new cc.Label())
+        }
+    },
+
+    // 更新项目组接口
+    updateProjectGroups: function(groups) {
+        this.projectGroups_ = groups
+        if (this.projectGroups_.length > 0) {
+            // 默认为第一个项目组
+            this.currentProjectGroup_ = this.projectGroups_[0]
         }
     },
 
     newRow: function(s) {
-        if (tail >= length_) {
+        if (tail >= this.length_) {
             for (var i = this.head; i < tail-1; i++) {
-                bubbles[i].string = bubbles[i+1].string
+                this.bubbles[i].string = this.bubbles[i+1].string
             }
         }
-        bubbles[this.tail].string = s
+        this.bubbles[this.tail].string = s
         this.tail ++
-    }
+    },
 
+    left: function() {
+        this.currentProjectGroup_ = this.projectGroups_[(this.projectGroups_.indexOf(this.currentProjectGroup_) - 1 + this.projectGroups_.length) % this.projectGroups_.length]
+    },
+
+    right: function() {
+        this.currentProjectGroup_ = this.projectGroups_[(this.projectGroups_.indexOf(this.currentProjectGroup_) + 1) % this.projectGroups_.length]
+    },
     // called every frame, uncomment this function to activate update callback
-    // update: function (dt) {
-
-    // },
+    update: function (dt) {
+        for (var i = 0; i < 4; i++) {
+            if (i < this.currentProjectGroup_.persons_.length) {
+                this.bubbles_[i].string = this.currentProjectGroup_.persons_[i].month_
+            } else {
+                this.bubbles_[i].string = ""
+            }
+        }
+    },
 });

@@ -83,6 +83,8 @@ cc.Class({
         relaxDays_: 0,
         // 不屈性格激活，剩余工作天数,
         unyieldingDays_: 0,
+        // 正在说的话
+        month_: ""
     },
 
     // use this for initialization
@@ -381,20 +383,21 @@ cc.Class({
             this.character_ = rndInt;
         }
     },
-    update: function (dt) {
+    // update: function (dt) {
 
-    },
+    // },
     sendSticker: function (sticker) {
         cc.log(this.name + ": " + sticker);
     },
     saySomething: function (saying) {
         if (this.character_ === Character.slience) {
-            cc.log(this.name + ": " + "......");
+            this.month_ = "......"
             return false
         } else {
-            cc.log(this.name + ": " + saying);
+            this.month_ = saying
             return true
         }
+        cc.log(this.name + ": " + this.month_);
     },
     sayPublic: function (set) {
         var s = set.entries()[0][0]
