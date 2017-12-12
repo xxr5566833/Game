@@ -27,9 +27,9 @@ cc.Class({
         {
             var period = this.generatePeriod(i);
             this.periods_.push(period);
-            var event = new EventCustom("GETDATE", true);
+            var event = new cc.Event.EventCustom("GETDATE", true);
             this.node.dispatchEvent(event);
-            var date = event.detail.back;
+            var date = event.back;
             this.initDays_.push(date);
         }
     },
@@ -83,9 +83,9 @@ cc.Class({
     },
     //检查是否可以发出竞标事件，如果可以，那么发出竞标事件，如果有可以开始竞标的，那么开始竞标
     tender:function(){
-        var event = new EventCustom("GETDATE", true);
+        var event = new cc.Event.EventCustom("GETDATE", true);
         this.node.dispatchEvent(event);
-        var date = event.detail.back;
+        var date = event.back;
         for(let i = 0 ; i < this.maxKindNum_ ; i++)
         {
             var day = date - this.initDays_[i];

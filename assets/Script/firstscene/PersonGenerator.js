@@ -3,10 +3,6 @@ cc.Class({
     extends: cc.Component,
 
     properties: {
-        persons_:{   
-            default:[],
-            type:[cc.Prefab]
-        },
     },
     //根据传入的level返回可用的person列表,在人们选择好某种招聘方式时调用它，所以这里还需要调用expend扣除一定招聘费用
     showPersons:function(l){
@@ -34,9 +30,9 @@ cc.Class({
             }
         }
         event=new cc.Event.EventCustom('HIRE', true);
-        event.detail.person=person;
+        event.person=person;
         this.node.dispatchEvent(event);
-        if(event.detail.back){
+        if(event.back){
             for(let i=0;i<this.persons_.length;i++){
                 if(this.persons_[i].index_== index){
                     this.persons_.splice(i,1);
@@ -48,22 +44,47 @@ cc.Class({
 
     addPerson: function(index){
         event=new cc.Event.EventCustom('FIRE', true);
-        event.detail.index=index;
+        event.index=index;
         this.node.dispatchEvent(event);
-        this.persons_.push(event.detail.back);
+        console.log(event.back);
+        this.persons_.push(event.back);
     },
+
+    //下面都是为了测试
+
+        addOne:function(){
+            console.log(this.persons_);
+            this.removePerson(this.persons_[0].index_);
+            console.log(this.persons_);
+        },
+    
+        firePerson0:function(){
+            this.addPerson(0);
+            console.log(this.persons_);
+        },
+        firePerson1:function(){
+            this.addPerson(1);
+            console.log(this.persons_);
+        },
+
+
+
     // use this for initialization
     init:function(persons){
+        this.persons_ = [];
         for(var i=0;i<persons.length;++i){
             var person = new personObj();
             person.init(persons[i]);
+            person.node = this.node;
             this.persons_.push(person);
         }
+        console.log(this.persons_);
     },
     onLoad: function () {
         var levelcount = 8;     
         //暂时定为7个等级
         this.pgs=[];
+        this.persons_ = [];
         //不同等级的招聘方式信息
         var templist=[
             {
@@ -109,30 +130,72 @@ cc.Class({
                 cost_ : 70000,
             }
         ];
-        /*var list=[
+
+        var list=[
             {
-                abilityCoding_: 0,
-                abilityManage_: 10,
-                abilityArt_: 0,
-                salary_: 250,
-                employMoney_: 1000,
-                index:0,
-                name_: "陈小武",
-                profession_: "程序员",
-                supplicateLine_: "谁敢解雇我？"
+                gift_: 10.0,
+                coding_: 10.,
+                science_: 10.,
+                art_: 10.,
+                creativity_: 10.,
+                manager_: 10.,
+                business_: 10.,
+                /**工资 */
+                salary_: 100.,
+                /**雇佣金 */
+                employMoney_: 100.,
+                // 姓名
+                name_: "001",
+                // 职能
+                profession_: 0,
+                index_: 0,
+                // 体力值
+                power_: 100,
+                // 心情
+                mood_: 10,
+                // 通过活动可以获得
+                moodAddition_: 0,
+                // 性格
+                character_: 0,
+                coef: null,
+                // 剩余的休息时间
+                relaxDays_: 0,
+                // 不屈性格激活，剩余工作天数,
+                unyieldingDays_: 0,
             },
             {
-                abilityCoding_: 0,
-                abilityManage_: 10,
-                abilityArt_: 0,
-                salary_: 250,
-                employMoney_: 1000,
-                index:0,
-                name_: "少时诵诗书所所所所所所所所所",
-                profession_: "湿哒哒无四达大厦啥的",
-                supplicateLine_: "少时诵诗书所所所所所所所所所少时诵诗书所所所所所所所所所"
+                gift_: 10.0,
+                coding_: 10.,
+                science_: 10.,
+                art_: 10.,
+                creativity_: 10.,
+                manager_: 10.,
+                business_: 10.,
+                state_: 0,
+                /**工资 */
+                salary_: 100.,
+                /**雇佣金 */
+                employMoney_: 100.,
+                // 姓名
+                name_: "002",
+                // 职能
+                profession_: 0,
+                index_: 1,
+                // 体力值
+                power_: 100,
+                // 心情
+                mood_: 10,
+                // 通过活动可以获得
+                moodAddition_: 0,
+                // 性格
+                character_: 0,
+                coef: null,
+                // 剩余的休息时间
+                relaxDays_: 0,
+                // 不屈性格激活，剩余工作天数,
+                unyieldingDays_: 0,
             },
-            {
+            /*{
                 abilityCoding_: 100,
                 abilityManage_: 10,
                 abilityArt_: 60,
@@ -164,8 +227,9 @@ cc.Class({
                 name_: "汉尼拔·莱克特",
                 profession_: "设计师",
                 supplicateLine_: "吃了你！"
-            },
-        ];*/
+            },*/
+        ];
+        this.init(list);
         for (var i=0;i<levelcount;i++){
             var pg = templist[i];
             this.pgs.push(pg);

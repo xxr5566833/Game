@@ -31,7 +31,7 @@ cc.Class({
                         if(money > 100 * 10000)
                         {
                             this.unlock_ = true;
-                            var event = new EventCustom("MESSAGE", true);
+                            var event = new cc.Event.EventCustom("MESSAGE", true);
                             event.detail.type = "SUCCESS";
                             event.detail.string = "成功达到百万富翁";
                         }
@@ -49,7 +49,7 @@ cc.Class({
                         if(money > 1000 * 10000)
                         {
                             this.unlock_ = true;
-                            var event = new EventCustom("MESSAGE", true);
+                            var event = new cc.Event.EventCustom("MESSAGE", true);
                             event.detail.type = "SUCCESS";
                             event.detail.string = "成功达到千万富翁";
                         }
@@ -67,7 +67,7 @@ cc.Class({
                         if(money > 10000 * 10000)
                         {
                             this.unlock_ = true;
-                            var event = new EventCustom("MESSAGE", true);
+                            var event = new cc.Event.EventCustom("MESSAGE", true);
                             event.detail.type = "SUCCESS";
                             event.detail.string = "成功达到亿万富翁";
                         }
@@ -85,7 +85,7 @@ cc.Class({
                         if(totalloan > 10 * 10000)
                         {
                             this.unlock_ = true;
-                            var event = new EventCustom("MESSAGE", true);
+                            var event = new cc.Event.EventCustom("MESSAGE", true);
                             event.detail.type = "FAIL";
                             event.detail.string = "负债累累";
                         }
@@ -104,11 +104,11 @@ cc.Class({
     },
 
     unlock:function(){
-        var moneyevent = new EventCustom("MONEYADD", true);
+        var moneyevent = new cc.Event.EventCustom("MONEYADD", true);
         this.node.dispatchEvent(moneyevent);
         var money = moneyevent.detail.back;
 
-        var totalevent = new EventCustom("TOTALLOANGET", true);
+        var totalevent = new cc.Event.EventCustom("TOTALLOANGET", true);
         this.node.dispatchEvent(totalevent);
         var total = totalevent.detail.back;
         

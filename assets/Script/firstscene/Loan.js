@@ -21,21 +21,24 @@ cc.Class({
     },
 
     init:function(money, deadline, interest, isfixed){
-        event=new cc.Event.EventCustom('GETDATE', true);
+        var event=new cc.Event.EventCustom('GETDATE', true);
         this.node.dispatchEvent(event);
         this.originMoney_ = money;
         this.interest_ = interest;
         this.deadline_ = deadline;
-        this.initDay = event.detail.back;
+        this.initDay_ = event.back;
         this.currentMoney_ = money;
-        this.isFixed_ = this.isfixed;
+        this.isFixed_ = isfixed;
     },
 
     grow:function(){
-        this.currentMoney_=this.currentMoney_*this.interest_;
+        this.currentMoney_=this.currentMoney_* ( 1 + this.interest_ );
     },
 
     isDue:function(nowday){
+        console.log(this.deadline_);
+        console.log(this.initDay_);
+        console.log(nowday);
         return (this.deadline_ + this.initDay_) <= nowday;
     },
 
@@ -52,7 +55,9 @@ cc.Class({
     getCurrentMoney:function(){
         return this.currentMoney_;
     },
-
+    isFixed:function(){
+        return this.isFixed_;
+    },
     // use this for initialization
     onLoad: function () {
 

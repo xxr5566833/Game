@@ -50,8 +50,8 @@ cc.Class({
         }
 
         //调用ui发布信息
-        var event = new CustomEvent("ANNOUNCE", true);
-        event.detail.group = this;
+        var event = new cc.Event.EventCustom("ANNOUNCE", true);
+        event.group = this;
         this.node.dispatchEvent(event);
     },
     enroll: function () {
@@ -102,10 +102,10 @@ cc.Class({
         var rand = Math.random();
         if (probability >= rand) {
             //表示这个黑客能力很强，成功获取到了情报
-            var event = new EventCustom("GETCREDIT", true);
+            var event = new cc.Event.EventCustom("GETCREDIT", true);
             this.node.dispatchEvent(event);
             //你的信誉度获取
-            var mycredit = event.detail.back;
+            var mycredit = event.back;
             //计算的中间变量
             var temp1 = this.a_ * mycredit + this.b_ * this.expectedPrice_;
             var temp2 = this.maxM_ + 1;
@@ -123,8 +123,8 @@ cc.Class({
             this.bestPrice_ = -2;
             if (Math.random() > 0.5) {
                 //50%就是失败并被发现,信誉度降低10%
-                event = new EventCustom("CREDITCHANGE", true);
-                event.detail.change = - 0.1 * mycredit;
+                event = new cc.Event.EventCustom("CREDITCHANGE", true);
+                event.change = - 0.1 * mycredit;
                 this.node.dispatchEvent(event);
                 //或许这里需要一些ui逻辑
             }
@@ -153,23 +153,23 @@ cc.Class({
         }
         else {
             if (this.hacker_) {
-                var event = new EventCustom("STEALBIDINFORMATION", true);
+                var event = new cc.Event.EventCustom("STEALBIDINFORMATION", true);
                 var bestprice = this.stealInformation();
-                event.detail.bestprice = bestprice;
+                event.bestprice = bestprice;
                 this.node.dispatchEvent(event);
                 //把黑客获取到的信息展示给玩家
 
                 //然后就需要让这个黑客休息了
                 this.hacker_.state_ = 1;
             }
-            var event = new EventCustom("GETPRICE", true);
+            var event = new cc.Event.EventCustom("GETPRICE", true);
             this.node.dispatchEvent(event);
             //获取玩家的出价
-            var myprice = event.detail.back;
+            var myprice = event.back;
             //计算玩家的评分
-            event = new EventCustom("GETCREDIT", true);
+            event = new cc.Event.EventCustom("GETCREDIT", true);
             this.node.dispatchEvent(event);
-            var mycredit = event.detail.back;
+            var mycredit = event.back;
             var resultm = (this.a_ * mycredit + this.b_ * this.expectedPrice_) / (myprice + 1);
             if (resultm > this.maxM_) {
                 //你获胜了,那么你就需要开始做这个任务了...
@@ -177,13 +177,13 @@ cc.Class({
                 //在此之前需要设置一些这个任务的属性
                 this.project_.setReward(myprice);
                 //先获取定金
-                event = new EventCustom("MONEYADD", true);
-                event.detail.money = myprice * 0.2;
-                event.detail.record = "定金";
+                event = new cc.Event.EventCustom("MONEYADD", true);
+                event.money = myprice * 0.2;
+                event.record = "定金";
                 this.node.dispatchEvent(event);
                 //表示要进入选人界面接受这个任务
-                event = new EventCustom("RECEIVEPROJ", true);
-                event.detail.project = this.project_;
+                event = new cc.Event.EventCustom("RECEIVEPROJ", true);
+                event.project = this.project_;
                 this.node.dispatchEvent(event);
             }
             else {

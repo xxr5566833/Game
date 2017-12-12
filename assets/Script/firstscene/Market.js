@@ -51,7 +51,7 @@ cc.Class({
     getTimeFromInit:function(){
         event=new cc.Event.EventCustom('GETDATE', true);
         this.node.dispatchEvent(event);
-        return event.detail.back-this.initDay_;
+        return event.back-this.initDay_;
     },
 
     init:function(){
