@@ -8,6 +8,7 @@ cc.Class({
         LabCost:cc.Label,
         LabPre:cc.Label,
         LabEffect:cc.Label,
+        LabS:cc.Label,
     },
 
     // use this for initialization
@@ -44,5 +45,9 @@ cc.Class({
         else if(ret==3){
             console.log("该科研等级已达最高")
         }
+    },
+
+    update:function(){
+        this.LabS.string = parseInt(cc.find("Event\Game\Date\Account\Research").getComponent("Research").S_).toString();
     }
 });
