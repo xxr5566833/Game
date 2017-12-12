@@ -3,6 +3,8 @@ cc.Class({
 
     properties: {
     },
+
+
     
     add: function(id, name, effect, preId, preLv, costs){
         this.name_[id]=name;         // 科技名
@@ -15,6 +17,13 @@ cc.Class({
 
     // use this for initialization
     onLoad: function () {
+        this.name_ = [];         // 科技名
+        this.lv_ = [];              // 科技等级(0为未解锁)
+        this.effect_ = [];     // 效果
+        this.preId_ = [];  // 前置科技编号(无需前置则为0)
+        this.preLv_ = [];  // 前置科技等级
+        this.costs_ =[];  // 解锁各级需花费的科研点(二维数组)
+
         this.S_=0;  // 科研点数
         this.coefS1_=0;
         this.coefS2_=0;  // 12
@@ -158,14 +167,14 @@ cc.Class({
             this.coefS2_ += 1;
             break;
         case 13:
-            event = new cc.EventCustom("ADDLIMIT",true);  
+            event = new cc.Event.EventCustom("ADDLIMIT",true);  
             this.node.dispatchEvent(event);
             return 0;
         case 14:
             this.coef.PM *= 0.95;
             break;
         case 15:
-            event = new cc.EventCustom("ADDLIMIT",true);  
+            event = new cc.Event.EventCustom("ADDLIMIT",true);  
             this.node.dispatchEvent(event);
             if(this.lv_[id]==5)
                 this.coef.EM *= 0.5;
@@ -223,8 +232,8 @@ cc.Class({
             this.coef.M *= 1.5;
             break;
         }
-        event = new cc.EventCustom("UPDATACOEF",true);  
-        event.detail.coef=this.coef;  
+        event = new cc.Event.EventCustom("UPDATACOEF",true);  
+        event.coef=this.coef;  
         this.node.dispatchEvent(event);
         return 0;
     },

@@ -87,39 +87,68 @@ cc.Class({
         month_: ""
     },
 
-    // use this for initialization
-    onLoad: function () {
-        this.coef = new Object();
-        //这里需要把相关属性初始化为1
-        coef.F = 1;   // 功能 受2,6,7,8影响
-        coef.P = 1;   // 性能 6,8,9
-        coef.E = 1;   // 体验 3,31,35,36
-        coef.I = 1;   // 创新 32,34
-        coef.CP = 1;  // 暴击概率 11
-        coef.CR = 1;  // 暴击倍率
-        coef.EM = 1;  // 雇佣金 15 *
-        coef.MA = 1;  // 管理能力 16 *
-        coef.SC = 1;  // 体力消耗 17 *
-    },
     updateCoef: function (coef) {
         this.coef = coef;
     },
     init: function (person) {
-        //初始化人物属性
+        // 根据一定概率初始化人物性格
+        this.randomCharactor();
+        //这里根据外界的person数据，初始化属性，不能直接用外界的数据，因为它们没有方法
+        this.gift_ = person.gift_;
+        this.coding_ = person.coding_;
+        this.science_ = person.coding_ ;
+        this.art_ =  person.art_;
+        this.creativity_ = person.creativity_;
+        this.manager_ = person.manager_ ;
+        this.business_ = person.business_;
+        //初始时是空闲的
+        this.state_ = 1,
+        /**工资 */
+        this.salary_ = person.salary_;
+        /**雇佣金 */
+        this.employMoney_ = person.employMoney_;
+        // 姓名
+        this.name_ = person.name_,
+        // 职能
+        this.profession_ = person.profession_,
+        this.index_ = person.index_,
+        // 体力值
+        this.power_ = person.power_,
+        // 心情
+        this.mood_ = person.mood_,
+        // 通过活动可以获得
+        this.moodAddition_ = person.moodAddition_,
+        // 性格
+        this.character_ = person.character_;
+        this.coef = null,
+        // 剩余的休息时间
+        this.relaxDays_ = person.relaxDays_;
+        // 不屈性格激活，剩余工作天数,
+        this.unyieldingDays_ = person.unyieldingDays_;
 
+        this.coef = new Object();
+        //这里需要把相关属性初始化为1
+        this.coef.F = 1;   // 功能 受2,6,7,8影响
+        this.coef.P = 1;   // 性能 6,8,9
+        this.coef.E = 1;   // 体验 3,31,35,36
+        this.coef.I = 1;   // 创新 32,34
+        this.coef.CP = 1;  // 暴击概率 11
+        this.coef.CR = 1;  // 暴击倍率
+        this.coef.EM = 1;  // 雇佣金 15 *
+        this.coef.MA = 1;  // 管理能力 16 *
+        this.coef.SC = 1;  // 体力消耗 17 *
     },
     // ambitionBuff是团队中产生的野心buff, 默认为1，即不加成
-    develop: function (mamager, n, project, flag, ambitionBuff) {
+    develop: function (manager, n, project, flag, ambitionBuff) {
         var F = this.coef.F * (1 / (n ^ (50 / (manager + 50)))) * (this.coding_ / 10) * (rand(0.9, 1.1));    //功能
         var P = this.coef.P * (1 / (n ^ (50 / (manager + 50)))) * (this.science_ / 10) * (rand(0.9, 1.1));   //性能
         var E = this.coef.E * (1 / (n ^ (50 / (manager + 50)))) * (this.art_ / 10) * (rand(0.9, 1.1));       //体验
         var I = this.coef.I * (1 / (n ^ (50 / (manager + 50)))) * (this.creativity_ / 10) * (rand(0.9, 1.1)); //创意
         var criticalPro = this.coef.CP * this.creativity_ / (this.creativity_ + 200); // 暴击率
-        var criticalRate = this.coef.CR * (1 + (5 * sqrt(this.science_)) / 100);    // 暴击倍率
+        var criticalRate = this.coef.CR * (1 + (5 * Math.sqrt(this.science_)) / 100);    // 暴击倍率
 
-        var diffculty = project.difficulty_
-
-
+        var difficulty = project.difficulty_;
+        console.log(difficulty);
         // 逆境(adversity):体力为0时仍可以继续工作1周，且该周暴击倍率增加100%
         if (this.character_ === Character.adversity && this.unyieldingDays_ < 7 && this.unyieldingDays_ >= 0) {
             criticalRate *= 2
@@ -128,26 +157,26 @@ cc.Class({
         // 冷静(calm):暴击率-10%，无视20%任务难度
         if (this.character_ === Character.calm) {
             criticalPro *= 0.9
-            diffculty *= 0.8
+            difficulty *= 0.8
         }
         // 攻坚(storming):无视项目难度20%，结算点数时额外增加剩余功能点数的8%（该点数无视任务难度），一周触发一次。
         if (this.character_ === Character.calm) {
-            diffculty *= 0.8
+            difficulty *= 0.8
         }
         // 稳重(steady):暴击率-5%，无视30%任务难度
         if (this.character_ === Character.steady) {
             criticalPro *= 0.95
-            diffculty *= 0.7
+            difficulty *= 0.7
         }
         // 敏锐(keen):暴击率增加5%，暴击倍率增加5%
         if (this.character_ === Character.keen) {
             criticalPro *= 1.05
-            diffculty *= 1.05
+            difficulty *= 1.05
         }
         // 鬼才(ghost):暴击率增加10%，暴击倍率增加10%
         if (this.character_ === Character.keen) {
             criticalPro *= 1.1
-            diffculty *= 1.1
+            difficulty *= 1.1
         }
 
         // 触发暴击
@@ -178,12 +207,12 @@ cc.Class({
                 this.saySomething("精力集中，一发入魂")
             }
         }
-
+        console.log(F);
         // 根据项目难度：减少的任务点数增量百分比 = (任务难度 * 0.06) / (任务难度 * 0.06 + 1)
-        F *= (1 - (diffculty * 0.06) / (0.06 * diffculty + 1))
-        P *= (1 - (diffculty * 0.06) / (0.06 * diffculty + 1))
-        E *= (1 - (diffculty * 0.06) / (0.06 * diffculty + 1))
-        I *= (1 - (diffculty * 0.06) / (0.06 * diffculty + 1))
+        F *= (1 - (difficulty * 0.06) / (0.06 * difficulty + 1))
+        P *= (1 - (difficulty * 0.06) / (0.06 * difficulty + 1))
+        E *= (1 - (difficulty * 0.06) / (0.06 * difficulty + 1))
+        I *= (1 - (difficulty * 0.06) / (0.06 * difficulty + 1))
 
         // 逗逼(funny):集成了图王和唠叨的所有缺(划)优点，以下技能每周触发一次： 有25%概率使项目组中的某一个人心情+1;有25%概率使项目组中的某一个人心情+3; 有5%概率不贡献任何点数
         if (this.character_ === Character.funny) {
@@ -222,9 +251,9 @@ cc.Class({
             // 好胜(ambition):同项目组中如果有比他能力强的人，则开发时额外增加10%点数
             if (this.character_ === this.ambition) {
                 var event = new cc.Event.EventCustom('teammates-ability-is-stronger', true)
-                event.detail.person = this
+                event.person = this
                 this.node.dispatchEvent(event);
-                var ambitionAcitve_ = event.detail.back
+                var ambitionAcitve_ = event.back
                 if (ambitionAcitve_) {
                     F *= 1.1
                     P *= 1.1
@@ -234,9 +263,9 @@ cc.Class({
             }
             if (this.character_ === this.bigAmnition) {
                 var event = new cc.Event.EventCustom('teammates-ability-is-stronger', true)
-                event.detail.person = this
+                event.person = this
                 this.node.dispatchEvent(event);
-                var ambitionAcitve_ = event.detail.back
+                var ambitionAcitve_ = event.back
                 if (ambitionAcitve_) {
                     F *= 1.1
                     P *= 1.1
@@ -293,6 +322,14 @@ cc.Class({
                 }
             }
         }
+        console.log("功能点数");
+        console.log(F);
+        console.log("体验点数");
+        console.log(E);
+        console.log("性能点数");
+        console.log(P);
+        console.log("创新点数");
+        console.log(I);
         //为了更好的实现bug减少的机制，所以这里返回增加的功能点数...
         return F;
     },
@@ -366,20 +403,17 @@ cc.Class({
     getProfession: function () {
         return this.profession_;
     },
-    init: function (person) {
-        // 根据一定概率初始化人物性格
-        randomCharactor()
-    },
+    
     randomCharactor: function () {
-        rnd = Math.random();
+        var rnd = Math.random();
         if (rnd < 0.75) {
-            rndInt = getRandomInt(Character.imageKing, Character.persistent + 1);
+            var rndInt = getRandomInt(Character.imageKing, Character.persistent + 1);
             this.character_ = rndInt;
         } else if (rnd < 0.95) {
-            rndInt = getRandomInt(Character.steady, Character.genius + 1);
+            var rndInt = getRandomInt(Character.steady, Character.genius + 1);
             this.character_ = rndInt;
         } else {
-            rndInt = getRandomInt(Character.insight, Character.spirituality + 1);
+            var rndInt = getRandomInt(Character.insight, Character.spirituality + 1);
             this.character_ = rndInt;
         }
     },
@@ -515,15 +549,15 @@ cc.Class({
             // 体贴(thoughtful):同项目组中所有人的心情+1
             if (this.character_ === Character.thoughtful) {
                 var event = new cc.Event.EventCustom('increase-all-teammates-mood', true)
-                event.detail.person = this
-                event.detail.value = 1
+                event.person = this
+                event.value = 1
                 this.node.dispatchEvent(event);
             }
             // 辅佐(adjuvant):同项目组中所有人的心情+2
             if (this.character_ === Character.thoughtful) {
                 var event = new cc.Event.EventCustom('increase-all-teammates-mood', true)
-                event.detail.person = this
-                event.detail.value = 2
+                event.person = this
+                event.value = 2
                 this.node.dispatchEvent(event);
             }
         } else if (this.state_ === eState.relaxing) {
@@ -555,13 +589,13 @@ cc.Class({
                 if (rnd < 0.25) {
                     // 触发事件，使得团队中的随机一人心情增加。具体是谁增加，不关心，由上层节点决定
                     var event = new cc.Event.EventCustom('increase-teammate-mood', true)
-                    event.detail.person = this
-                    event.detail.value = 1
+                    event.person = this
+                    event.value = 1
                     this.node.dispatchEvent(event);
                 } else if (rnd < 0.5) {
                     var event = new cc.Event.EventCustom('increase-teammate-mood', true)
-                    event.detail.person = this
-                    event.detail.value = 3
+                    event.person = this
+                    event.value = 3
                     this.node.dispatchEvent(event);
                 } else {
                     //pass

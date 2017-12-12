@@ -67,10 +67,12 @@ cc.Class({
             consignprojectfinish : 6,
             consignprojectfail : 7,
             consignprojectunlock: 8,
+            loanfail : 9,
         });
+
         this.node.on("MESSAGE", function(event){
             console.log("提示信息");
-            switch(event.detail.id)
+            switch(event.id)
             {
                 case this.message.protect : 
                     this.msgcontrol.alert("FAIL", "负资产保护措施启动，仅有一次这样的机会！下一次直接游戏结束");
@@ -79,6 +81,7 @@ cc.Class({
                     this.msgcontrol.alert("FAIL", "定期贷款仅仅可以贷款一次");
                     break;
                 case this.message.loansuccess:
+                    console.log("贷款");
                     this.msgcontrol.alert("SUCCESS", "贷款成功！");
                     break;
                 case this.message.notenoughmoney:
@@ -94,13 +97,17 @@ cc.Class({
                     this.msgcontrol.alert("SUCCESS", "任务成功，信誉度提升");
                     break;
                 case this.message.consignprojectfail:
+
                     this.msgcontrol.alert("FAIL", "任务失败，信誉度下降");
                     break;
                 case this.message.consignprojectunlock:
                     this.msgcontrol.alert("SUCCESS", "解锁了新的任务");
                     break;
+                case this.message.loanfail:
+                    this.msgcontrol.alert("FAIL", "贷款失败，达到最大额度");
+                    break;
                 default:
-                    this.msgcontrol.alert(event.deatil.type, event.deatil.string);
+                    this.msgcontrol.alert(event.type, event.string);
             }
         }, this);
 
@@ -109,40 +116,42 @@ cc.Class({
         },this);
 
         this.node.on("MONEYADD",function(event){
-            var money = event.detail.money;
-            var record = event.detail.record;
+            var money = event.money;
+            var record = event.record;
             this.account_.getComponent("Account").profit(money, record);
         },this);
 
         this.node.on("GETDATE", function(event){
             var date = this.date_.getComponent("Date").getDate();
-            event.detail.back = date;
+            event.back = date;
         }, this);
 
         this.node.on("GETMONEY", function(event){
-            event.detail.back = this.account_.getComponent("Account").gold_;
+            event.back = this.account_.getComponent("Account").gold_;
         }, this);
 
         this.node.on("MONEYCUT", function(event){
-            var money = event.detail.money;
-            var force = event.detail.force;
-            var record = event.detail.record;
+            var money = event.money;
+            var force = event.force;
+            var record = event.record;
             if(force)
             {
                 this.account_.getComponent("Account").expend(money, record);
-                event.detail.back = true;
+                event.back = true;
             }
             else{
-                event.detail.back = this.account_.getComponent("Account").enougnThenExpend(money, record);
+                
+                event.back = this.account_.getComponent("Account").enoughThenExpend(money, record);
             }
         }, this);
 
         this.node.on("GETCREDIT", function(event){
-            event.detail.back = this.personControl_.getComponent("PersonControl").getCredit();
+            console.log("获得");
+            event.back = this.personControl_.getComponent("PersonControl").getCredit();
         }, this);
 
         this.node.on("CREDITCHANGE", function(event){
-            this.personControl_.getComponent("PersonControl").changeCredit(event.detail.change);
+            this.personControl_.getComponent("PersonControl").changeCredit(event.change);
         }, this);
 
         this.node.on("CANTEST", function(){
@@ -158,28 +167,32 @@ cc.Class({
         }, this);
 
         this.node.on("GETUSERNUM", function(event){
-            event.detail.back = this.market_.getComponent("Market").updateCurrentPeople(event.detail.project);
+            event.back = this.market_.getComponent("Market").updateCurrentPeople(event.project);
         }, this);
 
         this.node.on("PROJECTSUCCESS", function(event){
-            this.projectGenerator_.getComponent("ProjectGenerator").finishProject(event.detail.project);
+            this.projectGenerator_.getComponent("ProjectGenerator").finishProject(event.project);
         }, this);
 
         this.node.on("PROJECTFAIL", function(event){
-            this.projectGenerator_.getComponent("ProjectGenerator").failProject(event.detail.project);
+            this.projectGenerator_.getComponent("ProjectGenerator").failProject(event.project);
         }, this);
 
         this.node.on("HIRE", function(event){
-            event.detail.back = this.personControl_.getComponent("PersonControl").hire(event.detail.person);
+            event.back = this.personControl_.getComponent("PersonControl").hire(event.person);
         }, this);
 
         this.node.on("FIRE", function(event){
-            this.personControl_.getComponent("PersonControl").fire(event.detail.person);
+            event.back = this.personControl_.getComponent("PersonControl").fire(event.index);
+        }, this);
+
+        this.node.on("PERSONSGET", function(event){
+            event.back = this.personGenerator_.getComponent("PersonGenerator").persons_;
         }, this);
 
         this.node.on("UPDATACOEF", function(event){
             this.personControl_.getComponent("PersonControl").updateCoef(event.detai.coef);
-            this.account_.getComponent("Account").updateCoef(event.detail.coef);
+            this.account_.getComponent("Account").updateCoef(event.coef);
         }, this);
 
         this.node.on("ADDLIMIT", function(event){
@@ -216,7 +229,7 @@ cc.Class({
         }, this);
 
         this.node.on("STEALBIDINFORMATION", function(event){
-            //根据event.detail.bestprice 调用相关ui逻辑
+            //根据event.bestprice 调用相关ui逻辑
         }, this);
 
         this.node.on("GETPRICE", function(event){
@@ -226,16 +239,16 @@ cc.Class({
         
 
         this.node.on("TECHNOLOGYADD", function(event){
-            this.research_.getComponent("Research").addS4(event.detail.technology);
+            this.research_.getComponent("Research").addS4(event.technology);
         }, this);
 
         this.node.on("GETNAME", function(event){
-            event.detail.back = this.personControl_s.getComponent("PersonControl").getName();
+            event.back = this.personControl_.getComponent("PersonControl").getName();
         }, this);
 
         this.node.on("teammates-ability-is-stronger", function(event){
-            var persons = event.detail.group.persons_;
-            var person = event.detail.person;
+            var persons = event.group.persons_;
+            var person = event.person;
             for(let i = 0 ; i < persons.length ; i++)
             {
                 var tempperson = persons[i];
@@ -247,6 +260,37 @@ cc.Class({
             return false;
         }, this);
 
+        this.node.on("increase-teammate-mood", function(event){
+            var value = event.value;
+            var group = event.person.group_;
+            group.addMoodRandom(value);
+        }, this);
+
+        this.node.on("increase-all-teammates-mood", function(event){
+            var value = event.value;
+            var group = event.person.group_;
+            group.addMood(value);
+        }, this);
+
+        this.node.on("INIT", function(event){
+            //this.personGenerator_.getComponent("PersonGenerator").init(event.data_pe);
+            this.projectGenerator_.getComponent("ProjectGenerator").init(event.data_pr);
+        }, this);
+
+        this.node.on("PAUSE", function(event){
+            this.personControl_.getComponent("PersonControl").pause();
+            this.bank_.getComponent("Bank").pause();
+            this.market_.getComponent("Market").pause();
+            this.date_.getComponent("Date").pause();
+        }, this);
+
+        this.node.on("RESUME", function(event){
+            var time = event.time;
+            this.personControl_.getComponent("PersonControl").resume(time);
+            this.bank_.getComponent("Bank").resume(time);
+            this.market_.getComponent("Market").resume(time);
+            this.date_.getComponent("Date").resume(time);
+        }, this)
 
 
 

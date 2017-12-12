@@ -16,20 +16,81 @@ cc.Class({
         // 当前员工数
         this.currentNum_ = 0;
         //声誉
-        this.credit_ = 0;
+        this.credit_ = 10;
         //项目组数组初始化
         this.projectGroups_ = [];
         // 当前最大员工数
         this.maxNum_ = 5;
         //名字
         this.name_ = "体验极其差的公司";
+        var temp =[
+            {
+                name_ : "网站",
+                index_ : 0,
+                unlock_ : true,
+                budget_ : 100,
+                difficulty_ : 10,
+                
+            }
+        ];
+        this.platforms_ = temp;
+        this.categories_ = [
+            {
+                name_ : "类型1",
+                index_ : 0,
+                difficulty_ : 10,
+                budget_ : 10,
+                function_ : 10,
+                unlock_ : true,
+            },
+            {
+                name_ : "类型2",
+                index_ : 1,
+                difficulty_ : 10,
+                budget_ : 10,
+                function_ : 10,
+                unlock : true,
+            }
+        ];
+        this.functions_ = [
+            {
+                name_ : "功能1",
+                index_ : 0,
+                difficulty_ : 10,
+                function_ : 10,
+                unlock_ : true,
+            },
+            {
+                name_ : "功能2",
+                index_ : 1,
+                difficulty_ : 10,
+                function_ :100,
+                unlock_ : true,
+            }
+        ];
+        this.techs_ = [
+            {
+                name_ : "技术1",
+                index_ : 0,
+                difficulty_ :10,
+                budget_ : 100,
+                unlock_ :true,
+            },
+            {
+                name_ : "技术2",
+                index_ : 1,
+                difficulty_ : 20,
+                budget_ : 10,
+                unlock_ : true,
+            }
+        ];
     },
 
     getName:function(){
         return this.name_;
     },
 
-    init:function(platfroms){
+    init:function(platforms){
         //接受外界的平台数组
         this.platforms_ = platforms;
     },
@@ -40,10 +101,46 @@ cc.Class({
         {
             if(platforms[i].unlock_)
             {
-                list.push(platforms[i].index_);
+                list.push(platforms[i]);
             }
         }
-        return platforms;
+        return list;
+    },
+
+    getAvailableFunctions:function(){
+        var list = [];
+        for(let i = 0 ; i < this.functions_,length ; i++)
+        {
+            if(this.functions_[i].unlock_)
+            {
+                list.push(this.functions_[i]);
+            }
+        }
+        return list;
+    },
+
+    getAvailableCategories:function(){
+        var list = [];
+        for(let i = 0 ; i < this.categories_,length ; i++)
+        {
+            if(this.categories_[i].unlock_)
+            {
+                list.push(this.categories_[i]);
+            }
+        }
+        return list;
+    },
+
+    getAvailablePersons:function(){
+        var list = [];
+        for(let i = 0 ; i <this.persons_.length ; i++)
+        {
+            if(this.persons_[i].state_ == 1)
+            {
+                list.push(this.persons_[i]);
+            }
+        }
+        return list;
     },
 
     changeCredit:function(num){
@@ -58,18 +155,27 @@ cc.Class({
         return this.currentNum_<this.maxNum_;
     },
 
+    //测试
+
+    receive:function(){
+        var prog = cc.find("Event/Game/Date/Account/ProjectGenerator").getComponent("ProjectGenerator");
+        var projs = prog.getProjects();
+        console.log(this.persons_);
+        this.begin(projs[0], this.persons_);
+        this.project_ = projs[0];
+    },
+
     hire: function (person) {
         // 雇佣一个员工，如果已达人数上限，则返回false
-        // cc.log("now:"+this.currentNum_);
-        // cc.log("max:"+this.maxNum_);
+
         if(this.currentNum_>=this.maxNum_){
             return false;
         }
         event=new cc.Event.EventCustom('MONEYCUT', true);
-        event.detail.force=false;
-        event.detail.money=person.getComponent(Person).employMoney_;
+        event.force=false;
+        event.money=person.employMoney_;
         this.node.dispatchEvent(event);
-        if(event.detail.back==true){
+        if(event.back==true){
             this.currentNum_++;
             this.persons_.push(person);
             person.node = this.node;
@@ -89,6 +195,7 @@ cc.Class({
                 var oldperson=this.persons_[i];
                 this.persons_.splice(i,1);
                 this.currentNum_--;
+                console.log(oldperson);
                 return oldperson;
             }
         }
@@ -98,34 +205,40 @@ cc.Class({
     begin:function(project,persons){
         //预算什么的需要放在前端判断
         var group=new projectgroup();
-        group.node=persongenerator;
-        project.node = this.node;
+        group.node=this.node;
         //这里需要设置一下接受时间
-        var event = new EventCustom("GETDATE", true);
+        var event = new cc.Event.EventCustom("GETDATE", true);
         this.node.dispatchEvent(event);
-        var date = event.detail.back;
+        var date = event.back;
         project.setReceiveDay(date);
         group.begin(project,persons);
         this.projectGroups_.push(group);
-        for(let i = 0 ; i < persons.length ; )
-        return true;
+        console.log(this.projectGroups_);
     },
+
 
     stop: function (group){
         group.stop();
         var i=0;
-        while(this.personGroups_[i]!=group){
+        console.log(this.projectGroups_);
+        while(this.projectGroups_[i]!=group){
             i++;
         }
-        if(i<this.personGroups_.length){
-            this.personGroups_.splice(i,1);
+        if(i<this.projectGroups_.length){
+            this.projectGroups_.splice(i,1);
         }
     },
 
     work:function(){
-        for(i=1;i=this.projectGroups_.length;i++){
-            group=this.projectGroups_[i];
+        for(i=0;i < this.projectGroups_.length;i++){
+            var group=this.projectGroups_[i];
+            console.log("work");
             group.work();
+            if(group.state_ == 3)
+            {
+                this.stop(group);
+                i--;
+            }
         }
     },
 
@@ -134,9 +247,9 @@ cc.Class({
     },
 
     paySalary:function(){
-        event=new cc.Event.EventCustom('PROJECTFAIL', true);
+        event=new cc.Event.EventCustom('GETDATE', true);
         this.node.dispatchEvent(event);
-        if(event.detail.back%30 != 1){
+        if(event.back%30 != 1){
             return ;
         }
         var sumSalary = 0;
@@ -144,9 +257,9 @@ cc.Class({
             sumSalary = sumSalary + this.persons_[i].salary_;
         }
         event=new cc.Event.EventCustom('MONEYCUT', true);
-        event.detail.money = sumSalary;
-        event.detail.record = "付工资";
-        event.detail.force = true;
+        event.money = sumSalary;
+        event.record = "付工资";
+        event.force = true;
         this.node.dispatchEvent(event);
     },
 

@@ -9,9 +9,6 @@ cc.Class({
             url: cc.AudioClip,
             default: null
         },
-        time_:  {
-            default:1.,
-        }
 
         // foo: {
         //    default: null,      // The default value will be used only when the component attaching
@@ -30,6 +27,7 @@ cc.Class({
     },
     resume:function(){
         event=new cc.Event.EventCustom('RESUME', true);
+        event.time = this.time_;
         this.node.dispatchEvent(event);
     },
     //游戏结束，切换场景，关闭音乐
@@ -38,9 +36,26 @@ cc.Class({
         cc.loader.loadScene("End");
     },
     
+    start:function(){
+        this.resume();
+    },
     // use this for initialization
     onLoad: function () {
-        cc.loader.loadRes('personinfo',function(err,data_pe){
+        this.time_ = 1;
+        var self = this;
+        cc.loader.loadRes('projectinfo',function(err,data_pr){
+            if(err){
+                cc.log(err);
+            }else{
+                event=new cc.Event.EventCustom('INIT', true);
+                //console.log(data_pe);
+                console.log(data_pr);
+                //event.data_pe=data_pe;
+                event.data_pr=data_pr;
+                self.node.dispatchEvent(event);
+            }
+        });
+        /*cc.loader.loadRes('personinfo',function(err,data_pe){
             if(err){
                 cc.log(err);
             }else{
@@ -49,15 +64,16 @@ cc.Class({
                         cc.log(err);
                     }else{
                         event=new cc.Event.EventCustom('INIT', true);
-                        event.detail.data_pe=data_pe;
-                        event.detail.data_pr=data_pr;
+                        console.log(data_pe);
+                        console.log(data_pr);
+                        event.data_pe=data_pe;
+                        event.data_pr=data_pr;
                         this.node.dispatchEvent(event);
                     }
                 });
             }
-        });
+        });*/
         // 开启重复处理事件
-        this.resume();
         this.current = cc.audioEngine.play(this.music, true,0.5);
     },
 

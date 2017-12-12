@@ -169,18 +169,14 @@ cc.Class({
 
     begin: function (project, persons) {
         this.project_ = project;
+        this.persons_ = persons;
         for (let i = 0; i < persons.length; i++) {
-            this.persons_[i] = persons[i];
             this.persons_[i].begin();
+            this.persons_[i].group_ = this;
         }
-        this.persons_ = [];
         this.maintainers_ = [];
         this.state_ = eState.develop;
         //buff
-        for(let i = 0 ; i < persons.length ; i++)
-        {
-            persons[i].group_ = this;
-        }
         this.ambitionBuff_ = 1;
     },
 
@@ -222,6 +218,7 @@ cc.Class({
     },
 
     work: function () {
+        console.log(this.persons_);
         switch (this.state_) {
             case 0:
                 var n = this.persons_.length;
@@ -234,29 +231,27 @@ cc.Class({
                     }
                 }
                 manager = maxmanager;
+                
                 for (let i = 0; i < this.persons_.length; i++) {
                     this.persons_[i].develop(manager, n, this.project_, true);
                 }
-                var dateevent = new EventCustom("GETDATE", true);
+                var dateevent = new cc.Event.EventCustom("GETDATE", true);
                 this.node.dispatchEvent(dateevent);
-                var nowday = dateevent.detail.back;
+                var nowday = dateevent.back;
                 switch (this.project_.kind_) {
                     case 0:
                         //表示委托开发
                         if (this.project_.isFinished()) {
-                            var event = new EventCustom("UPDATACOEF",true);  
-                            event.detail.f=this.project_.requireFunction_;  
-                            this.node.dispatchEvent(event);
-                            var event = new EventCustom("PROJECTSUCCESS", true);
-                            event.detail.project = this.project_;
+                            var event = new cc.Event.EventCustom("PROJECTSUCCESS", true);
+                            event.project = this.project_;
                             this.node.dispatchEvent(event);
                             //然后设置自己的状态为结束状态，等待personcontrol回收
                             this.state_ = eState.end;
                         }
                         else {
                             if (this.project_.isOverdue(nowday)) {
-                                var event = new EventCustom("PROJECTFAIL", true);
-                                event.detail.project = this.project_;
+                                var event = new cc.Event.EventCustom("PROJECTFAIL", true);
+                                event.project = this.project_;
                                 this.node.dispatchEvent(event);
                                 //然后设置自己的状态为结束状态，等待personcontrol回收
                                 this.state_ = eState.end;
@@ -266,10 +261,10 @@ cc.Class({
                     case 1:
                         if (this.isDevelopEnough()) {
                             //表示进入测试阶段的按钮可以点了
-                            var event = new EventCustom("CANTEST", true);
-                            event.detail.group = this;
+                            var event = new cc.Event.EventCustom("CANTEST", true);
+                            event.group = this;
                             this.node.dispatch(event);
-                            if (this.isDevelopEnough()) {
+                            if (this.isDevelopFinished()) {
                                 //表示需要进入测试阶段了
                                 this.evolve();
                             }
@@ -282,51 +277,51 @@ cc.Class({
                             event.detail.f=this.project_.requireFunction_;  
                             this.node.dispatchEvent(event);
                             //获得剩下的80%
-                            if (!this.project_.isOverdue()) {
-                                var event = new EventCustom("MONEYADD", true);
-                                event.detail.money = 0.8 * this.project_.getReward();
+                            if (!this.isOverdue()) {
+                                var event = new cc.Event.EventCustom("MONEYADD", true);
+                                event.money = 0.8 * this.project_.getReward();
                                 this.node.dispatchEvent(event);
 
                                 //提高声望
                                 switch (this.project_.categories_[0].categoryId_) {
                                     case 0:
-                                        event = new EventCustom("TECHNOLOGYADD", true);
-                                        event.detail.technology = this.project_.getRequire().requireFunction_ * 0.25;
+                                        event = new cc.Event.EventCustom("TECHNOLOGYADD", true);
+                                        event.technology = this.project_.getRequire().requireFunction_ * 0.25;
                                         this.node.dispatch(event);
                                         //获得额外奖金
                                         var otherreward = this.project_.getReward() * 0.25;
                                         event.type = "MONEYADD";
-                                        event.detail.money = otherreward;
+                                        event.money = otherreward;
                                         this.node.dispatch(event);
                                         //声誉
                                         var growth = this.project_.level_.creditGrowth_ * 1.5;
                                         event.type = "CREDITCHANGE";
-                                        event.detail.change = growth;
+                                        event.change = growth;
                                         this.node.dispatchEvent(event);
                                         break;
                                     case 1:
                                         var growth = this.project_.level_.creditGrowth_ * 2;
                                         event.type = "CREDITCHANGE";
-                                        event.detail.change = growth;
+                                        event.change = growth;
                                         this.node.dispatchEvent(event);
                                         break;
                                     case 2:
                                         //额外50%的奖金
                                         var otherreward = this.project_.getReward() * 0.5;
                                         event.type = "MONEYADD";
-                                        event.detail.money = otherreward;
+                                        event.money = otherreward;
                                         this.node.dispatch(event);
                                     case 3:
-                                        event = new EventCustom("TECHNOLOGYADD", true);
-                                        event.detail.technology = this.project_.getRequire().requireFunction_ * 0.5;
+                                        event = new cc.Event.EventCustom("TECHNOLOGYADD", true);
+                                        event.technology = this.project_.getRequire().requireFunction_ * 0.5;
                                         this.node.dispatch(event);
                                         break;
 
                                 }
                             }
                             else {
-                                var cutevent = new CustomEvent("CREDITCHANGE", true);
-                                cutevent.detail.change = - this.project_.level_.creditGrowth_;
+                                var cutevent = new cc.Event.EventCustom("CREDITCHANGE", true);
+                                cutevent.change = - this.project_.level_.creditGrowth_;
                                 this.dispatchEvent(cutevent);
                             }
 
@@ -336,15 +331,15 @@ cc.Class({
                             if (this.project_.isSeriousOverdue(nowday)) {
                                 //这里倒扣三倍价格，是强制的
                                 var cut = this.project_.getReward() * 3;
-                                var cutevent = new CustomEvent("MONEYCUT", true);
-                                cutevent.detail.money = cut;
-                                cutevent.detail.force = true;
-                                cutevent.detail.record = "违约金";
+                                var cutevent = new cc.Event.EventCustom("MONEYCUT", true);
+                                cutevent.money = cut;
+                                cutevent.force = true;
+                                cutevent.record = "违约金";
                                 this.node.dispatchEvent(cutevent);
                                 //扣声誉   
                                 var creditcut = 0.5 * this.project_.level_.creditGrowth_;
                                 cutevent.type = "CREDITCHANGE";
-                                cutevent.detail.change = - creditcut;
+                                cutevent.change = - creditcut;
                                 this.node.dispatchEvent(cutevent);
                             }
                         }
@@ -384,41 +379,41 @@ cc.Class({
             case 2:
                 //市场相关
                 event = new cc.Event.EventCustom('GETUSERCHANGE', true);
-                event.detail.lastusernum = this.usernum_;
+                event.lastusernum = this.usernum_;
                 this.node.dispatchEvent(event);
-                this.usernum_ = event.detail.back;
+                this.usernum_ = event.back;
                 event = new cc.Event.EventCustom('MONEYADD', true);
-                event.detail.money = 0;
+                event.money = 0;
                 if (this.incomeWay_ == 0) {
-                    if (event.detail.back - event.detail.lastusernum > 0) {
-                        event.detail.money = (event.detail.back - event.detail.lastusernum) * this.project_.getPrice();
+                    if (event.back - event.lastusernum > 0) {
+                        event.money = (event.back - event.lastusernum) * this.project_.getPrice();
                     }
                 }
                 else {
-                    event.detail.money = this.usernum_ * this.project_.getPrice();
+                    event.money = this.usernum_ * this.project_.getPrice();
                 }
                 if (this.persons_.length != 0) {
                     var C = this.persons_[0].creativity_;
                     if (0 <= C && C <= 50) {
-                        event.detail.money = event.detail.money * (0.5 + C * 0.01);
+                        event.money = event.money * (0.5 + C * 0.01);
                     }
                     else if (C <= 200) {
-                        event.detail.money = event.detail.money * (1.0 + (C - 50) * 0.004);
+                        event.money = event.money * (1.0 + (C - 50) * 0.004);
                     }
                     else if (C <= 600) {
-                        event.detail.money = event.detail.money * (1.6 + (C - 200) * 0.001);
+                        event.money = event.money * (1.6 + (C - 200) * 0.001);
                     }
                     else if (C <= 1200) {
-                        event.detail.money = event.detail.money * (2.0 + (C - 600) * 0.0005);
+                        event.money = event.money * (2.0 + (C - 600) * 0.0005);
                     }
                     else {
-                        event.detail.money = event.detail.money * (2.3 + (C - 1200) * 0.00025);
+                        event.money = event.money * (2.3 + (C - 1200) * 0.00025);
                     }
                 }
                 this.node.dispatchEvent(event);
                 event = new cc.Event.EventCustom('GETDATE', true);
                 this.node.dispatchEvent(event);
-                var nowday = event.detail.back;
+                var nowday = event.back;
                 var t = this.project_.getTimeFromPublish(nowday);
                 //因为现在影响力和已经爆发的bug还有关，所以这里需要传入this.burstBugs_
                 this.project_.updateM(t, this.burstBugs_);
@@ -503,17 +498,17 @@ cc.Class({
                 this.generateBug();
                 this.state = 1;
                 event = new cc.Event.EventCustom('TEST', true);
-                event.detail.group = this;
+                event.group = this;
                 this.node.dispatchEvent(event);
                 break;
             case 1:
                 this.state = 2;
                 event = new cc.Event.EventCustom('PUBLISH', true);
-                event.detail.group = this;
+                event.group = this;
                 this.node.dispatchEvent(event);
                 event = new cc.Event.EventCustom('GETDATE', true);
                 this.node.dispatchEvent(event);
-                var nowday = event.detail.back;
+                var nowday = event.back;
                 this.project_.finishDay_ = nowday;
                 //开始运营，那么此时需要开始bug爆出,bugDay_表示距离上一次bug爆发过了多少天
                 this.bugDay_ = 0;
@@ -605,7 +600,7 @@ cc.Class({
     onLoad: function () {
         var event = new cc.Event.EventCustom('GETNAME', true);
         this.node.dispatchEvent(event);
-        var companyName = event.detail.back
+        var companyName = event.back
         publicDialogue.add("凌晨5点的 " + companyName + " 公司，好安静")
         publicDialogue.add("凌晨4点的 " + companyName + " 公司，好安静")
         publicDialogue.add("凌晨3点的 " + companyName + " 公司，好安静")

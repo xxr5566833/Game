@@ -93,8 +93,10 @@ cc.Class({
             this.deadline_=proj.deadline_;
             this.categories_=proj.categories_;
             this.name_=proj.name_;
-            this.level_=project.level_;
-            this.index_ = project.index_;
+            this.level_=proj.level_;
+            this.index_ = proj.index_;
+            if(!proj.difficulty_)
+                this.difficulty_ = 0;
         }
     },
 
@@ -187,7 +189,7 @@ cc.Class({
     isOverdue:function(nowday){
         if(this.kind_ == 1)
             return false;
-        if(nowday - this.receiveDay_ > deadline_){
+        if(nowday - this.receiveDay_ > this.deadline_){
             return true;
         }
         return false;
@@ -233,16 +235,16 @@ cc.Class({
     addFunction:function(func){
         this.functions_.push[func];
         this.requireFunction_ += func.function_;
-        this.difficulty_ += func.difficulty_;
+        this.budget_ *= func.times_;
     },
 
     subFunction:function(func){
         for(let i = 0 ; i < this.functions_.length ; i++)
         {
             var tempfunc = this.functions_[i];
-            if(tempfunc.name_ == func.name_)
+            if(tempfunc.index_ == func.index_ )
             {
-                this.difficulty_ -= tempfunc.difficulty_;
+                this.budget_ /= tempfunc.times_;
                 this.requireFunction_ -= tempfunc.function_;
                 this.functions_.splice(i, 1);
                 return ;
@@ -254,7 +256,7 @@ cc.Class({
         for(let i = 0 ; i < this.functions_.length ; i++)
         {
             var tempfunc = this.functions_[i];
-            this.difficulty_ -= tempfunc.difficulty_;
+            this.budget_ /= tempfunc.times_;
             this.requireFunction_ -= tempfunc.function_;
         }
         this.functions_ = [];
@@ -270,7 +272,7 @@ cc.Class({
         for(let i = 0 ; i < this.techs_.length ; i++)
         {
             var temptech = this.techs_[i];
-            if(temptech.name_ == tech.name_)
+            if(temptech.index_ == tech.index_)
             {
                 this.difficulty_ -= temptech.difficulty_;
                 this.budget_ -= temptech.budget_;
@@ -293,7 +295,37 @@ cc.Class({
 
     addCategory: function (category) {
         this.categories_.push(category);
+        this.budget_ += category.budget_;
+        this.requireFunction_ += category.function_;
+        this.difficulty_ += category.difficulty_;
     },
+
+    subCategory:function(category){
+        this.budget_ -= category.budget_;
+        this.requireFunction_ -= category.function_;
+        this.difficulty_ -= category.difficulty_;
+        for(let i = 0 ; i < this.categories_.length ; i++)
+        {
+            if(this.categories_[i].index_ == category.index_)
+            {
+                this.categories_.splice(i, 1);
+                return ;
+            }
+        }
+    },
+
+    subAllCategory:function(){
+        for(let i = 0 ; i < this.categories_.length ; i++)
+        {
+            var cat = this.categories_[i];
+            this.difficulty_ -= cat.difficulty_;
+            this.budget_ -= cat.budget_;
+            this.requireFunction_ -= cat.function_;
+        }
+        this.techs_ = [];
+    },
+
+
     getCategories: function () {
         var result = null;
         switch(this.kind_)

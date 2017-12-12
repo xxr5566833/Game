@@ -14,8 +14,8 @@ cc.Class({
         
     },
 
-    resume:function(){
-        this.schedule(this.updateDate,1)
+    resume:function(time){
+        this.schedule(this.updateDate,time)
     },
 
     pause:function(){

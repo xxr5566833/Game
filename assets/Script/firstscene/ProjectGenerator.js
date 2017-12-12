@@ -25,28 +25,27 @@ cc.Class({
     },
     onLoad: function () {
         
-        //这里会onload两次，不知道为啥
     },
 
     failProject:function(project){
         event=new cc.Event.EventCustom('CREDITCHANGE', true);
-        event.detail.change = -2;
+        event.change = -2;
         this.node.dispatchEvent(event);
         event=new cc.Event.EventCustom('MESSAGE', true);
-        event.detail.id = 'consignprojectfail';
+        event.id = 7;
         this.node.dispatchEvent(event);
     },
 
     finishProject:function(project){
         event=new cc.Event.EventCustom('MONEYADD', true);
-        event.detail.money=project.reward_;
-        event.detail.record = "委托任务完成";
+        event.money=project.reward_;
+        event.record = "委托任务完成";
         this.node.dispatchEvent(event);
         event=new cc.Event.EventCustom('CREDITCHANGE', true);
-        event.detail.change = 1;
+        event.change = 1;
         this.node.dispatchEvent(event);
         event=new cc.Event.EventCustom('MESSAGE', true);
-        event.detail.id = 'consignprojectfinish';
+        event.id = 6;
         this.node.dispatchEvent(event);
         this.updateAvailable(project.getIndex());
     },
@@ -63,14 +62,16 @@ cc.Class({
                 choose.push(randomnum);
             }
         }
+        this.projects_ = [];
         for(let j = 0; j < num; ++j)
         {
             var proj = new project();
             var index = this.availableList_[choose[j]];
             for(let k = 0; k < this.projs_.length; ++k)
             {
-                if(this.projs_[k].index == index){
-                    proj.init(this.projs_[k]);
+                if(this.projs_[k].index_ == index){
+                    proj.init(0, this.projs_[k]);
+                    proj.node = this.node;
                     this.projects_[j] = proj;
                     break;
                 }
@@ -79,47 +80,30 @@ cc.Class({
     },
 
     getProjects:function(){
+        console.log(this.projects_);
         return this.projects_;
-    },
-    pause:function(){
-        this.unschedule(this.changeRequire);
-    },
-    resume:function(time){
-        this.schedule(this.changeRequire, time);
-    },
-    changeRequire:function(){
-        var pc = cc.find('Company/PersonControl').getComponent('PersonControl');
-        var pcproj = pc.getProject();
-        if(pc.isWorking() && pcproj.currentUi_ != 0 && pcproj.currentFunc_ != 0){
-            var temp = Math.random();
-            if(temp <= 0.015 * (8 - pcproj.level_)){
-                this.msgBoxControl.alert('FAIL','改动了需求,损失开发点数');
-                pcproj.currentUi_ = pc.project_.currentUi_ * 0.8;
-                pcproj.currentFunc_ = pc.project_.currentFunc_ * 0.8;
-            }
-        }
     },
 
     updateAvailable:function(index){
-        if(this.projs_[index].unlock){
+        if(this.projs_[index].unlock_){
             return; 
         }
         
-        this.projs_[index].unlock = true;
+        this.projs_[index].unlock_ = true;
         for(let i = 0; i < this.projs_.length; i++){
             //如果availableList里已经有了这个project的index，那么已经可用了，那么就跳过
             if(this.availableList_.indexOf(this.projs_[i].index) != -1){
                 continue;
             }
-            var list = this.projs_[i].unlockRequire;
+            var list = this.projs_[i].unlockRequire_;
             var available = true;
             for(let j = 0; j < list.length; ++j)
             {
-                available = available && (this.availableList_.indexOf(list[j]) != -1) && this.projs[list[j]].unlock;
+                available = available && (this.availableList_.indexOf(list[j]) != -1) && this.projs[list[j]].unlock_;
             }
             if(available){
                 event=new cc.Event.EventCustom('MEAASGE', true);
-                event.detail.id = 'consignprojectunlock';
+                event.id = 8;
                 this.node.dispatchEvent(event);
                 this.availableList_.push(this.projs_[i].index);
                 return ;

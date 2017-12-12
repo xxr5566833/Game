@@ -34,6 +34,7 @@ cc.Class({
     },
 
     enoughThenExpend: function(num,cause){
+        console.log(num);
         if(this.isEnough(num)){
             this.expend(num);
             return true;
@@ -45,7 +46,7 @@ cc.Class({
 
     expend: function(num,cause){
         this.gold_=this.gold_-this.coef.OUT*num;
-        if(this.gold>=0){
+        if(this.gold_ >=0){
             return;
         }
         else{
