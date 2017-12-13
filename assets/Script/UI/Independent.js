@@ -1,4 +1,4 @@
-var project = require("Project");
+var Project = require("Project");
 cc.Class({
     extends: cc.Component,
 
@@ -39,32 +39,33 @@ cc.Class({
 
     refresh:function()
     {
-        this.pfreq.getChildByName(budget).getComponent(cc.Label).String=this.project.budget_.toString();
-        this.pfreq.getChildByName(funct).getComponent(cc.Label).String=this.project.function_.toString();
-        this.pfreq.getChildByName(balance).getComponent(cc.Label).String=(this.money-this.project.budget_).toString();
-        this.typreq.getChildByName(budget).getComponent(cc.Label).String=this.project.budget.toString();
-        this.typreq.getChildByName(funct).getComponent(cc.Label).String=this.project.function_.toString();
-        this.typreq.getChildByName(balance).getComponent(cc.Label).String=(this.money-this.project.budget_).toString();
-        this.funreq.getChildByName(budget).getComponent(cc.Label).String=this.project.budget.toString();
-        this.funreq.getChildByName(funct).getComponent(cc.Label).String=this.project.function_.toString();
-        this.funreq.getChildByName(balance).getComponent(cc.Label).String=(this.money-this.project.budget_).toString();
-        this.emreq.getChildByName(budget).getComponent(cc.Label).String=this.project.budget.toString();
-        this.emreq.getChildByName(funct).getComponent(cc.Label).String=this.project.function_.toString();
-        this.emreq.getChildByName(balance).getComponent(cc.Label).String=(this.money-this.project.budget_).toString();
+        this.pfreq.getChildByName("budget").getComponent(cc.Label).String=this.project.budget_.toString();
+        this.pfreq.getChildByName("funct").getComponent(cc.Label).String=this.project.requireFunction_.toString();
+        this.pfreq.getChildByName("balance").getComponent(cc.Label).String=(this.money-this.project.budget_).toString();
+        this.typreq.getChildByName("budget").getComponent(cc.Label).String=this.project.budget.toString();
+        this.typreq.getChildByName("funct").getComponent(cc.Label).String=this.project.requireFunction_.toString();
+        this.typreq.getChildByName("balance").getComponent(cc.Label).String=(this.money-this.project.budget_).toString();
+        this.funreq.getChildByName("budget").getComponent(cc.Label).String=this.project.budget.toString();
+        this.funreq.getChildByName("funct").getComponent(cc.Label).String=this.project.requireFunction_.toString();
+        this.funreq.getChildByName("balance").getComponent(cc.Label).String=(this.money-this.project.budget_).toString();
+        this.emreq.getChildByName("budget").getComponent(cc.Label).String=this.project.budget.toString();
+        this.emreq.getChildByName("funct").getComponent(cc.Label).String=this.project.requireFunction_.toString();
+        this.emreq.getChildByName("balance").getComponent(cc.Label).String=(this.money-this.project.budget_).toString();
     },
 
     onEnable:function(){
-        var project=new project;
+        var project=new Project();
         //获取数据
         var source=cc.find('Event/Game/Date/Account/PersonControl').getComponent("PersonControl");
         this.pf_data=source.getAvailablePlatforms();
         this.typ_data=source.getAvailableCategories();
         this.fun_data=source.getAvailableFunctions();
         this.em_data=source.getAvailablePersons();
-        var pf_l=this.pf_data.name_.length;
-        var typ_l=this.typ_data.name_.length;
-        var fun_l=this.fun_data.name_.length;
-        var em_l=this.em_data.name_.length;
+        console.log(this);
+        var pf_l=this.pf_data.length;
+        var typ_l=this.typ_data.length;
+        var fun_l=this.fun_data.length;
+        var em_l=this.em_data.length;
         for(var p=0;p<pf_l;p++)
         {
             var item = cc.instantiate(this.pfPrefab);
@@ -128,6 +129,7 @@ cc.Class({
             this.emview.addChild(item);
             this.select_em[p]=false;
         }
+        console.log("enable");
         this.refresh();
 
     },

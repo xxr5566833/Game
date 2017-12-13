@@ -28,11 +28,11 @@ cc.Class({
     },
 
     // use this for initialization
-    onLoad: function () {
+    /*onLoad: function () {
         var event = new cc.Event.EventCustom('get-all-project-groups', true)
-        event.detail.person = this
+        event.person = this
         this.node.dispatchEvent(event);    
-        this.projectGroups_ = event.detail.back        
+        this.projectGroups_ = event.back        
         if (this.projectGroups_.length > 0) {
             // 默认为第一个项目组
             this.currentProjectGroup_ = this.projectGroups_[0]
@@ -41,7 +41,7 @@ cc.Class({
         for (var i = 0; i < 4; i++) {
             this.bubbles_.push(new cc.Label())
         }
-    },
+    },*/
 
     // 更新项目组接口
     updateProjectGroups: function(groups) {
@@ -70,7 +70,7 @@ cc.Class({
         this.currentProjectGroup_ = this.projectGroups_[(this.projectGroups_.indexOf(this.currentProjectGroup_) + 1) % this.projectGroups_.length]
     },
     // called every frame, uncomment this function to activate update callback
-    update: function (dt) {
+    /*update: function (dt) {
         for (var i = 0; i < 4; i++) {
             if (i < this.currentProjectGroup_.persons_.length) {
                 this.bubbles_[i].string = this.currentProjectGroup_.persons_[i].month_
@@ -78,5 +78,5 @@ cc.Class({
                 this.bubbles_[i].string = ""
             }
         }
-    },
+    },*/
 });
