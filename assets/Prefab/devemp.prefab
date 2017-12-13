@@ -81,7 +81,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "hp",
+    "_name": "power",
     "_objFlags": 0,
     "_parent": {
       "__id__": 1
@@ -161,7 +161,7 @@
       "__id__": 1
     },
     "asset": {
-      "__id__": 0
+      "__uuid__": "9b1183ed-b2d5-4669-995a-e9e73c0076ef"
     },
     "fileId": "7aWlDeF7lFJ4n1+ka+UAN9",
     "sync": false
@@ -252,7 +252,7 @@
       "__id__": 1
     },
     "asset": {
-      "__id__": 0
+      "__uuid__": "9b1183ed-b2d5-4669-995a-e9e73c0076ef"
     },
     "fileId": "11O+OZO0ZEV4rz+LRO+Tr6",
     "sync": false
@@ -339,7 +339,7 @@
       "__id__": 1
     },
     "asset": {
-      "__id__": 0
+      "__uuid__": "9b1183ed-b2d5-4669-995a-e9e73c0076ef"
     },
     "fileId": "859r4rJxRLyrzBgaeh6VLx",
     "sync": false
@@ -430,7 +430,7 @@
       "__id__": 1
     },
     "asset": {
-      "__id__": 0
+      "__uuid__": "9b1183ed-b2d5-4669-995a-e9e73c0076ef"
     },
     "fileId": "84YtgWMBZD3JEEuGoNHFYx",
     "sync": false
@@ -527,7 +527,9 @@
       "__id__": 1
     },
     "_enabled": true,
-    "index": "Integer"
+    "index": "Integer",
+    "i": "Boolean",
+    "list": []
   },
   {
     "__type__": "cc.PrefabInfo",
@@ -535,7 +537,7 @@
       "__id__": 1
     },
     "asset": {
-      "__id__": 0
+      "__uuid__": "9b1183ed-b2d5-4669-995a-e9e73c0076ef"
     },
     "fileId": "06VPtU1YFD/Je4swb8vFWq",
     "sync": false

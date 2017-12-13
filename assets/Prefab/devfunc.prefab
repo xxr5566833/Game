@@ -25,23 +25,26 @@
       },
       {
         "__id__": 11
+      },
+      {
+        "__id__": 14
       }
     ],
     "_tag": -1,
     "_active": true,
     "_components": [
       {
-        "__id__": 14
+        "__id__": 17
       },
       {
-        "__id__": 15
+        "__id__": 18
       },
       {
-        "__id__": 16
+        "__id__": 19
       }
     ],
     "_prefab": {
-      "__id__": 17
+      "__id__": 20
     },
     "_id": "",
     "_opacity": 255,
@@ -69,8 +72,8 @@
     "_scaleY": 1,
     "_position": {
       "__type__": "cc.Vec2",
-      "x": 240,
-      "y": 400
+      "x": 0,
+      "y": 0
     },
     "_skewX": 0,
     "_skewY": 0,
@@ -161,7 +164,7 @@
       "__id__": 1
     },
     "asset": {
-      "__id__": 0
+      "__uuid__": "5a17ac85-b913-4b2f-85a3-41cbf0b3cc93"
     },
     "fileId": "7aWlDeF7lFJ4n1+ka+UAN9",
     "sync": false
@@ -210,7 +213,7 @@
     "_scaleY": 1,
     "_position": {
       "__type__": "cc.Vec2",
-      "x": 20,
+      "x": 8,
       "y": 3
     },
     "_skewX": 0,
@@ -237,7 +240,7 @@
     "_isSystemFontUsed": true,
     "_spacingX": 0,
     "_N$string": "5",
-    "_N$horizontalAlign": 1,
+    "_N$horizontalAlign": 0,
     "_N$verticalAlign": 1,
     "_N$fontFamily": "微软雅黑",
     "_N$overflow": 0
@@ -248,7 +251,7 @@
       "__id__": 1
     },
     "asset": {
-      "__id__": 0
+      "__uuid__": "5a17ac85-b913-4b2f-85a3-41cbf0b3cc93"
     },
     "fileId": "adTZPniABPgqiVQsFVZQdQ",
     "sync": false
@@ -297,7 +300,7 @@
     "_scaleY": 1,
     "_position": {
       "__type__": "cc.Vec2",
-      "x": 0,
+      "x": -10,
       "y": 3
     },
     "_skewX": 0,
@@ -339,14 +342,14 @@
       "__id__": 1
     },
     "asset": {
-      "__id__": 0
+      "__uuid__": "5a17ac85-b913-4b2f-85a3-41cbf0b3cc93"
     },
     "fileId": "11O+OZO0ZEV4rz+LRO+Tr6",
     "sync": false
   },
   {
     "__type__": "cc.Node",
-    "_name": "New Label",
+    "_name": "name",
     "_objFlags": 0,
     "_parent": {
       "__id__": 1
@@ -388,7 +391,7 @@
     "_scaleY": 1,
     "_position": {
       "__type__": "cc.Vec2",
-      "x": -81.4,
+      "x": -85,
       "y": 3
     },
     "_skewX": 0,
@@ -426,9 +429,96 @@
       "__id__": 1
     },
     "asset": {
-      "__id__": 0
+      "__uuid__": "5a17ac85-b913-4b2f-85a3-41cbf0b3cc93"
     },
     "fileId": "859r4rJxRLyrzBgaeh6VLx",
+    "sync": false
+  },
+  {
+    "__type__": "cc.Node",
+    "_name": "count_2",
+    "_objFlags": 0,
+    "_parent": {
+      "__id__": 1
+    },
+    "_children": [],
+    "_tag": -1,
+    "_active": true,
+    "_components": [
+      {
+        "__id__": 15
+      }
+    ],
+    "_prefab": {
+      "__id__": 16
+    },
+    "_id": "",
+    "_opacity": 255,
+    "_color": {
+      "__type__": "cc.Color",
+      "r": 0,
+      "g": 0,
+      "b": 0,
+      "a": 255
+    },
+    "_cascadeOpacityEnabled": true,
+    "_anchorPoint": {
+      "__type__": "cc.Vec2",
+      "x": 0.5,
+      "y": 0.5
+    },
+    "_contentSize": {
+      "__type__": "cc.Size",
+      "width": 8.8,
+      "height": 40
+    },
+    "_rotationX": 0,
+    "_rotationY": 0,
+    "_scaleX": 1,
+    "_scaleY": 1,
+    "_position": {
+      "__type__": "cc.Vec2",
+      "x": 35,
+      "y": 3
+    },
+    "_skewX": 0,
+    "_skewY": 0,
+    "_localZOrder": 0,
+    "_globalZOrder": 0,
+    "_opacityModifyRGB": false,
+    "groupIndex": 0
+  },
+  {
+    "__type__": "cc.Label",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 14
+    },
+    "_enabled": true,
+    "_useOriginalSize": false,
+    "_actualFontSize": 15,
+    "_fontSize": 15,
+    "_lineHeight": 40,
+    "_enableWrapText": true,
+    "_N$file": null,
+    "_isSystemFontUsed": true,
+    "_spacingX": 0,
+    "_N$string": "5",
+    "_N$horizontalAlign": 0,
+    "_N$verticalAlign": 1,
+    "_N$fontFamily": "微软雅黑",
+    "_N$overflow": 0
+  },
+  {
+    "__type__": "cc.PrefabInfo",
+    "root": {
+      "__id__": 1
+    },
+    "asset": {
+      "__uuid__": "5a17ac85-b913-4b2f-85a3-41cbf0b3cc93"
+    },
+    "fileId": "0bOgzr88lGJ5wG6fm93Izt",
     "sync": false
   },
   {
@@ -523,7 +613,9 @@
       "__id__": 1
     },
     "_enabled": true,
-    "index": "Integer"
+    "index": "Integer",
+    "i": "Boolean",
+    "list": []
   },
   {
     "__type__": "cc.PrefabInfo",
@@ -531,7 +623,7 @@
       "__id__": 1
     },
     "asset": {
-      "__id__": 0
+      "__uuid__": "5a17ac85-b913-4b2f-85a3-41cbf0b3cc93"
     },
     "fileId": "06VPtU1YFD/Je4swb8vFWq",
     "sync": false
