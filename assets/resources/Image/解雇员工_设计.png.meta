@@ -1,0 +1,30 @@
+{
+  "ver": "1.0.0",
+  "uuid": "bddf6fda-dab0-4e37-8f35-807157c0e406",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "subMetas": {
+    "解雇员工_设计": {
+      "ver": "1.0.3",
+      "uuid": "11495870-f46f-4ce0-a292-95b66f4b0ec5",
+      "rawTextureUuid": "bddf6fda-dab0-4e37-8f35-807157c0e406",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 0,
+      "offsetY": 0,
+      "trimX": 0,
+      "trimY": 0,
+      "width": 373,
+      "height": 523,
+      "rawWidth": 373,
+      "rawHeight": 523,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}

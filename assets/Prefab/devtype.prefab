@@ -649,7 +649,7 @@
       "__id__": 1
     },
     "_enabled": true,
-    "transition": 2,
+    "transition": 0,
     "pressedColor": {
       "__type__": "cc.Color",
       "r": 255,
@@ -708,8 +708,9 @@
     },
     "_enabled": true,
     "index": "Integer",
-    "i": "Boolean",
-    "list": []
+    "chosen": "Boolean",
+    "project": null,
+    "data": []
   },
   {
     "__type__": "cc.PrefabInfo",

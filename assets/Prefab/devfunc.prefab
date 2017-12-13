@@ -555,7 +555,7 @@
       "__id__": 1
     },
     "_enabled": true,
-    "transition": 2,
+    "transition": 0,
     "pressedColor": {
       "__type__": "cc.Color",
       "r": 255,
@@ -606,7 +606,7 @@
     }
   },
   {
-    "__type__": "ade82PVPi9O3Z5zJbvSHA3M",
+    "__type__": "98f7bHFBW5HPYh7QTS9npfB",
     "_name": "",
     "_objFlags": 0,
     "node": {
@@ -614,8 +614,9 @@
     },
     "_enabled": true,
     "index": "Integer",
-    "i": "Boolean",
-    "list": []
+    "chosen": "Boolean",
+    "project": null,
+    "data": []
   },
   {
     "__type__": "cc.PrefabInfo",

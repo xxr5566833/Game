@@ -161,9 +161,9 @@
       "__id__": 1
     },
     "asset": {
-      "__uuid__": "9b1183ed-b2d5-4669-995a-e9e73c0076ef"
+      "__uuid__": "730f9e9b-967a-4c17-a5b1-dd2953ed8628"
     },
-    "fileId": "7aWlDeF7lFJ4n1+ka+UAN9",
+    "fileId": "79L+BHx6lDMoSl3PSxWJfZ",
     "sync": false
   },
   {
@@ -252,9 +252,9 @@
       "__id__": 1
     },
     "asset": {
-      "__uuid__": "9b1183ed-b2d5-4669-995a-e9e73c0076ef"
+      "__uuid__": "730f9e9b-967a-4c17-a5b1-dd2953ed8628"
     },
-    "fileId": "11O+OZO0ZEV4rz+LRO+Tr6",
+    "fileId": "161ceGsbtLDK4SqQAOG7v6",
     "sync": false
   },
   {
@@ -339,9 +339,9 @@
       "__id__": 1
     },
     "asset": {
-      "__uuid__": "9b1183ed-b2d5-4669-995a-e9e73c0076ef"
+      "__uuid__": "730f9e9b-967a-4c17-a5b1-dd2953ed8628"
     },
-    "fileId": "859r4rJxRLyrzBgaeh6VLx",
+    "fileId": "dfHqX+DedEZptS4nSGAwD+",
     "sync": false
   },
   {
@@ -430,9 +430,9 @@
       "__id__": 1
     },
     "asset": {
-      "__uuid__": "9b1183ed-b2d5-4669-995a-e9e73c0076ef"
+      "__uuid__": "730f9e9b-967a-4c17-a5b1-dd2953ed8628"
     },
-    "fileId": "84YtgWMBZD3JEEuGoNHFYx",
+    "fileId": "e8gkH5dJdEyLr9oV4zvPAB",
     "sync": false
   },
   {
@@ -469,7 +469,7 @@
       "__id__": 1
     },
     "_enabled": true,
-    "transition": 2,
+    "transition": 0,
     "pressedColor": {
       "__type__": "cc.Color",
       "r": 255,
@@ -520,7 +520,7 @@
     }
   },
   {
-    "__type__": "ade82PVPi9O3Z5zJbvSHA3M",
+    "__type__": "b4a96VoLw9G/4nm2izN6oeE",
     "_name": "",
     "_objFlags": 0,
     "node": {
@@ -528,8 +528,8 @@
     },
     "_enabled": true,
     "index": "Integer",
-    "i": "Boolean",
-    "list": []
+    "chosen": "Boolean",
+    "Independent": null
   },
   {
     "__type__": "cc.PrefabInfo",
@@ -537,9 +537,9 @@
       "__id__": 1
     },
     "asset": {
-      "__uuid__": "9b1183ed-b2d5-4669-995a-e9e73c0076ef"
+      "__uuid__": "730f9e9b-967a-4c17-a5b1-dd2953ed8628"
     },
-    "fileId": "06VPtU1YFD/Je4swb8vFWq",
+    "fileId": "a5bwXNlW9PJ5pSM8aFcCSJ",
     "sync": false
   }
 ]
