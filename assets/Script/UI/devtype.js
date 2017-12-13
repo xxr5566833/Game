@@ -16,6 +16,7 @@ cc.Class({
         chosen:cc.Boolean,
         project:cc.Node,
         data:[cc.Node],
+        Independent:cc.Node,
     },
 
     // use this for initialization
@@ -32,6 +33,7 @@ cc.Class({
             });
             this.chosen=false;
             this.project.subCategory(this.data[this.index]);
+            this.Independent.getComponent('Indenpendent').refresh();
         }
         else
         {
@@ -40,6 +42,7 @@ cc.Class({
             });
             this.chosen=true;
             this.project.addCategory(this.data[this.index]);
+            this.Independent.getComponent('Indenpendent').refresh();
         }
     },
 
