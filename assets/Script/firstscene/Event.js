@@ -290,7 +290,11 @@ cc.Class({
             this.bank_.getComponent("Bank").resume(time);
             this.market_.getComponent("Market").resume(time);
             this.date_.getComponent("Date").resume(time);
-        }, this)
+        }, this);
+
+        this.node.on("get-all-project-groups", function(){
+            event.back = this.personControl_.getComponent("PersonControl").getAllGroups();
+        }, this);
 
 
 

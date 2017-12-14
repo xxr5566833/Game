@@ -234,6 +234,8 @@ cc.Class({
             var pg = templist[i];
             this.pgs.push(pg);
         }
+        this.addOne();
+        this.addOne();
     },
 
     // called every frame, uncomment this function to activate update callback

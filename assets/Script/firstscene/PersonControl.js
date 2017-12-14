@@ -95,39 +95,42 @@ cc.Class({
         this.platforms_ = platforms;
     },
 
-    getAvailablePlatform:function(){
+    getAvailablePlatforms:function(){
         var list = [];
         for(let i = 0 ; i < this.platforms_.length ; i++)
         {
-            if(platforms[i].unlock_)
+            if(this.platforms_[i].unlock_)
             {
-                list.push(platforms[i]);
+                list.push(this.platforms_[i]);
             }
         }
+        console.log(list);
         return list;
     },
 
     getAvailableFunctions:function(){
         var list = [];
-        for(let i = 0 ; i < this.functions_,length ; i++)
+        for(let i = 0 ; i < this.functions_.length ; i++)
         {
             if(this.functions_[i].unlock_)
             {
                 list.push(this.functions_[i]);
             }
         }
+        console.log(list);
         return list;
     },
 
     getAvailableCategories:function(){
         var list = [];
-        for(let i = 0 ; i < this.categories_,length ; i++)
+        for(let i = 0 ; i < this.categories_.length ; i++)
         {
             if(this.categories_[i].unlock_)
             {
                 list.push(this.categories_[i]);
             }
         }
+        console.log(list);
         return list;
     },
 
@@ -140,7 +143,12 @@ cc.Class({
                 list.push(this.persons_[i]);
             }
         }
+        console.log(list);
         return list;
+    },
+
+    getAllGroups:function(){
+        return this.projectGroups_;
     },
 
     changeCredit:function(num){

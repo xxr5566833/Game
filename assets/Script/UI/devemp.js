@@ -31,6 +31,7 @@ cc.Class({
             });
             this.chosen=false;
             this.Independent.getComponent('Indenpendent').select_em[this.index]=false;
+            this.Independent.getComponent('Indenpendent').refresh();
         }
         else
         {
@@ -39,6 +40,7 @@ cc.Class({
             });
             this.chosen=true;
             this.Independent.getComponent('Indenpendent').select_em[this.index]=true;
+            this.Independent.getComponent('Indenpendent').refresh();
         }
     },
 
