@@ -32,11 +32,7 @@ cc.Class({
         var event = new cc.Event.EventCustom('get-all-project-groups', true)
         event.detail.person = this
         this.node.dispatchEvent(event);    
-        this.projectGroups_ = event.detail.back        
-        if (this.projectGroups_.length > 0) {
-            // 默认为第一个项目组
-            this.currentProjectGroup_ = this.projectGroups_[0]
-        }
+        this.updateProjectGroups(event.detail.back)
         // 初始化4个对话气泡
         for (var i = 0; i < 4; i++) {
             this.bubbles_.push(new cc.Label())
