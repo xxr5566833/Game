@@ -17,23 +17,25 @@ cc.Class({
     },
 
     onEnable: function () {
-        this.projects = cc.find("Event\Game\Date\Account\ProjectGenerator").getComponent("ProjectGenerator").getProjects(); // 抛事件得到可选项目
+        this.projects = cc.find("Event/Game/Date/Account/ProjectGenerator").getComponent("ProjectGenerator").getProjects(); // 抛事件得到可选项目
+        console.log(this.projects);
         this.name1.string = this.projects[0].name_;
         this.name2.string = this.projects[1].name_;
         this.name3.string = this.projects[2].name_;
         this.reward1.string = this.projects[0].reward_;
         this.reward2.string = this.projects[1].reward_;
-        this.reward3name3.string = this.projects[2].reward_;
-        show(null,0);
+        this.reward3.string = this.projects[2].reward_;
+        this.show(null,0);
     },
 
     show :function(toggle,id) {    // 选择项目触发,显示具体信息
+        console.log("ok");
         this.selectProject=this.projects[id];
-        this.funct.string = this.selectProject.requireFunction_;
+        this.function.string = this.selectProject.requireFunction_;
         this.deadline.string = this.selectProject.deadline_;
     },
 
-    accept :function(event){     // 接受当前所选项目
+    accept :function(event){        // 接受当前所选项目
         this.projectMenu.active=false;  
         this.employeeMenu.active=true;
     },
@@ -46,7 +48,7 @@ cc.Class({
     // 还查响应所选员工的函数，记录在this.persons里
 
     begin: function(event){
-        cc.find("Event\Game\Date\Account\PersonControl").getComponent("PersonControl").begin(this.selectProject,this.persons)
+        cc.find("Event/Game/Date/Account/ProjectGenerator").getComponent("PersonControl").begin(this.selectProject,this.persons)
         this.employeeMenu.active=false;
         this.Main.active=true;   
     },

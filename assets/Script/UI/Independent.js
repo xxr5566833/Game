@@ -30,13 +30,13 @@ cc.Class({
         typ_data:Object,
         fun_data:Object,
         em_data:Object,
+        select_em:[Object],
+        select_typ : [Object],
+        select_fun : [Object],
+        select_pf : 0,
     },
     
     onload:function(){
-        this.select_pf = 0;
-        this.select_typ = [];
-        this.select_fun = [];
-        this.select_em = [];
     },
 
     pfchange:function()
@@ -51,6 +51,7 @@ cc.Class({
         console.log(this.select_pf);
         this.pfreq.getChildByName("budget").getComponent(cc.Label).String=this.project.budget_.toString();
         this.pfreq.getChildByName("funct").getComponent(cc.Label).String=this.project.requireFunction_.toString();
+
         this.pfreq.getChildByName("balance").getComponent(cc.Label).String=(this.money-this.project.budget_).toString();
         this.typreq.getChildByName("budget").getComponent(cc.Label).String=this.project.budget_.toString();
         this.typreq.getChildByName("funct").getComponent(cc.Label).String=this.project.requireFunction_.toString();
@@ -159,7 +160,7 @@ cc.Class({
                 });
              */
             this.emview.addChild(item);
-            console.log(this.select_pf);
+            console.log(this.select_em);
             this.select_em[p]=false;
         }
         console.log("enable");
@@ -181,42 +182,45 @@ cc.Class({
     },
 
     platform_next:function(){
-        this.node.getChildByName("platform").active==false; // 关闭当前窗口
-        this.node.getChildByName("type").active==true;      // 打开下一窗口
+        this.node.getChildByName("platform").active=false; // 关闭当前窗口
+        console.log(this.node.getChildByName("platform"));
+        console.log(this.node.getChildByName("type"));
+        this.node.getChildByName("type").active=true;      // 打开下一窗口
     },
 
     type_pre:function(){
-        this.node.getChildByName("type").active==false;     // 关闭当前界面
-        this.node.getChildByName("platform").active==true;  // 打开上一界面
+        this.node.getChildByName("type").active=false;     // 关闭当前界面
+        this.node.getChildByName("platform").active=true;  // 打开上一界面
     },
 
     type_next:function(){
-        this.node.getChildByName("type").active==false;     // 关闭当前窗口
-        this.node.getChildByName("function").active==true;      // 打开下一窗口
+        this.node.getChildByName("type").active=false;     // 关闭当前窗口
+        this.node.getChildByName("function").active=true;      // 打开下一窗口
     },
 
     function_pre:function(){
-        this.node.getChildByName("function").active==false;  
-        this.node.getChildByName("type").active==true;       
+        this.node.getChildByName("function").active=false;  
+        this.node.getChildByName("type").active=true;       
     },
 
     function_next:function(){
-        this.node.getChildByName("function").active==false; // 关闭当前窗口
-        this.node.getChildByName("confirm").active==true;      // 打开下一窗口
+        this.node.getChildByName("function").active=false; // 关闭当前窗口
+        this.node.getChildByName("confirm").active=true;      // 打开下一窗口
     },
 
     confirm_pre:function(){
-        this.node.getChildByName("confirm").active==false;  
-        this.node.getChildByName("function").active==true;     
+        this.node.getChildByName("confirm").active=false;  
+        this.node.getChildByName("function").active=true;     
     },
     confirm_next:function(){
-        this.node.getChildByName("confirm").active==false; // 关闭当前窗口
-        this.node.getChildByName("employee").active==true;      // 打开下一窗口
+        this.node.getChildByName("confirm").active=false; // 关闭当前窗口
+        console.log(this.node.getChildByName("employee"));
+        this.node.getChildByName("employee").active=true;      // 打开下一窗口
     },
 
     employee_pre:function(){
-        this.node.getChildByName("employee").active==false; 
-        this.node.getChildByName("confirm").active==true; 
+        this.node.getChildByName("employee").active=false; 
+        this.node.getChildByName("confirm").active=true; 
     },
     employee_next:function(){
         //开始开发
@@ -227,12 +231,12 @@ cc.Class({
             }
         }
         cc.find('Event/Game/Date/Account/PersonControl').getComponent("PersonControl").begin(this.project,selected_em);
-        this.node.getChildByName("employee").active==false; // 关闭当前窗口
-        this.LeftToggles.node.active==true;                 // 打开左侧按钮
+        this.node.getChildByName("employee").active=false; // 关闭当前窗口
+        this.LeftToggles.node.active=true;                 // 打开左侧按钮
     },
 
     quit:function(event){
         event.target.parent.active = false; // 关闭当前界面
-        this.LeftToggles.node.active==true; // 打开左侧按钮
+        this.LeftToggles.node.active=true; // 打开左侧按钮
     }
 });

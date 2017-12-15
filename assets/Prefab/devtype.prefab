@@ -207,7 +207,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 8.8,
+      "width": 9,
       "height": 40
     },
     "_rotationX": 0,
@@ -563,7 +563,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 8.8,
+      "width": 9,
       "height": 40
     },
     "_rotationX": 0,
@@ -707,10 +707,11 @@
       "__id__": 1
     },
     "_enabled": true,
-    "index": "Integer",
-    "chosen": "Boolean",
+    "index": 0,
+    "chosen": false,
     "project": null,
-    "data": []
+    "data": [],
+    "Independent": null
   },
   {
     "__type__": "cc.PrefabInfo",
