@@ -30,6 +30,7 @@ cc.Class({
                 unlock_ : true,
                 budget_ : 100,
                 difficulty_ : 10,
+                function_ : 0,
                 
             }
         ];
@@ -59,6 +60,8 @@ cc.Class({
                 difficulty_ : 10,
                 function_ : 10,
                 unlock_ : true,
+                budget_ : 0,
+                times_ : 1.1,
             },
             {
                 name_ : "功能2",
@@ -66,6 +69,8 @@ cc.Class({
                 difficulty_ : 10,
                 function_ :100,
                 unlock_ : true,
+                budget_ : 0,
+                times_ : 1.1,
             }
         ];
         this.techs_ = [
@@ -75,6 +80,7 @@ cc.Class({
                 difficulty_ :10,
                 budget_ : 100,
                 unlock_ :true,
+                function_ :0,
             },
             {
                 name_ : "技术2",
@@ -82,6 +88,7 @@ cc.Class({
                 difficulty_ : 20,
                 budget_ : 10,
                 unlock_ : true,
+                function_ : 0,
             }
         ];
     },

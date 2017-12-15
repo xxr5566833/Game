@@ -12,8 +12,8 @@ cc.Class({
         //    readonly: false,    // optional, default is false
         // },
         // ...
-        index:cc.Integer,
-        chosen:cc.Boolean,
+        index:0,
+        chosen:false,
         Independent:cc.Node,
     },
 

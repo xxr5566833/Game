@@ -527,8 +527,8 @@
       "__id__": 1
     },
     "_enabled": true,
-    "index": "Integer",
-    "chosen": "Boolean",
+    "index": 0,
+    "chosen": false,
     "Independent": null
   },
   {

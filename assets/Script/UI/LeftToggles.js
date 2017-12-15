@@ -16,10 +16,12 @@ cc.Class({
     },
 
     showMenu :function(toggle) {    // 点击左侧toggle触发
+
+        console.log(this.toggles);
         for(var t in this.toggles){
-            t.node.getChildByName("Mune").active==false;    // 关闭已打开的toggle菜单
+            t.node.getChildByName("Menu").active==false;    // 关闭已打开的toggle菜单
         }
-        toggle.node.getChildByName("Mune").active=toggle.isChecked; // 打开或关闭当前toggle下的菜单
+        toggle.node.getChildByName("Menu").active=toggle.isChecked; // 打开或关闭当前toggle下的菜单
     },
 
     research_toggle:function(toggle){

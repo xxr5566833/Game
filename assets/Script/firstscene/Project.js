@@ -82,6 +82,7 @@ cc.Class({
 
     init: function (kind, proj) {
         this.kind_ = kind;
+        //需要把可能直接用的属性都初始化，这样就不会是undefined
         if(kind == 0 || kind == 2)
         {
             this.requireEntertainment_=proj.requireEntertainment_;
@@ -97,6 +98,12 @@ cc.Class({
             this.index_ = proj.index_;
             if(!proj.difficulty_)
                 this.difficulty_ = 0;
+        }
+        else{
+            this.reward_ = 0;
+            this.name = "";
+            this.budget_ = 0;
+            this.difficulty_ = 0;
         }
     },
 
@@ -132,7 +139,7 @@ cc.Class({
         return require;
     },
 
-    setrequire: function (require) {
+    setRequire: function (require) {
         this.requireFunction_ = require.function
         this.requireEntertainment_ = require.entertainment
         this.requireInnovation_ = require.innovation
@@ -179,11 +186,11 @@ cc.Class({
     },
 
     isDevelopEnough: function () {
-        return this.currentFunc_ / this.requireFunc_ >= 0.6
+        return this.currentFunction_ / this.requireFunction_ >= 0.6
     },
 
     isDevelopEnd: function () {
-        return this.currentFunc_ >= this.requireFunc_;
+        return this.currentFunction_ >= this.requireFunction_;
     },
 
     isOverdue:function(nowday){

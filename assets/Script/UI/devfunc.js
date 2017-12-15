@@ -12,9 +12,8 @@ cc.Class({
         //    readonly: false,    // optional, default is false
         // },
         // ...
-        index:cc.Integer,
-        chosen:cc.Boolean,
-        project:cc.Node,
+        index:0,
+        chosen:false,
         data:[cc.Node],
         Independent:cc.Node,
     },
@@ -22,6 +21,7 @@ cc.Class({
     // use this for initialization
     onLoad: function () {
         this.chosen=false;
+        this.project = null;
     },
 
     onClick:function(){
