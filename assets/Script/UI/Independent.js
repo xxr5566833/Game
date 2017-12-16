@@ -3,7 +3,7 @@ cc.Class({
     extends: cc.Component,
 
     properties: {
-        LeftToggles:cc.ToggleGroup,
+        Main:cc.Node,
         platform:cc.Node,
         type:cc.Node,
         function:cc.Node,
@@ -232,11 +232,11 @@ cc.Class({
         }
         cc.find('Event/Game/Date/Account/PersonControl').getComponent("PersonControl").begin(this.project,selected_em);
         this.node.getChildByName("employee").active=false; // 关闭当前窗口
-        this.LeftToggles.node.active=true;                 // 打开左侧按钮
+        this.Main.active=true;                 // 打开主界面
     },
 
     quit:function(event){
         event.target.parent.active = false; // 关闭当前界面
-        this.LeftToggles.node.active=true; // 打开左侧按钮
+        this.Main.active=true;  
     }
 });

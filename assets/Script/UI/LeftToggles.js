@@ -14,16 +14,14 @@ cc.Class({
 
     onLoad :function() {
         this.node.active=true;
-        this.toggles = this.node.getComponentsInChildren(cc.Toggle);
+        this.toggles = this.node.getComponentsInChildren(cc.Toggle);    // 返回Toggle数组
     },
 
-    showMenu :function(toggle) {    // 点击左侧toggle触发
-
-        console.log(toggle);
-        for(var t in this.toggles){
-            if(this.toggles[t].node.getChildByName("Menu").active==true)
+    showMenu :function(toggle) {    // 点击左侧toggle触发,参数为点击的Toggle组件
+        for(var i in this.toggles){ // JS的for in遍历的是下标!
+            if(this.toggles[i].node.getChildByName("Menu").active==true)
             {
-                this.toggles[t].node.getChildByName("Menu").active==false;    // 关闭已打开的toggle菜单
+                this.toggles[i].node.getChildByName("Menu").active=false;    // 关闭已打开的toggle菜单
             }
         }
         toggle.node.getChildByName("Menu").active=toggle.isChecked; // 打开或关闭当前toggle下的菜单
@@ -31,7 +29,7 @@ cc.Class({
 
     research_toggle:function(toggle){
         toggle.isChecked=false;
-        this.node.active = false;    
+        this.Main.active = false;               // 关闭主界面 
         this.Research.active = true;
     },
 
@@ -41,7 +39,6 @@ cc.Class({
             this.toggles[t].isChecked=false;
         this.Main.active = false;               // 关闭主界面
         console.log(this.Outsource.active);
-
         this.Outsource.active = true;     // 打开委托界面
         console.log("已经打开");
     },

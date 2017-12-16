@@ -2,6 +2,7 @@ cc.Class({
     extends: cc.Component,
 
     properties: {
+        Main:cc.Node,
         SprDetail: cc.Sprite,
         LabName:cc.Label,
         LabLv:cc.Label,
@@ -49,5 +50,10 @@ cc.Class({
 
     update:function(){
         this.LabS.string = parseInt(cc.find("Event\Game\Date\Account\Research").getComponent("Research").S_).toString();
+    },
+
+    quit :function(event){   
+        this.node.active=false;   // 关闭当前界面
+        this.Main.active=true;  
     }
 });
