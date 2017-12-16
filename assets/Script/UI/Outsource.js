@@ -45,7 +45,7 @@ cc.Class({
         this.projectMenu.active=true; 
     },
 
-    // 还查响应所选员工的函数，记录在this.persons里
+    // 还差响应所选员工的函数，记录在this.persons里
 
     begin: function(event){
         cc.find("Event/Game/Date/Account/ProjectGenerator").getComponent("PersonControl").begin(this.selectProject,this.persons)

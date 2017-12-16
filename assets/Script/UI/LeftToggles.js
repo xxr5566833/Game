@@ -2,16 +2,18 @@ cc.Class({
     extends: cc.Component,
 
     properties: {
+        Main:cc.Node,
         Outsource: cc.Node,
         Independent:cc.Node,
         Hire:cc.Node,
         Fire:cc.Node,
-        Research:cc.Node,
+        Research:cc.Node
     },
 
     // LIFE-CYCLE CALLBACKS:
 
     onLoad :function() {
+        this.node.active=true;
         this.toggles = this.node.getComponentsInChildren(cc.Toggle);
     },
 
@@ -19,7 +21,7 @@ cc.Class({
 
         console.log(toggle);
         for(var t in this.toggles){
-            if(this.toggles[t].node.getChildByName("Menu"))
+            if(this.toggles[t].node.getChildByName("Menu").active==true)
             {
                 this.toggles[t].node.getChildByName("Menu").active==false;    // 关闭已打开的toggle菜单
             }
@@ -37,7 +39,7 @@ cc.Class({
         event.target.parent.active = false;     // 关闭菜单界面
         for(var t in this.toggles)
             this.toggles[t].isChecked=false;
-        this.node.active = false;               // 关闭左侧按钮
+        this.Main.active = false;               // 关闭主界面
         console.log(this.Outsource.active);
 
         this.Outsource.active = true;     // 打开委托界面
@@ -48,7 +50,7 @@ cc.Class({
         event.target.parent.active = false;     // 关闭菜单界面
         for(var t in this.toggles)
             this.toggles[t].isChecked=false;
-        this.node.active = false;               // 关闭左侧按钮
+        this.Main.active = false;               // 关闭主界面
         this.Independent.active = true;     // 打开独立开发界面
     },
 
@@ -56,7 +58,7 @@ cc.Class({
         event.target.parent.active = false;     // 关闭菜单界面
         for(var t in this.toggles)
             this.toggles[t].isChecked=false;
-        this.node.active = false;               // 关闭左侧按钮
+        this.Main.active = false;               // 关闭主界面
         this.Hire.active = true;           // 打开雇佣界面
     },
 
@@ -64,7 +66,7 @@ cc.Class({
         event.target.parent.active = false;     // 关闭菜单界面
         for(var t in this.toggles)
             this.toggles[t].isChecked=false;
-        this.node.active = false;               // 关闭左侧按钮
+        this.Main.active = false;               // 关闭主界面
         this.Fire.active = true;           // 打开解雇界面
     }
 });
