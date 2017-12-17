@@ -22,11 +22,11 @@ cc.Class({
         // ...
     },
     pause:function(){
-        event=new cc.Event.EventCustom('PAUSE', true);
+        var event=new cc.Event.EventCustom('PAUSE', true);
         this.node.dispatchEvent(event);
     },
     resume:function(){
-        event=new cc.Event.EventCustom('RESUME', true);
+        var event=new cc.Event.EventCustom('RESUME', true);
         event.time = this.time_;
         this.node.dispatchEvent(event);
     },

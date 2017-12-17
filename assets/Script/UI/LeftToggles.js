@@ -19,10 +19,11 @@ cc.Class({
 
     showMenu :function(toggle) {    // 点击左侧toggle触发,参数为点击的Toggle组件
         for(var i in this.toggles){ // JS的for in遍历的是下标!
-            if(this.toggles[i].node.getChildByName("Menu").active==true)
-            {
-                this.toggles[i].node.getChildByName("Menu").active=false;    // 关闭已打开的toggle菜单
-            }
+            if(this.toggles[i].node.getChildByName("Menu"))
+                if(this.toggles[i].node.getChildByName("Menu").active==true)
+                {
+                    this.toggles[i].node.getChildByName("Menu").active=false;    // 关闭已打开的toggle菜单
+                }
         }
         toggle.node.getChildByName("Menu").active=toggle.isChecked; // 打开或关闭当前toggle下的菜单
     },
