@@ -1,4 +1,5 @@
 var projectgroup = require("ProjectGroup");
+var person = require("Person")
 cc.Class({
     extends: cc.Component,
 
@@ -21,10 +22,22 @@ cc.Class({
             default: null,
             type: projectgroup
         },
-        Layout: {
+        Label1: {
             default: null,
-            type: cc.Node
-        }
+            type: cc.Label
+        },
+        Label2: {
+            default: null,
+            type: cc.Label
+        },
+        Label3: {
+            default: null,
+            type: cc.Label
+        },
+        Label4: {
+            default: null,
+            type: cc.Label
+        },
     },
 
     // use this for initialization
@@ -39,10 +52,22 @@ cc.Class({
         }
     },*/
 
-    onload: function () {
+    onLoad: function () {
         // 每隔1秒刷新一次聊天室
         this.schedule(this.fresh, 1);
+        this.layout = this.node.children[0]
+        this.layout
         cc.log("dialogue initial")
+        // fake data
+        this.currentProjectGroup_ = new (projectgroup)
+        this.currentProjectGroup_.persons_.push(new (person))
+        this.currentProjectGroup_.persons_.push(new (person))
+        this.currentProjectGroup_.persons_.push(new (person))
+        this.currentProjectGroup_.persons_.push(new (person))
+        this.currentProjectGroup_.persons_[0].month_ = "saying1"
+        this.currentProjectGroup_.persons_[1].month_ = "saying2"
+        this.currentProjectGroup_.persons_[2].month_ = "saying3"
+        this.currentProjectGroup_.persons_[3].month_ = "saying4"
     },
 
     // 刷新对话框
@@ -54,24 +79,24 @@ cc.Class({
         cc.log(this.currentProjectGroup_.persons_[3].month_)
 
         if (this.currentProjectGroup_.persons_[0] != undefined) {
-            this.Layout.Label1.string = this.currentProjectGroup_.persons_[0].month_
+            this.Label1.string = this.currentProjectGroup_.persons_[0].month_
         } else {
-            this.Layout.Label1.string = ""
+            this.Label1.string = ""
         }
         if (this.currentProjectGroup_.persons_[1] != undefined) {
-            this.Layout.Label1.string = this.currentProjectGroup_.persons_[0].month_
+            this.Label2.string = this.currentProjectGroup_.persons_[1].month_
         } else {
-            this.Layout.Label1.string = ""
+            this.Label2.string = ""
         }
         if (this.currentProjectGroup_.persons_[2] != undefined) {
-            this.Layout.Label1.string = this.currentProjectGroup_.persons_[0].month_
+            this.Label3.string = this.currentProjectGroup_.persons_[2].month_
         } else {
-            this.Layout.Label1.string = ""
+            this.Label3.string = ""
         }
         if (this.currentProjectGroup_.persons_[3] != undefined) {
-            this.Layout.Label1.string = this.currentProjectGroup_.persons_[0].month_
+            this.Label4.string = this.currentProjectGroup_.persons_[3].month_
         } else {
-            this.Layout.Label1.string = ""
+            this.Label4.string = ""
         }
     },
 

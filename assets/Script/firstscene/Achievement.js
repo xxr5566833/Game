@@ -100,7 +100,7 @@ cc.Class({
     },
 
     resume:function(time){
-        this.schedule(this.unlock, 1);
+        this.schedule(this.unlock, time * 10);
     },
 
     unlock:function(){

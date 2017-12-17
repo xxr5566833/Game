@@ -1349,7 +1349,18 @@
     "_enabled": true,
     "projectGroups_": [],
     "currentProjectGroup_": null,
-    "Layout": null
+    "Label1": {
+      "__id__": 27
+    },
+    "Label2": {
+      "__id__": 29
+    },
+    "Label3": {
+      "__id__": 31
+    },
+    "Label4": {
+      "__id__": 33
+    }
   },
   {
     "__type__": "cc.Node",
