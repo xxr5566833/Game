@@ -38,6 +38,22 @@ cc.Class({
             default: null,
             type: cc.Label
         },
+        avatar1: {
+            default: null,
+            type: cc.Sprite
+        },
+        avatar2: {
+            default: null,
+            type: cc.Sprite
+        },
+        avatar3: {
+            default: null,
+            type: cc.Sprite
+        },
+        avatar4: {
+            default: null,
+            type: cc.Sprite
+        },
     },
 
     // use this for initialization
@@ -64,10 +80,18 @@ cc.Class({
         this.currentProjectGroup_.persons_.push(new (person))
         this.currentProjectGroup_.persons_.push(new (person))
         this.currentProjectGroup_.persons_.push(new (person))
-        this.currentProjectGroup_.persons_[0].month_ = "saying1"
+        this.currentProjectGroup_.persons_[0].month_ = "saying1 是第三方粉色地方宋对方会收到回复快乐"
         this.currentProjectGroup_.persons_[1].month_ = "saying2"
         this.currentProjectGroup_.persons_[2].month_ = "saying3"
-        this.currentProjectGroup_.persons_[3].month_ = "saying4"
+        this.currentProjectGroup_.persons_[3].month_ = "saying4水电费水电费水电费地方撒的"
+        this.currentProjectGroup_.persons_[0].index_ = 0
+        this.currentProjectGroup_.persons_[1].index_ = 1
+        this.currentProjectGroup_.persons_[2].index_ = 2
+        this.currentProjectGroup_.persons_[3].index_ = 3
+        this.currentProjectGroup_.persons_[0].name_ = "路人甲"
+        this.currentProjectGroup_.persons_[1].name_ = "匪兵乙"
+        this.currentProjectGroup_.persons_[2].name_ = "炮灰丙"
+        this.currentProjectGroup_.persons_[3].name_ = "流氓丁"
     },
 
     // 刷新对话框
@@ -80,21 +104,25 @@ cc.Class({
 
         if (this.currentProjectGroup_.persons_[0] != undefined) {
             this.Label1.string = this.currentProjectGroup_.persons_[0].month_
+            this.loadAvatar(this.currentProjectGroup_.persons_[0].index_, this.currentProjectGroup_.persons_[0].name_, this.avatar1)
         } else {
             this.Label1.string = ""
         }
         if (this.currentProjectGroup_.persons_[1] != undefined) {
             this.Label2.string = this.currentProjectGroup_.persons_[1].month_
+            this.loadAvatar(this.currentProjectGroup_.persons_[1].index_, this.currentProjectGroup_.persons_[1].name_, this.avatar2)
         } else {
             this.Label2.string = ""
         }
         if (this.currentProjectGroup_.persons_[2] != undefined) {
             this.Label3.string = this.currentProjectGroup_.persons_[2].month_
+            this.loadAvatar(this.currentProjectGroup_.persons_[2].index_, this.currentProjectGroup_.persons_[2].name_, this.avatar3)
         } else {
             this.Label3.string = ""
         }
         if (this.currentProjectGroup_.persons_[3] != undefined) {
             this.Label4.string = this.currentProjectGroup_.persons_[3].month_
+            this.loadAvatar(this.currentProjectGroup_.persons_[3].index_, this.currentProjectGroup_.persons_[3].name_, this.avatar4)
         } else {
             this.Label4.string = ""
         }
@@ -128,4 +156,16 @@ cc.Class({
             }
         }
     },*/
+    // 根据index和name修改一个avatar
+    loadAvatar: function (index, name, avatar) {
+        // 加载 SpriteFrame
+        cc.loader.loadRes("avatars/" + index + "_" + name + ".png", cc.SpriteFrame, function (err, spriteFrame) {
+            if (err) {
+                console.log("loadAvatar error: " + name)
+                //cc.error(err.message || err);
+                return;
+            }
+            avatar.spriteFrame = spriteFrame;
+        });
+    }
 });
