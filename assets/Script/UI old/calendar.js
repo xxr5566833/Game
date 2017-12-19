@@ -81,7 +81,7 @@ cc.Class({
 
     getDate: function() {
         // TODO: 和后端连接，返回天数
-        event = new cc.Event.EventCustom("GETDATA",true);  
+        var event = new cc.Event.EventCustom("GETDATA",true);  
         this.node.dispatchEvent(event);
         return event.back;
     },

@@ -47,7 +47,7 @@ cc.Class({
             if(err){
                 cc.log(err);
             }else{
-                event=new cc.Event.EventCustom('INIT', true);
+                var event=new cc.Event.EventCustom('INIT', true);
                 //console.log(data_pe);
                 console.log(data_pr);
                 //event.data_pe=data_pe;

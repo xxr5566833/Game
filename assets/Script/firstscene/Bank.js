@@ -14,11 +14,15 @@ cc.Class({
         //    readonly: false,    // optional, default is false
         // },
         // ...
+        loans_:{
+            type:[Loan],
+            default:[],
+        },
     },
 
     // use this for initialization
     onLoad: function () {
-        this.loans_ = [];
+        //this.loans_ = [];
         this.maxFixedLoanNum_ = 1;
         this.fixedLoanNum_ = 0;
         this.currentLoanNum_ = 0;

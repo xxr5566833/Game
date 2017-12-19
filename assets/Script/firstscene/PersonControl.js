@@ -186,7 +186,7 @@ cc.Class({
         if(this.currentNum_>=this.maxNum_){
             return false;
         }
-        event=new cc.Event.EventCustom('MONEYCUT', true);
+        var event=new cc.Event.EventCustom('MONEYCUT', true);
         event.force=false;
         event.money=person.employMoney_;
         this.node.dispatchEvent(event);
@@ -262,7 +262,7 @@ cc.Class({
     },
 
     paySalary:function(){
-        event=new cc.Event.EventCustom('GETDATE', true);
+        var event=new cc.Event.EventCustom('GETDATE', true);
         this.node.dispatchEvent(event);
         if(event.back%30 != 1){
             return ;

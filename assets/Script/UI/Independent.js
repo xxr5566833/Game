@@ -49,36 +49,36 @@ cc.Class({
     refresh:function()
     {
         console.log(this.select_pf);
-        this.pfreq.getChildByName("budget").getComponent(cc.Label).String=this.project.budget_.toString();
-        this.pfreq.getChildByName("funct").getComponent(cc.Label).String=this.project.requireFunction_.toString();
+        this.pfreq.getChildByName("budget").getComponent(cc.Label).string=this.project.budget_.toString();
+        this.pfreq.getChildByName("funct").getComponent(cc.Label).string=this.project.requireFunction_.toString();
 
-        this.pfreq.getChildByName("balance").getComponent(cc.Label).String=(this.money-this.project.budget_).toString();
-        this.typreq.getChildByName("budget").getComponent(cc.Label).String=this.project.budget_.toString();
-        this.typreq.getChildByName("funct").getComponent(cc.Label).String=this.project.requireFunction_.toString();
-        this.typreq.getChildByName("balance").getComponent(cc.Label).String=(this.money-this.project.budget_).toString();
-        this.funreq.getChildByName("budget").getComponent(cc.Label).String=this.project.budget_.toString();
-        this.funreq.getChildByName("funct").getComponent(cc.Label).String=this.project.requireFunction_.toString();
-        this.funreq.getChildByName("balance").getComponent(cc.Label).String=(this.money-this.project.budget_).toString();
-        this.emreq.getChildByName("budget").getComponent(cc.Label).String=this.project.budget_.toString();
-        this.emreq.getChildByName("funct").getComponent(cc.Label).String=this.project.requireFunction_.toString();
-        this.emreq.getChildByName("balance").getComponent(cc.Label).String=(this.money-this.project.budget_).toString();
-        this.pfres.getComponent(cc.Label).String=this.pf_data[this.select_pf].name_;
+        this.pfreq.getChildByName("balance").getComponent(cc.Label).string=(this.money-this.project.budget_).toString();
+        this.typreq.getChildByName("budget").getComponent(cc.Label).string=this.project.budget_.toString();
+        this.typreq.getChildByName("funct").getComponent(cc.Label).string=this.project.requireFunction_.toString();
+        this.typreq.getChildByName("balance").getComponent(cc.Label).string=(this.money-this.project.budget_).toString();
+        this.funreq.getChildByName("budget").getComponent(cc.Label).string=this.project.budget_.toString();
+        this.funreq.getChildByName("funct").getComponent(cc.Label).string=this.project.requireFunction_.toString();
+        this.funreq.getChildByName("balance").getComponent(cc.Label).string=(this.money-this.project.budget_).toString();
+        this.emreq.getChildByName("budget").getComponent(cc.Label).string=this.project.budget_.toString();
+        this.emreq.getChildByName("funct").getComponent(cc.Label).string=this.project.requireFunction_.toString();
+        this.emreq.getChildByName("balance").getComponent(cc.Label).string=(this.money-this.project.budget_).toString();
+        this.pfres.getComponent(cc.Label).string=this.pf_data[this.select_pf].name_;
         for(var p=0;p<this.select_typ.length;p++){
-            this.typres.getComponent(cc.Label).String="";
+            this.typres.getComponent(cc.Label).string="";
             if(this.select_typ[p]){
-                this.typres.getComponent(cc.Label).String+=this.typ_data[p].name_;
-                this.typres.getComponent(cc.Label).String+=" ";
+                this.typres.getComponent(cc.Label).string+=this.typ_data[p].name_;
+                this.typres.getComponent(cc.Label).string+=" ";
             }
         }
         for(var p=0;p<this.select_fun.length;p++){
-            this.funres.getComponent(cc.Label).String="";
+            this.funres.getComponent(cc.Label).string="";
             if(this.select_fun[p]){
-                this.funres.getComponent(cc.Label).String+=this.fun_data[p].name_;
-                this.funres.getComponent(cc.Label).String+=" ";
+                this.funres.getComponent(cc.Label).string+=this.fun_data[p].name_;
+                this.funres.getComponent(cc.Label).string+=" ";
             }
         }
-        this.budres.getComponent(cc.Label).String=this.project.getBudget().toString();
-        this.funpres.getComponent(cc.Label).String=this.project.requireFunction_.toString();
+        this.budres.getComponent(cc.Label).string=this.project.getBudget().toString();
+        this.funpres.getComponent(cc.Label).string=this.project.requireFunction_.toString();
     },
 
     onEnable:function(){
@@ -98,28 +98,26 @@ cc.Class({
         for(var p=0;p<pf_l;p++)
         {
             var item = cc.instantiate(this.pfPrefab);
-            switch(this.pf_data[p].index_)
+            item.getChildByName("name").getComponent(cc.Label).string=this.pf_data[p].name_;
+            switch(this.pf_data[p].name_)
             {
-                case 0:
-                item.getChildByName("name").getComponent(cc.Label).String="客户端";
+                case "客户端":
                 cc.loader.loadRes("Image/图标_创意", cc.SpriteFrame, function (err, spriteFrame) {
                     item.getChildByName("image").getComponent(cc.Sprite).spriteFrame=spriteFrame;
                 });
                 break;
-                case 1:
-                item.getChildByName("name").getComponent(cc.Label).String="网站";
+                case "网站":
                 cc.loader.loadRes("Image/图标_创意", cc.SpriteFrame, function (err, spriteFrame) {
                     item.getChildByName("image").getComponent(cc.Sprite).spriteFrame=spriteFrame;
                 });
                 break;
-                case 2:
-                item.getChildByName("name").getComponent(cc.Label).String="跨平台";
+                case "跨平台":
                 cc.loader.loadRes("Image/图标_创意", cc.SpriteFrame, function (err, spriteFrame) {
                     item.getChildByName("image").getComponent(cc.Sprite).spriteFrame=spriteFrame;
                 });
                 break;
-                this.pfview.getComponent(cc.PageView).addpage(item);
             }
+            this.pfview.getComponent(cc.PageView).addPage(item);
         }
         for(var p=0;p<typ_l;p++)
         {
@@ -127,10 +125,10 @@ cc.Class({
             item.getComponent('devtype').index=p;
             item.getComponent('devtype').data=this.typ_data;
             item.getComponent('devtype').Independent=this;
-            item.getChildByName("money").getComponent(cc.Label).String="$"+this.typ_data[p].budget_.toString();
-            item.getChildByName("name").getComponent(cc.Label).String=this.typ_data[p].name_;
-            item.getChildByName("count").getComponent(cc.Label).String=this.typ_data[p].function_.toString();
-            item.getChildByName("count_2").getComponent(cc.Label).String=this.typ_data[p].difficulty_.toString();
+            item.getChildByName("money").getComponent(cc.Label).string="$"+this.typ_data[p].budget_.toString();
+            item.getChildByName("name").getComponent(cc.Label).string=this.typ_data[p].name_;
+            item.getChildByName("count").getComponent(cc.Label).string=this.typ_data[p].function_.toString();
+            item.getChildByName("count_2").getComponent(cc.Label).string=this.typ_data[p].difficulty_.toString();
             this.typview.addChild(item);
         }
         for(var p=0;p<fun_l;p++)
@@ -142,18 +140,18 @@ cc.Class({
             item.getComponent('devfunc').data=this.fun_data;
             item.getComponent('devfunc').Independent=this;
             console.log(this.fun_data[p]);
-            item.getChildByName("money").getComponent(cc.Label).String="$"+this.fun_data[p].budget_.toString();
-            item.getChildByName("name").getComponent(cc.Label).String=this.fun_data[p].name_;
-            item.getChildByName("count").getComponent(cc.Label).String=this.fun_data[p].function_.toString();
-            item.getChildByName("count_2").getComponent(cc.Label).String=this.fun_data[p].times_.toString();
+            item.getChildByName("money").getComponent(cc.Label).string="$"+this.fun_data[p].budget_.toString();
+            item.getChildByName("name").getComponent(cc.Label).string=this.fun_data[p].name_;
+            item.getChildByName("count").getComponent(cc.Label).string=this.fun_data[p].function_.toString();
+            item.getChildByName("count_2").getComponent(cc.Label).string=this.fun_data[p].times_.toString();
         }
         for(var p=0;p<em_l;p++)
         {
             var item = cc.instantiate(this.emPrefab);
             item.getComponent('devemp').index=p;
             item.getComponent('devemp').Independent=this;
-            item.getChildByName("power").getComponent(cc.Label).String=this.em_data[p].power_.toString();
-            item.getChildByName("name").getComponent(cc.Label).String=this.em_data[p].name_;
+            item.getChildByName("power").getComponent(cc.Label).string=this.em_data[p].power_.toString();
+            item.getChildByName("name").getComponent(cc.Label).string=this.em_data[p].name_;
             /**
              *  cc.loader.loadRes("Image/图标_创意", cc.SpriteFrame, function (err, spriteFrame) {
                     item.getChildByName("image").getComponent(cc.Sprite).spriteFrame=spriteFrame;

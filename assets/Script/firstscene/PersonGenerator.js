@@ -29,7 +29,7 @@ cc.Class({
                 break;
             }
         }
-        event=new cc.Event.EventCustom('HIRE', true);
+        var event=new cc.Event.EventCustom('HIRE', true);
         event.person=person;
         this.node.dispatchEvent(event);
         if(event.back){
@@ -43,7 +43,7 @@ cc.Class({
     },
 
     addPerson: function(index){
-        event=new cc.Event.EventCustom('FIRE', true);
+        var event=new cc.Event.EventCustom('FIRE', true);
         event.index=index;
         this.node.dispatchEvent(event);
         console.log(event.back);
