@@ -1,5 +1,6 @@
 var projectgroup = require("ProjectGroup");
 var person = require("Person")
+var project = require("Project")
 cc.Class({
     extends: cc.Component,
 
@@ -21,6 +22,14 @@ cc.Class({
         currentProjectGroup_: {
             default: null,
             type: projectgroup
+        },
+        projectTitle: {
+            default: null,
+            type: cc.Label
+        },
+        projectIndex: {
+            default: null,
+            type: cc.Label
         },
         Label1: {
             default: null,
@@ -54,6 +63,14 @@ cc.Class({
             default: null,
             type: cc.Sprite
         },
+        leftBtn: {
+            default: null,
+            type: cc.Sprite
+        },
+        rightBtn: {
+            default: null,
+            type: cc.Sprite
+        }
     },
 
     // use this for initialization
@@ -69,6 +86,12 @@ cc.Class({
     },*/
 
     onLoad: function () {
+        // click event
+        this.leftBtn.node.on(cc.Node.EventType.TOUCH_START, this.leftStart, this)
+        this.leftBtn.node.on(cc.Node.EventType.TOUCH_END, this.leftEnd, this)
+        this.rightBtn.node.on(cc.Node.EventType.TOUCH_START, this.rightStart, this)
+        this.rightBtn.node.on(cc.Node.EventType.TOUCH_END, this.rightEnd, this)
+
         // 每隔1秒刷新一次聊天室
         this.schedule(this.fresh, 1);
         this.layout = this.node.children[0]
@@ -76,6 +99,9 @@ cc.Class({
         cc.log("dialogue initial")
         // fake data
         this.currentProjectGroup_ = new (projectgroup)
+        this.currentProjectGroup_.project_ = new(project)
+        this.currentProjectGroup_.project_.name_ = "fake project"
+        this.projectGroups_.push(this.currentProjectGroup_)
         this.currentProjectGroup_.persons_.push(new (person))
         this.currentProjectGroup_.persons_.push(new (person))
         this.currentProjectGroup_.persons_.push(new (person))
@@ -101,6 +127,9 @@ cc.Class({
         cc.log(this.currentProjectGroup_.persons_[1].month_)
         cc.log(this.currentProjectGroup_.persons_[2].month_)
         cc.log(this.currentProjectGroup_.persons_[3].month_)
+
+        this.projectTitle.string = this.currentProjectGroup_.project_.name_
+        this.projectIndex.string = (this.projectGroups_.indexOf(this.currentProjectGroup_) + 1) + "/" + this.projectGroups_.length
 
         if (this.currentProjectGroup_.persons_[0] != undefined) {
             this.Label1.string = this.currentProjectGroup_.persons_[0].month_
@@ -138,13 +167,24 @@ cc.Class({
     },
 
     // 切换到前一个项目组
-    left: function () {
+    leftStart: function () {
+        cc.log("left project start")
+        this.loadSprite(this.leftBtn, "Image/前景_按钮面板_按下-04")
         this.currentProjectGroup_ = this.projectGroups_[(this.projectGroups_.indexOf(this.currentProjectGroup_) - 1 + this.projectGroups_.length) % this.projectGroups_.length]
     },
-
+    leftEnd: function() {
+        cc.log("left project end")
+        this.loadSprite(this.leftBtn, "Image/前景_按钮面板")
+    },
     // 切换到后一个项目组
-    right: function () {
+    rightStart: function () {
+        cc.log("right project start")
+        this.loadSprite(this.rightBtn, "Image/前景_按钮面板_按下-04")
         this.currentProjectGroup_ = this.projectGroups_[(this.projectGroups_.indexOf(this.currentProjectGroup_) + 1) % this.projectGroups_.length]
+    },
+    rightEnd: function() {
+        cc.log("right project end")
+        this.loadSprite(this.rightBtn, "Image/前景_按钮面板")
     },
     // called every frame, uncomment this function to activate update callback
     /*update: function (dt) {
@@ -159,13 +199,25 @@ cc.Class({
     // 根据index和name修改一个avatar
     loadAvatar: function (index, name, avatar) {
         // 加载 SpriteFrame
-        cc.loader.loadRes("avatars/" + index + "_" + name + ".png", cc.SpriteFrame, function (err, spriteFrame) {
+        cc.loader.loadRes("avatars/" + index + "_" + name, cc.SpriteFrame, function (err, spriteFrame) {
             if (err) {
-                console.log("loadAvatar error: " + name)
+                console.log("loadAvatar error: " + name + err)
                 //cc.error(err.message || err);
                 return;
             }
             avatar.spriteFrame = spriteFrame;
+        });
+    },
+    // 更换图片: obj要改的对象，target目标素材的路径
+    loadSprite: function (obj, target) {
+        // 加载 SpriteFrame
+        cc.loader.loadRes(target, cc.SpriteFrame, function (err, spriteFrame) {
+            if (err) {
+                console.log("loadSprite error: " + target + err)
+                //cc.error(err.message || err);
+                return;
+            }
+            obj.spriteFrame = spriteFrame;
         });
     }
 });

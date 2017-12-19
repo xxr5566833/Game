@@ -2595,7 +2595,7 @@
     "_enabled": true,
     "_useOriginalSize": false,
     "_actualFontSize": 27,
-    "_fontSize": 27,
+    "_fontSize": 30,
     "_lineHeight": 40,
     "_enableWrapText": true,
     "_N$file": null,
@@ -2605,7 +2605,7 @@
     "_N$horizontalAlign": 1,
     "_N$verticalAlign": 1,
     "_N$fontFamily": "Arial",
-    "_N$overflow": 0
+    "_N$overflow": 2
   },
   {
     "__type__": "cc.Sprite",
@@ -2643,6 +2643,12 @@
     "_enabled": true,
     "projectGroups_": [],
     "currentProjectGroup_": null,
+    "projectTitle": {
+      "__id__": 66
+    },
+    "projectIndex": {
+      "__id__": 64
+    },
     "Label1": {
       "__id__": 38
     },
@@ -2666,6 +2672,12 @@
     },
     "avatar4": {
       "__id__": 31
+    },
+    "leftBtn": {
+      "__id__": 58
+    },
+    "rightBtn": {
+      "__id__": 62
     }
   },
   {

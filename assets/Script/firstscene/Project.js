@@ -65,6 +65,8 @@ cc.Class({
             default: [],
             type: [Object],
         },
+
+        name_: ""
         
         // foo: {
         //    default: null,      // The default value will be used only when the component attaching
