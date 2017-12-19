@@ -39,6 +39,9 @@ cc.Class({
         }
     },*/
 
+    onLoad: function () {
+        console.log("fdsf");
+    },
     // 更新项目组接口
     updateProjectGroups: function(groups) {
         this.projectGroups_ = groups
