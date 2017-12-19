@@ -4,7 +4,7 @@ cc.Class({
     properties: {
         Main:cc.Node,
         Outsource: cc.Node,
-        Independent:cc.Node,
+        Platform:cc.Node,
         Hire:cc.Node,
         Fire:cc.Node,
         Research:cc.Node
@@ -49,7 +49,7 @@ cc.Class({
         for(var t in this.toggles)
             this.toggles[t].isChecked=false;
         this.Main.active = false;               // 关闭主界面
-        this.Independent.active = true;     // 打开独立开发界面
+        this.Platform.active = true;     // 打开独立开发界面
     },
 
     hire_btn :function(event) {

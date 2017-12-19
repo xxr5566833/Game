@@ -48,7 +48,7 @@ cc.Class({
 
     getGold: function() {
         // TODO: 返回当前公司的资产，number
-        event = new cc.Event.EventCustom("GETMONEY",true);  
+        var event = new cc.Event.EventCustom("GETMONEY",true);  
         this.node.dispatchEvent(event);
         return event.back;
     },

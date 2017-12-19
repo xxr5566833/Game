@@ -28,7 +28,7 @@ cc.Class({
     },
 
     failProject:function(project){
-        event=new cc.Event.EventCustom('CREDITCHANGE', true);
+        var event=new cc.Event.EventCustom('CREDITCHANGE', true);
         event.change = -2;
         this.node.dispatchEvent(event);
         event=new cc.Event.EventCustom('MESSAGE', true);
@@ -37,7 +37,7 @@ cc.Class({
     },
 
     finishProject:function(project){
-        event=new cc.Event.EventCustom('MONEYADD', true);
+        var event=new cc.Event.EventCustom('MONEYADD', true);
         event.money=project.reward_;
         event.record = "委托任务完成";
         this.node.dispatchEvent(event);
