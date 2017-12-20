@@ -1,6 +1,7 @@
 var projectgroup = require("ProjectGroup");
 var person = require("Person")
 var project = require("Project")
+var personControl = require("PersonControl")
 cc.Class({
     extends: cc.Component,
 
@@ -70,6 +71,11 @@ cc.Class({
         rightBtn: {
             default: null,
             type: cc.Sprite
+        },
+        personControl_: {
+            default: null,
+            type: personControl
+            // type: cc.Node
         }
     },
 
@@ -99,7 +105,7 @@ cc.Class({
         cc.log("dialogue initial")
         // fake data
         this.currentProjectGroup_ = new (projectgroup)
-        this.currentProjectGroup_.project_ = new(project)
+        this.currentProjectGroup_.project_ = new (project)
         this.currentProjectGroup_.project_.name_ = "fake project"
         this.projectGroups_.push(this.currentProjectGroup_)
         this.currentProjectGroup_.persons_.push(new (person))
@@ -122,6 +128,8 @@ cc.Class({
 
     // 刷新对话框
     fresh: function () {
+        // this.updateProjectGroups(this.personControl_.getAllGroups())
+
         // debug
         cc.log(this.currentProjectGroup_.persons_[0].month_)
         cc.log(this.currentProjectGroup_.persons_[1].month_)
@@ -159,10 +167,15 @@ cc.Class({
 
     // 更新项目组接口
     updateProjectGroups: function (groups) {
+        cc.log("Project groups update to " + groups)
         this.projectGroups_ = groups
         if (this.projectGroups_.length > 0) {
-            // 默认为第一个项目组
-            this.currentProjectGroup_ = this.projectGroups_[0]
+            if (this.projectGroups_.indexOf(this.currentProjectGroup_) === -1) {
+                // 默认为第一个项目组
+                this.currentProjectGroup_ = this.projectGroups_[0]
+            } else {
+                // 保留原来的当前项目组
+            }
         }
     },
 
@@ -172,7 +185,7 @@ cc.Class({
         this.loadSprite(this.leftBtn, "Image/前景_按钮面板_按下-04")
         this.currentProjectGroup_ = this.projectGroups_[(this.projectGroups_.indexOf(this.currentProjectGroup_) - 1 + this.projectGroups_.length) % this.projectGroups_.length]
     },
-    leftEnd: function() {
+    leftEnd: function () {
         cc.log("left project end")
         this.loadSprite(this.leftBtn, "Image/前景_按钮面板")
     },
@@ -182,7 +195,7 @@ cc.Class({
         this.loadSprite(this.rightBtn, "Image/前景_按钮面板_按下-04")
         this.currentProjectGroup_ = this.projectGroups_[(this.projectGroups_.indexOf(this.currentProjectGroup_) + 1) % this.projectGroups_.length]
     },
-    rightEnd: function() {
+    rightEnd: function () {
         cc.log("right project end")
         this.loadSprite(this.rightBtn, "Image/前景_按钮面板")
     },
