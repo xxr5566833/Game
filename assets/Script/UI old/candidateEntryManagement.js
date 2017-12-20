@@ -16,7 +16,7 @@ cc.Class({
             default:null,
             type:cc.Label
         },
-        labelProfession: {
+        labelPay: {
             default:null,
             type:cc.Label
         },
@@ -45,8 +45,8 @@ cc.Class({
         this.labelName.string = name_str
     },
 
-    setProfession: function(prof_str) {
-        this.labelProfession.string = prof_str
+    setPay: function(pay_str) {
+        this.labelPay.string = pay_str
     },
 
     see: function() {
@@ -58,7 +58,7 @@ cc.Class({
         var self = this;
         cc.loader.loadRes("avatars/"+index+"_"+name+".png", cc.SpriteFrame, function (err, spriteFrame) {
             if (err) {
-                //.log("loadAvatar error: "+name)
+                console.log("loadAvatar error: "+name)
                 //cc.error(err.message || err);
                 return;
             }
@@ -68,13 +68,13 @@ cc.Class({
 
     choose: function() {
         if (this.status == "NOT_CHOSEN") {
-            this.status = "CHOSEN"
-            this.chosenRing.opacity = 255
-            this.caller.includeCandidateByOrder(this.entryOrder)
+            this.status = "CHOSEN";
+            this.chosenRing.opacity = 255;
+            this.caller.includeCandidateByOrder(this.entryOrder);
         } else if (this.status = "CHOSEN") {
-            this.status = "NOT_CHOSEN"
-            this.chosenRing.opacity = 0
-            this.caller.excludeCandidateByOrder(this.entryOrder)
+            this.status = "NOT_CHOSEN";
+            this.chosenRing.opacity = 0;
+            this.caller.excludeCandidateByOrder(this.entryOrder);
         }
     }
     // called every frame, uncomment this function to activate update callback
