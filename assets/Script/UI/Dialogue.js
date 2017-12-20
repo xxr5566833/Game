@@ -100,8 +100,7 @@ cc.Class({
 
         // 每隔1秒刷新一次聊天室
         this.schedule(this.fresh, 1);
-        this.layout = this.node.children[0]
-        this.layout
+        
         cc.log("dialogue initial")
         // fake data
         this.currentProjectGroup_ = new (projectgroup)
