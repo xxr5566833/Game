@@ -45,7 +45,7 @@
     "_globalZOrder": 0,
     "_opacityModifyRGB": false,
     "groupIndex": 0,
-    "autoReleaseAssets": null
+    "autoReleaseAssets": false
   },
   {
     "__type__": "cc.Node",
@@ -11102,7 +11102,7 @@
       }
     ],
     "_tag": -1,
-    "_active": false,
+    "_active": true,
     "_components": [
       {
         "__id__": 508
@@ -11167,7 +11167,7 @@
       }
     ],
     "_tag": -1,
-    "_active": true,
+    "_active": false,
     "_components": [],
     "_prefab": null,
     "_id": "b7OJQZF2tOFbupAlyp57C8",
@@ -11421,9 +11421,9 @@
     "_opacity": 255,
     "_color": {
       "__type__": "cc.Color",
-      "r": 0,
-      "g": 0,
-      "b": 0,
+      "r": 121,
+      "g": 197,
+      "b": 213,
       "a": 255
     },
     "_cascadeOpacityEnabled": true,
@@ -12203,7 +12203,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 47,
+      "width": 60,
       "height": 40
     },
     "_rotationX": 0,
@@ -12246,7 +12246,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "funct",
+    "_name": "balance",
     "_objFlags": 0,
     "_parent": {
       "__id__": 303
@@ -12260,7 +12260,7 @@
       }
     ],
     "_prefab": null,
-    "_id": "38Q52m891GloT7JfMR5+zb",
+    "_id": "367VaMAPVL5YatZgqSL4DM",
     "_opacity": 255,
     "_color": {
       "__type__": "cc.Color",
@@ -12277,8 +12277,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 27,
-      "height": 80
+      "width": 80,
+      "height": 40
     },
     "_rotationX": 0,
     "_rotationY": 0,
@@ -12286,8 +12286,8 @@
     "_scaleY": 1,
     "_position": {
       "__type__": "cc.Vec2",
-      "x": 0,
-      "y": -175
+      "x": 60,
+      "y": -125
     },
     "_skewX": 0,
     "_skewY": 0,
@@ -12312,15 +12312,15 @@
     "_N$file": null,
     "_isSystemFontUsed": true,
     "_spacingX": 0,
-    "_N$string": "100\n",
+    "_N$string": "100",
     "_N$horizontalAlign": 1,
     "_N$verticalAlign": 1,
     "_N$fontFamily": "微软雅黑",
-    "_N$overflow": 0
+    "_N$overflow": 1
   },
   {
     "__type__": "cc.Node",
-    "_name": "balance",
+    "_name": "funct",
     "_objFlags": 0,
     "_parent": {
       "__id__": 303
@@ -12334,7 +12334,7 @@
       }
     ],
     "_prefab": null,
-    "_id": "367VaMAPVL5YatZgqSL4DM",
+    "_id": "94YbGpuQ1NobjylOwvtTat",
     "_opacity": 255,
     "_color": {
       "__type__": "cc.Color",
@@ -12351,7 +12351,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 27,
+      "width": 60,
       "height": 40
     },
     "_rotationX": 0,
@@ -12360,8 +12360,8 @@
     "_scaleY": 1,
     "_position": {
       "__type__": "cc.Vec2",
-      "x": 60,
-      "y": -125
+      "x": 0,
+      "y": -155
     },
     "_skewX": 0,
     "_skewY": 0,
@@ -12390,7 +12390,7 @@
     "_N$horizontalAlign": 1,
     "_N$verticalAlign": 1,
     "_N$fontFamily": "微软雅黑",
-    "_N$overflow": 0
+    "_N$overflow": 1
   },
   {
     "__type__": "cc.Node",
@@ -13765,7 +13765,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 47,
+      "width": 60,
       "height": 40
     },
     "_rotationX": 0,
@@ -13808,7 +13808,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "funct",
+    "_name": "balance",
     "_objFlags": 0,
     "_parent": {
       "__id__": 342
@@ -13822,7 +13822,7 @@
       }
     ],
     "_prefab": null,
-    "_id": "e7fXzap31C755nA0oFQbpC",
+    "_id": "0fBOTTY9ZM8pUTJZWFmWNA",
     "_opacity": 255,
     "_color": {
       "__type__": "cc.Color",
@@ -13839,8 +13839,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 27,
-      "height": 80
+      "width": 80,
+      "height": 40
     },
     "_rotationX": 0,
     "_rotationY": 0,
@@ -13848,8 +13848,8 @@
     "_scaleY": 1,
     "_position": {
       "__type__": "cc.Vec2",
-      "x": 0,
-      "y": -175
+      "x": 60,
+      "y": -125
     },
     "_skewX": 0,
     "_skewY": 0,
@@ -13874,15 +13874,15 @@
     "_N$file": null,
     "_isSystemFontUsed": true,
     "_spacingX": 0,
-    "_N$string": "100\n",
+    "_N$string": "100",
     "_N$horizontalAlign": 1,
     "_N$verticalAlign": 1,
     "_N$fontFamily": "微软雅黑",
-    "_N$overflow": 0
+    "_N$overflow": 1
   },
   {
     "__type__": "cc.Node",
-    "_name": "balance",
+    "_name": "funct",
     "_objFlags": 0,
     "_parent": {
       "__id__": 342
@@ -13896,7 +13896,7 @@
       }
     ],
     "_prefab": null,
-    "_id": "0fBOTTY9ZM8pUTJZWFmWNA",
+    "_id": "b4IiYwhGZGbr8lKFzYbSo4",
     "_opacity": 255,
     "_color": {
       "__type__": "cc.Color",
@@ -13913,7 +13913,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 27,
+      "width": 60,
       "height": 40
     },
     "_rotationX": 0,
@@ -13922,8 +13922,8 @@
     "_scaleY": 1,
     "_position": {
       "__type__": "cc.Vec2",
-      "x": 60,
-      "y": -125
+      "x": 0,
+      "y": -155
     },
     "_skewX": 0,
     "_skewY": 0,
@@ -13952,7 +13952,7 @@
     "_N$horizontalAlign": 1,
     "_N$verticalAlign": 1,
     "_N$fontFamily": "微软雅黑",
-    "_N$overflow": 0
+    "_N$overflow": 1
   },
   {
     "__type__": "cc.Node",
@@ -15604,80 +15604,6 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "funct",
-    "_objFlags": 0,
-    "_parent": {
-      "__id__": 387
-    },
-    "_children": [],
-    "_tag": -1,
-    "_active": true,
-    "_components": [
-      {
-        "__id__": 391
-      }
-    ],
-    "_prefab": null,
-    "_id": "63RBR7TUpH87wTggAFcCfD",
-    "_opacity": 255,
-    "_color": {
-      "__type__": "cc.Color",
-      "r": 255,
-      "g": 255,
-      "b": 255,
-      "a": 255
-    },
-    "_cascadeOpacityEnabled": true,
-    "_anchorPoint": {
-      "__type__": "cc.Vec2",
-      "x": 0.5,
-      "y": 0.5
-    },
-    "_contentSize": {
-      "__type__": "cc.Size",
-      "width": 26.39,
-      "height": 80
-    },
-    "_rotationX": 0,
-    "_rotationY": 0,
-    "_scaleX": 1,
-    "_scaleY": 1,
-    "_position": {
-      "__type__": "cc.Vec2",
-      "x": 0,
-      "y": -175
-    },
-    "_skewX": 0,
-    "_skewY": 0,
-    "_localZOrder": 0,
-    "_globalZOrder": 0,
-    "_opacityModifyRGB": false,
-    "groupIndex": 0
-  },
-  {
-    "__type__": "cc.Label",
-    "_name": "",
-    "_objFlags": 0,
-    "node": {
-      "__id__": 390
-    },
-    "_enabled": true,
-    "_useOriginalSize": false,
-    "_actualFontSize": 15,
-    "_fontSize": 15,
-    "_lineHeight": 40,
-    "_enableWrapText": true,
-    "_N$file": null,
-    "_isSystemFontUsed": true,
-    "_spacingX": 0,
-    "_N$string": "100\n",
-    "_N$horizontalAlign": 1,
-    "_N$verticalAlign": 1,
-    "_N$fontFamily": "微软雅黑",
-    "_N$overflow": 0
-  },
-  {
-    "__type__": "cc.Node",
     "_name": "balance",
     "_objFlags": 0,
     "_parent": {
@@ -15688,7 +15614,7 @@
     "_active": true,
     "_components": [
       {
-        "__id__": 393
+        "__id__": 391
       }
     ],
     "_prefab": null,
@@ -15733,7 +15659,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 392
+      "__id__": 390
     },
     "_enabled": true,
     "_useOriginalSize": false,
@@ -15749,6 +15675,80 @@
     "_N$verticalAlign": 1,
     "_N$fontFamily": "微软雅黑",
     "_N$overflow": 0
+  },
+  {
+    "__type__": "cc.Node",
+    "_name": "funct",
+    "_objFlags": 0,
+    "_parent": {
+      "__id__": 387
+    },
+    "_children": [],
+    "_tag": -1,
+    "_active": true,
+    "_components": [
+      {
+        "__id__": 393
+      }
+    ],
+    "_prefab": null,
+    "_id": "d2M0NYJzpONbp7hr8reF6j",
+    "_opacity": 255,
+    "_color": {
+      "__type__": "cc.Color",
+      "r": 255,
+      "g": 255,
+      "b": 255,
+      "a": 255
+    },
+    "_cascadeOpacityEnabled": true,
+    "_anchorPoint": {
+      "__type__": "cc.Vec2",
+      "x": 0.5,
+      "y": 0.5
+    },
+    "_contentSize": {
+      "__type__": "cc.Size",
+      "width": 47,
+      "height": 40
+    },
+    "_rotationX": 0,
+    "_rotationY": 0,
+    "_scaleX": 1,
+    "_scaleY": 1,
+    "_position": {
+      "__type__": "cc.Vec2",
+      "x": 0,
+      "y": -155
+    },
+    "_skewX": 0,
+    "_skewY": 0,
+    "_localZOrder": 0,
+    "_globalZOrder": 0,
+    "_opacityModifyRGB": false,
+    "groupIndex": 0
+  },
+  {
+    "__type__": "cc.Label",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 392
+    },
+    "_enabled": true,
+    "_useOriginalSize": false,
+    "_actualFontSize": 15,
+    "_fontSize": 15,
+    "_lineHeight": 40,
+    "_enableWrapText": true,
+    "_N$file": null,
+    "_isSystemFontUsed": true,
+    "_spacingX": 0,
+    "_N$string": "100",
+    "_N$horizontalAlign": 1,
+    "_N$verticalAlign": 1,
+    "_N$fontFamily": "微软雅黑",
+    "_N$overflow": 1
   },
   {
     "__type__": "cc.Node",
@@ -17211,7 +17211,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 207,
+      "width": 195,
       "height": 40
     },
     "_rotationX": 0,
@@ -17220,7 +17220,7 @@
     "_scaleY": 1,
     "_position": {
       "__type__": "cc.Vec2",
-      "x": -20.6,
+      "x": -25,
       "y": -50
     },
     "_skewX": 0,
@@ -17246,7 +17246,7 @@
     "_N$file": null,
     "_isSystemFontUsed": true,
     "_spacingX": 0,
-    "_N$string": "最后为你的软件起一个名字吧...",
+    "_N$string": "最后为你的软件起一个名字吧",
     "_N$horizontalAlign": 1,
     "_N$verticalAlign": 1,
     "_N$fontFamily": "微软雅黑",
@@ -17285,7 +17285,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 30,
+      "width": 150,
       "height": 40
     },
     "_rotationX": 0,
@@ -17294,7 +17294,7 @@
     "_scaleY": 1,
     "_position": {
       "__type__": "cc.Vec2",
-      "x": -33,
+      "x": 28,
       "y": 100
     },
     "_skewX": 0,
@@ -17320,11 +17320,11 @@
     "_N$file": null,
     "_isSystemFontUsed": true,
     "_spacingX": 0,
-    "_N$string": "平台",
+    "_N$string": "",
     "_N$horizontalAlign": 0,
     "_N$verticalAlign": 1,
     "_N$fontFamily": "微软雅黑",
-    "_N$overflow": 0
+    "_N$overflow": 1
   },
   {
     "__type__": "cc.Node",
@@ -17359,7 +17359,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 30,
+      "width": 150,
       "height": 40
     },
     "_rotationX": 0,
@@ -17368,7 +17368,7 @@
     "_scaleY": 1,
     "_position": {
       "__type__": "cc.Vec2",
-      "x": -33,
+      "x": 28,
       "y": 70
     },
     "_skewX": 0,
@@ -17394,11 +17394,11 @@
     "_N$file": null,
     "_isSystemFontUsed": true,
     "_spacingX": 0,
-    "_N$string": "类型",
+    "_N$string": "",
     "_N$horizontalAlign": 0,
     "_N$verticalAlign": 1,
     "_N$fontFamily": "微软雅黑",
-    "_N$overflow": 0
+    "_N$overflow": 1
   },
   {
     "__type__": "cc.Node",
@@ -17433,7 +17433,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 30,
+      "width": 150,
       "height": 40
     },
     "_rotationX": 0,
@@ -17442,7 +17442,7 @@
     "_scaleY": 1,
     "_position": {
       "__type__": "cc.Vec2",
-      "x": -33,
+      "x": 28,
       "y": 40
     },
     "_skewX": 0,
@@ -17468,11 +17468,11 @@
     "_N$file": null,
     "_isSystemFontUsed": true,
     "_spacingX": 0,
-    "_N$string": "功能",
+    "_N$string": "",
     "_N$horizontalAlign": 0,
     "_N$verticalAlign": 1,
     "_N$fontFamily": "微软雅黑",
-    "_N$overflow": 0
+    "_N$overflow": 1
   },
   {
     "__type__": "cc.Node",
@@ -17507,7 +17507,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 30,
+      "width": 100,
       "height": 40
     },
     "_rotationX": 0,
@@ -17516,7 +17516,7 @@
     "_scaleY": 1,
     "_position": {
       "__type__": "cc.Vec2",
-      "x": 13,
+      "x": 48,
       "y": 10
     },
     "_skewX": 0,
@@ -17542,11 +17542,11 @@
     "_N$file": null,
     "_isSystemFontUsed": true,
     "_spacingX": 0,
-    "_N$string": "预算",
+    "_N$string": "0",
     "_N$horizontalAlign": 0,
     "_N$verticalAlign": 1,
     "_N$fontFamily": "微软雅黑",
-    "_N$overflow": 0
+    "_N$overflow": 1
   },
   {
     "__type__": "cc.Node",
@@ -17581,7 +17581,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 60,
+      "width": 100,
       "height": 40
     },
     "_rotationX": 0,
@@ -17590,7 +17590,7 @@
     "_scaleY": 1,
     "_position": {
       "__type__": "cc.Vec2",
-      "x": 0,
+      "x": 18,
       "y": -20
     },
     "_skewX": 0,
@@ -17616,11 +17616,11 @@
     "_N$file": null,
     "_isSystemFontUsed": true,
     "_spacingX": 0,
-    "_N$string": "功能点数",
+    "_N$string": "0",
     "_N$horizontalAlign": 0,
     "_N$verticalAlign": 1,
     "_N$fontFamily": "微软雅黑",
-    "_N$overflow": 0
+    "_N$overflow": 1
   },
   {
     "__type__": "cc.Node",
@@ -19418,80 +19418,6 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "funct",
-    "_objFlags": 0,
-    "_parent": {
-      "__id__": 483
-    },
-    "_children": [],
-    "_tag": -1,
-    "_active": true,
-    "_components": [
-      {
-        "__id__": 487
-      }
-    ],
-    "_prefab": null,
-    "_id": "bbieVlJMdH3ZM9qRKwkTBm",
-    "_opacity": 255,
-    "_color": {
-      "__type__": "cc.Color",
-      "r": 255,
-      "g": 255,
-      "b": 255,
-      "a": 255
-    },
-    "_cascadeOpacityEnabled": true,
-    "_anchorPoint": {
-      "__type__": "cc.Vec2",
-      "x": 0.5,
-      "y": 0.5
-    },
-    "_contentSize": {
-      "__type__": "cc.Size",
-      "width": 27,
-      "height": 80
-    },
-    "_rotationX": 0,
-    "_rotationY": 0,
-    "_scaleX": 1,
-    "_scaleY": 1,
-    "_position": {
-      "__type__": "cc.Vec2",
-      "x": 0,
-      "y": -175
-    },
-    "_skewX": 0,
-    "_skewY": 0,
-    "_localZOrder": 0,
-    "_globalZOrder": 0,
-    "_opacityModifyRGB": false,
-    "groupIndex": 0
-  },
-  {
-    "__type__": "cc.Label",
-    "_name": "",
-    "_objFlags": 0,
-    "node": {
-      "__id__": 486
-    },
-    "_enabled": true,
-    "_useOriginalSize": false,
-    "_actualFontSize": 15,
-    "_fontSize": 15,
-    "_lineHeight": 40,
-    "_enableWrapText": true,
-    "_N$file": null,
-    "_isSystemFontUsed": true,
-    "_spacingX": 0,
-    "_N$string": "100\n",
-    "_N$horizontalAlign": 1,
-    "_N$verticalAlign": 1,
-    "_N$fontFamily": "微软雅黑",
-    "_N$overflow": 0
-  },
-  {
-    "__type__": "cc.Node",
     "_name": "balance",
     "_objFlags": 0,
     "_parent": {
@@ -19502,7 +19428,7 @@
     "_active": true,
     "_components": [
       {
-        "__id__": 489
+        "__id__": 487
       }
     ],
     "_prefab": null,
@@ -19547,7 +19473,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 488
+      "__id__": 486
     },
     "_enabled": true,
     "_useOriginalSize": false,
@@ -19563,6 +19489,80 @@
     "_N$verticalAlign": 1,
     "_N$fontFamily": "微软雅黑",
     "_N$overflow": 0
+  },
+  {
+    "__type__": "cc.Node",
+    "_name": "funct",
+    "_objFlags": 0,
+    "_parent": {
+      "__id__": 483
+    },
+    "_children": [],
+    "_tag": -1,
+    "_active": true,
+    "_components": [
+      {
+        "__id__": 489
+      }
+    ],
+    "_prefab": null,
+    "_id": "f3ECLm8lBCeru72RBTYBB1",
+    "_opacity": 255,
+    "_color": {
+      "__type__": "cc.Color",
+      "r": 255,
+      "g": 255,
+      "b": 255,
+      "a": 255
+    },
+    "_cascadeOpacityEnabled": true,
+    "_anchorPoint": {
+      "__type__": "cc.Vec2",
+      "x": 0.5,
+      "y": 0.5
+    },
+    "_contentSize": {
+      "__type__": "cc.Size",
+      "width": 47,
+      "height": 40
+    },
+    "_rotationX": 0,
+    "_rotationY": 0,
+    "_scaleX": 1,
+    "_scaleY": 1,
+    "_position": {
+      "__type__": "cc.Vec2",
+      "x": 0,
+      "y": -155
+    },
+    "_skewX": 0,
+    "_skewY": 0,
+    "_localZOrder": 0,
+    "_globalZOrder": 0,
+    "_opacityModifyRGB": false,
+    "groupIndex": 0
+  },
+  {
+    "__type__": "cc.Label",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 488
+    },
+    "_enabled": true,
+    "_useOriginalSize": false,
+    "_actualFontSize": 15,
+    "_fontSize": 15,
+    "_lineHeight": 40,
+    "_enableWrapText": true,
+    "_N$file": null,
+    "_isSystemFontUsed": true,
+    "_spacingX": 0,
+    "_N$string": "100",
+    "_N$horizontalAlign": 1,
+    "_N$verticalAlign": 1,
+    "_N$fontFamily": "微软雅黑",
+    "_N$overflow": 1
   },
   {
     "__type__": "cc.Node",

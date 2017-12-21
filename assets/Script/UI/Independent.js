@@ -49,18 +49,18 @@ cc.Class({
     refresh:function()
     {
         this.pfchange();
-        this.pfreq.getChildByName("budget").getComponent(cc.Label).string=this.project.budget_.toString();
-        this.pfreq.getChildByName("funct").getComponent(cc.Label).string=this.project.requireFunction_.toString();
-        this.pfreq.getChildByName("balance").getComponent(cc.Label).string=(this.money-this.project.budget_).toString();
-        this.typreq.getChildByName("budget").getComponent(cc.Label).string=this.project.budget_.toString();
-        this.typreq.getChildByName("funct").getComponent(cc.Label).string=this.project.requireFunction_.toString();
-        this.typreq.getChildByName("balance").getComponent(cc.Label).string=(this.money-this.project.budget_).toString();
-        this.funreq.getChildByName("budget").getComponent(cc.Label).string=this.project.budget_.toString();
-        this.funreq.getChildByName("funct").getComponent(cc.Label).string=this.project.requireFunction_.toString();
-        this.funreq.getChildByName("balance").getComponent(cc.Label).string=(this.money-this.project.budget_).toString();
-        this.emreq.getChildByName("budget").getComponent(cc.Label).string=this.project.budget_.toString();
-        this.emreq.getChildByName("funct").getComponent(cc.Label).string=this.project.requireFunction_.toString();
-        this.emreq.getChildByName("balance").getComponent(cc.Label).string=(this.money-this.project.budget_).toString();
+        this.pfreq.getChildByName("budget").getComponent(cc.Label).string=Math.floor(this.project.budget_).toString();
+        this.pfreq.getChildByName("funct").getComponent(cc.Label).string=Math.floor(this.project.requireFunction_).toString();
+        this.pfreq.getChildByName("balance").getComponent(cc.Label).string=Math.floor((this.money-this.project.budget_)).toString();
+        this.typreq.getChildByName("budget").getComponent(cc.Label).string=Math.floor(this.project.budget_).toString();
+        this.typreq.getChildByName("funct").getComponent(cc.Label).string=Math.floor(this.project.requireFunction_).toString();
+        this.typreq.getChildByName("balance").getComponent(cc.Label).string=Math.floor((this.money-this.project.budget_)).toString();
+        this.funreq.getChildByName("budget").getComponent(cc.Label).string=Math.floor(this.project.budget_).toString();
+        this.funreq.getChildByName("funct").getComponent(cc.Label).string=Math.floor(this.project.requireFunction_).toString();
+        this.funreq.getChildByName("balance").getComponent(cc.Label).string=Math.floor((this.money-this.project.budget_)).toString();
+        this.emreq.getChildByName("budget").getComponent(cc.Label).string=Math.floor(this.project.budget_).toString();
+        this.emreq.getChildByName("funct").getComponent(cc.Label).string=Math.floor(this.project.requireFunction_).toString();
+        this.emreq.getChildByName("balance").getComponent(cc.Label).string=Math.floor((this.money-this.project.budget_)).toString();
         this.pfres.getComponent(cc.Label).string=this.pf_data[this.select_pf].name_;
         this.typres.getComponent(cc.Label).string="";
         this.funres.getComponent(cc.Label).string="";
@@ -72,8 +72,8 @@ cc.Class({
             this.funres.getComponent(cc.Label).string+=this.project.functions_[p].name_;
             this.funres.getComponent(cc.Label).string+=" ";
         }
-        this.budres.getComponent(cc.Label).string=this.project.getBudget().toString();
-        this.funpres.getComponent(cc.Label).string=this.project.requireFunction_.toString();
+        this.budres.getComponent(cc.Label).string=Math.floor(this.project.getBudget()).toString();
+        this.funpres.getComponent(cc.Label).string=Math.floor(this.project.requireFunction_).toString();
     },
 
     onEnable:function(){

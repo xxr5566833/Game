@@ -66,6 +66,13 @@ cc.Class({
             type: [Object],
         },
 
+        functions_: {
+            default: [],
+            type: [Object],
+        },
+
+        platform_:Object,
+
         name_: ""
         
         // foo: {
@@ -242,7 +249,7 @@ cc.Class({
     },
 
     addFunction:function(func){
-        this.functions_.push[func];
+        this.functions_.push(func);
         this.requireFunction_ += func.function_;
         this.budget_ *= func.times_;
     },
@@ -272,7 +279,7 @@ cc.Class({
     },
 
     addTech:function(tech){
-        this.techs_.push[tech];
+        this.techs_.push(tech);
         this.difficulty_ += tech.difficulty_;
         this.budget_ += tech.budget_;
     },
