@@ -14,6 +14,7 @@ cc.Class({
         // ...
         index:0,
         chosen:false,
+        project:cc.Node,
         data:[cc.Node],
         Independent:cc.Node,
     },
@@ -21,28 +22,27 @@ cc.Class({
     // use this for initialization
     onLoad: function () {
         this.chosen=false;
-        this.project = null;
     },
 
     onClick:function(){
         var self = this;
         if(this.chosen)
         {
-            cc.loader.loadRes("Image/前景_选项条", cc.SpriteFrame, function (err, spriteFrame) {
+            cc.loader.loadRes("image/前景_选项条", cc.SpriteFrame, function (err, spriteFrame) {
                 self.node.getComponent(cc.Sprite).spriteFrame=spriteFrame;
             });
             this.chosen=false;
-            this.project.subCategory(this.data[this.index]);
-            this.Independent.getComponent('Indenpendent').refresh();
+            this.project.subFunction(this.data[this.index]);
+            this.Independent.getComponent('Independent').refresh();
         }
         else
         {
-            cc.loader.loadRes("Image/前景_选项_选中", cc.SpriteFrame, function (err, spriteFrame) {
+            cc.loader.loadRes("image/前景_选项_选中", cc.SpriteFrame, function (err, spriteFrame) {
                 self.node.getComponent(cc.Sprite).spriteFrame=spriteFrame;
             });
             this.chosen=true;
-            this.project.addCategory(this.data[this.index]);
-            this.Independent.getComponent('Indenpendent').refresh();
+            this.project.addFunction(this.data[this.index]);
+            this.Independent.getComponent('Independent').refresh();
         }
     },
     // called every frame, uncomment this function to activate update callback

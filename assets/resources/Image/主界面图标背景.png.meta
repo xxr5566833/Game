@@ -1,14 +1,14 @@
 {
   "ver": "1.0.0",
-  "uuid": "277e0db9-8c71-4b8a-89e1-de00ca775a0b",
+  "uuid": "ca39140a-b0ab-4048-a1d2-4d38a3907cfc",
   "type": "sprite",
   "wrapMode": "clamp",
   "filterMode": "bilinear",
   "subMetas": {
-    "科技背景": {
+    "主界面图标背景": {
       "ver": "1.0.3",
-      "uuid": "36d6b10f-612e-4636-9439-e6483f940aa5",
-      "rawTextureUuid": "277e0db9-8c71-4b8a-89e1-de00ca775a0b",
+      "uuid": "c0d45028-3d81-4eb9-b254-96c2f318741c",
+      "rawTextureUuid": "ca39140a-b0ab-4048-a1d2-4d38a3907cfc",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,
@@ -16,10 +16,10 @@
       "offsetY": 0,
       "trimX": 0,
       "trimY": 0,
-      "width": 299,
-      "height": 1668,
-      "rawWidth": 299,
-      "rawHeight": 1668,
+      "width": 63,
+      "height": 58,
+      "rawWidth": 63,
+      "rawHeight": 58,
       "borderTop": 0,
       "borderBottom": 0,
       "borderLeft": 0,

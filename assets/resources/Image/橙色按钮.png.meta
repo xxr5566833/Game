@@ -1,14 +1,14 @@
 {
   "ver": "1.0.0",
-  "uuid": "277e0db9-8c71-4b8a-89e1-de00ca775a0b",
+  "uuid": "d9637270-0322-4952-942f-9ced212df699",
   "type": "sprite",
   "wrapMode": "clamp",
   "filterMode": "bilinear",
   "subMetas": {
-    "科技背景": {
+    "橙色按钮": {
       "ver": "1.0.3",
-      "uuid": "36d6b10f-612e-4636-9439-e6483f940aa5",
-      "rawTextureUuid": "277e0db9-8c71-4b8a-89e1-de00ca775a0b",
+      "uuid": "54a1648d-d8a7-462c-b7ea-db084c4daa35",
+      "rawTextureUuid": "d9637270-0322-4952-942f-9ced212df699",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,
@@ -16,10 +16,10 @@
       "offsetY": 0,
       "trimX": 0,
       "trimY": 0,
-      "width": 299,
-      "height": 1668,
-      "rawWidth": 299,
-      "rawHeight": 1668,
+      "width": 63,
+      "height": 58,
+      "rawWidth": 63,
+      "rawHeight": 58,
       "borderTop": 0,
       "borderBottom": 0,
       "borderLeft": 0,

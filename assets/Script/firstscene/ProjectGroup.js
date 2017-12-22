@@ -640,6 +640,7 @@ cc.Class({
         }
     },
 
+    // 使用scheduler每秒调用一次（预计）
     dialogueSystem: function () {
         var rnd = Math.random()
         if (rnd < 0.9) {

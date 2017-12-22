@@ -26,21 +26,21 @@ cc.Class({
         var self = this;
         if(this.chosen)
         {
-            cc.loader.loadRes("Image/前景_选项条", cc.SpriteFrame, function (err, spriteFrame) {
+            cc.loader.loadRes("image/前景_选项条", cc.SpriteFrame, function (err, spriteFrame) {
                 self.node.getComponent(cc.Sprite).spriteFrame=spriteFrame;
             });
             this.chosen=false;
-            this.Independent.getComponent('Indenpendent').select_em[this.index]=false;
-            this.Independent.getComponent('Indenpendent').refresh();
+            this.Independent.getComponent('Independent').select_em[this.index]=false;
+            this.Independent.getComponent('Independent').refresh();
         }
         else
         {
-            cc.loader.loadRes("Image/前景_选项_选中", cc.SpriteFrame, function (err, spriteFrame) {
+            cc.loader.loadRes("image/前景_选项_选中", cc.SpriteFrame, function (err, spriteFrame) {
                 self.node.getComponent(cc.Sprite).spriteFrame=spriteFrame;
             });
             this.chosen=true;
-            this.Independent.getComponent('Indenpendent').select_em[this.index]=true;
-            this.Independent.getComponent('Indenpendent').refresh();
+            this.Independent.getComponent('Independent').select_em[this.index]=true;
+            this.Independent.getComponent('Independent').refresh();
         }
     },
 

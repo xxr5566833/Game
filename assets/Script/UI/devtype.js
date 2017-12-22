@@ -15,6 +15,7 @@ cc.Class({
         index:0,
         chosen:false,
         project:cc.Node,
+        
         data:[cc.Node],
         Independent:cc.Node,
     },
@@ -28,21 +29,33 @@ cc.Class({
         var self = this;
         if(this.chosen)
         {
-            cc.loader.loadRes("Image/前景_选项条", cc.SpriteFrame, function (err, spriteFrame) {
+            cc.loader.loadRes("image/前景_选项条", cc.SpriteFrame, function (err, spriteFrame) {
+                if (err) {
+                    console.log("loadAvatar error: image/前景_选项条 ");
+                    //.log("loadAvatar error: "+name)
+                    //cc.error(err.message || err);
+                    return;
+                }
                 self.node.getComponent(cc.Sprite).spriteFrame=spriteFrame;
             });
             this.chosen=false;
             this.project.subCategory(this.data[this.index]);
-            this.Independent.getComponent('Indenpendent').refresh();
+            this.Independent.getComponent('Independent').refresh();
         }
         else
         {
-            cc.loader.loadRes("Image/前景_选项_选中", cc.SpriteFrame, function (err, spriteFrame) {
+            cc.loader.loadRes("image/前景_选项_选中", cc.SpriteFrame, function (err, spriteFrame) {
+                if (err) {
+                    console.log("loadAvatar error: image/前景_选项_选中");
+                    //.log("loadAvatar error: "+name)
+                    //cc.error(err.message || err);
+                    return;
+                }
                 self.node.getComponent(cc.Sprite).spriteFrame=spriteFrame;
             });
             this.chosen=true;
             this.project.addCategory(this.data[this.index]);
-            this.Independent.getComponent('Indenpendent').refresh();
+            this.Independent.getComponent('Independent').refresh();
         }
     },
 

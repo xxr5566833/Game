@@ -10,8 +10,8 @@ cc.Class({
         this.name_[id]=name;         // 科技名
         this.lv_[id]=0;              // 科技等级(0为未解锁)
         this.effect_[id]=effect;     // 效果
-        this.preId_[id]=preId;  // 前置科技编号(无需前置则为0)
-        this.preLv_[id]=preLv;  // 前置科技等级
+        this.preId_[id]=preId;  // 前置科技编号(无需前置则为0)(二维数组)
+        this.preLv_[id]=preLv;  // 前置科技等级(二维数组)
         this.costs_[id]=costs;  // 解锁各级需花费的科研点(二维数组)
     },
 
@@ -79,27 +79,18 @@ cc.Class({
         this.add(36,"动画设计","lv.x时，开发时增加产生体验点数的3*x%，lv.5时销售阶段的影响力加成增加50%",[31],[4],[40,90,150,220,300]);
     },
 
-    unlock: function(id) {  // 传入要解锁的科技编号，返回 0(解锁成功) 1(科研点数不够) 2(前置科技未解锁) 3(该科技已满级)
+    unlock: function(id) {  // 传入要解锁的科技编号，返回 0(解锁成功) 1(科研点数不够) 2(该科技已满级)
         console.log("升级"+id+"号科研")
         var event;
         var lv=this.lv_[id];
         if(lv>4){
             console.log("该科研等级已达最高")
-            return 3;
+            return 2;
         }
         var cost=this.costs_[id][lv+1];
         if(this.S_ < cost){
             console.log("科研点数不够升级")
             return 1;
-        }
-        var preIds=this.preId_[id];
-        if(preIds[0]!=0){
-            for(var i=0;i<preIds.length;i++){
-                if(this.lv_[preIds[i]]<this.preLv_[id][i]){
-                    console.log("前置科技未解锁")
-                    return 2;
-                }
-            }
         }
         this.lv_[id]++;
         console.log(id+"号科技等级升至："+this.lv_[id]);
@@ -269,23 +260,40 @@ cc.Class({
         console.log("科研点数："+this.S_);
     },
 
+    check: function(id){
+        var preIds=this.preId_[id];
+        if(preIds[0]!=0){
+            for(var i=0;i<preIds.length;i++){
+                if(this.lv_[preIds[i]]<this.preLv_[id][i]){
+                    console.log("前置科技未解锁")
+                    return false;
+                }
+            }
+        }
+        return true;
+    },
+
     show: function(id){
-        var info;
+        var info = new Object();
         info.name = this.name_[id];
         info.effect = this.effect_[id];
         info.lv = "等级"+this.lv_[id];
         if(info.lv==5)
             info.cost="已满级"
         else
-            info.cost = this.cost_[id][info.lv];
-        if(this.preId_[0]==0)
+            info.cost = this.costs_[id][this.lv_[id]];
+        console.log(this.preId_[id][0])
+        var preId = this.preId_[id]
+        var preLv = this.preLv_[id]
+        if(preId[0]==0)
             info.pre = "无";
         else{
-            info.pre = this.name_[this.preId_[0]]+"lv"+this.lv_[this.preLv_[0]];
-            for(var i=1;i<this.preId_.length;i++){
-                info.pre += "\n"+this.name_[this.preId_[i]]+"lv"+this.lv_[this.preLv_[i]];
+            info.pre = this.name_[preId[0]]+"lv"+preLv[0];
+            for(var i=1;i<this.preId_[id].length;i++){
+                info.pre += "\n"+this.name_[preId[i]]+"lv"+preLv[i];
             }
         }
+        console.log(info.pre)
         return info;
     }
 });

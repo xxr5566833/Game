@@ -1,14 +1,14 @@
 {
   "ver": "1.0.0",
-  "uuid": "277e0db9-8c71-4b8a-89e1-de00ca775a0b",
+  "uuid": "43dd11c0-7725-4f12-aaca-0106a6607aa9",
   "type": "sprite",
   "wrapMode": "clamp",
   "filterMode": "bilinear",
   "subMetas": {
-    "科技背景": {
+    "科技树新": {
       "ver": "1.0.3",
-      "uuid": "36d6b10f-612e-4636-9439-e6483f940aa5",
-      "rawTextureUuid": "277e0db9-8c71-4b8a-89e1-de00ca775a0b",
+      "uuid": "cebb5870-282c-49ce-95f7-a149727adadb",
+      "rawTextureUuid": "43dd11c0-7725-4f12-aaca-0106a6607aa9",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,
@@ -17,9 +17,9 @@
       "trimX": 0,
       "trimY": 0,
       "width": 299,
-      "height": 1668,
+      "height": 1493,
       "rawWidth": 299,
-      "rawHeight": 1668,
+      "rawHeight": 1493,
       "borderTop": 0,
       "borderBottom": 0,
       "borderLeft": 0,

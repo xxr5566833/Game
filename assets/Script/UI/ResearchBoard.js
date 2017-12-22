@@ -3,6 +3,7 @@ cc.Class({
 
     properties: {
         Main:cc.Node,
+        ToggleGroup:cc.Node,
         SprDetail: cc.Sprite,
         LabName:cc.Label,
         LabLv:cc.Label,
@@ -13,17 +14,21 @@ cc.Class({
     },
 
     // use this for initialization
-    onLoad: function () {
-        this.SprDetail.node.active=false;   
-        this.toggles = this.node.getComponentsInChildren(cc.Toggle);
+    onLoad: function(){
+        this.toggles = this.ToggleGroup.getComponentsInChildren(cc.Toggle);    // 返回Toggle数组
+    },
+
+    onEnable: function () {
+        this.SprDetail.node.active=false;  
+        for (let index = 0; index < this.toggles.length; index++) {
+            if(cc.find("Event/Game/Date/Account/Research").getComponent("Research").check(index+1)==false)
+                this.toggles[index].node.active=false;
+        } 
     },
 
     show: function(toggle,id){
-        if(toggle.isChecked==false)
-            this.SprDetail.node.active=false;
-        else
-            this.SprDetail.node.active=true;
-        var info = cc.find("Event\Game\Date\Account\Research").getComponent("Research").show();
+        this.SprDetail.node.active=toggle.isChecked;
+        var info = cc.find("Event/Game/Date/Account/Research").getComponent("Research").show(id);
         this.LabName.string = info.name;
         this.LabLv.string = info.lv;
         this.LabEffect.string = info.effect;
@@ -33,23 +38,23 @@ cc.Class({
     },
 
     unlock: function(event){
-        var ret =  cc.find("Event\Game\Date\Account\Research").getComponent("Research").unlock(this.select);
+        var ret =  cc.find("Event/Game/Date/Account/Research").getComponent("Research").unlock(this.select);
         if(ret==0){
             console.log("解锁成功");
-            var info = cc.find("Event\Game\Date\Account\Research").getComponent("Research").show();
+            var info = cc.find("Event/Game/Date/Account/Research").getComponent("Research").show();
             this.LabLv.string = info.lv;
             this.LabCost.string = info.cost;
         }
         else if(ret==1){
             console.log("科研点数不够升级")
         }
-        else if(ret==3){
+        else if(ret==2){
             console.log("该科研等级已达最高")
         }
     },
 
     update:function(){
-        this.LabS.string = parseInt(cc.find("Event\Game\Date\Account\Research").getComponent("Research").S_).toString();
+        this.LabS.string = parseInt(cc.find("Event/Game/Date/Account/Research").getComponent("Research").S_).toString();
     },
 
     quit :function(event){   
