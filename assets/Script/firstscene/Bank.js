@@ -71,6 +71,14 @@ cc.Class({
 
     },
 
+    getDeadline:function(isfixed){
+        return isfixed ? 240 : 180; 
+    },
+
+    getInterest:function(isfixed){
+        return isfixed ? 0.03 : 0.05;
+    },
+
     //下面都是为了测试用的可以删
 
     applyFix:function(){

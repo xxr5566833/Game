@@ -7,7 +7,8 @@ cc.Class({
         Platform:cc.Node,
         Hire:cc.Node,
         Fire:cc.Node,
-        Research:cc.Node
+        Research:cc.Node,
+        Bank:cc.Node,
     },
 
     // LIFE-CYCLE CALLBACKS:
@@ -66,5 +67,12 @@ cc.Class({
             this.toggles[t].isChecked=false;
         this.Main.active = false;               // 关闭主界面
         this.Fire.active = true;           // 打开解雇界面
-    }
+    },
+
+    bank_btn:function(event){
+
+        this.Main.active = false;               // 关闭主界面
+        this.Bank.active = true;
+    },
+
 });

@@ -34,15 +34,22 @@ cc.Class({
 
     alert: function(type, msg) {
        // console.log(this.icon.getComponent(cc.Sprite))
+       var self = this;
         switch (type){
             case 'SUCCESS':
                 //this.icon.getComponent(cc.Sprite).spriteFrame.setTexture(cc.url.raw('Texture/Msgbox/msgbox_success_icon.png'));
                 //console.log('success');
+                cc.loader.loadRes("Image/绿色对钩", cc.SpriteFrame, function (err, spriteFrame) {
+                    self.icon.getComponent(cc.Sprite).spriteFrame = spriteFrame;
+                    console.log(self.icon.getComponent(cc.Sprite).spriteFrame);
+                });
                 cc.audioEngine.play(this.successMusic,false);
                 break;
             case 'FAIL':
-                //this.icon.getComponent(cc.Sprite).spriteFrame.setTexture(cc.url.raw('Texture/Msgbox/msgbox_fail_icon.png'));
-                //console.log('fail');
+                cc.loader.loadRes("Image/弹窗_叉", cc.SpriteFrame, function (err, spriteFrame) {
+                    self.icon.getComponent(cc.Sprite).spriteFrame = spriteFrame;
+                    console.log(self.icon.getComponent(cc.Sprite).spriteFrame);
+                });
                 cc.audioEngine.play(this.failMusic,false);
                 break;
         }
