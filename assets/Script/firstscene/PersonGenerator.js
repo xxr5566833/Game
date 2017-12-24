@@ -6,18 +6,22 @@ cc.Class({
     },
     //根据传入的level返回可用的person列表,在人们选择好某种招聘方式时调用它，所以这里还需要调用expend扣除一定招聘费用
     showPersons:function(l){
-        var level =Math.floor( Math.random() * 8);
-        var ac=cc.find('Company/Account').getComponent('Account');
+        return this.persons_;
+        /*var level =Math.floor( Math.random() * 8);
+        var ac=cc.find('Event/Game/Date/Account').getComponent('Account');
         //ac.expend(this.pgs[level].cost_, '发布招聘信息');
         ac.expend(this.pgs[level].cost_, '发布招聘信息');
-        this.msgBoxControl.alert('SUCCESS',this.pgs[level ].description_+',花费了'+ this.pgs[level].cost_);
+        var event = new cc.Event.EventCustom('MESSAGE', true);
+        event.type = "SUCCESS";
+        event.string = this.pgs[level].description_;
+        this.node.dispatchEvent(event);
         var list = [];
         for(let i=0 ; i < this.persons_.length ; i++){
             if(this.persons_[i].level_ == level){
                 list.push(this.persons_[i]);
             }
-        }
-        return list;
+        }*/
+        //return list;
     },
 
     removePerson: function(index) {
@@ -134,21 +138,21 @@ cc.Class({
         var list=[
             {
                 gift_: 10.0,
-                coding_: 10.,
-                science_: 10.,
-                art_: 10.,
-                creativity_: 10.,
-                manager_: 10.,
+                coding_: 1.,
+                science_: 2.,
+                art_: 3.,
+                creativity_: 4.,
+                manager_: 5.,
                 business_: 10.,
                 /**工资 */
                 salary_: 100.,
                 /**雇佣金 */
                 employMoney_: 100.,
                 // 姓名
-                name_: "001",
+                name_: "陈潇陆",
                 // 职能
                 profession_: 0,
-                index_: 0,
+                index_: 7,
                 // 体力值
                 power_: 100,
                 // 心情
@@ -165,7 +169,7 @@ cc.Class({
             },
             {
                 gift_: 10.0,
-                coding_: 10.,
+                coding_: 5.,
                 science_: 10.,
                 art_: 10.,
                 creativity_: 10.,
@@ -177,10 +181,10 @@ cc.Class({
                 /**雇佣金 */
                 employMoney_: 100.,
                 // 姓名
-                name_: "002",
+                name_: "迪姐特斯拉",
                 // 职能
                 profession_: 0,
-                index_: 1,
+                index_: 25,
                 // 体力值
                 power_: 100,
                 // 心情
@@ -234,8 +238,7 @@ cc.Class({
             var pg = templist[i];
             this.pgs.push(pg);
         }
-        this.addOne();
-        this.addOne();
+
     },
 
     // called every frame, uncomment this function to activate update callback
