@@ -1,14 +1,14 @@
 {
   "ver": "1.0.0",
-  "uuid": "cf5a2828-825a-4dcb-b8bc-4e6996bc9aa8",
+  "uuid": "a92fc42c-0318-4af1-a701-4f5165c0739d",
   "type": "sprite",
   "wrapMode": "clamp",
   "filterMode": "bilinear",
   "subMetas": {
-    "图标_招聘": {
+    "图标_bug低级": {
       "ver": "1.0.3",
-      "uuid": "af1f5257-dde9-4468-9d99-cbd54eb822e6",
-      "rawTextureUuid": "cf5a2828-825a-4dcb-b8bc-4e6996bc9aa8",
+      "uuid": "34daea0d-3ac0-414a-80ef-9dd8de1e4b46",
+      "rawTextureUuid": "a92fc42c-0318-4af1-a701-4f5165c0739d",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,
@@ -16,10 +16,10 @@
       "offsetY": 0,
       "trimX": 0,
       "trimY": 0,
-      "width": 51,
-      "height": 51,
-      "rawWidth": 51,
-      "rawHeight": 51,
+      "width": 56,
+      "height": 54,
+      "rawWidth": 56,
+      "rawHeight": 54,
       "borderTop": 0,
       "borderBottom": 0,
       "borderLeft": 0,
