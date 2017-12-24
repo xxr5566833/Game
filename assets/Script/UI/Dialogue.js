@@ -96,6 +96,42 @@ cc.Class({
         totalPoint_: {
             default: null,
             type: cc.Sprite
+        },
+        icon1_: {
+            default: null,
+            type: cc.Sprite
+        },
+        icon2_: {
+            default: null,
+            type: cc.Sprite
+        },
+        icon3_: {
+            default: null,
+            type: cc.Sprite
+        },
+        icon4_: {
+            default: null,
+            type: cc.Sprite
+        },
+        developProcess_: {
+            default: null,
+            type: cc.Node
+        },
+        testProcess_: {
+            default: null,
+            type: cc.Node
+        },
+        lowBugLabel_: {
+            default: null,
+            type: cc.Label
+        },
+        midiumBugLabel_: {
+            default: null,
+            type: cc.Label
+        },
+        highBugLabel_: {
+            default: null,
+            type: cc.Label
         }
     },
 
@@ -120,7 +156,7 @@ cc.Class({
 
         // 每隔1秒刷新一次聊天室
         this.schedule(this.fresh, 1);
-        
+
         cc.log("dialogue initial")
         // fake data
         this.currentProjectGroup_ = new (projectgroup)
@@ -183,11 +219,23 @@ cc.Class({
             this.Label4.string = ""
         }
         if (this.currentProjectGroup_ != undefined) {
-            this.functionPoint_.fillRange = this.currentProjectGroup_.project_.currentFunction_ / this.currentProjectGroup_.project_.requireFunction_
-            this.experiencePoint_.fillRange = this.currentProjectGroup_.project_.currentEntertainment_ / this.currentProjectGroup_.project_.requireEntertainment_
-            this.creativePoint_.fillRange = this.currentProjectGroup_.project_.currentInnovation_ / this.currentProjectGroup_.project_.requireInnovation_
-            this.performancePoint_.fillRange = this.currentProjectGroup_.project_.currentPerformance_ / this.currentProjectGroup_.project_.requirePerformance_
-            this.totalPoint_.fillRange = this.functionPoint_.fillRange
+            if (this.currentProjectGroup_.state_ == 0) {
+                this.functionPoint_.fillRange = this.currentProjectGroup_.project_.currentFunction_ / this.currentProjectGroup_.project_.requireFunction_
+                this.experiencePoint_.fillRange = this.currentProjectGroup_.project_.currentEntertainment_ / this.currentProjectGroup_.project_.requireEntertainment_
+                this.creativePoint_.fillRange = this.currentProjectGroup_.project_.currentInnovation_ / this.currentProjectGroup_.project_.requireInnovation_
+                this.performancePoint_.fillRange = this.currentProjectGroup_.project_.currentPerformance_ / this.currentProjectGroup_.project_.requirePerformance_
+                this.totalPoint_.fillRange = this.functionPoint_.fillRange
+                this.developProcess_.active = true
+                this.testProcess_.active = false
+            } else if (this.currentProjectGroup_.state_ == 1 || this.currentProjectGroup_.state_ == 2) {
+                this.developProcess_.active = false
+                this.testProcess_.active = true
+                this.lowBugLabel_.string = "已发现未解决的低级bug数：" + this.currentProjectGroup_.project_.bugnum_[1]
+                this.midiumBugLabel_.string = "已发现未解决的低级bug数：" + this.currentProjectGroup_.project_.bugnum_[3]
+                this.highBugLabel_.string = "已发现未解决的低级bug数：" + this.currentProjectGroup_.project_.bugnum_[5]
+            } else {
+                alert("project state_ is 3, panic")
+            }
         }
     },
 
