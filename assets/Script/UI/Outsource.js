@@ -36,10 +36,10 @@ cc.Class({
         for(var p=0;p<em_l;p++)
         {
             var item = cc.instantiate(this.emPrefab);
-            item.getComponent('devemp').index=p;
-            item.getComponent('devemp').Independent=this;
-            item.getChildByName("power").getComponent(cc.Label).string=this.em_data[p].power_.toString();
-            item.getChildByName("name").getComponent(cc.Label).string=this.em_data[p].name_;
+            item.getComponent('outemp').index=p;
+            item.getComponent('outemp').Outsource=this;
+            item.getChildByName("power").getComponent(cc.Label).string=this.persons[p].power_.toString();
+            item.getChildByName("name").getComponent(cc.Label).string=this.persons[p].name_;
             /**
              *  cc.loader.loadRes("Image/图标_创意", cc.SpriteFrame, function (err, spriteFrame) {
                     item.getChildByName("image").getComponent(cc.Sprite).spriteFrame=spriteFrame;
@@ -71,12 +71,13 @@ cc.Class({
 
     begin: function(event){
         var selectPersons=[];
-        for(var p=0;p<select_em.length;p++){
-            if(select_em[p]){
-                selectPersons.push(this.em_data[p]);
+        for(var p=0;p<this.select_em.length;p++){
+            if(this.select_em[p]){
+                selectPersons.push(this.persons[p]);
             }
         }
-        cc.find("Event/Game/Date/Account/ProjectGenerator").getComponent("PersonControl").begin(this.selectProject,this.selectPersons)
+        console.log(selectPersons);
+        cc.find("Event/Game/Date/Account/PersonControl").getComponent("PersonControl").begin(this.selectProject,  selectPersons)
         this.employeeMenu.active=false;
         this.Main.active=true;   
     },

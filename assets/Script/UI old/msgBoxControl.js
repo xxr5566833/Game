@@ -34,6 +34,7 @@ cc.Class({
 
     alert: function(type, msg) {
        // console.log(this.icon.getComponent(cc.Sprite))
+       this.node.active = true;
        var self = this;
         switch (type){
             case 'SUCCESS':

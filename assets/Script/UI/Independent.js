@@ -208,8 +208,8 @@ cc.Class({
     employee_next:function(){
         //开始开发
         var selected_em=[];
-        for(var p=0;p<select_em.length;p++){
-            if(select_em[p]){
+        for(var p=0;p<this.select_em.length;p++){
+            if(this.select_em[p]){
                 selected_em.push(this.em_data[p]);
             }
         }

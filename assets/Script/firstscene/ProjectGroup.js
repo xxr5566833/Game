@@ -170,7 +170,7 @@ cc.Class({
     begin: function (project, persons) {
         this.project_ = project;
         this.persons_ = persons;
-        for (let i = 0; i < persons.length; i++) {
+        for (let i = 0; i < this.persons_.length; i++) {
             this.persons_[i].begin();
             this.persons_[i].group_ = this;
         }

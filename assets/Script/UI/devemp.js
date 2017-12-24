@@ -26,7 +26,7 @@ cc.Class({
         var self = this;
         if(this.chosen)
         {
-            cc.loader.loadRes("image/前景_选项条", cc.SpriteFrame, function (err, spriteFrame) {
+            cc.loader.loadRes("Image/前景_选项条", cc.SpriteFrame, function (err, spriteFrame) {
                 self.node.getComponent(cc.Sprite).spriteFrame=spriteFrame;
             });
             this.chosen=false;
@@ -35,7 +35,7 @@ cc.Class({
         }
         else
         {
-            cc.loader.loadRes("image/前景_选项_选中", cc.SpriteFrame, function (err, spriteFrame) {
+            cc.loader.loadRes("Image/前景_选项_选中", cc.SpriteFrame, function (err, spriteFrame) {
                 self.node.getComponent(cc.Sprite).spriteFrame=spriteFrame;
             });
             this.chosen=true;
