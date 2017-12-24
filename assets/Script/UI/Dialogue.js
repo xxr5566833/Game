@@ -76,6 +76,26 @@ cc.Class({
             default: null,
             type: personControl
             // type: cc.Node
+        },
+        functionPoint_: {
+            default: null,
+            type: cc.Sprite
+        },
+        experiencePoint_: {
+            default: null,
+            type: cc.Sprite
+        },
+        creativePoint_: {
+            default: null,
+            type: cc.Sprite
+        },
+        performancePoint_: {
+            default: null,
+            type: cc.Sprite
+        },
+        totalPoint_: {
+            default: null,
+            type: cc.Sprite
         }
     },
 
@@ -161,6 +181,13 @@ cc.Class({
             this.loadAvatar(this.currentProjectGroup_.persons_[3].index_, this.currentProjectGroup_.persons_[3].name_, this.avatar4)
         } else {
             this.Label4.string = ""
+        }
+        if (this.currentProjectGroup_ != undefined) {
+            this.functionPoint_.fillRange = this.currentProjectGroup_.project_.currentFunction_ / this.currentProjectGroup_.project_.requireFunction_
+            this.experiencePoint_.fillRange = this.currentProjectGroup_.project_.currentEntertainment_ / this.currentProjectGroup_.project_.requireEntertainment_
+            this.creativePoint_.fillRange = this.currentProjectGroup_.project_.currentInnovation_ / this.currentProjectGroup_.project_.requireInnovation_
+            this.performancePoint_.fillRange = this.currentProjectGroup_.project_.currentPerformance_ / this.currentProjectGroup_.project_.requirePerformance_
+            this.totalPoint_.fillRange = this.functionPoint_.fillRange
         }
     },
 
