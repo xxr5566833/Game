@@ -85,6 +85,7 @@ cc.Class({
         this.typ_data=source.getAvailableCategories();
         this.fun_data=source.getAvailableFunctions();
         this.em_data=source.getAvailablePersons();
+        console.log(this.em_data);
         this.money=cc.find('Event/Game/Date/Account').getComponent("Account").getGold();
         var pf_l=this.pf_data.length;
         var typ_l=this.typ_data.length;
