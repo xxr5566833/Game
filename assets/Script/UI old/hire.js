@@ -119,6 +119,7 @@ cc.Class({
             candi_entry_management.caller = this;
             count += 1;
             y = y - this.entrySpace;
+            console.log(y);
         }
 
     },
