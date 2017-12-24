@@ -97,22 +97,6 @@ cc.Class({
             default: null,
             type: cc.Sprite
         },
-        icon1_: {
-            default: null,
-            type: cc.Sprite
-        },
-        icon2_: {
-            default: null,
-            type: cc.Sprite
-        },
-        icon3_: {
-            default: null,
-            type: cc.Sprite
-        },
-        icon4_: {
-            default: null,
-            type: cc.Sprite
-        },
         developProcess_: {
             default: null,
             type: cc.Node
