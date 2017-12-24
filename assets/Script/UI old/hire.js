@@ -29,42 +29,52 @@ cc.Class({
             default: null,
             type: cc.Prefab,
         },
+
         codingLabel: {
             default: null,
-            type: cc.Label,
+            type: cc.Label
         },
-        manageLabel: {
+        scienceLabel: {
             default: null,
-            type: cc.Label,
+            type: cc.Label
         },
         artLabel: {
             default: null,
-            type: cc.Label,
+            type: cc.Label
         },
-        advancePayLabel: {
+        creativityLabel: {
             default: null,
-            type: cc.Label,
-        },   
-        salaryLabel: {
+            type: cc.Label
+        },
+        mamagementLabel: {
             default: null,
-            type: cc.Label,
-        },     
+            type: cc.Label
+        },
+
+        nameLabel: {
+            default: null,
+            type: cc.Label
+        },
+
         scrollView: {
             default: null,
             type: cc.ScrollView
         },
         entryRootY: 135,
         entryX: 0,
-        entrySpace: 65 
+        entrySpace: 60 
     },
 
     // use this for initialization
     onLoad: function () {
         this.candidates = []
-        this.hireBtn.node.on(cc.Node.EventType.TOUCH_START, this.hire, this)
         this.hireBtn.node.on(cc.Node.EventType.TOUCH_END, this.hire, this)
         this.node.js=this;
-        this.node.active = false;
+
+        this.source = cc.find('Event').getComponent('Event')
+            .personGenerator_.getComponent('PersonGenerator');
+        console.log(this.source);
+        //this.node.active = false;
         /*this.TEST_CANDIDATE = 
         {
             abilityCoding_: 0,
@@ -85,6 +95,7 @@ cc.Class({
 
     updateCandidates: function() {
         this.candidates = this.getCandidates()
+        //console.log("people count: "+this.candidates.length);
         this.selectedCandidates = []
         this.scrollView.scrollToTop()
         this.candidateBoard.height = this.entrySpace * (this.candidates.length + 1)
@@ -101,23 +112,29 @@ cc.Class({
             node.setPosition(this.entryX, y)
             
             var candi_entry_management = node.getComponent("candidateEntryManagement")
-            candi_entry_management.setName(candi.name_)
-            candi_entry_management.setProfession(candi.profession_)
-            candi_entry_management.loadAvatar(candi.index_, candi.name_)
-            candi_entry_management.entryOrder = count
-            candi_entry_management.caller = this
-            count += 1
-            y = y - this.entrySpace
+            candi_entry_management.setName(candi.name_);
+            candi_entry_management.setPay(candi.employMoney_ + "$");
+            candi_entry_management.loadAvatar(candi.index_, candi.name_);
+            candi_entry_management.entryOrder = count;
+            candi_entry_management.caller = this;
+            count += 1;
+            y = y - this.entrySpace;
+            console.log(y);
         }
+
     },
 
     showInfoByOrder: function(order) {
-        //console.log(this.candidates[order]);
-        this.codingLabel.string = Math.floor(this.candidates[order].abilityCoding_).toString()
-        this.manageLabel.string = Math.floor(this.candidates[order].abilityManage_).toString()
-        this.artLabel.string = Math.floor(this.candidates[order].abilityArt_).toString()
-        this.salaryLabel.string = Math.floor(this.candidates[order].salary_.toString())+"$"
-        this.advancePayLabel.string = Math.floor(this.candidates[order].employMoney_.toString())+"$"
+        console.log("show personal info coding:" + this.candidates[order].coding_);
+        console.log("show personal info sci:" + this.candidates[order].science_);
+
+        this.codingLabel.string = Math.floor(this.candidates[order].coding_).toString()
+        this.scienceLabel.string = Math.floor(this.candidates[order].science_).toString();
+        this.artLabel.string = Math.floor(this.candidates[order].art_).toString();
+        this.creativityLabel.string = Math.floor(this.candidates[order].creativity_).toString();
+        this.mamagementLabel.string = Math.floor(this.candidates[order].manager_).toString();
+
+        this.nameLabel.string = this.candidates[order].name_;
     },
 
     includeCandidateByOrder: function(order) {
@@ -132,24 +149,28 @@ cc.Class({
     getCandidates: function() {
         // 返回候选人物的数组
         // TODO: 和后端连接
-        return cc.find("Event").getComponent("PersonGenerator").showPersons(0)
+        return this.source.showPersons(0);
     },
 
     hire: function() {
         // TODO for scripters:
         // 按照 this.selectedCandidates，为 true 的下标表示雇佣该员工
-       // console.log(this.selectedCandidates)
+        console.log(this.selectedCandidates)
+        console.log("candidates len:" + this.candidates.length);
         for(let i=0, j=0;i<this.selectedCandidates.length;i++,j++){
-            if(this.selectedCandidates[i]==true){
-                //console.log("Hired index:" + this.candidates[j].index_)
-               // console.log("Hired name:" + this.candidates[j].name_)
-                cc.find("Event").getComponent("PersonGenerator").removePerson(this.candidates[j].index_)
+            if(this.selectedCandidates[i] == true){
+                console.log(j);
+                console.log(this.candidates[j]);
+                console.log("Hired index:" + this.candidates[j].index_)
+                console.log("Hired name:" + this.candidates[j].name_)
+                this.source.removePerson(this.candidates[j].index_);
+                j--;
                 //console.log(this.candidates);
             }
         }
         // TODO for UI designer:
         // 钱不够，未选任何员工时提示用户
-        this.ancestorNode.getComponent("btnToggleActive").toggle()
+        this.node.active = false;
     }
     // called every frame, uncomment this function to activate update callback
     // update: function (dt) {

@@ -24,7 +24,7 @@
         "__id__": 8
       },
       {
-        "__id__": 11
+        "__id__": 14
       }
     ],
     "_tag": -1,
@@ -70,7 +70,7 @@
     "_position": {
       "__type__": "cc.Vec2",
       "x": 2,
-      "y": -39
+      "y": -38.7
     },
     "_skewX": 0,
     "_skewY": 0,
@@ -81,7 +81,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "profession",
+    "_name": "pay",
     "_objFlags": 0,
     "_parent": {
       "__id__": 1
@@ -101,9 +101,9 @@
     "_opacity": 255,
     "_color": {
       "__type__": "cc.Color",
-      "r": 32,
-      "g": 4,
-      "b": 236,
+      "r": 245,
+      "g": 233,
+      "b": 40,
       "a": 255
     },
     "_cascadeOpacityEnabled": true,
@@ -124,7 +124,7 @@
     "_position": {
       "__type__": "cc.Vec2",
       "x": 60,
-      "y": -1
+      "y": 2.0999999999999996
     },
     "_skewX": 0,
     "_skewY": 0,
@@ -149,10 +149,10 @@
     "_N$file": null,
     "_isSystemFontUsed": true,
     "_spacingX": 0,
-    "_N$string": "程序员",
+    "_N$string": "10$",
     "_N$horizontalAlign": 2,
     "_N$verticalAlign": 1,
-    "_N$fontFamily": "幼圆",
+    "_N$fontFamily": "微软雅黑",
     "_N$overflow": 1
   },
   {
@@ -188,8 +188,8 @@
     "_opacity": 255,
     "_color": {
       "__type__": "cc.Color",
-      "r": 46,
-      "g": 6,
+      "r": 255,
+      "g": 255,
       "b": 255,
       "a": 255
     },
@@ -211,7 +211,7 @@
     "_position": {
       "__type__": "cc.Vec2",
       "x": 28,
-      "y": 1
+      "y": 3.9
     },
     "_skewX": 0,
     "_skewY": 0,
@@ -229,8 +229,8 @@
     },
     "_enabled": true,
     "_useOriginalSize": false,
-    "_actualFontSize": 20,
-    "_fontSize": 20,
+    "_actualFontSize": 16,
+    "_fontSize": 16,
     "_lineHeight": 40,
     "_enableWrapText": false,
     "_N$file": null,
@@ -239,7 +239,7 @@
     "_N$string": "谭浩强",
     "_N$horizontalAlign": 0,
     "_N$verticalAlign": 1,
-    "_N$fontFamily": "幼圆",
+    "_N$fontFamily": "微软雅黑",
     "_N$overflow": 1
   },
   {
@@ -255,97 +255,6 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "hire_select_btn_chosen",
-    "_objFlags": 0,
-    "_parent": {
-      "__id__": 1
-    },
-    "_children": [],
-    "_tag": -1,
-    "_active": true,
-    "_components": [
-      {
-        "__id__": 9
-      }
-    ],
-    "_prefab": {
-      "__id__": 10
-    },
-    "_id": "",
-    "_opacity": 0,
-    "_color": {
-      "__type__": "cc.Color",
-      "r": 255,
-      "g": 255,
-      "b": 255,
-      "a": 255
-    },
-    "_cascadeOpacityEnabled": true,
-    "_anchorPoint": {
-      "__type__": "cc.Vec2",
-      "x": 0.5,
-      "y": 0.5
-    },
-    "_contentSize": {
-      "__type__": "cc.Size",
-      "width": 280,
-      "height": 62
-    },
-    "_rotationX": 0,
-    "_rotationY": 0,
-    "_scaleX": 1,
-    "_scaleY": 1,
-    "_position": {
-      "__type__": "cc.Vec2",
-      "x": 0,
-      "y": 0
-    },
-    "_skewX": 0,
-    "_skewY": 0,
-    "_localZOrder": 0,
-    "_globalZOrder": 0,
-    "_opacityModifyRGB": false,
-    "groupIndex": 0
-  },
-  {
-    "__type__": "cc.Sprite",
-    "_name": "",
-    "_objFlags": 0,
-    "node": {
-      "__id__": 8
-    },
-    "_enabled": true,
-    "_spriteFrame": {
-      "__uuid__": "2dc6318a-085d-4c0e-b718-b3849fa94f37"
-    },
-    "_type": 0,
-    "_sizeMode": 0,
-    "_fillType": 0,
-    "_fillCenter": {
-      "__type__": "cc.Vec2",
-      "x": 0,
-      "y": 0
-    },
-    "_fillStart": 0,
-    "_fillRange": 0,
-    "_isTrimmedMode": true,
-    "_srcBlendFactor": 770,
-    "_dstBlendFactor": 771,
-    "_atlas": null
-  },
-  {
-    "__type__": "cc.PrefabInfo",
-    "root": {
-      "__id__": 1
-    },
-    "asset": {
-      "__uuid__": "477e86e6-d5f9-4ac5-bfde-db1299387890"
-    },
-    "fileId": "53fesElixO/aE2MX8lvmp6",
-    "sync": false
-  },
-  {
-    "__type__": "cc.Node",
     "_name": "avatar_mask",
     "_objFlags": 0,
     "_parent": {
@@ -353,18 +262,18 @@
     },
     "_children": [
       {
-        "__id__": 12
+        "__id__": 9
       }
     ],
     "_tag": -1,
     "_active": true,
     "_components": [
       {
-        "__id__": 15
+        "__id__": 12
       }
     ],
     "_prefab": {
-      "__id__": 16
+      "__id__": 13
     },
     "_id": "",
     "_opacity": 255,
@@ -393,7 +302,7 @@
     "_position": {
       "__type__": "cc.Vec2",
       "x": -109.5,
-      "y": 0
+      "y": 1.5
     },
     "_skewX": 0,
     "_skewY": 0,
@@ -407,18 +316,18 @@
     "_name": "avatar",
     "_objFlags": 0,
     "_parent": {
-      "__id__": 11
+      "__id__": 8
     },
     "_children": [],
     "_tag": -1,
     "_active": true,
     "_components": [
       {
-        "__id__": 13
+        "__id__": 10
       }
     ],
     "_prefab": {
-      "__id__": 14
+      "__id__": 11
     },
     "_id": "",
     "_opacity": 255,
@@ -461,10 +370,12 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 12
+      "__id__": 9
     },
     "_enabled": true,
-    "_spriteFrame": null,
+    "_spriteFrame": {
+      "__uuid__": "8eca9441-61a3-450c-9954-700f351f05bb"
+    },
     "_type": 0,
     "_sizeMode": 0,
     "_fillType": 0,
@@ -496,7 +407,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 11
+      "__id__": 8
     },
     "_enabled": true,
     "_type": 1,
@@ -517,6 +428,93 @@
     "sync": false
   },
   {
+    "__type__": "cc.Node",
+    "_name": "in",
+    "_objFlags": 0,
+    "_parent": {
+      "__id__": 1
+    },
+    "_children": [],
+    "_tag": -1,
+    "_active": true,
+    "_components": [
+      {
+        "__id__": 15
+      }
+    ],
+    "_prefab": {
+      "__id__": 16
+    },
+    "_id": "",
+    "_opacity": 0,
+    "_color": {
+      "__type__": "cc.Color",
+      "r": 255,
+      "g": 255,
+      "b": 255,
+      "a": 255
+    },
+    "_cascadeOpacityEnabled": true,
+    "_anchorPoint": {
+      "__type__": "cc.Vec2",
+      "x": 0.5,
+      "y": 0.5
+    },
+    "_contentSize": {
+      "__type__": "cc.Size",
+      "width": 24.89,
+      "height": 40
+    },
+    "_rotationX": 0,
+    "_rotationY": 0,
+    "_scaleX": 1,
+    "_scaleY": 1,
+    "_position": {
+      "__type__": "cc.Vec2",
+      "x": 61,
+      "y": 2
+    },
+    "_skewX": 0,
+    "_skewY": 0,
+    "_localZOrder": 0,
+    "_globalZOrder": 0,
+    "_opacityModifyRGB": false,
+    "groupIndex": 0
+  },
+  {
+    "__type__": "cc.Label",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 14
+    },
+    "_enabled": true,
+    "_useOriginalSize": false,
+    "_actualFontSize": 16,
+    "_fontSize": 16,
+    "_lineHeight": 40,
+    "_enableWrapText": true,
+    "_N$file": null,
+    "_isSystemFontUsed": true,
+    "_spacingX": 0,
+    "_N$string": "IN !",
+    "_N$horizontalAlign": 1,
+    "_N$verticalAlign": 1,
+    "_N$fontFamily": "Arial",
+    "_N$overflow": 0
+  },
+  {
+    "__type__": "cc.PrefabInfo",
+    "root": {
+      "__id__": 1
+    },
+    "asset": {
+      "__uuid__": "477e86e6-d5f9-4ac5-bfde-db1299387890"
+    },
+    "fileId": "88pNX+oOdOe65UmIcND0V3",
+    "sync": false
+  },
+  {
     "__type__": "cc.Sprite",
     "_name": "",
     "_objFlags": 0,
@@ -525,7 +523,7 @@
     },
     "_enabled": true,
     "_spriteFrame": {
-      "__uuid__": "cdafdb1c-f17e-4ebb-974a-a3e080626015"
+      "__uuid__": "9fc0d088-3429-458f-a740-b2a146533d47"
     },
     "_type": 1,
     "_sizeMode": 0,
@@ -568,10 +566,10 @@
     "duration": 0.1,
     "zoomScale": 1.2,
     "pressedSprite": {
-      "__uuid__": "cdafdb1c-f17e-4ebb-974a-a3e080626015"
+      "__uuid__": "17d0dc80-5344-4fb6-afeb-3f87ca191450"
     },
     "hoverSprite": {
-      "__uuid__": "cdafdb1c-f17e-4ebb-974a-a3e080626015"
+      "__uuid__": "9fc0d088-3429-458f-a740-b2a146533d47"
     },
     "clickEvents": [],
     "_N$interactable": true,
@@ -591,10 +589,10 @@
       "a": 255
     },
     "_N$normalSprite": {
-      "__uuid__": "cdafdb1c-f17e-4ebb-974a-a3e080626015"
+      "__uuid__": "9fc0d088-3429-458f-a740-b2a146533d47"
     },
     "_N$disabledSprite": {
-      "__uuid__": "cdafdb1c-f17e-4ebb-974a-a3e080626015"
+      "__uuid__": "9fc0d088-3429-458f-a740-b2a146533d47"
     },
     "_N$target": {
       "__id__": 1
@@ -611,14 +609,14 @@
     "labelName": {
       "__id__": 6
     },
-    "labelProfession": {
+    "labelPay": {
       "__id__": 3
     },
     "chosenRing": {
-      "__id__": 8
+      "__id__": 14
     },
     "avatarSprite": {
-      "__id__": 13
+      "__id__": 10
     }
   },
   {

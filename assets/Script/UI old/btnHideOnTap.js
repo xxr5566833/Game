@@ -31,17 +31,17 @@ cc.Class({
     // use this for initialization
     onLoad: function () {
         this.node.on(cc.Node.EventType.TOUCH_END, this.show, this);
-        this.msgBoxControl = this.msgBox.getComponent("msgBoxControl");
+        // this.msgBoxControl = this.msgBox.getComponent("msgBoxControl");
     },
 
     show: function() {
         //只能先这样改了，如果把这个判断放在下面，那么会按钮逻辑关系有问题。。ui以后来改也行
         for (var cnode of this.show_targets) {
-            var msg = cnode.getComponent(cnode.name).canShow();
-            if(msg != ''){
-                this.msgBoxControl.alert("FAIL", msg);
+            //var msg = cnode.getComponent(cnode.name).canShow();
+            /*if(msg != ''){
+                //this.msgBoxControl.alert("FAIL", msg);
                 return ;
-            }
+            }*/
         }
         for (var pnode of this.hide_targets) {
             //(pnode);
@@ -53,9 +53,10 @@ cc.Class({
             cc.log(cnode.name);
             cc.log("here");
             cc.log(this.show_targets);*/
-            var msg = cnode.getComponent(cnode.name).canShow();
+            //var msg = cnode.getComponent(cnode.name).canShow();
             //if(msg===''){
-                cnode.active = true;
+            console.log(cnode);    
+            cnode.active = true;
             /*}
             else{
                 this.msgBoxControl.alert("FAIL", msg);

@@ -96,7 +96,7 @@ cc.Class({
         //这里根据外界的person数据，初始化属性，不能直接用外界的数据，因为它们没有方法
         this.gift_ = person.gift_;
         this.coding_ = person.coding_;
-        this.science_ = person.coding_ ;
+        this.science_ = person.science_;
         this.art_ =  person.art_;
         this.creativity_ = person.creativity_;
         this.manager_ = person.manager_ ;
