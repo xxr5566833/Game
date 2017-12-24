@@ -81,7 +81,6 @@ cc.Class({
                     this.msgcontrol.alert("FAIL", "定期贷款仅仅可以贷款一次");
                     break;
                 case this.message.loansuccess:
-                    console.log("贷款");
                     this.msgcontrol.alert("SUCCESS", "贷款成功！");
                     break;
                 case this.message.notenoughmoney:

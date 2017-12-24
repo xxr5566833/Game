@@ -5,6 +5,9 @@ cc.Class({
         Main:cc.Node,
         projectMenu:cc.Node,
         employeeMenu:cc.Node,
+        emview:cc.Node,
+        emPrefab: cc.Prefab,
+        select_em:[Object],
         name1:cc.Label,
         name2:cc.Label,
         name3:cc.Label,
@@ -13,11 +16,14 @@ cc.Class({
         reward3:cc.Label,
         function:cc.Label,
         deadline:cc.Label,
-        msgBox:cc.Node
+        msgBox:cc.Node,
+        select_em:[Object],
     },
 
     onEnable: function () {
         this.projects = cc.find("Event/Game/Date/Account/ProjectGenerator").getComponent("ProjectGenerator").getProjects(); // 抛事件得到可选项目
+        this.persons = cc.find("Event/Game/Date/Account/PersonControl").getComponent("PersonControl").getAvailablePersons();
+        console.log(this.persons);
         console.log(this.projects);
         this.name1.string = this.projects[0].name_;
         this.name2.string = this.projects[1].name_;
@@ -26,6 +32,22 @@ cc.Class({
         this.reward2.string = this.projects[1].reward_;
         this.reward3.string = this.projects[2].reward_;
         this.show(null,0);
+        var em_l=this.persons.length;
+        for(var p=0;p<em_l;p++)
+        {
+            var item = cc.instantiate(this.emPrefab);
+            item.getComponent('devemp').index=p;
+            item.getComponent('devemp').Independent=this;
+            item.getChildByName("power").getComponent(cc.Label).string=this.em_data[p].power_.toString();
+            item.getChildByName("name").getComponent(cc.Label).string=this.em_data[p].name_;
+            /**
+             *  cc.loader.loadRes("Image/图标_创意", cc.SpriteFrame, function (err, spriteFrame) {
+                    item.getChildByName("image").getComponent(cc.Sprite).spriteFrame=spriteFrame;
+                });
+             */
+            this.emview.addChild(item);
+            this.select_em[p]=false;
+        }
     },
 
     show :function(toggle,id) {    // 选择项目触发,显示具体信息
@@ -48,7 +70,13 @@ cc.Class({
     // 还差响应所选员工的函数，记录在this.persons里
 
     begin: function(event){
-        cc.find("Event/Game/Date/Account/ProjectGenerator").getComponent("PersonControl").begin(this.selectProject,this.persons)
+        var selectPersons=[];
+        for(var p=0;p<select_em.length;p++){
+            if(select_em[p]){
+                selectPersons.push(this.em_data[p]);
+            }
+        }
+        cc.find("Event/Game/Date/Account/ProjectGenerator").getComponent("PersonControl").begin(this.selectProject,this.selectPersons)
         this.employeeMenu.active=false;
         this.Main.active=true;   
     },

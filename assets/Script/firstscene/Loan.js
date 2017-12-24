@@ -42,7 +42,9 @@ cc.Class({
         return (this.deadline_ + this.initDay_) <= nowday;
     },
 
-
+    getDeadDate:function(){
+        return this.initDay_ + this.deadline_;
+    },
     getOriginMoney:function(){
         return this.originMoney_;
     },
