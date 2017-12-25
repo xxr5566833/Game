@@ -132,6 +132,10 @@ cc.Class({
         highBugLabel_: {
             default: null,
             type: cc.Label
+        },
+        allBugLabel_: {
+            default: null,
+            type: cc.Label
         }
     },
 
@@ -249,9 +253,10 @@ cc.Class({
                 } else if (this.currentProjectGroup_.state_ == 1 || this.currentProjectGroup_.state_ == 2) {
                     this.developProcess_.active = false
                     this.testProcess_.active = true
-                    this.lowBugLabel_.string = "已发现未解决的低级bug数：" + this.currentProjectGroup_.project_.bugnum_[1]
-                    this.midiumBugLabel_.string = "已发现未解决的低级bug数：" + this.currentProjectGroup_.project_.bugnum_[3]
-                    this.highBugLabel_.string = "已发现未解决的低级bug数：" + this.currentProjectGroup_.project_.bugnum_[5]
+                    this.lowBugLabel_.string = "低级bug：" + this.currentProjectGroup_.project_.bugnum_[1]
+                    this.midiumBugLabel_.string = "中级bug：" + this.currentProjectGroup_.project_.bugnum_[3]
+                    this.highBugLabel_.string = "高级bug：" + this.currentProjectGroup_.project_.bugnum_[5]
+                    this.allBugLabel_.string = "总的bug：" + this.currentProjectGroup_.project_.bugnum_[1] + his.currentProjectGroup_.project_.bugnum_[3] + this.currentProjectGroup_.project_.bugnum_[5]
                 } else {
                     //alert("project state_ is 3, panic")
                 }
