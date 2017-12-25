@@ -73,13 +73,13 @@ cc.Class({
                 num++;
             }
             this.profit(num*100000,"保护");
-            event=new cc.Event.EventCustom('PROTECT', true);
+            var event=new cc.Event.EventCustom('PROTECT', true);
             this.node.dispatchEvent(event);
             this.protect_=false;
         }
         else{
             //GAME OVER
-            event=new cc.Event.EventCustom('GAMEOVER', true);
+            var event=new cc.Event.EventCustom('GAMEOVER', true);
             this.node.dispatchEvent(event);
         }
     },

@@ -253,7 +253,7 @@ cc.Class({
                     this.midiumBugLabel_.string = "已发现未解决的低级bug数：" + this.currentProjectGroup_.project_.bugnum_[3]
                     this.highBugLabel_.string = "已发现未解决的低级bug数：" + this.currentProjectGroup_.project_.bugnum_[5]
                 } else {
-                    alert("project state_ is 3, panic")
+                    //alert("project state_ is 3, panic")
                 }
             }
         } else {
