@@ -34,9 +34,14 @@ cc.Class({
         select_pf:0,
         select_em:[Object],
         myself:cc.Node,
+        projectgroup:Object,
     },
     
     onload:function(){
+    },
+
+    updategroup:function(group){
+        this.projectgroup=group;
     },
 
     pfchange:function()
@@ -197,8 +202,10 @@ cc.Class({
     },
 
     employee_pre:function(){
-        this.node.getChildByName("employee").active=false; 
-        this.node.getChildByName("confirm").active=true; 
+        if(this.projectgroup==undefined){
+            this.node.getChildByName("employee").active=false; 
+            this.node.getChildByName("confirm").active=true;
+        }
     },
     employee_next:function(){
         //开始开发
@@ -208,19 +215,28 @@ cc.Class({
                 selected_em.push(this.em_data[p]);
             }
         }
-        this.project.name_=this.projectname.getComponent(cc.EditBox).string;
-        this.projectname.getComponent(cc.EditBox).string="";
-        cc.find('Event/Game/Date/Account/PersonControl').getComponent("PersonControl").begin(this.project,selected_em);
-        this.selected_em=[]
+        if(this.projectgroup==undefined){
+            this.project.name_=this.projectname.getComponent(cc.EditBox).string;
+            this.projectname.getComponent(cc.EditBox).string="";
+            cc.find('Event/Game/Date/Account/PersonControl').getComponent("PersonControl").begin(this.project,selected_em);
+        }
+        else{
+            for(var q=0;q<this.selected_em.length;q++){
+                this.projectgroup.addPerson(selected_em[q],flag);
+            }
+            this.projectgroup=undefined;
+        }
+        this.select_em=[]
         this.node.getChildByName("employee").active=false; // 关闭当前窗口
         this.Main.active=true;                 // 打开主界面
         this.myself.active=false;
     },
 
     quit:function(event){
-        this.selected_em=[]
+        this.select_em=[]
         event.target.parent.active = false; // 关闭当前界面
         this.Main.active=true;
         this.myself.active=false;
+        this.projectgroup=undefined;
     }
 });
