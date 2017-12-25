@@ -246,6 +246,7 @@ cc.Class({
         }, this);
 
         this.node.on("teammates-ability-is-stronger", function(event){
+            console.log(event.group);
             var persons = event.group.persons_;
             var person = event.person;
             for(let i = 0 ; i < persons.length ; i++)
@@ -272,7 +273,7 @@ cc.Class({
         }, this);
 
         this.node.on("INIT", function(event){
-            //this.personGenerator_.getComponent("PersonGenerator").init(event.data_pe);
+            this.personGenerator_.getComponent("PersonGenerator").init(event.data_pe);
             this.projectGenerator_.getComponent("ProjectGenerator").init(event.data_pr);
         }, this);
 

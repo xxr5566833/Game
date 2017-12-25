@@ -112,6 +112,8 @@ cc.Class({
         // 职能
         this.profession_ = person.profession_,
         this.index_ = person.index_,
+        //等级
+        this.level_ = person.level_;
         // 体力值
         this.power_ = person.power_,
         // 心情
@@ -225,7 +227,8 @@ cc.Class({
                 I = 0
             }
         }
-
+        console.log("功能点数");
+        console.log(F);
         // 只有处于工作状态的员工才会增加进度
         if (this.state_ === eState.working && flag) {
             // 认真(serious):开发时额外增加5%点数，参与项目bug数量降低30%
@@ -251,7 +254,8 @@ cc.Class({
             // 好胜(ambition):同项目组中如果有比他能力强的人，则开发时额外增加10%点数
             if (this.character_ === this.ambition) {
                 var event = new cc.Event.EventCustom('teammates-ability-is-stronger', true)
-                event.person = this
+                event.person = this;
+                event.group = this.group_;
                 this.node.dispatchEvent(event);
                 var ambitionAcitve_ = event.back
                 if (ambitionAcitve_) {
@@ -263,7 +267,8 @@ cc.Class({
             }
             if (this.character_ === this.bigAmnition) {
                 var event = new cc.Event.EventCustom('teammates-ability-is-stronger', true)
-                event.person = this
+                event.person = this;
+                event.group = this.group_;
                 this.node.dispatchEvent(event);
                 var ambitionAcitve_ = event.back
                 if (ambitionAcitve_) {
@@ -434,7 +439,10 @@ cc.Class({
         cc.log(this.name + ": " + this.month_);
     },
     sayPublic: function (set) {
-        var s = set.entries()[0][0]
+        //var s = set.entries()[0][0]
+        let array = Array.from(set);
+        var s = array[0];
+        console.log(s);
         if (this.character_ === Character.blabla || this.character_ === Character.funny) {
             this.saySomething(s)
         } else {

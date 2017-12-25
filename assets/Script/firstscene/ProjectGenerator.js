@@ -20,7 +20,7 @@ cc.Class({
 
     init:function(projs){
         this.projs_=projs;
-        this.availableList_ = [0, 1, 2, 3];
+        this.availableList_ = [1, 2, 3, 4];
         this.updateAll();
     },
     onLoad: function () {
@@ -71,16 +71,19 @@ cc.Class({
             {
                 if(this.projs_[k].index_ == index){
                     proj.init(0, this.projs_[k]);
+                    console.log(j);
+                    console.log(proj);
                     proj.node = this.node;
                     this.projects_[j] = proj;
                     break;
                 }
             }
         }
+        console.log(this.projects_);
     },
 
     getProjects:function(){
-        console.log(this.projects_);
+        this.updateAll();
         return this.projects_;
     },
 
@@ -92,20 +95,21 @@ cc.Class({
         this.projs_[index].unlock_ = true;
         for(let i = 0; i < this.projs_.length; i++){
             //如果availableList里已经有了这个project的index，那么已经可用了，那么就跳过
-            if(this.availableList_.indexOf(this.projs_[i].index) != -1){
+            if(this.availableList_.indexOf(this.projs_[i].index_) != -1){
                 continue;
             }
             var list = this.projs_[i].unlockRequire_;
+            console.log(list);
             var available = true;
             for(let j = 0; j < list.length; ++j)
             {
-                available = available && (this.availableList_.indexOf(list[j]) != -1) && this.projs[list[j]].unlock_;
+                available = available && (this.availableList_.indexOf(list[j]) != -1) && this.projs_[list[j]].unlock_;
             }
             if(available){
-                event=new cc.Event.EventCustom('MEAASGE', true);
+                event=new cc.Event.EventCustom('MESSAGE', true);
                 event.id = 8;
                 this.node.dispatchEvent(event);
-                this.availableList_.push(this.projs_[i].index);
+                this.availableList_.push(this.projs_[i].index_);
                 return ;
             }
         }

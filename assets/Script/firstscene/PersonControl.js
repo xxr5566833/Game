@@ -228,7 +228,8 @@ cc.Class({
         project.setReceiveDay(date);
         group.begin(project,persons);
         this.projectGroups_.push(group);
-        console.log(this.projectGroups_);
+        var time = cc.find("Event/Game").getComponent("Game").time_;
+        group.resume(time);
     },
 
 
@@ -292,10 +293,21 @@ cc.Class({
     pause:function(){
         this.unschedule(this.work);
         this.unschedule(this.paySalary);
+        this.unschedule(this.dialogue);
+    },
+
+    dialogue:function(){
+        for(let i = 0 ; i < this.projectGroups_.length ; i++)
+        {
+            var group = this.projectGroups_[i];
+            group.dialogueSystem();
+        }
     },
 
     resume:function(time){
+        console.log("personcontrol");
         this.schedule(this.work,time);
         this.schedule(this.paySalary,time);
+        this.schedule(this.dialogue, time);
     },
 });

@@ -60,6 +60,11 @@ cc.Class({
             default: null,
             type: cc.ScrollView
         },
+        msgBox:cc.Node,
+        btnLabel:cc.Label,
+        main:cc.Node,
+        personControl_:cc.Node,
+        account_:cc.Node,
         entryRootY: 135,
         entryX: 0,
         entrySpace: 60 
@@ -73,24 +78,58 @@ cc.Class({
 
         this.source = cc.find('Event').getComponent('Event')
             .personGenerator_.getComponent('PersonGenerator');
-        console.log(this.source);
-        //this.node.active = false;
-        /*this.TEST_CANDIDATE = 
-        {
-            abilityCoding_: 0,
-            abilityManage_: 10,
-            abilityArt_: 0,
-            salary_: 250,
-            employMoney_: 1000,
-
-            name_: "陈潇伍",
-            index_: 7,
-            profession_: "程序员"
-        }*/
     },
 
     onEnable: function() {
-        this.updateCandidates()
+        this.setLevel();
+        this.setLabel();
+        this.updateCandidates();
+    },
+
+    setLevel:function(){
+        var credit = this.personControl_.getComponent("PersonControl").getCredit();
+        var money = 0;
+        var level = 0;
+        if(credit > 100)
+        {
+            level = 3;
+            money = 512;
+        }
+        else if(credit > 50 && credit <= 100)
+        {
+            level = 2;
+            money = 54 
+        }
+        else if(credit > 20 && credit <= 50)
+        {
+            level = 1;
+            money = 8;
+        }
+        else{
+            level = 0;
+            money = 1 ;
+        }
+        this.money = money;
+        this.level = level;
+
+        this.setLabel();
+    },
+
+    fresh:function(){
+        var account = this.account_.getComponent("Account");
+        if(account.enoughThenExpend(this.money * 10000))
+        {
+            this.updateCandidates();
+        }
+        else{
+            var msgcontrol = this.msgBox.getComponent("msgBoxControl");
+            msgcontrol.alert('FAIL', '金钱不足，不能刷新');
+        }
+
+    },
+
+    setLabel:function(){
+        this.btnLabel.string = "试试手气，一次" + this.money + "W";
     },
 
     updateCandidates: function() {
@@ -119,15 +158,11 @@ cc.Class({
             candi_entry_management.caller = this;
             count += 1;
             y = y - this.entrySpace;
-            console.log(y);
         }
 
     },
 
     showInfoByOrder: function(order) {
-        console.log("show personal info coding:" + this.candidates[order].coding_);
-        console.log("show personal info sci:" + this.candidates[order].science_);
-
         this.codingLabel.string = Math.floor(this.candidates[order].coding_).toString()
         this.scienceLabel.string = Math.floor(this.candidates[order].science_).toString();
         this.artLabel.string = Math.floor(this.candidates[order].art_).toString();
@@ -149,20 +184,33 @@ cc.Class({
     getCandidates: function() {
         // 返回候选人物的数组
         // TODO: 和后端连接
-        return this.source.showPersons(0);
+        return this.source.showPersons(this.level);
     },
 
     hire: function() {
         // TODO for scripters:
         // 按照 this.selectedCandidates，为 true 的下标表示雇佣该员工
-        console.log(this.selectedCandidates)
-        console.log("candidates len:" + this.candidates.length);
+        if(this.selectedCandidates.length == 0)
+        {
+            var msgcontrol = this.msgBox.getComponent("msgBoxControl");
+            msgcontrol.alert('FAIL', '至少需要选择一个人');
+            return ;
+        }
+        var sum = 0;
+        for(let i = 0; i < this.selectedCandidates.length ; i++)
+        {
+            var person = this.candidates[i];
+            sum += person.employMoney_;
+        }
+        var account = cc.find("Event/Game/Date/Account").getComponent("Account");
+        if(!account.isEnough(sum))
+        {
+            var msgcontrol = this.msgBox.getComponent("msgBoxControl");
+            msgcontrol.alert('FAIL', '您的金钱不足以雇佣这些人');
+            return ;
+        }
         for(let i=0, j=0;i<this.selectedCandidates.length;i++,j++){
             if(this.selectedCandidates[i] == true){
-                console.log(j);
-                console.log(this.candidates[j]);
-                console.log("Hired index:" + this.candidates[j].index_)
-                console.log("Hired name:" + this.candidates[j].name_)
                 this.source.removePerson(this.candidates[j].index_);
                 j--;
                 //console.log(this.candidates);
@@ -171,6 +219,7 @@ cc.Class({
         // TODO for UI designer:
         // 钱不够，未选任何员工时提示用户
         this.node.active = false;
+        this.main.active = true;
     }
     // called every frame, uncomment this function to activate update callback
     // update: function (dt) {

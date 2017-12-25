@@ -33,29 +33,14 @@ cc.Class({
     //游戏结束，切换场景，关闭音乐
     gameover:function(){
         cc.audioEngine.pause(this.current);
-        cc.loader.loadScene("End");
+        cc.director.loadScene("End");
     },
     
-    start:function(){
-        this.resume();
-    },
     // use this for initialization
     onLoad: function () {
         this.time_ = 1;
         var self = this;
-        cc.loader.loadRes('projectinfo',function(err,data_pr){
-            if(err){
-                cc.log(err);
-            }else{
-                var event=new cc.Event.EventCustom('INIT', true);
-                //console.log(data_pe);
-                console.log(data_pr);
-                //event.data_pe=data_pe;
-                event.data_pr=data_pr;
-                self.node.dispatchEvent(event);
-            }
-        });
-        /*cc.loader.loadRes('personinfo',function(err,data_pe){
+        cc.loader.loadRes('personinfo',function(err,data_pe){
             if(err){
                 cc.log(err);
             }else{
@@ -63,16 +48,16 @@ cc.Class({
                     if(err){
                         cc.log(err);
                     }else{
-                        event=new cc.Event.EventCustom('INIT', true);
+                        var event=new cc.Event.EventCustom('INIT', true);
                         console.log(data_pe);
                         console.log(data_pr);
                         event.data_pe=data_pe;
                         event.data_pr=data_pr;
-                        this.node.dispatchEvent(event);
+                        self.node.dispatchEvent(event);
                     }
                 });
             }
-        });*/
+        });
         // 开启重复处理事件
         this.current = cc.audioEngine.play(this.music, true,0.5);
     },

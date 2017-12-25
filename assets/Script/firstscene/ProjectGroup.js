@@ -170,6 +170,7 @@ cc.Class({
     begin: function (project, persons) {
         this.project_ = project;
         this.persons_ = persons;
+        //在这里设置好person的group_
         for (let i = 0; i < this.persons_.length; i++) {
             this.persons_[i].begin();
             this.persons_[i].group_ = this;
@@ -568,6 +569,8 @@ cc.Class({
     },
 
     addPerson: function (person, isSale) {
+        //设置person 的group
+        person.group_ = this;
         person.begin();
         if (isSale) {
             this.maintainers_.push(person);
@@ -614,8 +617,8 @@ cc.Class({
     // },
     pause: function () {
         this.unschedule(this.dialogueSystem);
-        this.unshedule(this.individual);
-        this.unshedule(this.weekIndividual);
+        this.unschedule(this.individual);
+        this.unschedule(this.weekIndividual);
     },
 
     resume: function (time) {
@@ -623,6 +626,7 @@ cc.Class({
         this.schedule(this.individual, time);
         this.schedule(this.weekIndividual, time * 7);
     },
+
 
     individual:function(){
         for(let i = 0 ; i < this.persons_.length ; i++)
@@ -645,19 +649,20 @@ cc.Class({
         var rnd = Math.random()
         if (rnd < 0.9) {
             // say public dialogue
-            var index = getRandomInt(0, persons_.length)
-            persons_[index].sayPublic(publicDialogue)
+            var index = getRandomInt(0, this.persons_.length)
+            this.persons_[index].sayPublic(publicDialogue)
         } else {
             // say special dialogue
             var dialogueIndex = getRandomInt(21, 26)
             switch (dialogueIndex) {
                 case 21:
-                    if (persons_.length < 2) {
+                    if (this.persons_.length < 2) {
                         break
                     }
                     // 只有项目组成员数不小于2时，此对话才可能触发
-                    var ps = getUnique(persons_, 2)
-                    p1, p2 = ps
+                    var ps = getUnique(this.persons_, 2)
+                    var p1 = ps[0];
+                    var p2 = ps[1];
                     if (!p1.saySomething("今天" + getRandomElementFromArray(time) + "吃什么？")) {
                         break
                     }
@@ -717,12 +722,13 @@ cc.Class({
                     }
                     break
                 case 22:
-                    if (persons_.length < 2) {
+                    if (this.persons_.length < 2) {
                         break
                     }
                     // 只有项目组成员数不小于2时，此对话才可能触发
-                    var ps = getUnique(persons_, 2)
-                    p1, p2 = ps
+                    var ps = getUnique(this.persons_, 2)
+                    var p1 = ps[0];
+                    var p2 = ps[1];
                     if (!p1.saySomething("嘿，出去喝一杯吗?")) {
                         break
                     }
@@ -743,7 +749,7 @@ cc.Class({
                                         var rnd3 = getRandomInt(0, 2)
                                         switch (rnd3) {
                                             case 0:
-                                                p2.saySomething(那也算了)
+                                                p2.saySomething("那也算了")
                                                 break
                                             case 1:
                                                 p2.saySomething("好，如果de不完明天午饭请我 ")
@@ -769,12 +775,13 @@ cc.Class({
                     }
                     break
                 case 23:
-                    if (persons_.length < 2) {
+                    if (this.persons_.length < 2) {
                         break
                     }
                     // 只有项目组成员数不小于2时，此对话才可能触发
-                    var ps = getUnique(persons_, 2)
-                    p1, p2 = ps
+                    var ps = getUnique(this.persons_, 2)
+                    var p1 = ps[0];
+                    var p2 = ps[1];
                     if (!p1.saySomething("同志们，你们帮我看看这个怎么就崩了…… ")) {
                         break
                     }
@@ -798,13 +805,15 @@ cc.Class({
                     }
                     break
                 case 24:
-                    if (persons_.length < 2) {
+                    if (this.persons_.length < 2) {
                         break
                     }
                     // 只有项目组成员数不小于2时，此对话才可能触发
-                    var ps = getUnique(persons_, 2)
-                    p1, p2 = ps
-                    if (!p1.saySomething("上周新出的游戏你们买了吗，就是那个大名鼎鼎的" + getRandomGame())) {
+                    var ps = getUnique(this.persons_, 2)
+                    var p1 = ps[0];
+                    var p2 = ps[1];
+                    //if (!p1.saySomething("上周新出的游戏你们买了吗，就是那个大名鼎鼎的" + getRandomGame())) {
+                    if (!p1.saySomething("上周新出的游戏你们买了吗，就是那个大名鼎鼎的" + gameList[getRandomInt(0, gameList.length)])) {
                         break
                     }
                     var rnd1 = getRandomInt(0, 4)
@@ -865,11 +874,11 @@ cc.Class({
                     }
                     break
                 case 25:
-                    if (persons_.length < 2) {
+                    if (this.persons_.length < 2) {
                         break
                     }
                     // 只有项目组成员数不小于2时，此对话才可能触发
-                    var ps = getUnique(persons_, 7)
+                    var ps = getUnique(this.persons_, 7)
                     if (!ps[0].saySomething("今天上班路上咋这么堵啊")) {
                         break
                     }

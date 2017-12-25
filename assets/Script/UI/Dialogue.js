@@ -96,7 +96,23 @@ cc.Class({
         totalPoint_: {
             default: null,
             type: cc.Sprite
-        }
+        },
+        person1_: {
+            default: null,
+            type: cc.Node
+        },
+        person2_: {
+            default: null,
+            type: cc.Node
+        },
+        person3_: {
+            default: null,
+            type: cc.Node
+        },
+        person4_: {
+            default: null,
+            type: cc.Node
+        },
     },
 
     // use this for initialization
@@ -118,12 +134,18 @@ cc.Class({
         this.rightBtn.node.on(cc.Node.EventType.TOUCH_START, this.rightStart, this)
         this.rightBtn.node.on(cc.Node.EventType.TOUCH_END, this.rightEnd, this)
 
+        this.person1_.active = false            
+        this.person2_.active = false            
+        this.person3_.active = false            
+        this.person4_.active = false            
+        
+
         // 每隔1秒刷新一次聊天室
         this.schedule(this.fresh, 1);
         
         cc.log("dialogue initial")
         // fake data
-        this.currentProjectGroup_ = new (projectgroup)
+        /*this.currentProjectGroup_ = new (projectgroup)
         this.currentProjectGroup_.project_ = new (project)
         this.currentProjectGroup_.project_.name_ = "fake project"
         this.projectGroups_.push(this.currentProjectGroup_)
@@ -142,58 +164,67 @@ cc.Class({
         this.currentProjectGroup_.persons_[0].name_ = "路人甲"
         this.currentProjectGroup_.persons_[1].name_ = "匪兵乙"
         this.currentProjectGroup_.persons_[2].name_ = "炮灰丙"
-        this.currentProjectGroup_.persons_[3].name_ = "流氓丁"
+        this.currentProjectGroup_.persons_[3].name_ = "流氓丁"*/
     },
 
     // 刷新对话框
     fresh: function () {
-        // this.updateProjectGroups(this.personControl_.getAllGroups())
-
-        // debug
-        cc.log(this.currentProjectGroup_.persons_[0].month_)
-        cc.log(this.currentProjectGroup_.persons_[1].month_)
-        cc.log(this.currentProjectGroup_.persons_[2].month_)
-        cc.log(this.currentProjectGroup_.persons_[3].month_)
-
-        this.projectTitle.string = this.currentProjectGroup_.project_.name_
-        this.projectIndex.string = (this.projectGroups_.indexOf(this.currentProjectGroup_) + 1) + "/" + this.projectGroups_.length
-
-        if (this.currentProjectGroup_.persons_[0] != undefined) {
-            this.Label1.string = this.currentProjectGroup_.persons_[0].month_
-            this.loadAvatar(this.currentProjectGroup_.persons_[0].index_, this.currentProjectGroup_.persons_[0].name_, this.avatar1)
-        } else {
-            this.Label1.string = ""
-        }
-        if (this.currentProjectGroup_.persons_[1] != undefined) {
-            this.Label2.string = this.currentProjectGroup_.persons_[1].month_
-            this.loadAvatar(this.currentProjectGroup_.persons_[1].index_, this.currentProjectGroup_.persons_[1].name_, this.avatar2)
-        } else {
-            this.Label2.string = ""
-        }
-        if (this.currentProjectGroup_.persons_[2] != undefined) {
-            this.Label3.string = this.currentProjectGroup_.persons_[2].month_
-            this.loadAvatar(this.currentProjectGroup_.persons_[2].index_, this.currentProjectGroup_.persons_[2].name_, this.avatar3)
-        } else {
-            this.Label3.string = ""
-        }
-        if (this.currentProjectGroup_.persons_[3] != undefined) {
-            this.Label4.string = this.currentProjectGroup_.persons_[3].month_
-            this.loadAvatar(this.currentProjectGroup_.persons_[3].index_, this.currentProjectGroup_.persons_[3].name_, this.avatar4)
-        } else {
-            this.Label4.string = ""
-        }
+        this.updateProjectGroups(this.personControl_.getAllGroups());
+        
         if (this.currentProjectGroup_ != undefined) {
+            this.projectTitle.string = this.currentProjectGroup_.project_.name_
+            this.projectIndex.string = (this.projectGroups_.indexOf(this.currentProjectGroup_) + 1) + "/" + this.projectGroups_.length
+    
             this.functionPoint_.fillRange = this.currentProjectGroup_.project_.currentFunction_ / this.currentProjectGroup_.project_.requireFunction_
             this.experiencePoint_.fillRange = this.currentProjectGroup_.project_.currentEntertainment_ / this.currentProjectGroup_.project_.requireEntertainment_
             this.creativePoint_.fillRange = this.currentProjectGroup_.project_.currentInnovation_ / this.currentProjectGroup_.project_.requireInnovation_
+            console.log(this.currentProjectGroup_.project_.currentInnovation_);
+            console.log(this.currentProjectGroup_.project_.requireInnovation_);
+            console.log(this.creativePoint_.fillRange);
             this.performancePoint_.fillRange = this.currentProjectGroup_.project_.currentPerformance_ / this.currentProjectGroup_.project_.requirePerformance_
             this.totalPoint_.fillRange = this.functionPoint_.fillRange
+            console.log(this.functionPoint_.fillRange);
+
+            if (this.currentProjectGroup_.persons_[0] != undefined) {
+                this.person1_.active = true            
+                this.Label1.string = this.currentProjectGroup_.persons_[0].month_
+                console.log(this.currentProjectGroup_.persons_[0].month_);
+                this.loadAvatar(this.currentProjectGroup_.persons_[0].index_, this.currentProjectGroup_.persons_[0].name_, this.avatar1)
+            } else {
+                this.Label1.string = ""
+                this.person1_.active = false            
+            }
+            if (this.currentProjectGroup_.persons_[1] != undefined) {
+                this.person2_.active = true            
+                this.Label2.string = this.currentProjectGroup_.persons_[1].month_
+                console.log(this.currentProjectGroup_.persons_[1].month_);
+                this.loadAvatar(this.currentProjectGroup_.persons_[1].index_, this.currentProjectGroup_.persons_[1].name_, this.avatar2)
+            } else {
+                this.person2_.active = false            
+                this.Label2.string = ""
+            }
+            if (this.currentProjectGroup_.persons_[2] != undefined) {
+                this.person3_.active = true            
+                this.Label3.string = this.currentProjectGroup_.persons_[2].month_
+                this.loadAvatar(this.currentProjectGroup_.persons_[2].index_, this.currentProjectGroup_.persons_[2].name_, this.avatar3)
+            } else {
+                this.person3_.active = false            
+                this.Label3.string = ""
+            }
+            if (this.currentProjectGroup_.persons_[3] != undefined) {
+                this.person4_.active = true            
+                this.Label4.string = this.currentProjectGroup_.persons_[3].month_
+                this.loadAvatar(this.currentProjectGroup_.persons_[3].index_, this.currentProjectGroup_.persons_[3].name_, this.avatar4)
+            } else {
+                this.person4_.active = false            
+                this.Label4.string = ""
+            }
         }
     },
 
     // 更新项目组接口
     updateProjectGroups: function (groups) {
-        cc.log("Project groups update to " + groups)
+       // cc.log("Project groups update to " + groups)
         this.projectGroups_ = groups
         if (this.projectGroups_.length > 0) {
             if (this.projectGroups_.indexOf(this.currentProjectGroup_) === -1) {

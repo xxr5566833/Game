@@ -5,8 +5,151 @@ cc.Class({
     properties: {
     },
     //根据传入的level返回可用的person列表,在人们选择好某种招聘方式时调用它，所以这里还需要调用expend扣除一定招聘费用
-    showPersons:function(l){
-        return this.persons_;
+    showPersons:function(level){
+        //分为初级，中级，高级，特级
+        var persons = [];
+        var maxnum = 4;
+
+        var personList = [];
+        //首先把人物分级
+        for(let i = 0 ; i < this.persons_.length ; i++)
+        {
+            var person = this.persons_[i];
+            var templevel = person.level_;
+            console.log(templevel);
+            if(personList[templevel] == undefined)
+            {
+                personList[templevel] = [];
+            }
+            personList[templevel].push(person);
+        }
+        console.log(personList);
+        for(let i = 0 ; i < maxnum ; i++)
+        {
+            var pro = Math.random();
+            switch(level){
+                case 0 :
+                    if(pro > 0.7)
+                    {
+                        var person = personList[0][0];
+                        if(person != undefined)
+                        {
+                            persons.push(person);
+                            personList[0].splice(0, 1);
+                        }
+                    }
+                    else{
+                        var person = personList[1][0];
+                        if(person != undefined)
+                        {
+                            persons.push(person);
+                            personList[1].splice(0, 1);
+                        }
+                    }
+                    break;
+                case 1:
+                    if(pro <= 0.6)
+                    {
+                        var person = personList[0][0];
+                        if(person != undefined)
+                        {
+                            persons.push(person);
+                            personList[0].splice(0, 1);
+                        }
+                    }
+                    else if(pro > 0.6 && pro <= 0.9){
+                        var person = personList[1][0];
+                        if(person != undefined)
+                        {
+                            persons.push(person);
+                            personList[1].splice(0, 1);
+                        }
+                    }
+                    else{
+                        var person = personList[2][0];
+                        if(person != undefined)
+                        {
+                            persons.push(person);
+                            personList[2].splice(0, 1);
+                        }
+                    }
+                    break;
+                case 2:
+                    if(pro <= 0.6)
+                    {
+                        var person = personList[1][0];
+                        if(person != undefined)
+                        {
+                            persons.push(person);
+                            personList[1].splice(0, 1);
+                        }
+                    }
+                    else if(pro > 0.6 && pro <= 0.87){
+                        var person = personList[2][0];
+                        if(person != undefined)
+                        {
+                            persons.push(person);
+                            personList[2].splice(0, 1);
+                        }
+                    }
+                    else if(pro > 0.87 && pro <= 0.97)
+                    {
+                        var person = personList[3][0];
+                        if(person != undefined)
+                        {
+                            persons.push(person);
+                            personList[3].splice(0, 1);
+                        }
+                    }
+                    else{
+                        var person = personList[4][0];
+                        if(person != undefined)
+                        {
+                            persons.push(person);
+                            personList[4].splice(0, 1);
+                        }
+                    }
+                    break;
+                case 3:
+                    if(pro <= 0.6)
+                    {
+                        var person = personList[2][0];
+                        if(person != undefined)
+                        {
+                            persons.push(person);
+                            personList[2].splice(0, 1);
+                        }
+                    }
+                    else if(pro > 0.6 && pro <= 0.87){
+                        var person = personList[3][0];
+                        if(person != undefined)
+                        {
+                            persons.push(person);
+                            personList[3].splice(0, 1);
+                        }
+                    }
+                    else if(pro > 0.87 && pro <= 0.97)
+                    {
+                        var person = personList[4][0];
+                        if(person != undefined)
+                        {
+                            persons.push(person);
+                            personList[4].splice(0, 1);
+                        }
+                    }
+                    else{
+                        var person = personList[5][0];
+                        if(person != undefined)
+                        {
+                            persons.push(person);
+                            personList[5].splice(0, 1);
+                        }
+                    }
+                    break;
+                }
+        }
+
+        return persons;
         /*var level =Math.floor( Math.random() * 8);
         var ac=cc.find('Event/Game/Date/Account').getComponent('Account');
         //ac.expend(this.pgs[level].cost_, '发布招聘信息');
@@ -53,24 +196,6 @@ cc.Class({
         console.log(event.back);
         this.persons_.push(event.back);
     },
-
-    //下面都是为了测试
-
-        addOne:function(){
-            console.log(this.persons_);
-            this.removePerson(this.persons_[0].index_);
-            console.log(this.persons_);
-        },
-    
-        firePerson0:function(){
-            this.addPerson(0);
-            console.log(this.persons_);
-        },
-        firePerson1:function(){
-            this.addPerson(1);
-            console.log(this.persons_);
-        },
-
 
 
     // use this for initialization
@@ -233,7 +358,6 @@ cc.Class({
                 supplicateLine_: "吃了你！"
             },*/
         ];
-        this.init(list);
         for (var i=0;i<levelcount;i++){
             var pg = templist[i];
             this.pgs.push(pg);

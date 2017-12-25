@@ -33,6 +33,10 @@ cc.Class({
         this.reward3.string = this.projects[2].reward_;
         this.show(null,0);
         var em_l=this.persons.length;
+        //首先要消除上一次的预置资源
+        for (var node of this.emview.children) {
+            node.destroy()
+        }
         for(var p=0;p<em_l;p++)
         {
             var item = cc.instantiate(this.emPrefab);
@@ -77,13 +81,27 @@ cc.Class({
             }
         }
         console.log(selectPersons);
+        if(selectPersons.length > 4)
+        {
+            var msgcontrol = this.msgBox.getComponent("msgBoxControl");
+            msgcontrol.alert('FAIL', '最多只能选择4个人');
+            return ;
+        }
+        if(selectPersons.length == 0)
+        {
+            var msgcontrol = this.msgBox.getComponent("msgBoxControl");
+            msgcontrol.alert('FAIL', '至少需要选择一个人');
+            return ;
+        }
         cc.find("Event/Game/Date/Account/PersonControl").getComponent("PersonControl").begin(this.selectProject,  selectPersons)
         this.employeeMenu.active=false;
+        this.node.active = false;
         this.Main.active=true;   
     },
 
     quit :function(event){   
         event.target.parent.active=false;   // 关闭当前界面
+        this.node.active = false;
         this.Main.active=true;  
     }
 });

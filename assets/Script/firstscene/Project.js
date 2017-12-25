@@ -92,21 +92,21 @@ cc.Class({
     init: function (kind, proj) {
         this.kind_ = kind;
         //需要把可能直接用的属性都初始化，这样就不会是undefined
+        this.requirePerformance_ = 0.0;
+        this.requireInnovation_ = 0.0;
         if(kind == 0 || kind == 2)
         {
             this.requireEntertainment_=proj.requireEntertainment_;
             this.requireFunction_=proj.requireFunction_;
-            this.requireInnovation_ = proj.requireInnovation_;
-            this.requirePerformance_ = proj.requirePerformance_;
-            this.content_=proj.content_;
+            
+            this.requireInnovation_ = proj.requireInnovation_ != undefined ? proj.requireInnovation_ : 0.0;
+            this.requirePerformance_ = proj.requirePerformance_ != undefined ? proj.requirePerformance_ : 0.0;
             this.reward_=proj.reward_;
             this.deadline_=proj.deadline_;
-            this.categories_=proj.categories_;
             this.name_=proj.name_;
             this.level_=proj.level_;
             this.index_ = proj.index_;
-            if(!proj.difficulty_)
-                this.difficulty_ = 0;
+            this.difficulty_ = proj.difficulty_;
         }
         else{
             this.reward_ = 0;
@@ -205,7 +205,7 @@ cc.Class({
     isOverdue:function(nowday){
         if(this.kind_ == 1)
             return false;
-        if(nowday - this.receiveDay_ > this.deadline_){
+        if(nowday - this.receiveDay_ > this.deadline_ * 7){
             return true;
         }
         return false;

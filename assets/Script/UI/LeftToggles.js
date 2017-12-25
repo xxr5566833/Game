@@ -26,7 +26,9 @@ cc.Class({
                     this.toggles[i].node.getChildByName("Menu").active=false;    // 关闭已打开的toggle菜单
                 }
         }
-        toggle.node.getChildByName("Menu").active=toggle.isChecked; // 打开或关闭当前toggle下的菜单
+        var menu = toggle.node.getChildByName("Menu");
+        menu.active=toggle.isChecked; // 打开或关闭当前toggle下的菜单
+        console.log(menu.active);
     },
 
     research_toggle:function(toggle){
@@ -39,9 +41,11 @@ cc.Class({
         event.target.parent.active = false;     // 关闭菜单界面
         for(var t in this.toggles)
             this.toggles[t].isChecked=false;
-        this.Main.active = false;               // 关闭主界面
+        this.Main.active = false;
+        console.log(this.Main);
         console.log(this.Outsource.active);
-        this.Outsource.active = true;     // 打开委托界面
+        this.Outsource.active = true;
+        this.Outsource.getComponent("Outsource").projectMenu.active = true;
         console.log("已经打开");
     },
 

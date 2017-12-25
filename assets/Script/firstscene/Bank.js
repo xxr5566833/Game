@@ -161,8 +161,8 @@ cc.Class({
     },
 
     pause:function(){
-        this.unshedule(this.grow);
-        this.unshedule(this.demandLoans);
+        this.unschedule(this.grow);
+        this.unschedule(this.demandLoans);
     },
 
     resume:function(time){
