@@ -54,7 +54,7 @@ cc.Class({
         //console.log(this.node)
         this.node.js = this;
         //console.log(this.node.js);
-        this.node.active = false;
+        //this.node.active = false;
     },
 
     onEnable: function() {
@@ -90,10 +90,10 @@ cc.Class({
             var candi_entry_management = node.getComponent("firePageControl")
             candi_entry_management.setName(candi.name_)
             candi_entry_management.setProfession(candi.profession_)
-            candi_entry_management.setCoding(Math.floor(candi.abilityCoding_))
-            candi_entry_management.setManage(Math.floor(candi.abilityManage_))
-            candi_entry_management.setArt(Math.floor(candi.abilityArt_))
-            candi_entry_management.setSalary(Math.floor(candi.salary_))
+            candi_entry_management.setCoding(Math.floor(candi.coding_))
+            candi_entry_management.setManage(Math.floor(candi.manager_))
+            candi_entry_management.setArt(Math.floor(candi.art_))
+            candi_entry_management.setSalary(Math.floor(candi.creativity_))
             candi_entry_management.setLine(candi.supplicateLine_)
             candi_entry_management.loadAvatar(candi.index_, candi.name_)
             candi_entry_management.entryOrder = count
@@ -118,7 +118,8 @@ cc.Class({
                 supplicateLine_: "谁敢解雇我？"
             }
         ]  */
-        var employeelist =  cc.find("Event").getComponent("PersonControl").showPersons()
+        var employeelist =  cc.find("Event").getComponent("Event").
+        	personControl_.getComponent("PersonControl").showPersons()
         /*var infolist = []
         for(var employee of employeelist){
             console.log("Hired: "+employee.name_)
