@@ -52,6 +52,8 @@ cc.Class({
             type:cc.Node,
             default:null,
         },
+        independent_:cc.Node,
+        employee:cc.Node,
     },
 
     // use this for initialization
@@ -159,10 +161,28 @@ cc.Class({
 
         this.node.on("TEST", function(event){
             //调用UI，表示要进入测试阶段
+            var group = event.group;
+            group.removeAllPerson();
+            var independ = this.independent_.getComponent('Independent');
+            independ.group = group;
+            independ.flag = false;
+            independ.node.active = true;
+            
         }, this);
 
         this.node.on("PUBLISH", function(event){
             //调用UI，表示要进入发布运营阶段
+            var group = event.group;
+            group.removeAllPerson();
+            var independ = this.independent_.getComponent('Independent');
+
+            independ.group = group;
+            independ.flag = false;
+            independ.node.active = true;
+
+            independ.flag = true;
+            independ.node.active = true;
+
         }, this);
 
         this.node.on("GETUSERNUM", function(event){
