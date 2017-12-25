@@ -35,7 +35,7 @@ cc.Class({
     
 
     getMaxLoanMoney:function(){
-        event=new cc.Event.EventCustom('GETCREDIT', true);
+        var event=new cc.Event.EventCustom('GETCREDIT', true);
         this.node.dispatchEvent(event);
         var money = event.back / 10.0 * 10000;
         console.log("最大金钱");
@@ -180,7 +180,7 @@ cc.Class({
     },
 
     isDue:function(loan){
-        event=new cc.Event.EventCustom('GETDATE', true);
+        var event=new cc.Event.EventCustom('GETDATE', true);
         this.node.dispatchEvent(event);
         var date = event.back;
         return loan.isDue(date);
@@ -207,7 +207,7 @@ cc.Class({
         {
             return ;
         }
-        event=new cc.Event.EventCustom('MONEYCUT', true);
+        var event=new cc.Event.EventCustom('MONEYCUT', true);
         event.force = force;
         event.money = loan.getCurrentMoney();
         console.log(event.money);
@@ -221,7 +221,7 @@ cc.Class({
         else{
             id = 4;
         }
-        event=new cc.Event.EventCustom('MESSAGE', true);
+        var event=new cc.Event.EventCustom('MESSAGE', true);
         event.id = id;
         this.node.dispatchEvent(event);
         return id == 5;

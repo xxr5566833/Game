@@ -44,11 +44,7 @@ cc.Class({
             item.getComponent('outemp').Outsource=this;
             item.getChildByName("power").getComponent(cc.Label).string=this.persons[p].power_.toString();
             item.getChildByName("name").getComponent(cc.Label).string=this.persons[p].name_;
-            /**
-             *  cc.loader.loadRes("Image/图标_创意", cc.SpriteFrame, function (err, spriteFrame) {
-                    item.getChildByName("image").getComponent(cc.Sprite).spriteFrame=spriteFrame;
-                });
-             */
+            item.getComponent('outemp').loadImage(this.persons[p].index_,this.persons[p].name_);
             this.emview.addChild(item);
             this.select_em[p]=false;
         }

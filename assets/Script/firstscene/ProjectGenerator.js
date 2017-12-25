@@ -106,7 +106,7 @@ cc.Class({
                 available = available && (this.availableList_.indexOf(list[j]) != -1) && this.projs_[list[j]].unlock_;
             }
             if(available){
-                event=new cc.Event.EventCustom('MESSAGE', true);
+                var event=new cc.Event.EventCustom('MESSAGE', true);
                 event.id = 8;
                 this.node.dispatchEvent(event);
                 this.availableList_.push(this.projs_[i].index_);

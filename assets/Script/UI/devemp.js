@@ -45,6 +45,12 @@ cc.Class({
         if(this.chosen)
         {
             cc.loader.loadRes("image/前景_选项条", cc.SpriteFrame, function (err, spriteFrame) {
+                if (err) {
+                    console.log("loadAvatar error: "+name);
+                    //.log("loadAvatar error: "+name)
+                    //cc.error(err.message || err);
+                    return;
+                }
                 self.node.getComponent(cc.Sprite).spriteFrame=spriteFrame;
             });
             this.chosen=false;
@@ -54,6 +60,12 @@ cc.Class({
         else
         {
             cc.loader.loadRes("image/前景_选项_选中", cc.SpriteFrame, function (err, spriteFrame) {
+                if (err) {
+                    console.log("loadAvatar error: "+name);
+                    //.log("loadAvatar error: "+name)
+                    //cc.error(err.message || err);
+                    return;
+                }
                 self.node.getComponent(cc.Sprite).spriteFrame=spriteFrame;
             });
             this.chosen=true;

@@ -54,6 +54,7 @@ cc.Class({
         },
         independent_:cc.Node,
         employee:cc.Node,
+        main:cc.Node,
     },
 
     // use this for initialization
@@ -161,12 +162,15 @@ cc.Class({
 
         this.node.on("TEST", function(event){
             //调用UI，表示要进入测试阶段
+            console.log("进入测试阶段！！！！！！！！！！！！！！！！！");
             var group = event.group;
-            group.removeAllPerson();
+
             var independ = this.independent_.getComponent('Independent');
-            independ.group = group;
+            independ.projectgroup = group;
             independ.flag = false;
             independ.node.active = true;
+            this.employee.active = true;
+            this.main.active = false;
             
         }, this);
 
@@ -175,18 +179,32 @@ cc.Class({
             var group = event.group;
             group.removeAllPerson();
             var independ = this.independent_.getComponent('Independent');
-
-            independ.group = group;
+            this.main.active = false;
+            independ.projectgroup = group;
             independ.flag = false;
             independ.node.active = true;
 
-            independ.flag = true;
+            this.employee.active = true;
+
+
+        }, this);
+
+        this.node.on("MAINTAIN", function(event){
+            //调用UI，表示要进入发布运营阶段
+            var group = event.group;
+            var independ = this.independent_.getComponent('Independent');
+            this.main.active = false;
+            independ.projectgroup = group;
+            independ.flag = false;
             independ.node.active = true;
+            this.employee.active = true;
+
 
         }, this);
 
         this.node.on("GETUSERNUM", function(event){
-            event.back = this.market_.getComponent("Market").updateCurrentPeople(event.project);
+            //event.back = this.market_.getComponent("Market").getCurrentPeople(event.project);
+            event.back = 50;
         }, this);
 
         this.node.on("PROJECTSUCCESS", function(event){
@@ -210,7 +228,7 @@ cc.Class({
         }, this);
 
         this.node.on("UPDATACOEF", function(event){
-            this.personControl_.getComponent("PersonControl").updateCoef(event.detai.coef);
+            this.personControl_.getComponent("PersonControl").updateCoef(event.coef);
             this.account_.getComponent("Account").updateCoef(event.coef);
         }, this);
 
@@ -223,7 +241,7 @@ cc.Class({
         }, this);
 
         this.node.on("addS3", function(event){
-            this.research_.getComponent("Research").addS3(event.detail.f);
+            this.research_.getComponent("Research").addS3(event.f);
         }, this);
 
         this.node.on("addS5", function(event){
@@ -266,7 +284,7 @@ cc.Class({
         }, this);
 
         this.node.on("teammates-ability-is-stronger", function(event){
-            console.log(event.group);
+            //console.log(event.group);
             var persons = event.group.persons_;
             var person = event.person;
             for(let i = 0 ; i < persons.length ; i++)

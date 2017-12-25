@@ -35,6 +35,20 @@ cc.Class({
         select_em:[Object],
         myself:cc.Node,
         projectgroup:Object,
+        slider:cc.Node,
+        moneystring:cc.Label,
+
+    },
+
+    changeMoney:function(){
+        var budget = this.project.budget_;
+        if(budget == 0)
+            budget += 100;
+        var progress = this.slider.getComponent(cc.Slider).progress;
+        var max = budget * 3;
+        var nowmoney = Math.floor(max * progress);
+        this.money = nowmoney;
+        this.moneystring.string = "卖价:" + '$' + this.money;
     },
     
     onload:function(){
@@ -215,14 +229,22 @@ cc.Class({
                 selected_em.push(this.em_data[p]);
             }
         }
+
         if(this.projectgroup==undefined){
             this.project.name_=this.projectname.getComponent(cc.EditBox).string;
+            this.project.price_ = this.money;
             this.projectname.getComponent(cc.EditBox).string="";
+            if(this.project.requireFunction_ == 0)
+            {
+                this.project.requireFunction_ = 10;
+            }
             cc.find('Event/Game/Date/Account/PersonControl').getComponent("PersonControl").begin(this.project,selected_em);
         }
         else{
-            for(var q=0;q<this.selected_em.length;q++){
-                this.projectgroup.addPerson(selected_em[q],flag);
+            for(var q=0;q<selected_em.length;q++){
+                console.log("添加");
+                console.log(selected_em[q]);
+                this.projectgroup.addPerson(selected_em[q],this.flag);
             }
             this.projectgroup=undefined;
         }

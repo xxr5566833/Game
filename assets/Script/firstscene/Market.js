@@ -3,9 +3,9 @@ cc.Class({
 
     properties: {
         initDay_:0,
-        totalPeopleNum_:0.,
+        totalPeopleNum_:100.,
         A_:0.,
-        currentPeopleNum_:0.,
+        currentPeopleNum_:1.,
         a_:0.,
 
         // foo: {
@@ -35,21 +35,28 @@ cc.Class({
         if(this.currentPeopleNum_==0){
             var m=project.getM();
             var m0=1000*Math.sqrt(this.getTimeFromInit());
-            return m/(m+m0)*this.currentPeopleNum_;
+            var result = m/(m+m0)*this.currentPeopleNum_;
+            if(result == undefined || result == 0)
+            {
+                result = 10;
+            }
+            return result;
         }
         else{
             var temp=(1+0.01*this.A_)*this.currentPeopleNum_;
             if(temp>this.totalPeopleNum_){
                 this.currentPeopleNum_=temp;
+                return this.currentPeopleNum_;
             }
             else{
                 this.currentPeopleNum_=this.totalPeopleNum_;
+                return this.currentPeopleNum_;
             }
         }
     },
 
     getTimeFromInit:function(){
-        event=new cc.Event.EventCustom('GETDATE', true);
+        var event=new cc.Event.EventCustom('GETDATE', true);
         this.node.dispatchEvent(event);
         return event.back-this.initDay_;
     },

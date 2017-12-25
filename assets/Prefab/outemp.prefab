@@ -542,7 +542,10 @@
     "_enabled": true,
     "index": 0,
     "chosen": false,
-    "Outsource": null
+    "Outsource": null,
+    "avatarSprite": {
+      "__id__": 6
+    }
   },
   {
     "__type__": "cc.PrefabInfo",

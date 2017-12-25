@@ -29,7 +29,7 @@ cc.Class({
                 index_ : 0,
                 unlock_ : true,
                 budget_ : 100,
-                difficulty_ : 10,
+                difficulty_ : 1,
                 function_ : 0,
                 
             }
@@ -39,7 +39,7 @@ cc.Class({
             {
                 name_ : "类型1",
                 index_ : 0,
-                difficulty_ : 10,
+                difficulty_ : 1,
                 budget_ : 10,
                 function_ : 10,
                 unlock_ : true,
@@ -47,7 +47,7 @@ cc.Class({
             {
                 name_ : "类型2",
                 index_ : 1,
-                difficulty_ : 10,
+                difficulty_ : 1,
                 budget_ : 10,
                 function_ : 10,
                 unlock : true,
@@ -57,7 +57,7 @@ cc.Class({
             {
                 name_ : "功能1",
                 index_ : 0,
-                difficulty_ : 10,
+                difficulty_ : 1,
                 function_ : 10,
                 unlock_ : true,
                 budget_ : 0,
@@ -66,7 +66,7 @@ cc.Class({
             {
                 name_ : "功能2",
                 index_ : 1,
-                difficulty_ : 10,
+                difficulty_ : 1,
                 function_ :100,
                 unlock_ : true,
                 budget_ : 0,

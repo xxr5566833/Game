@@ -167,6 +167,7 @@ cc.Class({
     },
 
     augment:function(attribute,increment){
+        increment = increment *10 ; 
         switch(attribute){
             case 0:
                 this.currentFunction_ += increment;
@@ -443,36 +444,42 @@ cc.Class({
         var c = highnum;
         var b = midnum;
         var a = lownum;
-        while (c != 0) {
+        for(let i = 0 ; i < 6 ; i ++)
+        {
+            this.bugnum_[i] = 0;
+        }
+        console.log(c);
+        while ((a + b + c) != 0) {
             if (Math.random() < 0.6) {
                 if (a != 0) {
-                    this.bugnum[1]++;
+                    this.bugnum_[1]++;
                     a--;
                 }
                 else if (b != 0) {
-                    this.bugnum[3]++;
+                    this.bugnum_[3]++;
                     b--;
                 }
                 else {
-                    this.bugnum[5]++;
+                    this.bugnum_[5]++;
                     c--;
                 }
             }
             else {
                 if (a != 0) {
-                    this.bugnum[0]++;
+                    this.bugnum_[0]++;
                     a--;
                 }
                 else if (b != 0) {
-                    this.bugnum[2]++;
+                    this.bugnum_[2]++;
                     b--;
                 }
                 else {
-                    this.bugnum[4]++;
+                    this.bugnum_[4]++;
                     c--;
                 }
             }
         }
+        console.log(this.bugnum_);
 
     },
 

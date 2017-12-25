@@ -32,14 +32,15 @@ cc.Class({
         console.log(menu.active);
     },
 
-    research_toggle:function(toggle){
-        toggle.isChecked=false;
+    research_toggle:function(event){
+        for(var t in this.toggles)
+            this.toggles[t].isChecked=false;
         this.Main.active = false;               // 关闭主界面 
         this.Research.active = true;
     },
 
     outsource_btn :function(event) {
-        event.target.parent.active = false;     // 关闭菜单界面
+        //event.target.parent.active = false;     // 关闭菜单界面
         for(var t in this.toggles)
             this.toggles[t].isChecked=false;
         this.Main.active = false;
@@ -51,7 +52,7 @@ cc.Class({
     },
 
     independent_btn :function(event) {
-        event.target.parent.active = false;     // 关闭菜单界面
+        //event.target.parent.active = false;     // 关闭菜单界面
         for(var t in this.toggles)
             this.toggles[t].isChecked=false;
         this.Main.active = false;               // 关闭主界面
@@ -60,7 +61,7 @@ cc.Class({
     },
 
     hire_btn :function(event) {
-        event.target.parent.active = false;     // 关闭菜单界面
+        //event.target.parent.active = false;     // 关闭菜单界面
         for(var t in this.toggles)
             this.toggles[t].isChecked=false;
         this.Main.active = false;               // 关闭主界面
@@ -68,15 +69,17 @@ cc.Class({
     },
 
     fire_btn :function(event) {
-        event.target.parent.active = false;     // 关闭菜单界面
+        //event.target.parent.active = false;     // 关闭菜单界面
         for(var t in this.toggles)
             this.toggles[t].isChecked=false;
         this.Main.active = false;               // 关闭主界面
         this.Fire.active = true;           // 打开解雇界面
     },
 
-    bank_btn:function(toggle){
-        toggle.isChecked=false;
+    bank_btn:function(event){
+
+        for(var t in this.toggles)
+            this.toggles[t].isChecked=false;
         this.Main.active = false;               // 关闭主界面
         this.Bank.active = true;
     },

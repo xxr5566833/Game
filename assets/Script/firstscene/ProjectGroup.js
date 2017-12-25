@@ -219,7 +219,8 @@ cc.Class({
     },
 
     work: function () {
-        console.log(this.persons_);
+        console.log("state is ");
+        console.log(this.state_);
         switch (this.state_) {
             case 0:
                 var n = this.persons_.length;
@@ -239,6 +240,8 @@ cc.Class({
                 var dateevent = new cc.Event.EventCustom("GETDATE", true);
                 this.node.dispatchEvent(dateevent);
                 var nowday = dateevent.back;
+                console.log("种类是");
+                console.log(this.project_.kind_);
                 switch (this.project_.kind_) {
                     case 0:
                         //表示委托开发
@@ -260,13 +263,16 @@ cc.Class({
                         }
                         break;
                     case 1:
-                        if (this.isDevelopEnough()) {
+                        console.log(this.project_.isDevelopEnd());
+                        if (this.project_.isDevelopEnough()) {
                             //表示进入测试阶段的按钮可以点了
                             var event = new cc.Event.EventCustom("CANTEST", true);
                             event.group = this;
-                            this.node.dispatch(event);
-                            if (this.isDevelopFinished()) {
+                            this.node.dispatchEvent(event);
+                            if (this.project_.isDevelopEnd()) {
                                 //表示需要进入测试阶段了
+                                //设置结束日期
+                                this.project_.finishDay_ = nowday;
                                 this.evolve();
                             }
                         }
@@ -369,30 +375,47 @@ cc.Class({
                     for (let i = 0; i < num; i++) {
                         if (this.chance(0.75)) {
                             this.project_.removeBug(this.generateBugLevel(), 1);
+                            console.log("减少了一个bug");
                         }
-                        if (this.change(0.5)) {
+                        if (this.chance(0.5)) {
                             this.project_.findBug(this.generateBugLevel(), 1);
+                            console.log("发现了一个bug");
                         }
                     }
+                }
+                var sumbug = 0;
+                for(let i = 0 ; i < 6 ; i ++)
+                {
+                    if(i % 2 == 1)
+                    {
+                        var bugnum = this.project_.bugnum_[i];
+                        sumbug += bugnum;
+                    }
+
+                }
+                if(sumbug == 0 )
+                {
+                    this.evolve();
                 }
                 break;
 
             case 2:
                 //市场相关
-                event = new cc.Event.EventCustom('GETUSERCHANGE', true);
-                event.lastusernum = this.usernum_;
+                var event = new cc.Event.EventCustom('GETUSERNUM', true);
+                if(this.usernum_ == undefined || this.usernum_ == NaN)
+                    this.usernum_ = 0;
+                event.project = this.project_;
+                console.log(this.usernum_);
                 this.node.dispatchEvent(event);
                 this.usernum_ = event.back;
+                console.log(event.back);
                 event = new cc.Event.EventCustom('MONEYADD', true);
-                event.money = 0;
-                if (this.incomeWay_ == 0) {
-                    if (event.back - event.lastusernum > 0) {
-                        event.money = (event.back - event.lastusernum) * this.project_.getPrice();
-                    }
-                }
-                else {
-                    event.money = this.usernum_ * this.project_.getPrice();
-                }
+
+
+                event.money = this.usernum_ * this.project_.price_;
+                console.log(this.project_.price_);
+                console.log(this.usernum_);
+                console.log(event.money);
                 if (this.persons_.length != 0) {
                     var C = this.persons_[0].creativity_;
                     if (0 <= C && C <= 50) {
@@ -467,15 +490,23 @@ cc.Class({
     generateBug: function () {
         var F = this.project_.currentFunction_;
         var T = this.project_.getPeriod() / 7;
-        var i = this.project_.currentInnovation_;
-        var HB, MB, LB;
+        var I = this.project_.currentInnovation_;
+        var HB = 0;
+        var MB = 0;
+        var LB = 0;
         var B0 = F * T / 25;
         var minNum = B0 / (1 + (0.1 * I / F));
         var maxNum = B0 * (1 + (0.1 * I / F));
         var B = parseInt(Math.random() * (maxNum - minNum + 1) + minNum, 10);
         var HBA = parseInt(Math.random() * (15 - 5 + 1) + 5, 10);
         var MBA = parseInt(Math.random() * (40 - 20 + 1) + 20, 10) + HBA;
+        console.log(F);
+        console.log(T);
+        console.log(I);
+        console.log(minNum);
+        console.log(maxNum);
         while (B != 0) {
+            console.log(B);
             B0 = Math.random() * 100;
             if (B0 < HBA) {
                 HB++;
@@ -488,25 +519,36 @@ cc.Class({
             }
             B--;
         }
+        console.log(HB);
+        console.log(MB);
+        console.log(LB);
+        this.project_.setBug(HB, MB, LB);
     },
 
 
 
     evolve: function () {
-        this.removeAllperson();
-        switch (this.state) {
+        this.removeAllPerson();
+        switch (this.state_) {
             case 0:
+                console.log("test5644444444444444444444444444444444444444444444");
                 this.generateBug();
-                this.state = 1;
-                event = new cc.Event.EventCustom('TEST', true);
+                console.log("here1");
+                this.state_ = 1;
+                var event = new cc.Event.EventCustom('TEST', true);
                 event.group = this;
                 this.node.dispatchEvent(event);
                 break;
             case 1:
-                this.state = 2;
-                event = new cc.Event.EventCustom('PUBLISH', true);
+                this.state_ = 2;
+                var event = new cc.Event.EventCustom('PUBLISH', true);
                 event.group = this;
                 this.node.dispatchEvent(event);
+
+                event = new cc.Event.EventCustom('MAINTAIN', true);
+                event.group = this;
+                this.node.dispatchEvent(event);
+
                 event = new cc.Event.EventCustom('GETDATE', true);
                 this.node.dispatchEvent(event);
                 var nowday = event.back;
@@ -647,6 +689,12 @@ cc.Class({
     // 使用scheduler每秒调用一次（预计）
     dialogueSystem: function () {
         var rnd = Math.random()
+        //
+        //
+        //
+        if(this.persons_.length==0){
+            return;
+        }
         if (rnd < 0.9) {
             // say public dialogue
             var index = getRandomInt(0, this.persons_.length)
@@ -970,5 +1018,6 @@ function getRandomElementFromArray(array) {
 function getRandomInt(min, max) {
     min = Math.ceil(min);
     max = Math.floor(max);
+    console.log("执行了");
     return Math.floor(Math.random() * (max - min)) + min; //The maximum is exclusive and the minimum is inclusive
 }

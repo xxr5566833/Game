@@ -150,7 +150,7 @@ cc.Class({
         var criticalRate = this.coef.CR * (1 + (5 * Math.sqrt(this.science_)) / 100);    // 暴击倍率
 
         var difficulty = project.difficulty_;
-        console.log(difficulty);
+
         // 逆境(adversity):体力为0时仍可以继续工作1周，且该周暴击倍率增加100%
         if (this.character_ === Character.adversity && this.unyieldingDays_ < 7 && this.unyieldingDays_ >= 0) {
             criticalRate *= 2
@@ -209,7 +209,7 @@ cc.Class({
                 this.saySomething("精力集中，一发入魂")
             }
         }
-        console.log(F);
+    
         // 根据项目难度：减少的任务点数增量百分比 = (任务难度 * 0.06) / (任务难度 * 0.06 + 1)
         F *= (1 - (difficulty * 0.06) / (0.06 * difficulty + 1))
         P *= (1 - (difficulty * 0.06) / (0.06 * difficulty + 1))
@@ -227,8 +227,7 @@ cc.Class({
                 I = 0
             }
         }
-        console.log("功能点数");
-        console.log(F);
+       
         // 只有处于工作状态的员工才会增加进度
         if (this.state_ === eState.working && flag) {
             // 认真(serious):开发时额外增加5%点数，参与项目bug数量降低30%
@@ -327,14 +326,14 @@ cc.Class({
                 }
             }
         }
-        console.log("功能点数");
+        /*console.log("功能点数");
         console.log(F);
         console.log("体验点数");
         console.log(E);
         console.log("性能点数");
         console.log(P);
         console.log("创新点数");
-        console.log(I);
+        console.log(I);*/
         //为了更好的实现bug减少的机制，所以这里返回增加的功能点数...
         return F;
     },
@@ -430,7 +429,7 @@ cc.Class({
     },
     saySomething: function (saying) {
         // https://stackoverflow.com/questions/951021/what-is-the-javascript-version-of-sleep
-        await sleep(1000)
+        sleep(1000)
         if (this.character_ === Character.slience) {
             this.month_ = "......"
             return false

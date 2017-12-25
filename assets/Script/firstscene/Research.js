@@ -231,7 +231,7 @@ cc.Class({
 
     addS1: function() {             // 暴击时随机增加1~3
         console.log("科研点数："+this.S_);
-        this.S_ += 1+2*Math.random();
+        this.S_ += 100+2*Math.random();
         console.log("科研点数："+this.S_);
     },
 
