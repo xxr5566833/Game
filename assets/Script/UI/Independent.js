@@ -20,6 +20,7 @@ cc.Class({
         pfres:cc.Node,
         typres:cc.Node,
         funres:cc.Node,
+        projectname:cc.Node,
         budres:cc.Node,
         funpres:cc.Node,
         pfPrefab: cc.Prefab,
@@ -32,9 +33,15 @@ cc.Class({
         em_data:Object,
         select_pf:0,
         select_em:[Object],
+        myself:cc.Node,
+        projectgroup:Object,
     },
     
     onload:function(){
+    },
+
+    updategroup:function(group){
+        this.projectgroup=group;
     },
 
     pfchange:function()
@@ -85,7 +92,6 @@ cc.Class({
         this.typ_data=source.getAvailableCategories();
         this.fun_data=source.getAvailableFunctions();
         this.em_data=source.getAvailablePersons();
-        console.log(this.em_data);
         this.money=cc.find('Event/Game/Date/Account').getComponent("Account").getGold();
         var pf_l=this.pf_data.length;
         var typ_l=this.typ_data.length;
@@ -142,11 +148,7 @@ cc.Class({
             item.getComponent('devemp').Independent=this;
             item.getChildByName("power").getComponent(cc.Label).string=this.em_data[p].power_.toString();
             item.getChildByName("name").getComponent(cc.Label).string=this.em_data[p].name_;
-            /**
-             *  cc.loader.loadRes("Image/图标_创意", cc.SpriteFrame, function (err, spriteFrame) {
-                    item.getChildByName("image").getComponent(cc.Sprite).spriteFrame=spriteFrame;
-                });
-             */
+            item.getComponent('devemp').loadImage(this.em_data[p].index_,this.em_data[p].name_);
             this.emview.addChild(item);
             this.select_em[p]=false;
         }
@@ -155,15 +157,13 @@ cc.Class({
     },
 
     onDisable:function(){
-        var allpages=this.pages.getComponent(cc.PageView).getPages();
+        var allpages=this.pfview.getComponent(cc.PageView).getPages();
         for(var i=0;i<allpages.length;i++){
             this.pfview.getComponent(cc.PageView).removePage(allpages[i]);
         }
         this.typview.removeAllChildren();
         this.funview.removeAllChildren();
         this.emview.removeAllChildren();
-        this.select_typ.length=0;
-        this.select_fun.length=0;
         this.select_em.length=0;
     },
 
@@ -202,8 +202,10 @@ cc.Class({
     },
 
     employee_pre:function(){
-        this.node.getChildByName("employee").active=false; 
-        this.node.getChildByName("confirm").active=true; 
+        if(this.projectgroup==undefined){
+            this.node.getChildByName("employee").active=false; 
+            this.node.getChildByName("confirm").active=true;
+        }
     },
     employee_next:function(){
         //开始开发
@@ -213,13 +215,28 @@ cc.Class({
                 selected_em.push(this.em_data[p]);
             }
         }
-        cc.find('Event/Game/Date/Account/PersonControl').getComponent("PersonControl").begin(this.project,selected_em);
+        if(this.projectgroup==undefined){
+            this.project.name_=this.projectname.getComponent(cc.EditBox).string;
+            this.projectname.getComponent(cc.EditBox).string="";
+            cc.find('Event/Game/Date/Account/PersonControl').getComponent("PersonControl").begin(this.project,selected_em);
+        }
+        else{
+            for(var q=0;q<this.selected_em.length;q++){
+                this.projectgroup.addPerson(selected_em[q],flag);
+            }
+            this.projectgroup=undefined;
+        }
+        this.select_em=[]
         this.node.getChildByName("employee").active=false; // 关闭当前窗口
         this.Main.active=true;                 // 打开主界面
+        this.myself.active=false;
     },
 
     quit:function(event){
+        this.select_em=[]
         event.target.parent.active = false; // 关闭当前界面
         this.Main.active=true;
+        this.myself.active=false;
+        this.projectgroup=undefined;
     }
 });
