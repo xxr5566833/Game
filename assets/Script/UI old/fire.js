@@ -42,6 +42,7 @@ cc.Class({
             default: [],
             type: cc.Prefab
         },
+        main:cc.Node,
     },
 
     // use this for initialization
@@ -62,8 +63,15 @@ cc.Class({
     },
 
     fire: function () {
-        var page_index = this.pageView.getCurrentPageIndex() 
+        var page_index = this.pageView.getCurrentPageIndex();
+        if(this.candidates[page_index] == undefined)
+        {
+            this.msgBoxControl.alert('FAIL', "无可解雇员工");
+            this.close();
+            return ;
+        }
         var person_index = this.candidates[page_index].index_;
+
         //console.log(this.candidates);
         //console.log("page_index: "+page_index)
         //console.log("person_index: "+person_index)
@@ -71,10 +79,9 @@ cc.Class({
         // TODO for scripters: 根据人物唯一识别码 person_index 来完成解雇
         // =============================================================
         //console.log("Hired index:" + this.candidates[page_index].index_)
-        cc.find("Event").getComponent("PersonGenerator").addPerson(this.candidates[page_index].index_)
+        cc.find("Event/Game/Date/Account/PersonGenerator").getComponent("PersonGenerator").addPerson(this.candidates[page_index].index_)
         // =============================================================
-        this.ancestorNode.getComponent("btnToggleActive").toggle()
-       // console.log("Fired.")
+        this.close();
     },
 
     updateCandidates: function () {
@@ -139,5 +146,10 @@ cc.Class({
             infolist.push(info)
         }*/
         return employeelist
-    }
+    },
+    close :function(){
+        console.log("close");
+        this.node.active = false;
+        this.main.active = true;
+    },
 });
