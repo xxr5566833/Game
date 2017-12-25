@@ -5304,7 +5304,26 @@
     },
     "totalPoint_": {
       "__id__": 56
-    }
+    },
+    "person1_": {
+      "__id__": 93
+    },
+    "person2_": {
+      "__id__": 111
+    },
+    "person3_": {
+      "__id__": 105
+    },
+    "person4_": {
+      "__id__": 99
+    },
+    "developProcess_": {
+      "__id__": 43
+    },
+    "testProcess_": null,
+    "lowBugLabel_": null,
+    "midiumBugLabel_": null,
+    "highBugLabel_": null
   },
   {
     "__type__": "cc.Node",
@@ -9562,6 +9581,9 @@
     },
     "Platform": {
       "__id__": 354
+    },
+    "Independent": {
+      "__id__": 355
     },
     "Hire": {
       "__id__": 585
@@ -21704,6 +21726,9 @@
     "funres": {
       "__id__": 469
     },
+    "projectname": {
+      "__id__": 475
+    },
     "budres": {
       "__id__": 471
     },
@@ -21727,7 +21752,10 @@
     "fun_data": null,
     "em_data": null,
     "select_pf": 0,
-    "select_em": []
+    "select_em": [],
+    "myself": {
+      "__id__": 355
+    }
   },
   {
     "__type__": "cc.Node",
@@ -25860,7 +25888,7 @@
       }
     ],
     "_tag": -1,
-    "_active": true,
+    "_active": false,
     "_components": [
       {
         "__id__": 674
@@ -26945,7 +26973,8 @@
     "msgBox": {
       "__id__": 342
     },
-    "candidates": []
+    "candidates": [],
+    "main": null
   },
   {
     "__type__": "8678eBF63tOCrTp2GwxAOi+",

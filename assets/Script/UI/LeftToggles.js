@@ -5,6 +5,7 @@ cc.Class({
         Main:cc.Node,
         Outsource: cc.Node,
         Platform:cc.Node,
+        Independent:cc.Node,
         Hire:cc.Node,
         Fire:cc.Node,
         Research:cc.Node,
@@ -54,6 +55,7 @@ cc.Class({
         for(var t in this.toggles)
             this.toggles[t].isChecked=false;
         this.Main.active = false;               // 关闭主界面
+        this.Independent.active = true;
         this.Platform.active = true;     // 打开独立开发界面
     },
 

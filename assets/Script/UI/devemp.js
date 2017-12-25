@@ -15,6 +15,10 @@ cc.Class({
         index:0,
         chosen:false,
         Independent:cc.Node,
+        avatarSprite: {
+            default:null,
+            type:cc.Sprite
+        }
     },
 
     // use this for initialization
@@ -22,11 +26,25 @@ cc.Class({
         this.chosen=false;
     },
 
+    loadImage: function(index,name) {
+        // 加载 SpriteFrame
+        var self = this;
+        cc.loader.loadRes("avatars/"+index+"_"+name+".png", cc.SpriteFrame, function (err, spriteFrame) {
+            if (err) {
+                console.log("loadAvatar error: "+name);
+                //.log("loadAvatar error: "+name)
+                //cc.error(err.message || err);
+                return;
+            }
+            self.avatarSprite.spriteFrame = spriteFrame;
+        });
+    },
+
     onClick:function(){
         var self = this;
         if(this.chosen)
         {
-            cc.loader.loadRes("Image/前景_选项条", cc.SpriteFrame, function (err, spriteFrame) {
+            cc.loader.loadRes("image/前景_选项条", cc.SpriteFrame, function (err, spriteFrame) {
                 self.node.getComponent(cc.Sprite).spriteFrame=spriteFrame;
             });
             this.chosen=false;
@@ -35,7 +53,7 @@ cc.Class({
         }
         else
         {
-            cc.loader.loadRes("Image/前景_选项_选中", cc.SpriteFrame, function (err, spriteFrame) {
+            cc.loader.loadRes("image/前景_选项_选中", cc.SpriteFrame, function (err, spriteFrame) {
                 self.node.getComponent(cc.Sprite).spriteFrame=spriteFrame;
             });
             this.chosen=true;

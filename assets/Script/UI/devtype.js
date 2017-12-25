@@ -29,7 +29,7 @@ cc.Class({
         var self = this;
         if(this.chosen)
         {
-            cc.loader.loadRes("Image/前景_选项条", cc.SpriteFrame, function (err, spriteFrame) {
+            cc.loader.loadRes("image/前景_选项条", cc.SpriteFrame, function (err, spriteFrame) {
                 if (err) {
                     console.log("loadAvatar error: image/前景_选项条 ");
                     //.log("loadAvatar error: "+name)
@@ -44,7 +44,7 @@ cc.Class({
         }
         else
         {
-            cc.loader.loadRes("Image/前景_选项_选中", cc.SpriteFrame, function (err, spriteFrame) {
+            cc.loader.loadRes("image/前景_选项_选中", cc.SpriteFrame, function (err, spriteFrame) {
                 if (err) {
                     console.log("loadAvatar error: image/前景_选项_选中");
                     //.log("loadAvatar error: "+name)
