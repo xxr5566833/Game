@@ -154,11 +154,11 @@ cc.Class({
         this.rightBtn.node.on(cc.Node.EventType.TOUCH_START, this.rightStart, this)
         this.rightBtn.node.on(cc.Node.EventType.TOUCH_END, this.rightEnd, this)
 
-        this.person1_.active = false            
-        this.person2_.active = false            
-        this.person3_.active = false            
-        this.person4_.active = false            
-        
+        this.person1_.active = false
+        this.person2_.active = false
+        this.person3_.active = false
+        this.person4_.active = false
+
 
         // 每隔1秒刷新一次聊天室
         this.schedule(this.fresh, 1);
@@ -190,11 +190,11 @@ cc.Class({
     // 刷新对话框
     fresh: function () {
         this.updateProjectGroups(this.personControl_.getAllGroups());
-        
+
         if (this.currentProjectGroup_ != undefined) {
             this.projectTitle.string = this.currentProjectGroup_.project_.name_
             this.projectIndex.string = (this.projectGroups_.indexOf(this.currentProjectGroup_) + 1) + "/" + this.projectGroups_.length
-    
+
             this.functionPoint_.fillRange = this.currentProjectGroup_.project_.currentFunction_ / this.currentProjectGroup_.project_.requireFunction_
             this.experiencePoint_.fillRange = this.currentProjectGroup_.project_.currentEntertainment_ / this.currentProjectGroup_.project_.requireEntertainment_
             this.creativePoint_.fillRange = this.currentProjectGroup_.project_.currentInnovation_ / this.currentProjectGroup_.project_.requireInnovation_
@@ -206,61 +206,68 @@ cc.Class({
             console.log(this.functionPoint_.fillRange);
 
             if (this.currentProjectGroup_.persons_[0] != undefined) {
-                this.person1_.active = true            
+                this.person1_.active = true
                 this.Label1.string = this.currentProjectGroup_.persons_[0].month_
                 console.log(this.currentProjectGroup_.persons_[0].month_);
                 this.loadAvatar(this.currentProjectGroup_.persons_[0].index_, this.currentProjectGroup_.persons_[0].name_, this.avatar1)
             } else {
                 this.Label1.string = ""
-                this.person1_.active = false            
+                this.person1_.active = false
             }
             if (this.currentProjectGroup_.persons_[1] != undefined) {
-                this.person2_.active = true            
+                this.person2_.active = true
                 this.Label2.string = this.currentProjectGroup_.persons_[1].month_
                 console.log(this.currentProjectGroup_.persons_[1].month_);
                 this.loadAvatar(this.currentProjectGroup_.persons_[1].index_, this.currentProjectGroup_.persons_[1].name_, this.avatar2)
             } else {
-                this.person2_.active = false            
+                this.person2_.active = false
                 this.Label2.string = ""
             }
             if (this.currentProjectGroup_.persons_[2] != undefined) {
-                this.person3_.active = true            
+                this.person3_.active = true
                 this.Label3.string = this.currentProjectGroup_.persons_[2].month_
                 this.loadAvatar(this.currentProjectGroup_.persons_[2].index_, this.currentProjectGroup_.persons_[2].name_, this.avatar3)
             } else {
-                this.person3_.active = false            
+                this.person3_.active = false
                 this.Label3.string = ""
             }
             if (this.currentProjectGroup_.persons_[3] != undefined) {
-                this.person4_.active = true            
+                this.person4_.active = true
                 this.Label4.string = this.currentProjectGroup_.persons_[3].month_
                 this.loadAvatar(this.currentProjectGroup_.persons_[3].index_, this.currentProjectGroup_.persons_[3].name_, this.avatar4)
             } else {
-                this.person4_.active = false            
+                this.person4_.active = false
                 this.Label4.string = ""
-            if (this.currentProjectGroup_.state_ == 0) {
-                this.functionPoint_.fillRange = this.currentProjectGroup_.project_.currentFunction_ / this.currentProjectGroup_.project_.requireFunction_
-                this.experiencePoint_.fillRange = this.currentProjectGroup_.project_.currentEntertainment_ / this.currentProjectGroup_.project_.requireEntertainment_
-                this.creativePoint_.fillRange = this.currentProjectGroup_.project_.currentInnovation_ / this.currentProjectGroup_.project_.requireInnovation_
-                this.performancePoint_.fillRange = this.currentProjectGroup_.project_.currentPerformance_ / this.currentProjectGroup_.project_.requirePerformance_
-                this.totalPoint_.fillRange = this.functionPoint_.fillRange
-                this.developProcess_.active = true
-                this.testProcess_.active = false
-            } else if (this.currentProjectGroup_.state_ == 1 || this.currentProjectGroup_.state_ == 2) {
-                this.developProcess_.active = false
-                this.testProcess_.active = true
-                this.lowBugLabel_.string = "已发现未解决的低级bug数：" + this.currentProjectGroup_.project_.bugnum_[1]
-                this.midiumBugLabel_.string = "已发现未解决的低级bug数：" + this.currentProjectGroup_.project_.bugnum_[3]
-                this.highBugLabel_.string = "已发现未解决的低级bug数：" + this.currentProjectGroup_.project_.bugnum_[5]
-            } else {
-                alert("project state_ is 3, panic")
+                if (this.currentProjectGroup_.state_ == 0) {
+                    this.functionPoint_.fillRange = this.currentProjectGroup_.project_.currentFunction_ / this.currentProjectGroup_.project_.requireFunction_
+                    this.experiencePoint_.fillRange = this.currentProjectGroup_.project_.currentEntertainment_ / this.currentProjectGroup_.project_.requireEntertainment_
+                    this.creativePoint_.fillRange = this.currentProjectGroup_.project_.currentInnovation_ / this.currentProjectGroup_.project_.requireInnovation_
+                    this.performancePoint_.fillRange = this.currentProjectGroup_.project_.currentPerformance_ / this.currentProjectGroup_.project_.requirePerformance_
+                    this.totalPoint_.fillRange = this.functionPoint_.fillRange
+                    this.developProcess_.active = true
+                    this.testProcess_.active = false
+                } else if (this.currentProjectGroup_.state_ == 1 || this.currentProjectGroup_.state_ == 2) {
+                    this.developProcess_.active = false
+                    this.testProcess_.active = true
+                    this.lowBugLabel_.string = "已发现未解决的低级bug数：" + this.currentProjectGroup_.project_.bugnum_[1]
+                    this.midiumBugLabel_.string = "已发现未解决的低级bug数：" + this.currentProjectGroup_.project_.bugnum_[3]
+                    this.highBugLabel_.string = "已发现未解决的低级bug数：" + this.currentProjectGroup_.project_.bugnum_[5]
+                } else {
+                    alert("project state_ is 3, panic")
+                }
             }
+        } else {
+            // 当空项目时，清空聊天面板
+            this.person1_.active = false
+            this.person2_.active = false
+            this.person3_.active = false
+            this.person4_.active = false
         }
     },
 
     // 更新项目组接口
     updateProjectGroups: function (groups) {
-       // cc.log("Project groups update to " + groups)
+        // cc.log("Project groups update to " + groups)
         this.projectGroups_ = groups
         if (this.projectGroups_.length > 0) {
             if (this.projectGroups_.indexOf(this.currentProjectGroup_) === -1) {

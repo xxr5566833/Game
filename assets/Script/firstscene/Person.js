@@ -97,34 +97,34 @@ cc.Class({
         this.gift_ = person.gift_;
         this.coding_ = person.coding_;
         this.science_ = person.science_;
-        this.art_ =  person.art_;
+        this.art_ = person.art_;
         this.creativity_ = person.creativity_;
-        this.manager_ = person.manager_ ;
+        this.manager_ = person.manager_;
         this.business_ = person.business_;
         //初始时是空闲的
         this.state_ = 1,
-        /**工资 */
-        this.salary_ = person.salary_;
+            /**工资 */
+            this.salary_ = person.salary_;
         /**雇佣金 */
         this.employMoney_ = person.employMoney_;
         // 姓名
         this.name_ = person.name_,
-        // 职能
-        this.profession_ = person.profession_,
-        this.index_ = person.index_,
-        //等级
-        this.level_ = person.level_;
+            // 职能
+            this.profession_ = person.profession_,
+            this.index_ = person.index_,
+            //等级
+            this.level_ = person.level_;
         // 体力值
         this.power_ = person.power_,
-        // 心情
-        this.mood_ = person.mood_,
-        // 通过活动可以获得
-        this.moodAddition_ = person.moodAddition_,
-        // 性格
-        this.character_ = person.character_;
+            // 心情
+            this.mood_ = person.mood_,
+            // 通过活动可以获得
+            this.moodAddition_ = person.moodAddition_,
+            // 性格
+            this.character_ = person.character_;
         this.coef = null,
-        // 剩余的休息时间
-        this.relaxDays_ = person.relaxDays_;
+            // 剩余的休息时间
+            this.relaxDays_ = person.relaxDays_;
         // 不屈性格激活，剩余工作天数,
         this.unyieldingDays_ = person.unyieldingDays_;
 
@@ -190,15 +190,15 @@ cc.Class({
             // 执着(persistent):获得科研点数有50%概率增加50%
             if (this.character_ === Character.persistent) {
                 if (Math.random() < 0.5) {
-                    this.node.dispatchEvent(new cc.Event.EventCustom('addS5',true));
+                    this.node.dispatchEvent(new cc.Event.EventCustom('addS5', true));
                 }
             }
             // 天才(genius):获得科研点数增加50%
             else if (this.character_ === Character.genius) {
-                this.node.dispatchEvent(new cc.Event.EventCustom('addS5',true));
+                this.node.dispatchEvent(new cc.Event.EventCustom('addS5', true));
             }
             else {
-                this.node.dispatchEvent(new cc.Event.EventCustom('addS1',true));
+                this.node.dispatchEvent(new cc.Event.EventCustom('addS1', true));
             }
 
             // 嘿，我真是个天才（暴击时）
@@ -408,7 +408,7 @@ cc.Class({
     getProfession: function () {
         return this.profession_;
     },
-    
+
     randomCharactor: function () {
         var rnd = Math.random();
         if (rnd < 0.75) {
@@ -429,6 +429,8 @@ cc.Class({
         cc.log(this.name + ": " + sticker);
     },
     saySomething: function (saying) {
+        // https://stackoverflow.com/questions/951021/what-is-the-javascript-version-of-sleep
+        await sleep(1000)
         if (this.character_ === Character.slience) {
             this.month_ = "......"
             return false
@@ -436,7 +438,6 @@ cc.Class({
             this.month_ = saying
             return true
         }
-        cc.log(this.name + ": " + this.month_);
     },
     sayPublic: function (set) {
         //var s = set.entries()[0][0]
@@ -626,4 +627,8 @@ function getRandomInt(min, max) {
 // Getting a random number between two values
 function rand(min, max) {
     return Math.random() * (max - min) + min;
+}
+
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
 }
