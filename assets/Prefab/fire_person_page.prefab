@@ -24,26 +24,26 @@
         "__id__": 11
       },
       {
-        "__id__": 34
+        "__id__": 37
       }
     ],
     "_tag": -1,
     "_active": true,
     "_components": [
       {
-        "__id__": 48
+        "__id__": 54
       }
     ],
     "_prefab": {
-      "__id__": 49
+      "__id__": 55
     },
     "_id": "",
     "_opacity": 255,
     "_color": {
       "__type__": "cc.Color",
-      "r": 255,
-      "g": 255,
-      "b": 255,
+      "r": 14,
+      "g": 91,
+      "b": 84,
       "a": 255
     },
     "_cascadeOpacityEnabled": true,
@@ -364,13 +364,16 @@
       },
       {
         "__id__": 30
+      },
+      {
+        "__id__": 33
       }
     ],
     "_tag": -1,
     "_active": true,
     "_components": [],
     "_prefab": {
-      "__id__": 33
+      "__id__": 36
     },
     "_id": "",
     "_opacity": 255,
@@ -430,9 +433,9 @@
     "_opacity": 255,
     "_color": {
       "__type__": "cc.Color",
-      "r": 255,
-      "g": 255,
-      "b": 255,
+      "r": 14,
+      "g": 91,
+      "b": 84,
       "a": 255
     },
     "_cascadeOpacityEnabled": true,
@@ -481,7 +484,7 @@
     "_N$string": "陈小武",
     "_N$horizontalAlign": 2,
     "_N$verticalAlign": 1,
-    "_N$fontFamily": "幼圆",
+    "_N$fontFamily": "微软雅黑",
     "_N$overflow": 2
   },
   {
@@ -517,9 +520,9 @@
     "_opacity": 255,
     "_color": {
       "__type__": "cc.Color",
-      "r": 255,
-      "g": 255,
-      "b": 255,
+      "r": 14,
+      "g": 91,
+      "b": 84,
       "a": 255
     },
     "_cascadeOpacityEnabled": true,
@@ -568,7 +571,7 @@
     "_N$string": "程序员",
     "_N$horizontalAlign": 0,
     "_N$verticalAlign": 1,
-    "_N$fontFamily": "幼圆",
+    "_N$fontFamily": "微软雅黑",
     "_N$overflow": 2
   },
   {
@@ -604,9 +607,9 @@
     "_opacity": 255,
     "_color": {
       "__type__": "cc.Color",
-      "r": 255,
-      "g": 255,
-      "b": 255,
+      "r": 14,
+      "g": 91,
+      "b": 84,
       "a": 255
     },
     "_cascadeOpacityEnabled": true,
@@ -627,7 +630,7 @@
     "_position": {
       "__type__": "cc.Vec2",
       "x": 103.9,
-      "y": 35
+      "y": 60
     },
     "_skewX": 0,
     "_skewY": 0,
@@ -655,7 +658,7 @@
     "_N$string": "0",
     "_N$horizontalAlign": 1,
     "_N$verticalAlign": 1,
-    "_N$fontFamily": "Calibiri",
+    "_N$fontFamily": "微软雅黑",
     "_N$overflow": 1
   },
   {
@@ -691,9 +694,9 @@
     "_opacity": 255,
     "_color": {
       "__type__": "cc.Color",
-      "r": 255,
-      "g": 255,
-      "b": 255,
+      "r": 14,
+      "g": 91,
+      "b": 84,
       "a": 255
     },
     "_cascadeOpacityEnabled": true,
@@ -714,7 +717,7 @@
     "_position": {
       "__type__": "cc.Vec2",
       "x": 103.9,
-      "y": 11
+      "y": 36
     },
     "_skewX": 0,
     "_skewY": 0,
@@ -742,7 +745,7 @@
     "_N$string": "10",
     "_N$horizontalAlign": 1,
     "_N$verticalAlign": 1,
-    "_N$fontFamily": "Calibiri",
+    "_N$fontFamily": "微软雅黑",
     "_N$overflow": 1
   },
   {
@@ -778,9 +781,9 @@
     "_opacity": 255,
     "_color": {
       "__type__": "cc.Color",
-      "r": 255,
-      "g": 255,
-      "b": 255,
+      "r": 14,
+      "g": 91,
+      "b": 84,
       "a": 255
     },
     "_cascadeOpacityEnabled": true,
@@ -801,7 +804,7 @@
     "_position": {
       "__type__": "cc.Vec2",
       "x": 103.9,
-      "y": -13
+      "y": 12
     },
     "_skewX": 0,
     "_skewY": 0,
@@ -829,7 +832,7 @@
     "_N$string": "0",
     "_N$horizontalAlign": 1,
     "_N$verticalAlign": 1,
-    "_N$fontFamily": "Calibiri",
+    "_N$fontFamily": "微软雅黑",
     "_N$overflow": 1
   },
   {
@@ -865,9 +868,9 @@
     "_opacity": 255,
     "_color": {
       "__type__": "cc.Color",
-      "r": 255,
-      "g": 255,
-      "b": 255,
+      "r": 14,
+      "g": 91,
+      "b": 84,
       "a": 255
     },
     "_cascadeOpacityEnabled": true,
@@ -916,7 +919,7 @@
     "_N$string": "谁敢解雇我？",
     "_N$horizontalAlign": 1,
     "_N$verticalAlign": 1,
-    "_N$fontFamily": "幼圆",
+    "_N$fontFamily": "微软雅黑",
     "_N$overflow": 2
   },
   {
@@ -952,9 +955,9 @@
     "_opacity": 255,
     "_color": {
       "__type__": "cc.Color",
-      "r": 255,
-      "g": 255,
-      "b": 255,
+      "r": 14,
+      "g": 91,
+      "b": 84,
       "a": 255
     },
     "_cascadeOpacityEnabled": true,
@@ -975,7 +978,7 @@
     "_position": {
       "__type__": "cc.Vec2",
       "x": 103.9,
-      "y": -37
+      "y": -12
     },
     "_skewX": 0,
     "_skewY": 0,
@@ -1000,10 +1003,10 @@
     "_N$file": null,
     "_isSystemFontUsed": true,
     "_spacingX": 0,
-    "_N$string": " 100$",
+    "_N$string": " 100",
     "_N$horizontalAlign": 1,
     "_N$verticalAlign": 1,
-    "_N$fontFamily": "Calibiri",
+    "_N$fontFamily": "微软雅黑",
     "_N$overflow": 1
   },
   {
@@ -1015,6 +1018,93 @@
       "__uuid__": "c357a776-4e83-4274-abaf-11fb7765b3d0"
     },
     "fileId": "cdyYpSeWVBH71Tu9zA7pOl",
+    "sync": false
+  },
+  {
+    "__type__": "cc.Node",
+    "_name": "science",
+    "_objFlags": 0,
+    "_parent": {
+      "__id__": 11
+    },
+    "_children": [],
+    "_tag": -1,
+    "_active": true,
+    "_components": [
+      {
+        "__id__": 34
+      }
+    ],
+    "_prefab": {
+      "__id__": 35
+    },
+    "_id": "",
+    "_opacity": 255,
+    "_color": {
+      "__type__": "cc.Color",
+      "r": 14,
+      "g": 91,
+      "b": 84,
+      "a": 255
+    },
+    "_cascadeOpacityEnabled": true,
+    "_anchorPoint": {
+      "__type__": "cc.Vec2",
+      "x": 0.5,
+      "y": 0.5
+    },
+    "_contentSize": {
+      "__type__": "cc.Size",
+      "width": 65,
+      "height": 20
+    },
+    "_rotationX": 0,
+    "_rotationY": 0,
+    "_scaleX": 1,
+    "_scaleY": 1,
+    "_position": {
+      "__type__": "cc.Vec2",
+      "x": 103.9,
+      "y": -36.6
+    },
+    "_skewX": 0,
+    "_skewY": 0,
+    "_localZOrder": 0,
+    "_globalZOrder": 0,
+    "_opacityModifyRGB": false,
+    "groupIndex": 0
+  },
+  {
+    "__type__": "cc.Label",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 33
+    },
+    "_enabled": true,
+    "_useOriginalSize": false,
+    "_actualFontSize": 15,
+    "_fontSize": 15,
+    "_lineHeight": 15,
+    "_enableWrapText": true,
+    "_N$file": null,
+    "_isSystemFontUsed": true,
+    "_spacingX": 0,
+    "_N$string": " 100",
+    "_N$horizontalAlign": 1,
+    "_N$verticalAlign": 1,
+    "_N$fontFamily": "微软雅黑",
+    "_N$overflow": 1
+  },
+  {
+    "__type__": "cc.PrefabInfo",
+    "root": {
+      "__id__": 1
+    },
+    "asset": {
+      "__uuid__": "c357a776-4e83-4274-abaf-11fb7765b3d0"
+    },
+    "fileId": "8ailWD7W5FxrVuARTFkl9W",
     "sync": false
   },
   {
@@ -1037,9 +1127,6 @@
     },
     "_children": [
       {
-        "__id__": 35
-      },
-      {
         "__id__": 38
       },
       {
@@ -1047,13 +1134,19 @@
       },
       {
         "__id__": 44
+      },
+      {
+        "__id__": 47
+      },
+      {
+        "__id__": 50
       }
     ],
     "_tag": -1,
     "_active": true,
     "_components": [],
     "_prefab": {
-      "__id__": 47
+      "__id__": 53
     },
     "_id": "",
     "_opacity": 255,
@@ -1096,94 +1189,7 @@
     "_name": "coding",
     "_objFlags": 0,
     "_parent": {
-      "__id__": 34
-    },
-    "_children": [],
-    "_tag": -1,
-    "_active": true,
-    "_components": [
-      {
-        "__id__": 36
-      }
-    ],
-    "_prefab": {
       "__id__": 37
-    },
-    "_id": "",
-    "_opacity": 255,
-    "_color": {
-      "__type__": "cc.Color",
-      "r": 255,
-      "g": 255,
-      "b": 255,
-      "a": 255
-    },
-    "_cascadeOpacityEnabled": true,
-    "_anchorPoint": {
-      "__type__": "cc.Vec2",
-      "x": 0.5,
-      "y": 0.5
-    },
-    "_contentSize": {
-      "__type__": "cc.Size",
-      "width": 30,
-      "height": 15
-    },
-    "_rotationX": 0,
-    "_rotationY": 0,
-    "_scaleX": 1,
-    "_scaleY": 1,
-    "_position": {
-      "__type__": "cc.Vec2",
-      "x": 49.9,
-      "y": 35
-    },
-    "_skewX": 0,
-    "_skewY": 0,
-    "_localZOrder": 0,
-    "_globalZOrder": 0,
-    "_opacityModifyRGB": false,
-    "groupIndex": 0
-  },
-  {
-    "__type__": "cc.Label",
-    "_name": "",
-    "_objFlags": 0,
-    "node": {
-      "__id__": 35
-    },
-    "_enabled": true,
-    "_useOriginalSize": false,
-    "_actualFontSize": 15,
-    "_fontSize": 15,
-    "_lineHeight": 15,
-    "_enableWrapText": true,
-    "_N$file": null,
-    "_isSystemFontUsed": true,
-    "_spacingX": 0,
-    "_N$string": "编程",
-    "_N$horizontalAlign": 1,
-    "_N$verticalAlign": 1,
-    "_N$fontFamily": "幼圆",
-    "_N$overflow": 0
-  },
-  {
-    "__type__": "cc.PrefabInfo",
-    "root": {
-      "__id__": 1
-    },
-    "asset": {
-      "__uuid__": "c357a776-4e83-4274-abaf-11fb7765b3d0"
-    },
-    "fileId": "e9oaxbDxBJZ4ZkgAsfv6jT",
-    "sync": false
-  },
-  {
-    "__type__": "cc.Node",
-    "_name": "manage",
-    "_objFlags": 0,
-    "_parent": {
-      "__id__": 34
     },
     "_children": [],
     "_tag": -1,
@@ -1200,9 +1206,9 @@
     "_opacity": 255,
     "_color": {
       "__type__": "cc.Color",
-      "r": 255,
-      "g": 255,
-      "b": 255,
+      "r": 14,
+      "g": 91,
+      "b": 84,
       "a": 255
     },
     "_cascadeOpacityEnabled": true,
@@ -1223,7 +1229,7 @@
     "_position": {
       "__type__": "cc.Vec2",
       "x": 49.9,
-      "y": 11
+      "y": 60
     },
     "_skewX": 0,
     "_skewY": 0,
@@ -1248,10 +1254,10 @@
     "_N$file": null,
     "_isSystemFontUsed": true,
     "_spacingX": 0,
-    "_N$string": "管理",
+    "_N$string": "编程",
     "_N$horizontalAlign": 1,
     "_N$verticalAlign": 1,
-    "_N$fontFamily": "幼圆",
+    "_N$fontFamily": "微软雅黑",
     "_N$overflow": 0
   },
   {
@@ -1262,15 +1268,15 @@
     "asset": {
       "__uuid__": "c357a776-4e83-4274-abaf-11fb7765b3d0"
     },
-    "fileId": "3ezBXyN25Ed77sKtEdThPz",
+    "fileId": "e9oaxbDxBJZ4ZkgAsfv6jT",
     "sync": false
   },
   {
     "__type__": "cc.Node",
-    "_name": "art",
+    "_name": "manage",
     "_objFlags": 0,
     "_parent": {
-      "__id__": 34
+      "__id__": 37
     },
     "_children": [],
     "_tag": -1,
@@ -1287,9 +1293,9 @@
     "_opacity": 255,
     "_color": {
       "__type__": "cc.Color",
-      "r": 255,
-      "g": 255,
-      "b": 255,
+      "r": 14,
+      "g": 91,
+      "b": 84,
       "a": 255
     },
     "_cascadeOpacityEnabled": true,
@@ -1310,7 +1316,7 @@
     "_position": {
       "__type__": "cc.Vec2",
       "x": 49.9,
-      "y": -13
+      "y": 36
     },
     "_skewX": 0,
     "_skewY": 0,
@@ -1335,10 +1341,10 @@
     "_N$file": null,
     "_isSystemFontUsed": true,
     "_spacingX": 0,
-    "_N$string": "美术",
+    "_N$string": "管理",
     "_N$horizontalAlign": 1,
     "_N$verticalAlign": 1,
-    "_N$fontFamily": "幼圆",
+    "_N$fontFamily": "微软雅黑",
     "_N$overflow": 0
   },
   {
@@ -1349,15 +1355,15 @@
     "asset": {
       "__uuid__": "c357a776-4e83-4274-abaf-11fb7765b3d0"
     },
-    "fileId": "f52iiP7IJJ5o8adzwLwarO",
+    "fileId": "3ezBXyN25Ed77sKtEdThPz",
     "sync": false
   },
   {
     "__type__": "cc.Node",
-    "_name": "salary",
+    "_name": "art",
     "_objFlags": 0,
     "_parent": {
-      "__id__": 34
+      "__id__": 37
     },
     "_children": [],
     "_tag": -1,
@@ -1374,9 +1380,9 @@
     "_opacity": 255,
     "_color": {
       "__type__": "cc.Color",
-      "r": 255,
-      "g": 255,
-      "b": 255,
+      "r": 14,
+      "g": 91,
+      "b": 84,
       "a": 255
     },
     "_cascadeOpacityEnabled": true,
@@ -1397,7 +1403,7 @@
     "_position": {
       "__type__": "cc.Vec2",
       "x": 49.9,
-      "y": -37
+      "y": 12
     },
     "_skewX": 0,
     "_skewY": 0,
@@ -1422,10 +1428,97 @@
     "_N$file": null,
     "_isSystemFontUsed": true,
     "_spacingX": 0,
-    "_N$string": "工资",
+    "_N$string": "美术",
     "_N$horizontalAlign": 1,
     "_N$verticalAlign": 1,
-    "_N$fontFamily": "幼圆",
+    "_N$fontFamily": "微软雅黑",
+    "_N$overflow": 0
+  },
+  {
+    "__type__": "cc.PrefabInfo",
+    "root": {
+      "__id__": 1
+    },
+    "asset": {
+      "__uuid__": "c357a776-4e83-4274-abaf-11fb7765b3d0"
+    },
+    "fileId": "f52iiP7IJJ5o8adzwLwarO",
+    "sync": false
+  },
+  {
+    "__type__": "cc.Node",
+    "_name": "salary",
+    "_objFlags": 0,
+    "_parent": {
+      "__id__": 37
+    },
+    "_children": [],
+    "_tag": -1,
+    "_active": true,
+    "_components": [
+      {
+        "__id__": 48
+      }
+    ],
+    "_prefab": {
+      "__id__": 49
+    },
+    "_id": "",
+    "_opacity": 255,
+    "_color": {
+      "__type__": "cc.Color",
+      "r": 14,
+      "g": 91,
+      "b": 84,
+      "a": 255
+    },
+    "_cascadeOpacityEnabled": true,
+    "_anchorPoint": {
+      "__type__": "cc.Vec2",
+      "x": 0.5,
+      "y": 0.5
+    },
+    "_contentSize": {
+      "__type__": "cc.Size",
+      "width": 30,
+      "height": 15
+    },
+    "_rotationX": 0,
+    "_rotationY": 0,
+    "_scaleX": 1,
+    "_scaleY": 1,
+    "_position": {
+      "__type__": "cc.Vec2",
+      "x": 49.9,
+      "y": -12
+    },
+    "_skewX": 0,
+    "_skewY": 0,
+    "_localZOrder": 0,
+    "_globalZOrder": 0,
+    "_opacityModifyRGB": false,
+    "groupIndex": 0
+  },
+  {
+    "__type__": "cc.Label",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 47
+    },
+    "_enabled": true,
+    "_useOriginalSize": false,
+    "_actualFontSize": 15,
+    "_fontSize": 15,
+    "_lineHeight": 15,
+    "_enableWrapText": true,
+    "_N$file": null,
+    "_isSystemFontUsed": true,
+    "_spacingX": 0,
+    "_N$string": "创意",
+    "_N$horizontalAlign": 1,
+    "_N$verticalAlign": 1,
+    "_N$fontFamily": "微软雅黑",
     "_N$overflow": 0
   },
   {
@@ -1437,6 +1530,93 @@
       "__uuid__": "c357a776-4e83-4274-abaf-11fb7765b3d0"
     },
     "fileId": "95Qwb9zEZNS56ERKwUqIh6",
+    "sync": false
+  },
+  {
+    "__type__": "cc.Node",
+    "_name": "science",
+    "_objFlags": 0,
+    "_parent": {
+      "__id__": 37
+    },
+    "_children": [],
+    "_tag": -1,
+    "_active": true,
+    "_components": [
+      {
+        "__id__": 51
+      }
+    ],
+    "_prefab": {
+      "__id__": 52
+    },
+    "_id": "",
+    "_opacity": 255,
+    "_color": {
+      "__type__": "cc.Color",
+      "r": 14,
+      "g": 91,
+      "b": 84,
+      "a": 255
+    },
+    "_cascadeOpacityEnabled": true,
+    "_anchorPoint": {
+      "__type__": "cc.Vec2",
+      "x": 0.5,
+      "y": 0.5
+    },
+    "_contentSize": {
+      "__type__": "cc.Size",
+      "width": 30,
+      "height": 15
+    },
+    "_rotationX": 0,
+    "_rotationY": 0,
+    "_scaleX": 1,
+    "_scaleY": 1,
+    "_position": {
+      "__type__": "cc.Vec2",
+      "x": 49.9,
+      "y": -36
+    },
+    "_skewX": 0,
+    "_skewY": 0,
+    "_localZOrder": 0,
+    "_globalZOrder": 0,
+    "_opacityModifyRGB": false,
+    "groupIndex": 0
+  },
+  {
+    "__type__": "cc.Label",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 50
+    },
+    "_enabled": true,
+    "_useOriginalSize": false,
+    "_actualFontSize": 15,
+    "_fontSize": 15,
+    "_lineHeight": 15,
+    "_enableWrapText": true,
+    "_N$file": null,
+    "_isSystemFontUsed": true,
+    "_spacingX": 0,
+    "_N$string": "科研",
+    "_N$horizontalAlign": 1,
+    "_N$verticalAlign": 1,
+    "_N$fontFamily": "微软雅黑",
+    "_N$overflow": 0
+  },
+  {
+    "__type__": "cc.PrefabInfo",
+    "root": {
+      "__id__": 1
+    },
+    "asset": {
+      "__uuid__": "c357a776-4e83-4274-abaf-11fb7765b3d0"
+    },
+    "fileId": "8dWwkyzWdK971up3mDO5VJ",
     "sync": false
   },
   {
@@ -1478,6 +1658,9 @@
     },
     "labelLine": {
       "__id__": 28
+    },
+    "labelScience": {
+      "__id__": 34
     },
     "avatarSprite": {
       "__id__": 7

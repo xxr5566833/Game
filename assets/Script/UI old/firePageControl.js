@@ -40,6 +40,10 @@ cc.Class({
             default: null,
             type: cc.Label                
         },
+        labelScience: {
+            default: null,
+            type: cc.Label                
+        },
         avatarSprite: {
             default:null,
             type:cc.Sprite
@@ -78,6 +82,10 @@ cc.Class({
 
     setLine: function(line_str) {
         this.labelLine.string = line_str
+    },
+
+    setScience: function(line_str) {
+        this.labelScience.string = line_str
     },
 
     loadAvatar: function(index, name) {
