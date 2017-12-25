@@ -31,118 +31,146 @@ cc.Class({
                 case 0 :
                     if(pro > 0.7)
                     {
-                        var person = personList[0][0];
-                        if(person != undefined)
-                        {
-                            persons.push(person);
-                            personList[0].splice(0, 1);
+                        if(personList[0] != undefined){
+                            var person = personList[0][0];
+                            if(person != undefined)
+                            {
+                                persons.push(person);
+                                personList[0].splice(0, 1);
+                            }
                         }
                     }
                     else{
-                        var person = personList[1][0];
-                        if(person != undefined)
-                        {
-                            persons.push(person);
-                            personList[1].splice(0, 1);
+                        if(personList[1] != undefined){
+                            var person = personList[1][0];
+                            if(person != undefined)
+                            {
+                                persons.push(person);
+                                personList[1].splice(0, 1);
+                            }
                         }
                     }
                     break;
                 case 1:
                     if(pro <= 0.6)
                     {
-                        var person = personList[0][0];
-                        if(person != undefined)
+                        if(personList[0] != undefined)
                         {
-                            persons.push(person);
-                            personList[0].splice(0, 1);
+
+                            var person = personList[0][0];
+                            if(person != undefined)
+                            {
+                                persons.push(person);
+                                personList[0].splice(0, 1);
+                            }
                         }
                     }
                     else if(pro > 0.6 && pro <= 0.9){
-                        var person = personList[1][0];
-                        if(person != undefined)
-                        {
-                            persons.push(person);
-                            personList[1].splice(0, 1);
+                        if(personList[1] != undefined){
+                            var person = personList[1][0];
+                            if(person != undefined)
+                            {
+                                persons.push(person);
+                                personList[1].splice(0, 1);
+                            }
                         }
                     }
                     else{
-                        var person = personList[2][0];
-                        if(person != undefined)
-                        {
-                            persons.push(person);
-                            personList[2].splice(0, 1);
+                        if(personList[2] != undefined){
+                            var person = personList[2][0];
+                            if(person != undefined)
+                            {
+                                persons.push(person);
+                                personList[2].splice(0, 1);
+                            }
                         }
                     }
                     break;
                 case 2:
                     if(pro <= 0.6)
                     {
-                        var person = personList[1][0];
-                        if(person != undefined)
-                        {
-                            persons.push(person);
-                            personList[1].splice(0, 1);
+                        if(personList[1] != undefined){
+                            var person = personList[1][0];
+                            if(person != undefined)
+                            {
+                                persons.push(person);
+                                personList[1].splice(0, 1);
+                            }
                         }
                     }
                     else if(pro > 0.6 && pro <= 0.87){
-                        var person = personList[2][0];
-                        if(person != undefined)
-                        {
-                            persons.push(person);
-                            personList[2].splice(0, 1);
+                        if(personList[2]  != undefined){
+                            var person = personList[2][0];
+                            if(person != undefined)
+                            {
+                                persons.push(person);
+                                personList[2].splice(0, 1);
+                            }
                         }
                     }
                     else if(pro > 0.87 && pro <= 0.97)
                     {
-                        var person = personList[3][0];
-                        if(person != undefined)
-                        {
-                            persons.push(person);
-                            personList[3].splice(0, 1);
+                        if(personList[3] != undefined){
+                            var person = personList[3][0];
+                            if(person != undefined)
+                            {
+                                persons.push(person);
+                                personList[3].splice(0, 1);
+                            }
                         }
                     }
                     else{
-                        var person = personList[4][0];
-                        if(person != undefined)
-                        {
-                            persons.push(person);
-                            personList[4].splice(0, 1);
+                        if(personList[4] != undefined){
+                            var person = personList[4][0];
+                            if(person != undefined)
+                            {
+                                persons.push(person);
+                                personList[4].splice(0, 1);
+                            }
                         }
                     }
                     break;
                 case 3:
                     if(pro <= 0.6)
                     {
-                        var person = personList[2][0];
-                        if(person != undefined)
-                        {
-                            persons.push(person);
-                            personList[2].splice(0, 1);
+                        if(personList[2] != undefined){
+                            var person = personList[2][0];
+                            if(person != undefined)
+                            {
+                                persons.push(person);
+                                personList[2].splice(0, 1);
+                            }
                         }
                     }
                     else if(pro > 0.6 && pro <= 0.87){
-                        var person = personList[3][0];
-                        if(person != undefined)
-                        {
-                            persons.push(person);
-                            personList[3].splice(0, 1);
+                        if(personList[3] != undefined){
+                            var person = personList[3][0];
+                            if(person != undefined)
+                            {
+                                persons.push(person);
+                                personList[3].splice(0, 1);
+                            }
                         }
                     }
                     else if(pro > 0.87 && pro <= 0.97)
                     {
-                        var person = personList[4][0];
-                        if(person != undefined)
-                        {
-                            persons.push(person);
-                            personList[4].splice(0, 1);
+                        if(personList[4] != undefined){
+                            var person = personList[4][0];
+                            if(person != undefined)
+                            {
+                                persons.push(person);
+                                personList[4].splice(0, 1);
+                            }
                         }
                     }
                     else{
-                        var person = personList[5][0];
-                        if(person != undefined)
-                        {
-                            persons.push(person);
-                            personList[5].splice(0, 1);
+                        if(personList[5] != undefined){
+                            var person = personList[5][0];
+                            if(person != undefined)
+                            {
+                                persons.push(person);
+                                personList[5].splice(0, 1);
+                            }
                         }
                     }
                     break;
@@ -176,13 +204,16 @@ cc.Class({
                 break;
             }
         }
+        console.log(person);
         var event=new cc.Event.EventCustom('HIRE', true);
         event.person=person;
         this.node.dispatchEvent(event);
+        console.log(event.back);
         if(event.back){
             for(let i=0;i<this.persons_.length;i++){
                 if(this.persons_[i].index_== index){
                     this.persons_.splice(i,1);
+                    console.log(this.persons_);
                     return true;
                 }
             }

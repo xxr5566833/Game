@@ -134,6 +134,7 @@ cc.Class({
 
     updateCandidates: function() {
         this.candidates = this.getCandidates()
+        console.log(this.candidates);
         //console.log("people count: "+this.candidates.length);
         this.selectedCandidates = []
         this.scrollView.scrollToTop()
@@ -197,10 +198,14 @@ cc.Class({
             return ;
         }
         var sum = 0;
+        var personcount = 0;
         for(let i = 0; i < this.selectedCandidates.length ; i++)
         {
-            var person = this.candidates[i];
-            sum += person.employMoney_;
+            if(this.selectedCandidates[i]){
+                var person = this.candidates[i];
+                sum += person.employMoney_;
+                personcount += 1;
+            }
         }
         var account = cc.find("Event/Game/Date/Account").getComponent("Account");
         if(!account.isEnough(sum))
@@ -209,13 +214,30 @@ cc.Class({
             msgcontrol.alert('FAIL', '您的金钱不足以雇佣这些人');
             return ;
         }
-        for(let i=0, j=0;i<this.selectedCandidates.length;i++,j++){
+        var persons = this.personControl_.getComponent("PersonControl").persons_;
+        var limit = this.personControl_.getComponent("PersonControl").maxNum_;
+        if(persons.length + personcount > limit)
+        {
+            var msgcontrol = this.msgBox.getComponent("msgBoxControl");
+            msgcontrol.alert('FAIL', '达到最大雇佣数量');
+            return ;
+        }
+        console.log(this.selectedCandidates);
+        for(let i = 0 ; i < this.selectedCandidates.length ; i++)
+        {
+            if(this.selectedCandidates[i]){
+                console.log(this.candidates[i]);
+                this.source.removePerson(this.candidates[i].index_);
+            }
+        }
+        /*for(let i=0, j=0;i<this.selectedCandidates.length;i++,j++){
             if(this.selectedCandidates[i] == true){
+                console.log(this.candidates[j]);
                 this.source.removePerson(this.candidates[j].index_);
                 j--;
                 //console.log(this.candidates);
             }
-        }
+        }*/
         // TODO for UI designer:
         // 钱不够，未选任何员工时提示用户
         this.node.active = false;
