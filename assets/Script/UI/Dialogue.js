@@ -153,22 +153,10 @@ cc.Class({
             default: null,
             type: cc.Label
         },
-        lastMouth1_: {
-            default: "",
-            type: string
-        },
-        lastMouth2_: {
-            default: "",
-            type: string
-        },
-        lastMouth3_: {
-            default: "",
-            type: string
-        },
-        lastMouth4_: {
-            default: "",
-            type: string
-        },
+        lastMouth1_: "",
+        lastMouth2_: "",
+        lastMouth3_: "",
+        lastMouth4_: "",
     },
 
     // use this for initialization
