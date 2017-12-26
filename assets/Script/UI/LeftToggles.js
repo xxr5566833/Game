@@ -40,7 +40,7 @@ cc.Class({
     },
 
     outsource_btn :function(event) {
-        //event.target.parent.active = false;     // 关闭菜单界面
+        event.target.parent.active = false;     // 关闭菜单界面
         for(var t in this.toggles)
             this.toggles[t].isChecked=false;
         this.Main.active = false;
@@ -52,7 +52,7 @@ cc.Class({
     },
 
     independent_btn :function(event) {
-        //event.target.parent.active = false;     // 关闭菜单界面
+        event.target.parent.active = false;     // 关闭菜单界面
         for(var t in this.toggles)
             this.toggles[t].isChecked=false;
         this.Main.active = false;               // 关闭主界面
@@ -61,7 +61,7 @@ cc.Class({
     },
 
     hire_btn :function(event) {
-        //event.target.parent.active = false;     // 关闭菜单界面
+        event.target.parent.active = false;     // 关闭菜单界面
         for(var t in this.toggles)
             this.toggles[t].isChecked=false;
         this.Main.active = false;               // 关闭主界面
@@ -69,7 +69,7 @@ cc.Class({
     },
 
     fire_btn :function(event) {
-        //event.target.parent.active = false;     // 关闭菜单界面
+        event.target.parent.active = false;     // 关闭菜单界面
         for(var t in this.toggles)
             this.toggles[t].isChecked=false;
         this.Main.active = false;               // 关闭主界面

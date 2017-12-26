@@ -72,6 +72,10 @@ cc.Class({
             default: null,
             type: cc.Sprite
         },
+        stopBtn: {
+            default: null,
+            type: cc.Sprite
+        },
         personControl_: {
             default: null,
             type: personControl
@@ -177,6 +181,7 @@ cc.Class({
         this.leftBtn.node.on(cc.Node.EventType.TOUCH_END, this.leftEnd, this)
         this.rightBtn.node.on(cc.Node.EventType.TOUCH_START, this.rightStart, this)
         this.rightBtn.node.on(cc.Node.EventType.TOUCH_END, this.rightEnd, this)
+        this.stopBtn.node.on(cc.Node.EventType.TOUCH_START, this.stopProject, this)
 
         this.person1_.active = false
         this.person2_.active = false
@@ -211,10 +216,15 @@ cc.Class({
         this.currentProjectGroup_.persons_[3].name_ = "流氓丁"*/
     },
 
+    stopProject: function () {
+        this.personControl_.stop(this.currentProjectGroup_)
+        this.fresh()
+    },
+
     // 刷新对话框
     fresh: function () {
-        this.updateProjectGroups(this.personControl_.getAllGroups());
-
+        this.updateProjectGroups(this.personControl_.getAllGroups())
+        console.log(this.personControl_.getAllGroups())
         if (this.currentProjectGroup_ != undefined) {
             this.projectTitle.string = this.currentProjectGroup_.project_.name_
             this.projectIndex.string = (this.projectGroups_.indexOf(this.currentProjectGroup_) + 1) + "/" + this.projectGroups_.length
@@ -328,6 +338,19 @@ cc.Class({
             this.person2_.active = false
             this.person3_.active = false
             this.person4_.active = false
+
+            this.projectTitle.string = "当前没有项目"
+            this.projectIndex.string = 0 + "/" + 0
+
+            this.functionPoint_.fillRange = 0
+            this.experiencePoint_.fillRange = 0
+            this.creativePoint_.fillRange = 0
+            this.performancePoint_.fillRange = 0
+            this.totalPoint_.fillRange = 0
+            this.lowBugLabel_.string = "低级bug：" + 0
+            this.midiumBugLabel_.string = "中级bug：" + 0
+            this.highBugLabel_.string = "高级bug：" + 0
+            this.allBugLabel_.string = "总的bug：" + 0 + '/' + 0 + '/' + 0
         }
     },
 
@@ -342,6 +365,8 @@ cc.Class({
             } else {
                 // 保留原来的当前项目组
             }
+        } else {
+            this.currentProjectGroup_ = undefined
         }
     },
 
