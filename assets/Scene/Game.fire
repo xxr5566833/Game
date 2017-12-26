@@ -28615,7 +28615,9 @@
       "__id__": 372
     },
     "candidates": [],
-    "main": null
+    "main": {
+      "__id__": 40
+    }
   },
   {
     "__type__": "8678eBF63tOCrTp2GwxAOi+",

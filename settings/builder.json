@@ -1,14 +1,13 @@
 {
   "appKey": "",
   "appSecret": "",
+  "encryptJs": true,
   "excludeScenes": [],
   "includeAnySDK": false,
   "includeSDKBox": false,
-  "includeSdk": [
-    "anysdk"
-  ],
   "inlineSpriteFrames": true,
   "inlineSpriteFrames_native": true,
+  "jailbreakPlatform": false,
   "md5Cache": false,
   "mergeStartScene": false,
   "oauthLoginServer": "",
@@ -23,6 +22,7 @@
   "privateKey": "",
   "renderMode": "0",
   "startScene": "7be405c8-cda9-4b45-9e76-bfcfa5be2c39",
-  "title": "Software",
-  "webOrientation": "auto"
+  "title": "MaShuai",
+  "webOrientation": "auto",
+  "xxteaKey": "cc09237a-208a-42"
 }
