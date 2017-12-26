@@ -87,7 +87,7 @@ cc.Class({
             console.log("该科研等级已达最高")
             return 2;
         }
-        var cost=this.costs_[id][lv+1];
+        var cost=this.costs_[id][lv];
         if(this.S_ < cost){
             console.log("科研点数不够升级")
             return 1;
@@ -265,7 +265,7 @@ cc.Class({
         if(preIds[0]!=0){
             for(var i=0;i<preIds.length;i++){
                 if(this.lv_[preIds[i]]<this.preLv_[id][i]){
-                    console.log("前置科技未解锁")
+                    //console.log(preIds[i]+"前置需要："+this.preLv_[id][i]+"目前："+this.lv_[preIds[i]])
                     return false;
                 }
             }
@@ -278,7 +278,7 @@ cc.Class({
         info.name = this.name_[id];
         info.effect = this.effect_[id];
         info.lv = "等级"+this.lv_[id];
-        if(info.lv==5)
+        if(this.lv_[id]==5)
             info.cost="已满级"
         else
             info.cost = this.costs_[id][this.lv_[id]];

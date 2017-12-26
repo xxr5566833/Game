@@ -21,7 +21,7 @@ cc.Class({
     onEnable: function () {
         this.SprDetail.node.active=false;  
         for (let index = 0; index < this.toggles.length; index++) {
-            this.toggles[index].node.active=cc.find("Event/Game/Date/Account/Research").getComponent("Research").check(index+1);
+            this.toggles[index].node.active=cc.find("Event/Game/Date/Account/Research").getComponent("Research").check(this.toggles[index].node.name);
         } 
     },
 
@@ -44,7 +44,7 @@ cc.Class({
             this.LabLv.string = info.lv;
             this.LabCost.string = info.cost;
             for (let index = 0; index < this.toggles.length; index++) {
-                this.toggles[index].node.active=cc.find("Event/Game/Date/Account/Research").getComponent("Research").check(index+1);
+                this.toggles[index].node.active=cc.find("Event/Game/Date/Account/Research").getComponent("Research").check(this.toggles[index].node.name);
             } 
         }
         else if(ret==1){
