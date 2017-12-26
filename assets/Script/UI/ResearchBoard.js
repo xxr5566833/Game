@@ -21,8 +21,7 @@ cc.Class({
     onEnable: function () {
         this.SprDetail.node.active=false;  
         for (let index = 0; index < this.toggles.length; index++) {
-            if(cc.find("Event/Game/Date/Account/Research").getComponent("Research").check(index+1)==false)
-                this.toggles[index].node.active=false;
+            this.toggles[index].node.active=cc.find("Event/Game/Date/Account/Research").getComponent("Research").check(index+1);
         } 
     },
 
@@ -41,9 +40,12 @@ cc.Class({
         var ret =  cc.find("Event/Game/Date/Account/Research").getComponent("Research").unlock(this.select);
         if(ret==0){
             console.log("解锁成功");
-            var info = cc.find("Event/Game/Date/Account/Research").getComponent("Research").show();
+            var info = cc.find("Event/Game/Date/Account/Research").getComponent("Research").show(this.select);
             this.LabLv.string = info.lv;
             this.LabCost.string = info.cost;
+            for (let index = 0; index < this.toggles.length; index++) {
+                this.toggles[index].node.active=cc.find("Event/Game/Date/Account/Research").getComponent("Research").check(index+1);
+            } 
         }
         else if(ret==1){
             console.log("科研点数不够升级")

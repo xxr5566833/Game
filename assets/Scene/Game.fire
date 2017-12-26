@@ -45,7 +45,7 @@
     "_globalZOrder": 0,
     "_opacityModifyRGB": false,
     "groupIndex": 0,
-    "autoReleaseAssets": false
+    "autoReleaseAssets": null
   },
   {
     "__type__": "cc.Node",
@@ -10362,7 +10362,9 @@
   },
   {
     "__type__": "cc.ClickEvent",
-    "target": null,
+    "target": {
+      "__id__": 160
+    },
     "component": "LeftToggles",
     "handler": "research_toggle",
     "customEventData": ""
@@ -28015,7 +28017,11 @@
       "__id__": 695
     },
     "_enabled": true,
-    "show_targets": [],
+    "show_targets": [
+      {
+        "__id__": 40
+      }
+    ],
     "hide_targets": [
       {
         "__id__": 689
@@ -28609,7 +28615,9 @@
       "__id__": 372
     },
     "candidates": [],
-    "main": null
+    "main": {
+      "__id__": 40
+    }
   },
   {
     "__type__": "8678eBF63tOCrTp2GwxAOi+",

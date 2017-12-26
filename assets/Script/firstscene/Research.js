@@ -24,7 +24,7 @@ cc.Class({
         this.preLv_ = [];  // 前置科技等级
         this.costs_ =[];  // 解锁各级需花费的科研点(二维数组)
 
-        this.S_=0;  // 科研点数
+        this.S_=1000;  // 科研点数
         this.coefS1_=0;
         this.coefS2_=0;  // 12
         this.coef=new Object();
@@ -282,7 +282,6 @@ cc.Class({
             info.cost="已满级"
         else
             info.cost = this.costs_[id][this.lv_[id]];
-        console.log(this.preId_[id][0])
         var preId = this.preId_[id]
         var preLv = this.preLv_[id]
         if(preId[0]==0)
@@ -293,7 +292,6 @@ cc.Class({
                 info.pre += "\n"+this.name_[preId[i]]+"lv"+preLv[i];
             }
         }
-        console.log(info.pre)
         return info;
     }
 });
