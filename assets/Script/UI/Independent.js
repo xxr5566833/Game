@@ -37,6 +37,7 @@ cc.Class({
         projectgroup:Object,
         slider:cc.Node,
         moneystring:cc.Label,
+        msgbox:cc.Node,
 
     },
 
@@ -237,6 +238,17 @@ cc.Class({
             if(this.project.requireFunction_ == 0)
             {
                 this.project.requireFunction_ = 10;
+            }
+            var account = cc.find("Event/Game/Date/Account").getComponent("Account");
+
+            if(account.isEnough(this.project.budget_))
+            {
+                account.expend(this.project_.budget_);
+
+            }
+            else{
+                this.msgbox.getComponent("msgBoxControl").alert("FAIL", "金钱不足");
+                return ;
             }
             cc.find('Event/Game/Date/Account/PersonControl').getComponent("PersonControl").begin(this.project,selected_em);
         }
