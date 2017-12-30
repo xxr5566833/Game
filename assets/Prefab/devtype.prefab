@@ -120,7 +120,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 100,
+      "width": 80,
       "height": 40
     },
     "_rotationX": 0,
@@ -159,7 +159,7 @@
     "_N$horizontalAlign": 1,
     "_N$verticalAlign": 1,
     "_N$fontFamily": "微软雅黑",
-    "_N$overflow": 1
+    "_N$overflow": 2
   },
   {
     "__type__": "cc.PrefabInfo",
@@ -207,7 +207,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 8.8,
+      "width": 20,
       "height": 40
     },
     "_rotationX": 0,
@@ -216,7 +216,7 @@
     "_scaleY": 1,
     "_position": {
       "__type__": "cc.Vec2",
-      "x": 2,
+      "x": 8,
       "y": 3
     },
     "_skewX": 0,
@@ -246,7 +246,7 @@
     "_N$horizontalAlign": 0,
     "_N$verticalAlign": 1,
     "_N$fontFamily": "微软雅黑",
-    "_N$overflow": 0
+    "_N$overflow": 2
   },
   {
     "__type__": "cc.PrefabInfo",
@@ -499,9 +499,7 @@
       "__id__": 14
     },
     "_enabled": true,
-    "_spriteFrame": {
-      "__uuid__": "938382cd-7dbd-4e2c-8b6b-745e15262af1"
-    },
+    "_spriteFrame": null,
     "_type": 0,
     "_sizeMode": 0,
     "_fillType": 0,
@@ -563,7 +561,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 8.8,
+      "width": 20,
       "height": 40
     },
     "_rotationX": 0,
@@ -572,7 +570,7 @@
     "_scaleY": 1,
     "_position": {
       "__type__": "cc.Vec2",
-      "x": 45,
+      "x": 35,
       "y": 3
     },
     "_skewX": 0,
@@ -602,7 +600,7 @@
     "_N$horizontalAlign": 1,
     "_N$verticalAlign": 1,
     "_N$fontFamily": "微软雅黑",
-    "_N$overflow": 0
+    "_N$overflow": 2
   },
   {
     "__type__": "cc.PrefabInfo",

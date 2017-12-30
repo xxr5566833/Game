@@ -45,7 +45,7 @@
     "_globalZOrder": 0,
     "_opacityModifyRGB": false,
     "groupIndex": 0,
-    "autoReleaseAssets": null
+    "autoReleaseAssets": false
   },
   {
     "__type__": "cc.Node",
@@ -11161,8 +11161,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 317,
-      "height": 354
+      "width": 373,
+      "height": 523
     },
     "_rotationX": 0,
     "_rotationY": 0,
@@ -11171,7 +11171,7 @@
     "_position": {
       "__type__": "cc.Vec2",
       "x": 0,
-      "y": 0
+      "y": -40
     },
     "_skewX": 0,
     "_skewY": 0,
@@ -11222,8 +11222,8 @@
     "_scaleY": 1,
     "_position": {
       "__type__": "cc.Vec2",
-      "x": -4.547473508864641e-13,
-      "y": 160.60000000000014
+      "x": 0,
+      "y": 220
     },
     "_skewX": 0,
     "_skewY": 0,
@@ -11251,7 +11251,7 @@
     "_N$string": "选择一个委托项目",
     "_N$horizontalAlign": 1,
     "_N$verticalAlign": 1,
-    "_N$fontFamily": "幼圆",
+    "_N$fontFamily": "微软雅黑",
     "_N$overflow": 0
   },
   {
@@ -11263,7 +11263,7 @@
     },
     "_enabled": true,
     "_spriteFrame": {
-      "__uuid__": "e6065ee6-bd3d-45df-a87e-d86060302c1a"
+      "__uuid__": "a6e780b8-7781-435e-b4fb-e9add073cd62"
     },
     "_type": 0,
     "_sizeMode": 1,
@@ -11549,8 +11549,8 @@
     "_scaleY": 1,
     "_position": {
       "__type__": "cc.Vec2",
-      "x": -61,
-      "y": -2
+      "x": -60,
+      "y": 0
     },
     "_skewX": 0,
     "_skewY": 0,
@@ -11578,7 +11578,7 @@
     "_N$string": "操作系统",
     "_N$horizontalAlign": 0,
     "_N$verticalAlign": 1,
-    "_N$fontFamily": "幼圆",
+    "_N$fontFamily": "微软雅黑",
     "_N$overflow": 1
   },
   {
@@ -11592,9 +11592,9 @@
     "isAlignOnce": true,
     "_target": null,
     "_alignFlags": 9,
-    "_left": 17.5,
+    "_left": 18.5,
     "_right": 0,
-    "_top": 12,
+    "_top": 10,
     "_bottom": 0,
     "_verticalCenter": 0,
     "_horizontalCenter": 0,
@@ -11643,7 +11643,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 55,
+      "width": 55.21,
       "height": 40
     },
     "_rotationX": 0,
@@ -11652,8 +11652,8 @@
     "_scaleY": 1,
     "_position": {
       "__type__": "cc.Vec2",
-      "x": 82,
-      "y": 1
+      "x": 79.99999999999999,
+      "y": 0
     },
     "_skewX": 0,
     "_skewY": 0,
@@ -11695,9 +11695,9 @@
     "isAlignOnce": true,
     "_target": null,
     "_alignFlags": 9,
-    "_left": 204.5,
+    "_left": 202.39499999999998,
     "_right": 0,
-    "_top": 9,
+    "_top": 10,
     "_bottom": 0,
     "_verticalCenter": 0,
     "_horizontalCenter": 0,
@@ -11872,8 +11872,8 @@
     "_scaleY": 1,
     "_position": {
       "__type__": "cc.Vec2",
-      "x": 1,
-      "y": 23
+      "x": 0,
+      "y": 25
     },
     "_skewX": 0,
     "_skewY": 0,
@@ -12083,8 +12083,8 @@
     "_scaleY": 1,
     "_position": {
       "__type__": "cc.Vec2",
-      "x": -63,
-      "y": 1
+      "x": -60,
+      "y": 0
     },
     "_skewX": 0,
     "_skewY": 0,
@@ -12112,7 +12112,7 @@
     "_N$string": "操作系统",
     "_N$horizontalAlign": 0,
     "_N$verticalAlign": 1,
-    "_N$fontFamily": "幼圆",
+    "_N$fontFamily": "微软雅黑",
     "_N$overflow": 1
   },
   {
@@ -12126,9 +12126,9 @@
     "isAlignOnce": true,
     "_target": null,
     "_alignFlags": 9,
-    "_left": 15.5,
+    "_left": 18.5,
     "_right": 0,
-    "_top": 9,
+    "_top": 10,
     "_bottom": 0,
     "_verticalCenter": 0,
     "_horizontalCenter": 0,
@@ -12177,7 +12177,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 55,
+      "width": 55.21,
       "height": 40
     },
     "_rotationX": 0,
@@ -12186,8 +12186,8 @@
     "_scaleY": 1,
     "_position": {
       "__type__": "cc.Vec2",
-      "x": 81,
-      "y": 4
+      "x": 79.99999999999999,
+      "y": 0
     },
     "_skewX": 0,
     "_skewY": 0,
@@ -12229,9 +12229,9 @@
     "isAlignOnce": true,
     "_target": null,
     "_alignFlags": 9,
-    "_left": 203.5,
+    "_left": 202.39499999999998,
     "_right": 0,
-    "_top": 6,
+    "_top": 10,
     "_bottom": 0,
     "_verticalCenter": 0,
     "_horizontalCenter": 0,
@@ -12370,8 +12370,8 @@
     "_scaleY": 1,
     "_position": {
       "__type__": "cc.Vec2",
-      "x": 3,
-      "y": -52
+      "x": 0,
+      "y": -50
     },
     "_skewX": 0,
     "_skewY": 0,
@@ -12581,8 +12581,8 @@
     "_scaleY": 1,
     "_position": {
       "__type__": "cc.Vec2",
-      "x": -69,
-      "y": 1
+      "x": -60,
+      "y": 0
     },
     "_skewX": 0,
     "_skewY": 0,
@@ -12610,7 +12610,7 @@
     "_N$string": "操作系统",
     "_N$horizontalAlign": 0,
     "_N$verticalAlign": 1,
-    "_N$fontFamily": "幼圆",
+    "_N$fontFamily": "微软雅黑",
     "_N$overflow": 1
   },
   {
@@ -12624,9 +12624,9 @@
     "isAlignOnce": true,
     "_target": null,
     "_alignFlags": 9,
-    "_left": 9.5,
+    "_left": 18.5,
     "_right": 0,
-    "_top": 9,
+    "_top": 10,
     "_bottom": 0,
     "_verticalCenter": 0,
     "_horizontalCenter": 0,
@@ -12675,7 +12675,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 55,
+      "width": 55.21,
       "height": 40
     },
     "_rotationX": 0,
@@ -12684,8 +12684,8 @@
     "_scaleY": 1,
     "_position": {
       "__type__": "cc.Vec2",
-      "x": 81,
-      "y": 2
+      "x": 79.99999999999999,
+      "y": 0
     },
     "_skewX": 0,
     "_skewY": 0,
@@ -12727,9 +12727,9 @@
     "isAlignOnce": true,
     "_target": null,
     "_alignFlags": 9,
-    "_left": 203.5,
+    "_left": 202.39499999999998,
     "_right": 0,
-    "_top": 8,
+    "_top": 10,
     "_bottom": 0,
     "_verticalCenter": 0,
     "_horizontalCenter": 0,
@@ -12942,7 +12942,7 @@
     "_N$string": "任务要求",
     "_N$horizontalAlign": 1,
     "_N$verticalAlign": 1,
-    "_N$fontFamily": "幼圆",
+    "_N$fontFamily": "微软雅黑",
     "_N$overflow": 0
   },
   {
@@ -13071,7 +13071,7 @@
     "_N$string": "期限",
     "_N$horizontalAlign": 1,
     "_N$verticalAlign": 1,
-    "_N$fontFamily": "幼圆",
+    "_N$fontFamily": "微软雅黑",
     "_N$overflow": 0
   },
   {
@@ -13145,7 +13145,7 @@
     "_N$string": "软件功能",
     "_N$horizontalAlign": 1,
     "_N$verticalAlign": 1,
-    "_N$fontFamily": "幼圆",
+    "_N$fontFamily": "微软雅黑",
     "_N$overflow": 0
   },
   {
@@ -13391,8 +13391,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 69,
-      "height": 54
+      "width": 150,
+      "height": 60
     },
     "_rotationX": 0,
     "_rotationY": 0,
@@ -13400,8 +13400,8 @@
     "_scaleY": 1,
     "_position": {
       "__type__": "cc.Vec2",
-      "x": 112.4,
-      "y": -137.6
+      "x": 0,
+      "y": -230
     },
     "_skewX": 0,
     "_skewY": 0,
@@ -13481,7 +13481,7 @@
     "_N$string": "接受",
     "_N$horizontalAlign": 1,
     "_N$verticalAlign": 1,
-    "_N$fontFamily": "幼圆",
+    "_N$fontFamily": "微软雅黑",
     "_N$overflow": 1
   },
   {
@@ -13493,7 +13493,7 @@
     },
     "_enabled": true,
     "_spriteFrame": {
-      "__uuid__": "05731542-8c72-411d-bc9b-c84317ef4909"
+      "__uuid__": "0cadc819-1298-44d9-936e-c3711728a2a9"
     },
     "_type": 1,
     "_sizeMode": 0,
@@ -13536,10 +13536,10 @@
     "duration": 0.1,
     "zoomScale": 1.2,
     "pressedSprite": {
-      "__uuid__": "0d599617-6546-4828-88df-a0040cd0dc9d"
+      "__uuid__": "29da191b-9da7-4dd1-b6e0-626ef8e879f5"
     },
     "hoverSprite": {
-      "__uuid__": "0d599617-6546-4828-88df-a0040cd0dc9d"
+      "__uuid__": "29da191b-9da7-4dd1-b6e0-626ef8e879f5"
     },
     "clickEvents": [
       {
@@ -13563,10 +13563,10 @@
       "a": 255
     },
     "_N$normalSprite": {
-      "__uuid__": "05731542-8c72-411d-bc9b-c84317ef4909"
+      "__uuid__": "0cadc819-1298-44d9-936e-c3711728a2a9"
     },
     "_N$disabledSprite": {
-      "__uuid__": "05731542-8c72-411d-bc9b-c84317ef4909"
+      "__uuid__": "0cadc819-1298-44d9-936e-c3711728a2a9"
     },
     "_N$target": {
       "__id__": 333
@@ -13621,8 +13621,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 27,
-      "height": 19
+      "width": 40,
+      "height": 40
     },
     "_rotationX": 0,
     "_rotationY": 0,
@@ -13630,8 +13630,8 @@
     "_scaleY": 1,
     "_position": {
       "__type__": "cc.Vec2",
-      "x": 133,
-      "y": 160
+      "x": 140,
+      "y": 180
     },
     "_skewX": 0,
     "_skewY": 0,
@@ -13642,7 +13642,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "label",
+    "_name": "New Sprite",
     "_objFlags": 0,
     "_parent": {
       "__id__": 339
@@ -13656,13 +13656,13 @@
       }
     ],
     "_prefab": null,
-    "_id": "d3XOvA/xtLwpPDuW9giwQV",
+    "_id": "e81m/EQ5tKAK0cFpTjNggw",
     "_opacity": 255,
     "_color": {
       "__type__": "cc.Color",
-      "r": 0,
-      "g": 0,
-      "b": 0,
+      "r": 255,
+      "g": 255,
+      "b": 255,
       "a": 255
     },
     "_cascadeOpacityEnabled": true,
@@ -13673,8 +13673,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 100,
-      "height": 40
+      "width": 26,
+      "height": 20
     },
     "_rotationX": 0,
     "_rotationY": 0,
@@ -13682,7 +13682,7 @@
     "_scaleY": 1,
     "_position": {
       "__type__": "cc.Vec2",
-      "x": -4.547473508864641e-13,
+      "x": 0,
       "y": 0
     },
     "_skewX": 0,
@@ -13693,26 +13693,30 @@
     "groupIndex": 0
   },
   {
-    "__type__": "cc.Label",
+    "__type__": "cc.Sprite",
     "_name": "",
     "_objFlags": 0,
     "node": {
       "__id__": 340
     },
     "_enabled": true,
-    "_useOriginalSize": false,
-    "_actualFontSize": 20,
-    "_fontSize": 20,
-    "_lineHeight": 40,
-    "_enableWrapText": false,
-    "_N$file": null,
-    "_isSystemFontUsed": true,
-    "_spacingX": 0,
-    "_N$string": "X",
-    "_N$horizontalAlign": 1,
-    "_N$verticalAlign": 1,
-    "_N$fontFamily": "幼圆",
-    "_N$overflow": 1
+    "_spriteFrame": {
+      "__uuid__": "2c1462e9-3f26-4f98-940c-d2f6f4993bd5"
+    },
+    "_type": 0,
+    "_sizeMode": 1,
+    "_fillType": 0,
+    "_fillCenter": {
+      "__type__": "cc.Vec2",
+      "x": 0,
+      "y": 0
+    },
+    "_fillStart": 0,
+    "_fillRange": 0,
+    "_isTrimmedMode": true,
+    "_srcBlendFactor": 770,
+    "_dstBlendFactor": 771,
+    "_atlas": null
   },
   {
     "__type__": "cc.Sprite",
@@ -13723,7 +13727,7 @@
     },
     "_enabled": true,
     "_spriteFrame": {
-      "__uuid__": "05731542-8c72-411d-bc9b-c84317ef4909"
+      "__uuid__": "37f59899-c710-42a1-900d-6c2cc63e90fa"
     },
     "_type": 1,
     "_sizeMode": 0,
@@ -13766,10 +13770,10 @@
     "duration": 0.1,
     "zoomScale": 1.2,
     "pressedSprite": {
-      "__uuid__": "0d599617-6546-4828-88df-a0040cd0dc9d"
+      "__uuid__": "49eb50cb-b75d-488d-a4b4-4480057fcb35"
     },
     "hoverSprite": {
-      "__uuid__": "0d599617-6546-4828-88df-a0040cd0dc9d"
+      "__uuid__": "49eb50cb-b75d-488d-a4b4-4480057fcb35"
     },
     "clickEvents": [
       {
@@ -13793,10 +13797,10 @@
       "a": 255
     },
     "_N$normalSprite": {
-      "__uuid__": "05731542-8c72-411d-bc9b-c84317ef4909"
+      "__uuid__": "37f59899-c710-42a1-900d-6c2cc63e90fa"
     },
     "_N$disabledSprite": {
-      "__uuid__": "05731542-8c72-411d-bc9b-c84317ef4909"
+      "__uuid__": "37f59899-c710-42a1-900d-6c2cc63e90fa"
     },
     "_N$target": {
       "__id__": 339
@@ -14089,7 +14093,7 @@
     "_position": {
       "__type__": "cc.Vec2",
       "x": 0,
-      "y": 120
+      "y": 140
     },
     "_skewX": 0,
     "_skewY": 0,
@@ -14122,7 +14126,7 @@
     "_N$startAxis": 0,
     "_N$paddingLeft": 0,
     "_N$paddingRight": 0,
-    "_N$paddingTop": 0,
+    "_N$paddingTop": 20,
     "_N$paddingBottom": 0,
     "_N$spacingX": 0,
     "_N$spacingY": 0,
@@ -16042,7 +16046,7 @@
     "_N$startAxis": 0,
     "_N$paddingLeft": 0,
     "_N$paddingRight": 0,
-    "_N$paddingTop": 0,
+    "_N$paddingTop": 20,
     "_N$paddingBottom": 0,
     "_N$spacingX": 0,
     "_N$spacingY": 0,
@@ -16602,7 +16606,7 @@
     "_N$horizontalAlign": 1,
     "_N$verticalAlign": 1,
     "_N$fontFamily": "微软雅黑",
-    "_N$overflow": 1
+    "_N$overflow": 2
   },
   {
     "__type__": "cc.Node",
@@ -16676,7 +16680,7 @@
     "_N$horizontalAlign": 1,
     "_N$verticalAlign": 1,
     "_N$fontFamily": "微软雅黑",
-    "_N$overflow": 1
+    "_N$overflow": 2
   },
   {
     "__type__": "cc.Node",
@@ -16750,7 +16754,7 @@
     "_N$horizontalAlign": 1,
     "_N$verticalAlign": 1,
     "_N$fontFamily": "微软雅黑",
-    "_N$overflow": 1
+    "_N$overflow": 2
   },
   {
     "__type__": "cc.Node",
@@ -17764,7 +17768,7 @@
     "_N$startAxis": 0,
     "_N$paddingLeft": 0,
     "_N$paddingRight": 0,
-    "_N$paddingTop": 0,
+    "_N$paddingTop": 20,
     "_N$paddingBottom": 0,
     "_N$spacingX": 0,
     "_N$spacingY": 0,
@@ -18359,7 +18363,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 47,
+      "width": 60,
       "height": 40
     },
     "_rotationX": 0,
@@ -18398,7 +18402,7 @@
     "_N$horizontalAlign": 1,
     "_N$verticalAlign": 1,
     "_N$fontFamily": "微软雅黑",
-    "_N$overflow": 1
+    "_N$overflow": 2
   },
   {
     "__type__": "cc.Node",
@@ -18433,7 +18437,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 26.39,
+      "width": 80,
       "height": 40
     },
     "_rotationX": 0,
@@ -18464,7 +18468,7 @@
     "_actualFontSize": 15,
     "_fontSize": 15,
     "_lineHeight": 40,
-    "_enableWrapText": true,
+    "_enableWrapText": false,
     "_N$file": null,
     "_isSystemFontUsed": true,
     "_spacingX": 0,
@@ -18472,7 +18476,7 @@
     "_N$horizontalAlign": 1,
     "_N$verticalAlign": 1,
     "_N$fontFamily": "微软雅黑",
-    "_N$overflow": 0
+    "_N$overflow": 2
   },
   {
     "__type__": "cc.Node",
@@ -18507,7 +18511,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 47,
+      "width": 60,
       "height": 40
     },
     "_rotationX": 0,
@@ -18546,7 +18550,7 @@
     "_N$horizontalAlign": 1,
     "_N$verticalAlign": 1,
     "_N$fontFamily": "微软雅黑",
-    "_N$overflow": 1
+    "_N$overflow": 2
   },
   {
     "__type__": "cc.Node",
@@ -20128,7 +20132,7 @@
     "_N$horizontalAlign": 0,
     "_N$verticalAlign": 1,
     "_N$fontFamily": "微软雅黑",
-    "_N$overflow": 1
+    "_N$overflow": 2
   },
   {
     "__type__": "cc.Node",
@@ -20202,7 +20206,7 @@
     "_N$horizontalAlign": 0,
     "_N$verticalAlign": 1,
     "_N$fontFamily": "微软雅黑",
-    "_N$overflow": 1
+    "_N$overflow": 2
   },
   {
     "__type__": "cc.Node",
@@ -20276,7 +20280,7 @@
     "_N$horizontalAlign": 0,
     "_N$verticalAlign": 1,
     "_N$fontFamily": "微软雅黑",
-    "_N$overflow": 1
+    "_N$overflow": 2
   },
   {
     "__type__": "cc.Node",
@@ -20350,7 +20354,7 @@
     "_N$horizontalAlign": 0,
     "_N$verticalAlign": 1,
     "_N$fontFamily": "微软雅黑",
-    "_N$overflow": 1
+    "_N$overflow": 2
   },
   {
     "__type__": "cc.Node",
@@ -21975,7 +21979,7 @@
     "_N$startAxis": 0,
     "_N$paddingLeft": 0,
     "_N$paddingRight": 0,
-    "_N$paddingTop": 0,
+    "_N$paddingTop": 20,
     "_N$paddingBottom": 0,
     "_N$spacingX": 0,
     "_N$spacingY": 0,
@@ -22570,7 +22574,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 47,
+      "width": 60,
       "height": 40
     },
     "_rotationX": 0,
@@ -22609,7 +22613,7 @@
     "_N$horizontalAlign": 1,
     "_N$verticalAlign": 1,
     "_N$fontFamily": "微软雅黑",
-    "_N$overflow": 1
+    "_N$overflow": 2
   },
   {
     "__type__": "cc.Node",
@@ -22644,7 +22648,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 27,
+      "width": 80,
       "height": 40
     },
     "_rotationX": 0,
@@ -22683,7 +22687,7 @@
     "_N$horizontalAlign": 1,
     "_N$verticalAlign": 1,
     "_N$fontFamily": "微软雅黑",
-    "_N$overflow": 0
+    "_N$overflow": 2
   },
   {
     "__type__": "cc.Node",
@@ -22718,7 +22722,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 47,
+      "width": 60,
       "height": 40
     },
     "_rotationX": 0,
@@ -22757,7 +22761,7 @@
     "_N$horizontalAlign": 1,
     "_N$verticalAlign": 1,
     "_N$fontFamily": "微软雅黑",
-    "_N$overflow": 1
+    "_N$overflow": 2
   },
   {
     "__type__": "cc.Node",
@@ -23975,7 +23979,7 @@
       "height": 250
     },
     "_resize": 1,
-    "_N$layoutType": 1,
+    "_N$layoutType": 2,
     "_N$padding": 0,
     "_N$cellSize": {
       "__type__": "cc.Size",
@@ -23985,7 +23989,7 @@
     "_N$startAxis": 0,
     "_N$paddingLeft": 0,
     "_N$paddingRight": 0,
-    "_N$paddingTop": 0,
+    "_N$paddingTop": 20,
     "_N$paddingBottom": 0,
     "_N$spacingX": 0,
     "_N$spacingY": 15,
@@ -24590,7 +24594,7 @@
     "_N$horizontalAlign": 1,
     "_N$verticalAlign": 1,
     "_N$fontFamily": "微软雅黑",
-    "_N$overflow": 1
+    "_N$overflow": 2
   },
   {
     "__type__": "cc.Node",
@@ -24664,7 +24668,7 @@
     "_N$horizontalAlign": 1,
     "_N$verticalAlign": 1,
     "_N$fontFamily": "微软雅黑",
-    "_N$overflow": 1
+    "_N$overflow": 2
   },
   {
     "__type__": "cc.Node",
@@ -24738,7 +24742,7 @@
     "_N$horizontalAlign": 1,
     "_N$verticalAlign": 1,
     "_N$fontFamily": "微软雅黑",
-    "_N$overflow": 1
+    "_N$overflow": 2
   },
   {
     "__type__": "cc.Node",
