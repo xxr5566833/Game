@@ -162,7 +162,6 @@ cc.Class({
 
         this.node.on("TEST", function(event){
             //调用UI，表示要进入测试阶段
-            console.log("进入测试阶段！！！！！！！！！！！！！！！！！");
             var group = event.group;
 
             var independ = this.independent_.getComponent('Independent');
@@ -250,10 +249,12 @@ cc.Class({
 
         this.node.on("UNLOCKPLATFORM", function(event){
             // event.detail.id为平台编号 0:客户端 1：网页 2：跨平台
+            this.personControl_.getComponent("PersonControl").unlockPlatform(event.id);
         }, this);
 
         this.node.on("UNLOCKTYPE", function(event){
             // event.detail.id为类型编号 0~6  社交、多媒体、游戏、安全、数据科学、办公、电商
+            this.personControl_.getComponent("PersonControl").unlockType(event.id);
         }, this);
 
         this.node.on("RECEIVEPROJ", function(event){

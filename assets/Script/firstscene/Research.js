@@ -24,7 +24,7 @@ cc.Class({
         this.preLv_ = [];  // 前置科技等级
         this.costs_ =[];  // 解锁各级需花费的科研点(二维数组)
 
-        this.S_=1000;  // 科研点数
+        this.S_=10;  // 科研点数
         this.coefS1_=0;
         this.coefS2_=0;  // 12
         this.coef=new Object();
@@ -231,7 +231,7 @@ cc.Class({
 
     addS1: function() {             // 暴击时随机增加1~3
         console.log("科研点数："+this.S_);
-        this.S_ += 100+2*Math.random();
+        this.S_ += 2*Math.random();
         console.log("科研点数："+this.S_);
     },
 

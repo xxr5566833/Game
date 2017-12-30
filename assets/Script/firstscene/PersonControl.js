@@ -25,52 +25,251 @@ cc.Class({
         this.name_ = "体验极其差的公司";
         var temp =[
             {
-                name_ : "网站",
+                name_ : "客户端",
                 index_ : 0,
                 unlock_ : true,
                 budget_ : 100,
                 difficulty_ : 1,
                 function_ : 0,
                 
+            },
+            {
+                name_ : "网页",
+                index_ : 1,
+                unlock_ : false,
+                budget_ : 100,
+                difficulty_ : 1,
+                function_ : 0,
+            },
+            {
+                name_ : "跨平台",
+                index_ : 2,
+                unlock_ : false,
+                budget_ : 100,
+                difficulty_ : 1,
+                function_ : 0,
             }
+
         ];
         this.platforms_ = temp;
         this.categories_ = [
             {
-                name_ : "类型1",
+                name_ : "社交软件",
                 index_ : 0,
-                difficulty_ : 1,
-                budget_ : 10,
-                function_ : 10,
+                difficulty_ : 5,
+                budget_ : 10 * 10000,
+                function_ : 100,
                 unlock_ : true,
             },
             {
-                name_ : "类型2",
+                name_ : "多媒体软件",
                 index_ : 1,
-                difficulty_ : 1,
-                budget_ : 10,
-                function_ : 10,
-                unlock : true,
+                difficulty_ : 5,
+                budget_ : 10 * 10000,
+                function_ : 100,
+                unlock : false,
+            },
+            {
+                name_ : "游戏软件",
+                index_ : 2,
+                difficulty_ : 15,
+                budget_ : 30 * 10000,
+                function_ : 200,
+                unlock : false,
+            },
+            {
+                name_ : "安全软件",
+                index_ : 3,
+                difficulty_ : 60,
+                budget_ : 80 * 10000,
+                function_ : 500,
+                unlock : false, 
+            },
+            {
+                name_ : "数据科学软件",
+                index_ : 4,
+                difficulty_ : 60,
+                budget_ : 80 * 10000,
+                function_ : 500,
+                unlock : false,
+            },
+            {
+                name_ : "办公软件",
+                index_ : 5,
+                difficulty_ : 30,
+                budget_ : 50 * 10000,
+                function_ : 300,
+                unlock : false,
+            },
+            {
+                name_ : "电商软件",
+                index_ : 6,
+                difficulty_ : 30,
+                budget_ : 50 * 10000,
+                function_ : 300,
+                unlock : false,
             }
         ];
         this.functions_ = [
             {
-                name_ : "功能1",
+                name_ : "收发邮件",
                 index_ : 0,
-                difficulty_ : 1,
-                function_ : 10,
+                function_ : 50,
                 unlock_ : true,
-                budget_ : 0,
-                times_ : 1.1,
+                times_ : 1.5,
+                budget_ : 100,
             },
             {
-                name_ : "功能2",
+                name_ : "音频播放",
                 index_ : 1,
-                difficulty_ : 1,
+                function_ :50,
+                unlock_ : true,
+                times_ : 1.5,
+                budget_ : 100,
+            },
+            {
+                name_ : "游戏场景",
+                index_ : 2,
                 function_ :100,
                 unlock_ : true,
-                budget_ : 0,
+                times_ : 1.5,
+                budget_ : 100,
+            },
+            {
+                name_ : "整理内存",
+                index_ : 3,
+                function_ :100,
+                unlock_ : true,
+                times_ : 1.5,
+                budget_ : 100,
+            },
+            {
+                name_ : "数据统计",
+                index_ : 4,
+                function_ :100,
+                unlock_ : true,
+                times_ : 1.2,
+                budget_ : 100,
+            },
+            {
+                name_ : "编辑文档",
+                index_ : 5,
+                function_ :50,
+                unlock_ : true,
                 times_ : 1.1,
+                budget_ : 100,
+            },
+            {
+                name_ : "发布广告",
+                index_ : 6,
+                function_ :50,
+                unlock_ : true,
+                times_ : 1.1,
+                budget_ : 100,
+            },
+            {
+                name_ : "即时聊天",
+                index_ : 7,
+                function_ :200,
+                unlock_ : false,
+                times_ : 3,  
+                budget_ : 100,
+            },
+            {
+                name_ : "视频播放",
+                index_ : 8,
+                function_ :200,
+                unlock_ : false,
+                times_ : 3,
+                budget_ : 100,
+            },
+            {
+                name_ : "数值平衡",
+                index_ : 9,
+                function_ :200,
+                unlock_ : false,
+                times_ : 2,
+                budget_ : 100,
+            },
+            {
+                name_ : "病毒查杀",
+                index_ : 10,
+                function_ :600,
+                unlock_ : false,
+                times_ : 2.2,
+                budget_ : 100,
+            },
+            {
+                name_ : "数据挖掘",
+                index_ : 11,
+                function_ :400,
+                unlock_ : false,
+                times_ : 1.8,
+                budget_ : 100,
+            },
+            {
+                name_ : "图表制作",
+                index_ : 12,
+                function_ :200,
+                unlock_ : false,
+                times_ : 1.6,
+                budget_ : 100,
+            },
+            {
+                name_ : "即时通讯",
+                index_ : 13,
+                function_ :400,
+                unlock_ : false,
+                times_ : 5,
+                budget_ : 100,
+            },
+            {
+                name_ : "图片编辑",
+                index_ : 14,
+                function_ :400,
+                unlock_ : false,
+                times_ : 5,
+                budget_ : 100,
+            },
+            {
+                name_ : "剧情设计",
+                index_ : 15,
+                function_ :800,
+                unlock_ : false,
+                times_ : 5,
+                budget_ : 100,
+            },
+            {
+                name_ : "文件管理",
+                index_ : 16,
+                function_ :600,
+                unlock_ : false,
+                times_ : 2.2,
+                budget_ : 100,
+            },
+            {
+                name_ : "机器学习",
+                index_ : 17,
+                function_ :1000,
+                unlock_ : false,
+                times_ : 3,
+                budget_ : 100,
+            },
+            {
+                name_ : "插件制作",
+                index_ : 18,
+                function_ :600,
+                unlock_ : false,
+                times_ : 3,
+                budget_ : 100,
+            },
+            {
+                name_ : "用户分析",
+                index_ : 19,
+                function_ :1000,
+                unlock_ : false,
+                times_ : 4.3,
+                budget_ : 100,
             }
         ];
         this.techs_ = [
@@ -91,6 +290,18 @@ cc.Class({
                 function_ : 0,
             }
         ];
+    },
+
+    unlockPlatform:function(id){
+        this.platforms_[id].unlock_ = true;
+    },
+    unlockType:function(id)
+    {
+        this.categories_[id].unlock_ = true;
+    },
+
+    unlockFunction:function(id){
+        this.functions_[id].unlock_ = true;
     },
 
     getName:function(){
