@@ -102,26 +102,7 @@ cc.Class({
         this.node.dispatchEvent(event);
     },
 
-    show:function(){
-        console.log(this.loans_);
-        console.log("最大贷款数量");
-        console.log(this.maxFixedLoanNum_);
-        console.log("固定贷款数量");
-        console.log(this.fixedLoanNum_);
-        console.log("目前的贷款数量");
-        console.log(this.getCurrentLoanNum());
-        var event = new cc.Event.EventCustom("GETCREDIT", true);
-        this.node.dispatchEvent(event);
-        var credit = event.back;
-        console.log("目前的信誉度");
-        console.log(credit);
-        console.log(this.getMaxLoanMoney());
-    },
 
-    back:function(){
-        var loan = this.loans_[0];
-        this.repay(loan, false);
-    },
     applyLoan:function(money,isfixed){
         if(this.getRemainLoanMoney() <= 0)
         {

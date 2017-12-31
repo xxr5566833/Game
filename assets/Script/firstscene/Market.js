@@ -3,10 +3,10 @@ cc.Class({
 
     properties: {
         initDay_:0,
-        totalPeopleNum_:100.,
-        A_:0.,
-        currentPeopleNum_:1.,
-        a_:0.,
+        totalPeopleNum_:1000.,
+        A_:0.1,
+        currentPeopleNum_:100.,
+        a_:0.1,
 
         // foo: {
         //    default: null,      // The default value will be used only when the component attaching
@@ -21,8 +21,8 @@ cc.Class({
     },
 
     Update:function(){
-        this.totalPeopleNum_=this.totalPeopleNum_*(1+0.01*this.A_);
-        var temp=(1+0.01*this.A_)*this.currentPeopleNum_;
+        this.totalPeopleNum_=Math.ceil(this.totalPeopleNum_*(1+0.01*this.A_));
+        var temp=(1 + 0.01 * this.a_)*this.currentPeopleNum_;
         if(temp>this.totalPeopleNum_){
             this.currentPeopleNum_=temp;
         }
@@ -32,7 +32,7 @@ cc.Class({
     },
 
     getCurrentPeople:function(project){
-        if(this.currentPeopleNum_==0){
+        if(this.currentPeopleNum_ == 0){
             var m=project.getM();
             var m0=1000*Math.sqrt(this.getTimeFromInit());
             var result = m/(m+m0)*this.currentPeopleNum_;

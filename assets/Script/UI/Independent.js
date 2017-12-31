@@ -243,7 +243,7 @@ cc.Class({
 
             if(account.isEnough(this.project.budget_))
             {
-                account.expend(this.project_.budget_);
+                account.expend(this.project.budget_);
 
             }
             else{

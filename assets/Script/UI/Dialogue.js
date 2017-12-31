@@ -224,7 +224,6 @@ cc.Class({
     // 刷新对话框
     fresh: function () {
         this.updateProjectGroups(this.personControl_.getAllGroups())
-        console.log(this.personControl_.getAllGroups())
         if (this.currentProjectGroup_ != undefined) {
             this.projectTitle.string = this.currentProjectGroup_.project_.name_
             this.projectIndex.string = (this.projectGroups_.indexOf(this.currentProjectGroup_) + 1) + "/" + this.projectGroups_.length

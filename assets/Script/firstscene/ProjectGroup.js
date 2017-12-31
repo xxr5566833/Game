@@ -403,19 +403,18 @@ cc.Class({
                 //市场相关
                 var event = new cc.Event.EventCustom('GETUSERNUM', true);
                 if(this.usernum_ == undefined || this.usernum_ == NaN)
-                    this.usernum_ = 0;
+                    this.usernum_ = 10;
                 event.project = this.project_;
                 console.log(this.usernum_);
                 this.node.dispatchEvent(event);
+                var incre = event.back - this.usernum_ <= 0 ? 2 : event.back - this.usernum_;
                 this.usernum_ = event.back;
                 console.log(event.back);
                 event = new cc.Event.EventCustom('MONEYADD', true);
 
 
-                event.money = this.usernum_ * this.project_.price_;
-                console.log(this.project_.price_);
-                console.log(this.usernum_);
-                console.log(event.money);
+                event.money = incre * this.project_.price_;
+
                 if (this.persons_.length != 0) {
                     var C = this.persons_[0].creativity_;
                     if (0 <= C && C <= 50) {
@@ -487,6 +486,7 @@ cc.Class({
         }
     },
 
+
     generateBug: function () {
         var F = this.project_.currentFunction_;
         var T = this.project_.getPeriod() / 7;
@@ -531,9 +531,7 @@ cc.Class({
         this.removeAllPerson();
         switch (this.state_) {
             case 0:
-                console.log("test5644444444444444444444444444444444444444444444");
                 this.generateBug();
-                console.log("here1");
                 this.state_ = 1;
                 var event = new cc.Event.EventCustom('TEST', true);
                 event.group = this;
@@ -565,11 +563,11 @@ cc.Class({
     },
 
     isDevelopEnd: function () {
-        return this.state == 0 && this.project.isDevelopEnd();
+        return this.state_ == 0 && this.project.isDevelopEnd();
     },
 
     isDevelopEnough: function () {
-        return this.state == 0 && this.project.isDevelopEnough();
+        return this.state_ == 0 && this.project.isDevelopEnough();
     },
 
     isFinished: function () {
@@ -600,7 +598,7 @@ cc.Class({
                 break;
             }
         }
-        if (this.state == 2) {
+        if (this.state_ == 2) {
             for (let i = 0; i < this.maintainers_.length; i++) {
                 if (this.maintainers_[i].index_ == person.index_) {
                     this.maintainers_.splice(i, 1);

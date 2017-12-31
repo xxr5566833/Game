@@ -92,7 +92,7 @@ cc.Class({
     },
     init: function (person) {
         // 根据一定概率初始化人物性格
-        this.randomCharactor();
+        this.randomCharacter();
         //这里根据外界的person数据，初始化属性，不能直接用外界的数据，因为它们没有方法
         this.gift_ = person.gift_;
         this.coding_ = person.coding_;
@@ -103,28 +103,27 @@ cc.Class({
         this.business_ = person.business_;
         //初始时是空闲的
         this.state_ = 1,
-            /**工资 */
-            this.salary_ = person.salary_;
+        /**工资 */
+        this.salary_ = person.salary_;
         /**雇佣金 */
         this.employMoney_ = person.employMoney_;
         // 姓名
         this.name_ = person.name_,
-            // 职能
-            this.profession_ = person.profession_,
-            this.index_ = person.index_,
-            //等级
-            this.level_ = person.level_;
+        // 职能
+        this.profession_ = person.profession_,
+        this.index_ = person.index_,
+        //等级
+        this.level_ = person.level_;
         // 体力值
         this.power_ = person.power_,
-            // 心情
-            this.mood_ = person.mood_,
-            // 通过活动可以获得
-            this.moodAddition_ = person.moodAddition_,
-            // 性格
-            this.character_ = person.character_;
+        // 心情
+        this.mood_ = person.mood_,
+        // 通过活动可以获得
+        this.moodAddition_ = person.moodAddition_,
+        // 性格,随机一个性格
         this.coef = null,
-            // 剩余的休息时间
-            this.relaxDays_ = person.relaxDays_;
+        // 剩余的休息时间
+        this.relaxDays_ = person.relaxDays_;
         // 不屈性格激活，剩余工作天数,
         this.unyieldingDays_ = person.unyieldingDays_;
 
@@ -408,7 +407,7 @@ cc.Class({
         return this.profession_;
     },
 
-    randomCharactor: function () {
+    randomCharacter: function () {
         var rnd = Math.random();
         if (rnd < 0.75) {
             var rndInt = getRandomInt(Character.imageKing, Character.persistent + 1);
@@ -580,7 +579,7 @@ cc.Class({
         this.relaxDays_ = 7;
         this.unyieldingDays_ = 7;
     },
-    charactorEffect: function () {
+    characterEffect: function () {
         // 这个函数期望每周被调用一次，以实现个别性格实现的特效
         switch (this.character_) {
             case Character.imageKing:

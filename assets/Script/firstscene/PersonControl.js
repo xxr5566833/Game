@@ -19,8 +19,6 @@ cc.Class({
         this.credit_ = 10;
         //项目组数组初始化
         this.projectGroups_ = [];
-        // 当前最大员工数
-        this.maxNum_ = 5;
         //名字
         this.name_ = "体验极其差的公司";
         var temp =[
@@ -436,6 +434,7 @@ cc.Class({
         var event = new cc.Event.EventCustom("GETDATE", true);
         this.node.dispatchEvent(event);
         var date = event.back;
+        project.node = this.node;
         project.setReceiveDay(date);
         group.begin(project,persons);
         this.projectGroups_.push(group);

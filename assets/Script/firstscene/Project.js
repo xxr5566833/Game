@@ -73,7 +73,9 @@ cc.Class({
 
         platform_:Object,
 
-        name_: ""
+        name_: "",
+        budget_ :0,
+        m_ : 0,
         
         // foo: {
         //    default: null,      // The default value will be used only when the component attaching
@@ -246,7 +248,7 @@ cc.Class({
     {
         this.budget_ -= this.platform_.budget_;
         this.difficulty_ -= this.platform_.difficulty_;
-        this.platform = null;
+        this.platform_ = null;
     },
 
     addFunction:function(func){
@@ -313,6 +315,7 @@ cc.Class({
     addCategory: function (category) {
         this.categories_.push(category);
         this.budget_ += category.budget_;
+        console.log(this.budget_);
         this.requireFunction_ += category.function_;
         this.difficulty_ += category.difficulty_;
     },

@@ -36,9 +36,6 @@ cc.Class({
     },
 
     isDue:function(nowday){
-        console.log(this.deadline_);
-        console.log(this.initDay_);
-        console.log(nowday);
         return (this.deadline_ + this.initDay_) <= nowday;
     },
 
