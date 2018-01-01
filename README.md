@@ -22,5 +22,16 @@
 - 移除了随机事件机制
 - 其他细节优化和bug修复
 
+## 环境配置：
+
+1. 如果仅仅需要打开工程文件夹，那么只需要下载安装好[cocos creator](http://www.cocos.com/download)，版本选择1.6.2（我们的开发环境是1.6.2，其他版本应该也行）
+2. 如果需要打包发布到安卓平台，那么需要安装配置相应的开发环境依赖
+，具体可以看[这里](http://docs.cocos.com/creator/manual/zh/publish/setup-native-development.html),主要需要配置的环境有：
+	1. 完整的 Java SDK
+	2. 下载安装Android Studio，并下载发布 Android 平台所需的 SDK 和 NDK
+	3. 安装C++编译环境
+	4. 在Cocos Creator 中配置构建发布原生平台的环境路径
+
+
 ## 联系我们
 客服邮箱：cxyscpjljt@163.com

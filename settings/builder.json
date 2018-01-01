@@ -4,11 +4,9 @@
   "excludeScenes": [],
   "includeAnySDK": false,
   "includeSDKBox": false,
-  "includeSdk": [
-    "anysdk"
-  ],
   "inlineSpriteFrames": true,
   "inlineSpriteFrames_native": false,
+  "jailbreakPlatform": false,
   "md5Cache": false,
   "mergeStartScene": false,
   "oauthLoginServer": "",
@@ -19,7 +17,7 @@
     "portrait": true,
     "upsideDown": false
   },
-  "packageName": "org.cocos2d.game",
+  "packageName": "org.cocos2d.software",
   "privateKey": "",
   "renderMode": "0",
   "startScene": "7be405c8-cda9-4b45-9e76-bfcfa5be2c39",
