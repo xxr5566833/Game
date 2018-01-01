@@ -1,6 +1,8 @@
 var projectstate=require('global').projectState;
 var person=require('Person');
 var project=require('Project');
+var projectGroup=require('ProjectGroup');
+var global=require("global");
 cc.Class({
     extends: cc.Component,
 
@@ -58,12 +60,17 @@ cc.Class({
                 });
             }
         });
+        if(global.isload){
+            this.load();
+        }
         // 开启重复处理事件
         this.current = cc.audioEngine.play(this.music, true,0.5);
     },
 
-    save: function(name){                                               //存档
-        cc.log('begin to save');
+    save: function(){                                               //存档
+        console.log('begin to save');
+        var name="test";
+        console.log('name');
         var saveSet_=JSON.parse(cc.sys.localStorage.getItem('saveSet'));    //所有存档的名称集合
         if(saveSet_==null)
             saveSet_=new Array();
@@ -72,45 +79,69 @@ cc.Class({
                 break;
             }
         }
+        var replacer = function(key, value) {
+            var seen=[];
+            if (value != null && typeof value == "object") {
+                if (seen.indexOf(value) >= 0) {
+                    return;
+                }
+                seen.push(value);
+            }
+            return value;
+        };
         saveSet_[i]=name;
         cc.sys.localStorage.setItem('saveSet', JSON.stringify(saveSet_));
-        var Date_=cc.find('Date').getComponent('Date');
-        var Company_=cc.find('Company').getComponent('Company');
-        var Account_=cc.find('Company/Account').getComponent('Account');
-        var PersonControl_=cc.find('Company/PersonControl').getComponent('PersonControl');
-        var PersonGenerator_=cc.find('PersonGenerator').getComponent('PersonGenerator');
+        var Account=cc.find('Event/Game/Date/Account').getComponent('Account');
+        var Bank=cc.find('Event/Game/Date/Account/Bank').getComponent('Bank');
+        var Date_=cc.find('Event/Game/Date').getComponent('Date');
+        var Market=cc.find('Event/Game/Date/Account/Market').getComponent('Market');
+        var PersonGenerator=cc.find('Event/Game/Date/Account/PersonGenerator').getComponent('PersonGenerator');
+        var ProjectGenerator=cc.find('Event/Game/Date/Account/ProjectGenerator').getComponent('ProjectGenerator');
+        var PersonControl=cc.find('Event/Game/Date/Account/PersonControl').getComponent('PersonControl');
+        var Research=cc.find('Event/Game/Date/Account/Research').getComponent('Research');
+        cc.sys.localStorage.setItem(name+'_Account'+'_gold', Account.gold_);
+        cc.sys.localStorage.setItem(name+'_Account'+'_protect', Account.protect_);
+        cc.sys.localStorage.setItem(name+'_Account'+'_coef', JSON.stringify(Account.coef));
+        cc.sys.localStorage.setItem(name+'_Bank'+'_loans',JSON.stringify(Bank.loans_));
+        cc.sys.localStorage.setItem(name+'_Bank'+'_maxFixedLoanNum',Bank.maxFixedLoanNum_);
+        cc.sys.localStorage.setItem(name+'_Bank'+'_fixedLoanNum',Bank.fixedLoanNum_);
+        cc.sys.localStorage.setItem(name+'_Bank'+'_currentLoanNum',Bank.currentLoanNum_);
         cc.sys.localStorage.setItem(name+'_Date'+'_time', Date_.time_);
-        cc.sys.localStorage.setItem(name+'_Date'+'_speedPerday', Date_.speedPerday_);
-        cc.sys.localStorage.setItem(name+'_Date'+'_count', Date_.count_);
-        cc.sys.localStorage.setItem(name+'_Account'+'_gold', Account_.gold_);
-        cc.sys.localStorage.setItem(name+'_Account'+'_records', JSON.stringify(Account_.records_));
-        cc.sys.localStorage.setItem(name+'_PersonControl'+'_currentNum', PersonControl_.currentNum_);
-        cc.sys.localStorage.setItem(name+'_PersonControl'+'_maxNum', PersonControl_.maxNum_);
-        cc.sys.localStorage.setItem(name+'_PersonControl'+'_flag', PersonControl_.flag_);
-        var PCSet_=new Array();
-        var PGSet_=new Array();
-        for(i=0;i<PersonControl_.persons_.length;i++){
-            this.savePerson(name,PersonControl_.persons_[i]);
-            PCSet_[i]=PersonControl_.persons_[i].index_;                //PersonControl内员工的标号集合
-        }
-        for(i=0;i<PersonGenerator_.persons_.length;i++){
-            this.savePerson(name,PersonGenerator_.persons_[i]);
-            PGSet_[i]=PersonGenerator_.persons_[i].index_;                //PersonGenerator内员工的标号集合
-        }
-        cc.sys.localStorage.setItem('PCSet', JSON.stringify(PCSet_));
-        cc.sys.localStorage.setItem('PGSet', JSON.stringify(PGSet_));
-        this.saveProject(name,Company_.project_);
+        cc.sys.localStorage.setItem(name+'_Market'+'_totalPeopleNum', Market.totalPeopleNum_);
+        cc.sys.localStorage.setItem(name+'_Market'+'_A', Market.A_);
+        cc.sys.localStorage.setItem(name+'_Market'+'_currentPeopleNum', Market.currentPeopleNum_);
+        cc.sys.localStorage.setItem(name+'_Market'+'_initDay', Market.initDay_);
+        cc.sys.localStorage.setItem(name+'_Market'+'_a', Market.a_);
+        cc.sys.localStorage.setItem(name+'_Market'+'_isFixed', Market.isFixed_);
+        cc.sys.localStorage.setItem(name+'_PersonGenerator'+'_persons', JSON.stringify(PersonGenerator.persons_,replacer));
+        cc.sys.localStorage.setItem(name+'_ProjectGenerator'+'_availableList', JSON.stringify(ProjectGenerator.availableList_));
+        cc.sys.localStorage.setItem(name+'_ProjectGenerator'+'_projects', JSON.stringify(ProjectGenerator.projects_,replacer));
+        cc.sys.localStorage.setItem(name+'_ProjectGenerator'+'_projs', JSON.stringify(ProjectGenerator.projs_));
+        cc.sys.localStorage.setItem(name+'_PersonControl'+'_currentNum', PersonControl.currentNum_);
+        cc.sys.localStorage.setItem(name+'_PersonControl'+'_maxNum', PersonControl.maxNum_);
+        cc.sys.localStorage.setItem(name+'_PersonControl'+'_credit', PersonControl.credit_);
+        cc.sys.localStorage.setItem(name+'_PersonControl'+'_persons', JSON.stringify(PersonControl.persons_,replacer));
+        cc.sys.localStorage.setItem(name+'_PersonControl'+'_projectGroups', JSON.stringify(PersonControl.projectGroups_,replacer));
+        cc.sys.localStorage.setItem(name+'_PersonControl'+'_platforms', JSON.stringify(PersonControl.platforms_));
+        cc.sys.localStorage.setItem(name+'_PersonControl'+'_categories', JSON.stringify(PersonControl.categories_));
+        cc.sys.localStorage.setItem(name+'_PersonControl'+'_functions', JSON.stringify(PersonControl.functions_));
+        cc.sys.localStorage.setItem(name+'_Research'+'_S', Research.S_);
+        cc.sys.localStorage.setItem(name+'_Research'+'_coefS1', Research.coefS1_);
+        cc.sys.localStorage.setItem(name+'_Research'+'_coefS2', Research.coefS2_);
+        cc.sys.localStorage.setItem(name+'_Research'+'_coef', JSON.stringify(Research.coef));
+        cc.sys.localStorage.setItem(name+'_Research'+'_lv', JSON.stringify(Research.lv_));
         cc.log('save finished');
     },
 
-    load: function(name){                                               //读档
-        cc.log(name);
+    load: function(){                                               //读档
+        console.log('begin to load');
+        var name="test";
+        var i=0;
+        console.log(name);
         var saveSet_=JSON.parse(cc.sys.localStorage.getItem('saveSet'));    //所有存档的名称集合
-        var PCSet_=JSON.parse(cc.sys.localStorage.getItem('PCSet'));        //PersonControl内员工的标号集合
-        var PGSet_=JSON.parse(cc.sys.localStorage.getItem('PGSet'));        //PersonGenerator内员工的标号集合
         if(saveSet_==null){
-            cc.log('没有存档');
-            return;
+            console.log('没有存档');
+            return false;
         }
         for(i=0;i<saveSet_.length;i++){
             if(saveSet_[i]==name){
@@ -118,121 +149,172 @@ cc.Class({
             }
         }
         if(i==saveSet_.length){
+            console.log('没找到存档');
             return false;
         }
-        var Date_=                      cc.find('Date').getComponent('Date');
-        var Company_=                   cc.find('Company').getComponent('Company');
-        var Account_=                   cc.find('Company/Account').getComponent('Account');
-        var PersonControl_=             cc.find('Company/PersonControl').getComponent('PersonControl');
-        var PersonGenerator_=           cc.find('PersonGenerator').getComponent('PersonGenerator');
-        Date_.time_=                cc.sys.localStorage.getItem(name+'_Date'+'_time');
-        Date_.speedPerday_=         cc.sys.localStorage.getItem(name+'_Date'+'_speedPerday');
-        Date_.count_=               cc.sys.localStorage.getItem(name+'_Date'+'_count');
-        Account_.gold_=             cc.sys.localStorage.getItem(name+'_Account'+'_gold');
-        Account_.records_=          JSON.parse(cc.sys.localStorage.getItem(name+'_Account'+'_records'));
-        PersonControl_.currentNum_= cc.sys.localStorage.getItem(name+'_PersonControl'+'_currentNum');
-        PersonControl_.maxNum_=     cc.sys.localStorage.getItem(name+'_PersonControl'+'_maxNum');
-        PersonControl_.flag_=       cc.sys.localStorage.getItem(name+'_PersonControl'+'_flag');
-        for(i=0;i<PCSet_.length;i++){
-            PersonControl_.persons_[i]=new person();
-            this.loadPerson(name,PersonControl_.persons_[i],Company_);
+        var temp=null;
+        var data=null;
+        var Account=cc.find('Event/Game/Date/Account').getComponent('Account');
+        var Bank=cc.find('Event/Game/Date/Account/Bank').getComponent('Bank');
+        var Date_=cc.find('Event/Game/Date').getComponent('Date');
+        var Market=cc.find('Event/Game/Date/Account/Market').getComponent('Market');
+        var PersonGenerator=cc.find('Event/Game/Date/Account/PersonGenerator').getComponent('PersonGenerator');
+        var ProjectGenerator=cc.find('Event/Game/Date/Account/ProjectGenerator').getComponent('ProjectGenerator');
+        var PersonControl=cc.find('Event/Game/Date/Account/PersonControl').getComponent('PersonControl');
+        var Research=cc.find('Event/Game/Date/Account/Research').getComponent('Research');
+        Account.gold_=cc.sys.localStorage.getItem(name+'_Account'+'_gold');
+        Account.protect_=cc.sys.localStorage.getItem(name+'_Account'+'_protect');
+        Account.coef=JSON.parse(cc.sys.localStorage.getItem(name+'_Account'+'_coef'));
+        Bank.loans_=JSON.parse(cc.sys.localStorage.getItem(name+'_Bank'+'_loans'));
+        Bank.maxFixedLoanNum_=cc.sys.localStorage.getItem(name+'_Bank'+'_maxFixedLoanNum');
+        Bank.fixedLoanNum_=cc.sys.localStorage.getItem(name+'_Bank'+'_fixedLoanNum');
+        Bank.currentLoanNum_=cc.sys.localStorage.getItem(name+'_Bank'+'_currentLoanNum');
+        Date_.time_=cc.sys.localStorage.getItem(name+'_Date'+'_time');
+        Market.totalPeopleNum_=cc.sys.localStorage.getItem(name+'_Market'+'_totalPeopleNum');
+        Market.A_=cc.sys.localStorage.getItem(name+'_Market'+'_A');
+        Market.currentPeopleNum_=cc.sys.localStorage.getItem(name+'_Market'+'_currentPeopleNum');
+        Market.initDay_=cc.sys.localStorage.getItem(name+'_Market'+'_initDay');
+        Market.a_=cc.sys.localStorage.getItem(name+'_Market'+'_a');
+        Market.isFixed_=cc.sys.localStorage.getItem(name+'_Market'+'_isFixed');
+        data=JSON.parse(cc.sys.localStorage.getItem(name+'_PersonGenerator'+'_persons'));
+        console.log(data)
+        if(data==null||data==undefined){
+            data=[];
         }
-        for(i=0;i<PGSet_.length;i++){
-            PersonGenerator_.persons_[i]=new person();
-            this.loadPerson(name,PersonControl_.persons_[i],Company_);
+        PersonGenerator.persons_=[];
+        for(var i=0;i<data.length;i++){
+            temp=new person;
+            temp=this.loadperson(temp,data[i]);
+            temp.node=cc.find('Event/Game/Date/Account/PersonGenerator');
+            temp.group_=null;
+            PersonGenerator.persons_.push(temp);
         }
-        if(cc.sys.localStorage.getItem(name+'_Project'+'_isnull')==0){
-            Company_.project_=new project();
-            this.loadProject(name,Company_.project_);
-            PersonControl_.project_=Company_.project_;
+        ProjectGenerator.availableList_=JSON.parse(cc.sys.localStorage.getItem(name+'_ProjectGenerator'+'_availableList'));
+        data=JSON.parse(cc.sys.localStorage.getItem(name+'_ProjectGenerator'+'_projects'));
+        if(data==null||data==undefined){
+            data=[];
         }
+        ProjectGenerator.projects_=[];
+        for(var i=0;i<data.length;i++){
+            temp=new project;
+            temp=this.loadproject(temp,data[i]);
+            temp.node=cc.find('Event/Game/Date/Account/ProjectGenerator');
+            ProjectGenerator.projects_.push(temp);
+        }
+        ProjectGenerator.projs_=JSON.parse(cc.sys.localStorage.getItem(name+'_ProjectGenerator'+'_projs'));
+        PersonControl.currentNum_=cc.sys.localStorage.getItem(name+'_PersonControl'+'_currentNum');
+        PersonControl.maxNum_=cc.sys.localStorage.getItem(name+'_PersonControl'+'_maxNum');
+        PersonControl.credit_=cc.sys.localStorage.getItem(name+'_PersonControl'+'_credit');
+        data.length=0;
+        data=JSON.parse(cc.sys.localStorage.getItem(name+'_PersonControl'+'_persons'));
+        if(data==null||data==undefined){
+            data=[];
+        }
+        PersonControl.persons_=[];
+        console.log(data)
+        for(var i=0;i<data.length;i++){
+            temp=new person;
+            temp=this.loadperson(temp,data[i]);
+            temp.node=cc.find('Event/Game/Date/Account/PersonGenerator');
+            temp.group_=null;
+            PersonControl.persons_.push(temp);
+        }
+        data=JSON.parse(cc.sys.localStorage.getItem(name+'_PersonControl'+'_projectGroups'));
+        var temp_2=null;
+        PersonControl.projectGroups_=[];
+        for(var i=0;i<data.length;i++){
+            temp=new projectGroup;
+            temp_2=new project;
+            temp.state_=data.state_;
+            temp.usernum_=data.usernum_;
+            temp.testCount_=data.testCount_;
+            temp.ambitionBuff_=data.ambitionBuff_;
+            temp.bugDay_=data.bugDay_;
+            temp.bugBurstPeriod_=data.bugBurstPeriod_;
+            temp.burstBugs_=data.burstBugs_;
+            temp.project_=this.loadproject(temp_2,data.project_);
+            temp.persons_=[];
+            for(var m=0;m<data.persons_.length;m++){
+                for(var n=0;n<PersonControl.persons_.length;n++){
+                    if(data.persons_[m].index_=PersonControl.persons_[n].index_){
+                        temp.persons_.push(PersonControl.persons_[n]);
+                        PersonControl.persons_[n].group_=temp;
+                    }
+                }
+            }
+            temp.project_.node=cc.find('Event/Game/Date/Account/PersonControl');
+            temp.node=cc.find('Event/Game/Date/Account/PersonControl');
+            PersonControl.projectGroups_.push(temp);
+        }
+        PersonControl.platforms_=JSON.parse(cc.sys.localStorage.getItem(name+'_PersonControl'+'_platforms'));
+        PersonControl.categories_=JSON.parse(cc.sys.localStorage.getItem(name+'_PersonControl'+'_categories'));
+        PersonControl.functions_=JSON.parse(cc.sys.localStorage.getItem(name+'_PersonControl'+'_functions'));
+        Research.S_=cc.sys.localStorage.getItem(name+'_Research'+'_S');
+        Research.coefS1_=cc.sys.localStorage.getItem(name+'_Research'+'_coefS1');
+        Research.coefS2_=cc.sys.localStorage.getItem(name+'_Research'+'_coefS2');
+        Research.coef=JSON.parse(cc.sys.localStorage.getItem(name+'_Research'+'_coef'));
+        Research.lv_=JSON.parse(cc.sys.localStorage.getItem(name+'_Research'+'_lv'));
+        var event = new cc.Event.EventCustom("UPDATACOEF",true);  
+        event.coef=Research.coef;  
+        this.node.dispatchEvent(event);
         cc.log('load finished');
     },
 
-    savePerson: function(name,Person){                                  //存储员工 格式：存档名_员工标号_属性名
-        cc.sys.localStorage.setItem(name+'_'+Person.index_.toString()+'_abilityArt', Person.abilityArt_);
-        cc.sys.localStorage.setItem(name+'_'+Person.index_.toString()+'_abilityManage', Person.abilityManage_);
-        cc.sys.localStorage.setItem(name+'_'+Person.index_.toString()+'_abilityCoding', Person.abilityCoding_);
-        cc.sys.localStorage.setItem(name+'_'+Person.index_.toString()+'_maxArt', Person.maxArt_);
-        cc.sys.localStorage.setItem(name+'_'+Person.index_.toString()+'_maxManage', Person.maxManage_);
-        cc.sys.localStorage.setItem(name+'_'+Person.index_.toString()+'_maxCoding', Person.maxCoding_);
-        cc.sys.localStorage.setItem(name+'_'+Person.index_.toString()+'_hp', Person.hp_);
-        cc.sys.localStorage.setItem(name+'_'+Person.index_.toString()+'_level', Person.level_);
-        cc.sys.localStorage.setItem(name+'_'+Person.index_.toString()+'_grade', Person.grade_);
-        cc.sys.localStorage.setItem(name+'_'+Person.index_.toString()+'_state', Person.state_);
-        cc.sys.localStorage.setItem(name+'_'+Person.index_.toString()+'_employMoney', Person.employMoney_);
-        cc.sys.localStorage.setItem(name+'_'+Person.index_.toString()+'_name', Person.name_);
-        cc.sys.localStorage.setItem(name+'_'+Person.index_.toString()+'_profession', Person.profession_);
-        cc.sys.localStorage.setItem(name+'_'+Person.index_.toString()+'_supplicateLine', Person.supplicateLine_);
-        cc.sys.localStorage.setItem(name+'_'+Person.index_.toString()+'_index', Person.index_);
-        if(Person.Company!=null){
-            cc.sys.localStorage.setItem(name+'_'+Person.index_.toString()+'_st', 0);  //员工是否在公司
-        }
-        else{
-            cc.sys.localStorage.setItem(name+'_'+Person.index_.toString()+'_st', Person.level_);
-        }
+    loadperson:function(temp,data){
+        temp.gift_=data.gift_;
+        temp.coding_=data.coding_;
+        temp.science_=data.science_;
+        temp.art_=data.art_;
+        temp.creativity_=data.creativity_;
+        temp.manager_=data.manager_;
+        temp.business_=data.business_;
+        temp.state_=data.state_;
+        temp.salary_=data.salary_;
+        temp.employMoney_=data.employMoney_;
+        temp.name_=data.name_;
+        temp.profession_=data.profession_;
+        temp.index_=data.index_;
+        temp.level_=data.level_;
+        temp.power_=data.power_;
+        temp.mood_=data.mood_;
+        temp.moodAddition_=data.moodAddition_;
+        temp.character_=data.character_;
+        temp.coef=data.coef;
+        temp.relaxDays_=data.relaxDays_;
+        temp.unyieldingDays_=data.unyieldingDays_;
+        temp.month_=data.month_;
+        return temp;
     },
 
-    loadPerson: function(name,Person,Company){
-        Person.abilityArt_=     cc.sys.localStorage.getItem(name+'_'+Person.index_.toString()+'_abilityArt');
-        Person.abilityManage_=  cc.sys.localStorage.getItem(name+'_'+Person.index_.toString()+'_abilityManage');
-        Person.abilityCoding_=  cc.sys.localStorage.getItem(name+'_'+Person.index_.toString()+'_abilityCoding');
-        Person.maxArt_=         cc.sys.localStorage.getItem(name+'_'+Person.index_.toString()+'_maxArt');
-        Person.maxManage_=      cc.sys.localStorage.getItem(name+'_'+Person.index_.toString()+'_maxManage');
-        Person.maxCoding_=      cc.sys.localStorage.getItem(name+'_'+Person.index_.toString()+'_maxCoding');
-        Person.hp_=             cc.sys.localStorage.getItem(name+'_'+Person.index_.toString()+'_hp');
-        Person.level_=          cc.sys.localStorage.getItem(name+'_'+Person.index_.toString()+'_level');
-        Person.grade_=          cc.sys.localStorage.getItem(name+'_'+Person.index_.toString()+'_grade');
-        Person.state_=          cc.sys.localStorage.getItem(name+'_'+Person.index_.toString()+'_state');
-        Person.employMoney_=    cc.sys.localStorage.getItem(name+'_'+Person.index_.toString()+'_employMoney');
-        Person.name_=           cc.sys.localStorage.getItem(name+'_'+Person.index_.toString()+'_name');
-        Person.profession_=     cc.sys.localStorage.getItem(name+'_'+Person.index_.toString()+'_profession');
-        Person.supplicateLine_= cc.sys.localStorage.getItem(name+'_'+Person.index_.toString()+'_supplicateLine');
-        Person.index_=          cc.sys.localStorage.getItem(name+'_'+Person.index_.toString()+'_index');
-        if(cc.sys.localStorage.getItem(name+'_'+Person.index_.toString()+'_st')!=0){
-            Person.Company=null;
-            Person.project_=null;
-        }
-        else{
-            Person.Company=Company;
-            Person.project_=Company.project_;
-        }
-    },
-
-    saveProject: function(name,Project){                                //存储项目 格式：存档名_Project_属性名
-        if(Project==null){
-            cc.sys.localStorage.setItem(name+'_Project'+'_isnull', 1);
-            return;
-        }
-        cc.sys.localStorage.setItem(name+'_Project'+'_isnull', 0);
-        cc.sys.localStorage.setItem(name+'_Project'+'_requireUi', Project.requireUi_);
-        cc.sys.localStorage.setItem(name+'_Project'+'_requireFunc', Project.requireFunc_);
-        cc.sys.localStorage.setItem(name+'_Project'+'_currentUi', Project.currentUi_);
-        cc.sys.localStorage.setItem(name+'_Project'+'_currentFunc', Project.currentFunc_);
-        cc.sys.localStorage.setItem(name+'_Project'+'_state', Project.state_);
-        cc.sys.localStorage.setItem(name+'_Project'+'_category', Project.category_);
-        cc.sys.localStorage.setItem(name+'_Project'+'_reward', Project.reward_);
-        cc.sys.localStorage.setItem(name+'_Project'+'_deadline', Project.deadline_);
-        cc.sys.localStorage.setItem(name+'_Project'+'_level', Project.level_);
-        cc.sys.localStorage.setItem(name+'_Project'+'_receiveDay', Project.receiveDay_);
-        cc.sys.localStorage.setItem(name+'_Project'+'_finishDay', Project.finishDay_);
-        cc.sys.localStorage.setItem(name+'_Project'+'_content', Project.content_);
-    },
-
-    loadProject: function(name,Project){
-        Project.requireUi_=     cc.sys.localStorage.getItem(name+'_Project'+'_requireUi');
-        Project.requireFunc_=   cc.sys.localStorage.getItem(name+'_Project'+'_requireFunc');
-        Project.currentUi_=     cc.sys.localStorage.getItem(name+'_Project'+'_currentUi');
-        Project.currentFunc_=   cc.sys.localStorage.getItem(name+'_Project'+'_currentFunc');
-        Project.state_=         cc.sys.localStorage.getItem(name+'_Project'+'_state');
-        Project.category_=      cc.sys.localStorage.getItem(name+'_Project'+'_category',);
-        Project.reward_=        cc.sys.localStorage.getItem(name+'_Project'+'_reward',);
-        Project.deadline_=      cc.sys.localStorage.getItem(name+'_Project'+'_deadline',);
-        Project.level_=         cc.sys.localStorage.getItem(name+'_Project'+'_level');
-        Project.receiveDay_=    cc.sys.localStorage.getItem(name+'_Project'+'_receiveDay');
-        Project.finishDay_=     cc.sys.localStorage.getItem(name+'_Project'+'_finishDay');
-        Project.content_=       cc.sys.localStorage.getItem(name+'_Project'+'_content');
-    },
+    loadproject:function(temp,data){
+        temp.requireEntertainment_=data.requireEntertainment_;
+        temp.currentEntertainment_=data.currentEntertainment_;
+        temp.currentEntertainment_=data.currentEntertainment_;
+        temp.currentFunction_=data.currentFunction_;
+        temp.currentFunction_=data.currentFunction_;
+        temp.currentInnovation_=data.currentInnovation_;
+        temp.requirePerformance_=data.requirePerformance_;
+        temp.currentPerformance_=data.currentPerformance_;
+        temp.bugnum_=data.bugnum_;
+        temp.categories_=data.categories_;
+        temp.functions_=data.functions_;
+        temp.platform_=data.platform_;
+        temp.name_=data.name_;
+        temp.budget_=data.budget_;
+        temp.m_=data.m_;
+        temp.kind_=data.kind_;
+        temp.reward_=data.reward_;
+        temp.deadline_=data.deadline_;
+        temp.name_=data.name_;
+        temp.level_=data.level_;
+        temp.index_=data.index_;
+        temp.difficulty_=data.difficulty_;
+        temp.receiveDay_=data.receiveDay_;
+        temp.finishDay_=data.finishDay_;
+        temp.publishDay_=data.publishDay_;
+        temp.price_=data.price_;
+        return temp;
+    }
     // called every frame, uncomment this function to activate update callback
     // update: function (dt) {
 

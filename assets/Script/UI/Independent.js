@@ -230,9 +230,16 @@ cc.Class({
                 selected_em.push(this.em_data[p]);
             }
         }
-
+        if(selected_em.length==0){
+            this.msgbox.getComponent("msgBoxControl").alert("FAIL", "没有选择员工");
+            return;
+        }
         if(this.projectgroup==undefined){
             this.project.name_=this.projectname.getComponent(cc.EditBox).string;
+            if(this.project.name_==""){
+                this.msgbox.getComponent("msgBoxControl").alert("FAIL", "没有输入项目名称");
+                return;
+            }
             this.project.price_ = this.money;
             this.projectname.getComponent(cc.EditBox).string="";
             if(this.project.requireFunction_ == 0)
@@ -244,7 +251,6 @@ cc.Class({
             if(account.isEnough(this.project.budget_))
             {
                 account.expend(this.project.budget_);
-
             }
             else{
                 this.msgbox.getComponent("msgBoxControl").alert("FAIL", "金钱不足");

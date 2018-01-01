@@ -12,12 +12,15 @@ cc.Class({
         //    readonly: false,    // optional, default is false
         // },
         // ...
+        isload:cc.Boolean,
     },
 
     // use this for initialization
     onLoad: function () {
         console.log("fdsafadsfasd");
+        isload=false;
     },
+   
 
     // called every frame, uncomment this function to activate update callback
     // update: function (dt) {
