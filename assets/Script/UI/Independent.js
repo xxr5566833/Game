@@ -118,14 +118,14 @@ cc.Class({
             item.getChildByName("name").getComponent(cc.Label).string=this.pf_data[p].name_;
             switch(this.pf_data[p].index_)
             {
-                case 2:
-                item.getComponent("devplat").loadImage("主界面");
-                break;
                 case 0:
-                item.getComponent("devplat").loadImage("主界面新版");
+                item.getComponent("devplat").loadImage("独立开发_选择平台_客户端_图标");
                 break;
                 case 1:
-                item.getComponent("devplat").loadImage("面板");
+                item.getComponent("devplat").loadImage("独立开发_选择平台_网站_图标");
+                break;
+                case 2:
+                item.getComponent("devplat").loadImage("独立开发_选择平台_网站_图标");
                 break;
             }
             this.pfview.getComponent(cc.PageView).addPage(item);
