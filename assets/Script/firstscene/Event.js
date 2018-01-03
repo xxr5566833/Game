@@ -202,8 +202,8 @@ cc.Class({
         }, this);
 
         this.node.on("GETUSERNUM", function(event){
-            //event.back = this.market_.getComponent("Market").getCurrentPeople(event.project);
-            event.back = 50;
+            event.back = this.market_.getComponent("Market").getCurrentPeople(event.project);
+            //event.back = 50;
         }, this);
 
         this.node.on("PROJECTSUCCESS", function(event){

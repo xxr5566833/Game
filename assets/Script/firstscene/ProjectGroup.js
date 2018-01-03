@@ -373,11 +373,11 @@ cc.Class({
                     var num = this.testCount_ / 3;
                     this.testCount_ -= 3 * (this.testCount_ / 3);
                     for (let i = 0; i < num; i++) {
-                        if (this.chance(0.75)) {
+                        if (this.chance(1)) {
                             this.project_.removeBug(this.generateBugLevel(), 1);
                             console.log("减少了一个bug");
                         }
-                        if (this.chance(0.5)) {
+                        if (this.chance(0.3)) {
                             this.project_.findBug(this.generateBugLevel(), 1);
                             console.log("发现了一个bug");
                         }
@@ -401,19 +401,21 @@ cc.Class({
 
             case 2:
                 //市场相关
+                var dateevent = new cc.Event.EventCustom("GETDATE", true);
+                this.node.dispatchEvent(dateevent);
+                var nowday = dateevent.back;
+                var t = this.project_.getTimeFromPublish(nowday);
+                cc.log("t:"+t+"~~~~~~~~~~~~~~~~~~~~~~")
+                this.project_.updateM_2(t);
                 var event = new cc.Event.EventCustom('GETUSERNUM', true);
+                event.project = this.project_;
+                this.node.dispatchEvent(event);
+                this.usernum_ = event.back;
                 if(this.usernum_ == undefined || this.usernum_ == NaN)
                     this.usernum_ = 10;
-                event.project = this.project_;
-                console.log(this.usernum_);
-                this.node.dispatchEvent(event);
-                var incre = event.back - this.usernum_ <= 0 ? 2 : event.back - this.usernum_;
-                this.usernum_ = event.back;
                 console.log(event.back);
                 event = new cc.Event.EventCustom('MONEYADD', true);
-
-
-                event.money = incre * this.project_.price_;
+                event.money = this.usernum_ * this.project_.price_;
 
                 if (this.persons_.length != 0) {
                     var C = this.persons_[0].creativity_;

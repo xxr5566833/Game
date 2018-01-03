@@ -46,7 +46,7 @@ cc.Class({
         if(budget == 0)
             budget += 100;
         var progress = this.slider.getComponent(cc.Slider).progress;
-        var max = budget * 3;
+        var max = budget / 1000;
         var nowmoney = Math.floor(max * progress);
         this.money = nowmoney;
         this.moneystring.string = "卖价:" + '$' + this.money;
@@ -107,7 +107,7 @@ cc.Class({
         this.typ_data=source.getAvailableCategories();
         this.fun_data=source.getAvailableFunctions();
         this.em_data=source.getAvailablePersons();
-        this.money=cc.find('Event/Game/Date/Account').getComponent("Account").getGold();
+        this.money=2000;
         var pf_l=this.pf_data.length;
         var typ_l=this.typ_data.length;
         var fun_l=this.fun_data.length;
@@ -247,7 +247,12 @@ cc.Class({
                 this.project.requireFunction_ = 10;
             }
             var account = cc.find("Event/Game/Date/Account").getComponent("Account");
-
+            
+            if(this.project.categories_.length==0)
+            {
+                this.msgbox.getComponent("msgBoxControl").alert("FAIL", "没有选择项目类型");
+                return ;
+            }
             if(account.isEnough(this.project.budget_))
             {
                 account.expend(this.project.budget_);
@@ -256,6 +261,7 @@ cc.Class({
                 this.msgbox.getComponent("msgBoxControl").alert("FAIL", "金钱不足");
                 return ;
             }
+            this.project.setPublishDay(cc.find('Event/Game/Date').getComponent("Date").time_)
             cc.find('Event/Game/Date/Account/PersonControl').getComponent("PersonControl").begin(this.project,selected_em);
         }
         else{

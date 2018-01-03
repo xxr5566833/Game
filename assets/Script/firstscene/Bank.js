@@ -119,8 +119,7 @@ cc.Class({
         else{
             var loan=new Loan();
             loan.node = this.node;
-            loan.init(money, isfixed ? 7:7, isfixed ? 0.03: 0.05, isfixed);
-            //loan.init(money, isfixed ? 240:180, isfixed ? 0.03: 0.05, isfixed);
+            loan.init(money, isfixed ? 240:180, isfixed ? 0.03: 0.05, isfixed);
             this.loans_.push(loan);
             if(isfixed){
                 this.fixedLoanNum_++;

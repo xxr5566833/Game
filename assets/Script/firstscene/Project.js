@@ -90,6 +90,10 @@ cc.Class({
     },
 
     // use this for initialization
+    onLoad:function(){
+        this.m_=0;
+        this.budget_=0;
+    },
 
     init: function (kind, proj) {
         this.kind_ = kind;
@@ -394,7 +398,7 @@ cc.Class({
     getExpectPrice:function(){
         var cur=this.getCurrent();
         var F=cur.function;
-        return F/33;
+        return F*F/1000;
     },
 
     setPrice:function(price){
@@ -402,36 +406,39 @@ cc.Class({
     },
 
     updateM:function(t, burstbugs){
-        var cur=this.getCurrent();
-        var F=cur.function;
-        var E=cur.entertainment;
-        var P=cur.performance;
-        var I=cur.innovation;
+        var rate = 1.;
+        for(var i = 0 ; i < burstbugs.length ; i++)
+        {
+        switch(burstbugs[i])
+            {
+                case 0:
+                    rate = rate * 0.8;
+                    break;
+                case 1 :
+                    rate = rate * 0.5;
+                    break;
+                case 2 :
+                    rate = rate *0.2;
+                    break;
+            }
+        }
+        this.m_ = rate * this.m_ ;
+    },
+
+    updateM_2:function(t){
+        var F=this.currentFunction_;
+        var E=this.currentEntertainment_;
+        var P=this.currentPerformance_;
+        var I=this.currentInnovation_;
         if(this.m_==0){
-            this.m_ = Math.sqrt(7*E + 3*P) *F *(t + Math.sqrt(I))/t;
+            this.m_ = Math.sqrt(7*E + 3*P) * F * (t + Math.sqrt(I))/t;
             this.m_=this.m_*this.getExpectPrice()/this.price_;
         }
         else{
-            var rate = 1.;
-            for(var i = 0 ; i < burstbugs.length ; i++)
-            {
-                switch(burstbugs[i])
-                {
-                    case 0:
-                        rate = rate * 0.8;
-                        break;
-                    case 1 :
-                        rate = rate * 0.5;
-                        break;
-                    case 2 :
-                        rate = rate *0.2;
-                        break;
-                }
-            }
-            //这里还缺少f(p,t)
-            this.m_ = rate * this.m_ ;
+            this.m_*=0.99
         }
     },
+
 
     getM:function(){
         return this.m_;

@@ -218,7 +218,7 @@ cc.Class({
         // 逗逼(funny):集成了图王和唠叨的所有缺(划)优点，以下技能每周触发一次： 有25%概率使项目组中的某一个人心情+1;有25%概率使项目组中的某一个人心情+3; 有5%概率不贡献任何点数
         if (this.character_ === Character.funny) {
             // 有5%概率不贡献任何点数
-            rnd = Math.random();
+            var rnd = Math.random();
             if (rnd < 0.05) {
                 F = 0
                 P = 0
@@ -592,7 +592,7 @@ cc.Class({
                 speakSomething(Saying.ellisis);
                 break;
             case Character.funny:
-                rnd = Math.random()
+                var rnd = Math.random()
                 if (rnd < 0.25) {
                     // 触发事件，使得团队中的随机一人心情增加。具体是谁增加，不关心，由上层节点决定
                     var event = new cc.Event.EventCustom('increase-teammate-mood', true)
