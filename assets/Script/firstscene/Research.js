@@ -80,6 +80,7 @@ cc.Class({
     },
 
     unlock: function(id) {  // 传入要解锁的科技编号，返回 0(解锁成功) 1(科研点数不够) 2(该科技已满级)
+        id=parseInt(id)
         console.log("升级"+id+"号科研")
         var event;
         var lv=this.lv_[id];
@@ -107,14 +108,14 @@ cc.Class({
             break;
         case 4:
             if(this.lv_[id]==5){
-                event = new cc.EventCustom("UNLOCKTYPE",true);  
+                event = new cc.Event.EventCustom("UNLOCKTYPE",true);  
                 event.id = 3
                 this.node.dispatchEvent(event);
             }
             return 0;
         case 5:
             if(this.lv_[id]==5){
-                event = new cc.EventCustom("UNLOCKTYPE",true);  
+                event = new cc.Event.EventCustom("UNLOCKTYPE",true);  
                 event.id = 4
                 this.node.dispatchEvent(event);
             }
@@ -135,14 +136,14 @@ cc.Class({
             break;   
         case 10:
             if(this.lv_[id]==1){
-                event = new cc.EventCustom("UNLOCKPLATFORM",true);  
+                event = new cc.Event.EventCustom("UNLOCKPLATFORM",true);  
                 event.id = 1
                 this.node.dispatchEvent(event);
             }
             return 0;
         case 11:
             if(this.lv_[id]==1){
-                event = new cc.EventCustom("UNLOCKPLATFORM",true);  
+                event = new cc.Event.EventCustom("UNLOCKPLATFORM",true);  
                 event.id = 2
                 this.node.dispatchEvent(event);
             }
@@ -151,7 +152,7 @@ cc.Class({
             break; 
         case 12:
             if(this.lv_[id]==1){
-                event = new cc.EventCustom("UNLOCKTYPE",true);  
+                event = new cc.Event.EventCustom("UNLOCKTYPE",true);  
                 event.id = 6
                 this.node.dispatchEvent(event);
             }
@@ -189,8 +190,9 @@ cc.Class({
             this.coef.M *= 1.01;
             break;
         case 31:
+            cc.log(this.lv_[id])
             if(this.lv_[id]==1){
-                event = new cc.EventCustom("UNLOCKTYPE",true);  
+                event = new cc.Event.EventCustom("UNLOCKTYPE",true);  
                 event.id = 1
                 this.node.dispatchEvent(event);
             }
@@ -198,7 +200,7 @@ cc.Class({
             break;
         case 32:
             if(this.lv_[id]==2){
-                event = new cc.EventCustom("UNLOCKTYPE",true);  
+                event = new cc.Event.EventCustom("UNLOCKTYPE",true);  
                 event.id = 2
                 this.node.dispatchEvent(event);
             }
@@ -212,7 +214,7 @@ cc.Class({
             break;
         case 35:
             if(this.lv_[id]==1){
-                event = new cc.EventCustom("UNLOCKTYPE",true);  
+                event = new cc.Event.EventCustom("UNLOCKTYPE",true);  
                 event.id = 5
                 this.node.dispatchEvent(event);
             }

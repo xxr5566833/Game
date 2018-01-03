@@ -1,6 +1,7 @@
 {
   "appKey": "",
   "appSecret": "",
+  "encryptJs": false,
   "excludeScenes": [],
   "includeAnySDK": false,
   "includeSDKBox": false,
@@ -17,10 +18,11 @@
     "portrait": true,
     "upsideDown": false
   },
-  "packageName": "org.cocos2d.software",
+  "packageName": "org.cocos2d.MaShuai",
   "privateKey": "",
   "renderMode": "0",
   "startScene": "7be405c8-cda9-4b45-9e76-bfcfa5be2c39",
   "title": "MaShuai",
-  "webOrientation": "auto"
+  "webOrientation": "auto",
+  "xxteaKey": "df4177fc-7d88-43"
 }

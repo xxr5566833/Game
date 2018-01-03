@@ -394,7 +394,7 @@ cc.Class({
     getExpectPrice:function(){
         var cur=this.getCurrent();
         var F=cur.function;
-        return F*F/1000;
+        return F/33;
     },
 
     setPrice:function(price){

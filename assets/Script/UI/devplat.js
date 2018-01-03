@@ -26,7 +26,7 @@ cc.Class({
     loadImage: function(name) {
         // 加载 SpriteFrame
         var self = this;
-        cc.loader.loadRes("image/"+name+".png", cc.SpriteFrame, function (err, spriteFrame) {
+        cc.loader.loadRes("Image/"+name+".png", cc.SpriteFrame, function (err, spriteFrame) {
             if (err) {
                 console.log("loadAvatar error: "+name);
                 //.log("loadAvatar error: "+name)

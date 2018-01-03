@@ -45,7 +45,7 @@
     "_globalZOrder": 0,
     "_opacityModifyRGB": false,
     "groupIndex": 0,
-    "autoReleaseAssets": false
+    "autoReleaseAssets": null
   },
   {
     "__type__": "cc.Node",
@@ -4365,7 +4365,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 94,
+      "width": 120,
       "height": 40
     },
     "_rotationX": 0,
@@ -4393,8 +4393,8 @@
     },
     "_enabled": true,
     "_useOriginalSize": false,
-    "_actualFontSize": 15,
-    "_fontSize": 30,
+    "_actualFontSize": 13,
+    "_fontSize": 13,
     "_lineHeight": 40,
     "_enableWrapText": true,
     "_N$file": null,
